@@ -1,0 +1,241 @@
+openapi: 3.0.3
+info:
+  title: Pet Store API
+  version: 2.0.0
+  description: A sample Pet Store API for demonstrating OpenAPI diff (updated version)
+
+servers:
+  - url: https://api.petstore.example.com/v2
+
+paths:
+  /pets:
+    get:
+      operationId: listPets
+      summary: List all pets
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time
+          required: false
+          schema:
+            type: integer
+            format: int32
+            maximum: 50  # BREAKING: reduced from 100 to 50
+        - name: offset  # NON-BREAKING: new optional parameter
+          in: query
+          description: Pagination offset
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: category  # NON-BREAKING: new optional parameter
+          in: query
+          description: Filter by category
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A paginated list of pets
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PetListResponse'  # BREAKING: changed response structure
+        '500':
+          description: Server error
+
+    post:
+      operationId: createPet
+      summary: Create a pet
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewPet'
+      responses:
+        '201':
+          description: Pet created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pet'
+        '400':
+          description: Invalid input
+        '422':  # NON-BREAKING: new response code
+          description: Validation error
+
+  /pets/{petId}:
+    get:
+      operationId: getPetById
+      summary: Get a pet by ID
+      parameters:
+        - name: petId
+          in: path
+          required: true
+          description: The id of the pet to retrieve
+          schema:
+            type: string  # BREAKING: changed from integer to string (UUID)
+            format: uuid
+      responses:
+        '200':
+          description: A pet
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pet'
+        '404':
+          description: Pet not found
+
+    put:  # NON-BREAKING: new operation
+      operationId: updatePet
+      summary: Update a pet
+      parameters:
+        - name: petId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePet'
+      responses:
+        '200':
+          description: Pet updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pet'
+        '404':
+          description: Pet not found
+
+  # BREAKING: /pets/{petId} DELETE operation removed
+
+  /pets/{petId}/vaccinations:  # NON-BREAKING: new endpoint
+    get:
+      operationId: listPetVaccinations
+      summary: List vaccinations for a pet
+      parameters:
+        - name: petId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: List of vaccinations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Vaccination'
+
+components:
+  schemas:
+    Pet:
+      type: object
+      required:
+        - id
+        - name
+        - category  # BREAKING: new required field
+      properties:
+        id:
+          type: string  # BREAKING: changed from integer to string
+          format: uuid
+        name:
+          type: string
+        category:  # NEW required field
+          type: string
+        tag:
+          type: string
+          deprecated: true  # Deprecated field
+        tags:  # NON-BREAKING: new optional field replacing 'tag'
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+          enum:
+            - available
+            - pending
+            - sold
+            - reserved  # NON-BREAKING: new enum value
+        createdAt:  # NON-BREAKING: new optional field
+          type: string
+          format: date-time
+
+    NewPet:
+      type: object
+      required:
+        - name
+        - category  # BREAKING: new required field in request
+      properties:
+        name:
+          type: string
+        category:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+
+    UpdatePet:  # NEW schema
+      type: object
+      properties:
+        name:
+          type: string
+        category:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+          enum:
+            - available
+            - pending
+            - sold
+            - reserved
+
+    PetListResponse:  # NEW schema for paginated response
+      type: object
+      required:
+        - items
+        - total
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Pet'
+        total:
+          type: integer
+        offset:
+          type: integer
+        limit:
+          type: integer
+
+    Vaccination:  # NEW schema
+      type: object
+      required:
+        - id
+        - name
+        - date
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        date:
+          type: string
+          format: date
+        expiresAt:
+          type: string
+          format: date

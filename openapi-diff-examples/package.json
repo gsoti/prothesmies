@@ -1,0 +1,22 @@
+{
+  "name": "openapi-diff-examples",
+  "version": "1.0.0",
+  "description": "Examples demonstrating OpenAPI diff libraries in TypeScript",
+  "type": "module",
+  "scripts": {
+    "example:smart-diff": "tsx example-api-smart-diff.ts",
+    "example:openapi-diff": "tsx example-openapi-diff.ts",
+    "example:all": "npm run example:smart-diff && echo '' && npm run example:openapi-diff",
+    "cli:openapi-diff": "openapi-diff ./openapi-v1.yaml ./openapi-v2.yaml"
+  },
+  "dependencies": {
+    "api-smart-diff": "^1.0.6",
+    "openapi-diff": "^0.24.1",
+    "yaml": "^2.3.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}
