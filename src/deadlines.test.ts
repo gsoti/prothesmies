@@ -91,6 +91,7 @@ describe('getDeadlines - Integration Tests', () => {
                 const deadline = result[0];
                 expect(deadline.calculation).not.toBeNull();
                 expect(deadline.calculation?.logic).toHaveProperty('days');
+                expect(deadline.calculation?.logic).toHaveProperty('day_count');
                 expect(deadline.calculation?.logic).toHaveProperty('when');
                 expect(deadline.calculation?.logic).toHaveProperty('reference');
                 expect(deadline.calculation?.logic).toHaveProperty('start');
@@ -443,6 +444,7 @@ describe('getDeadlines - Integration Tests', () => {
                   "calculation": {
                     "date": "2024-12-16",
                     "logic": {
+                      "day_count": "CALENDAR",
                       "days": 30,
                       "name": "Φάκελος Διοίκησης",
                       "reference": "dikasimos",
@@ -473,6 +475,7 @@ describe('getDeadlines - Integration Tests', () => {
                   "calculation": {
                     "date": "2024-12-24",
                     "logic": {
+                      "day_count": "FULL",
                       "days": 20,
                       "name": "Ανακοίνωση Δίκης",
                       "reference": "dikasimos",
@@ -506,6 +509,7 @@ describe('getDeadlines - Integration Tests', () => {
                   "calculation": {
                     "date": "2024-12-31",
                     "logic": {
+                      "day_count": "CALENDAR",
                       "days": 15,
                       "name": "Πρόσθετοι Λόγοι",
                       "reference": "dikasimos",
@@ -536,6 +540,7 @@ describe('getDeadlines - Integration Tests', () => {
                   "calculation": {
                     "date": "2024-12-31",
                     "logic": {
+                      "day_count": "CALENDAR",
                       "days": 15,
                       "name": "Προσεπίκληση Ομοδίκων",
                       "reference": "dikasimos",
@@ -566,6 +571,7 @@ describe('getDeadlines - Integration Tests', () => {
                   "calculation": {
                     "date": "2025-01-09",
                     "logic": {
+                      "day_count": "FULL",
                       "days": 6,
                       "name": "Παρέμβαση",
                       "reference": "dikasimos",
@@ -596,6 +602,7 @@ describe('getDeadlines - Integration Tests', () => {
                   "calculation": {
                     "date": "2025-01-10",
                     "logic": {
+                      "day_count": "CALENDAR",
                       "days": 5,
                       "name": "Αίτηση Εξέτασης Μάρτυρα",
                       "reference": "dikasimos",
@@ -626,6 +633,7 @@ describe('getDeadlines - Integration Tests', () => {
                   "calculation": {
                     "date": "2025-01-14",
                     "logic": {
+                      "day_count": "CALENDAR",
                       "days": 1,
                       "name": "Δήλωση & Αποδεικτικά",
                       "reference": "dikasimos",
@@ -656,6 +664,7 @@ describe('getDeadlines - Integration Tests', () => {
                   "calculation": {
                     "date": "2025-01-14",
                     "logic": {
+                      "day_count": "CALENDAR",
                       "days": 1,
                       "name": "Συμμετοχή Ομοδίκων",
                       "reference": "dikasimos",
@@ -686,6 +695,7 @@ describe('getDeadlines - Integration Tests', () => {
                   "calculation": {
                     "date": "2025-01-15",
                     "logic": {
+                      "day_count": "CALENDAR",
                       "days": 0,
                       "name": "Παράβολο",
                       "reference": "dikasimos",
@@ -716,6 +726,7 @@ describe('getDeadlines - Integration Tests', () => {
                   "calculation": {
                     "date": "2025-01-15",
                     "logic": {
+                      "day_count": "CALENDAR",
                       "days": 0,
                       "name": "Δικαστικό Ένσημο",
                       "reference": "dikasimos",
@@ -746,6 +757,7 @@ describe('getDeadlines - Integration Tests', () => {
                   "calculation": {
                     "date": "2025-01-20",
                     "logic": {
+                      "day_count": "WORKING",
                       "days": 3,
                       "name": "Υπόμνημα",
                       "reference": "dikasimos",
@@ -783,7 +795,7 @@ describe('getDeadlines - Integration Tests', () => {
             const result = await getDeadlines({
                 court_type: CourtType.DP_DE,
                 procedure_type: ProcedureType.DIAFORA_OUSIAS,
-                dikasimos: '2025-01-15',
+                dikasimos: '2025-12-30',
             });
 
             const sorted = result.sort((a, b) => a.date.localeCompare(b.date));
@@ -797,24 +809,25 @@ describe('getDeadlines - Integration Tests', () => {
                 .map(d => {
                     const firstCol = `${d.date} - ${d.shortName}`.padEnd(maxFirstColLength);
                     const days = d.calculation!.logic.days;
+                    const day_count = d.calculation!.logic.day_count === 'CALENDAR' ? '' : d.calculation!.logic.day_count === 'FULL' ? ' ΠΛΗΡΕΙΣ' : 'ΕΡΓΑΣΙΜΕΣ';
                     const when = d.calculation!.logic.when === 'before' ? 'πριν' : 'μετά';
                     const ref = d.calculation!.logic.reference === 'δικάσιμο' ? 'δικάσιμο' : d.calculation!.logic.reference;
-                    return `${firstCol}  ${days} ημέρες ${when} ${ref}`;
+                    return `${firstCol}  ${days}${day_count} ημέρες ${when} ${ref}`;
                 })
                 .join('\n');
 
             expect(formatted).toMatchInlineSnapshot(`
-              "2024-12-16 - Φάκελος Διοίκησης        30 ημέρες πριν dikasimos
-              2024-12-24 - Ανακοίνωση Δίκης         20 ημέρες πριν dikasimos
-              2024-12-31 - Πρόσθετοι Λόγοι          15 ημέρες πριν dikasimos
-              2024-12-31 - Προσεπίκληση Ομοδίκων    15 ημέρες πριν dikasimos
-              2025-01-09 - Παρέμβαση                6 ημέρες πριν dikasimos
-              2025-01-10 - Αίτηση Εξέτασης Μάρτυρα  5 ημέρες πριν dikasimos
-              2025-01-14 - Δήλωση & Αποδεικτικά     1 ημέρες πριν dikasimos
-              2025-01-14 - Συμμετοχή Ομοδίκων       1 ημέρες πριν dikasimos
-              2025-01-15 - Παράβολο                 0 ημέρες μετά dikasimos
-              2025-01-15 - Δικαστικό Ένσημο         0 ημέρες μετά dikasimos
-              2025-01-20 - Υπόμνημα                 3 ημέρες μετά dikasimos"
+              "2025-11-28 - Φάκελος Διοίκησης        30 ημέρες πριν dikasimos
+              2025-12-10 - Ανακοίνωση Δίκης         20 ΠΛΗΡΕΙΣ ημέρες πριν dikasimos
+              2025-12-15 - Πρόσθετοι Λόγοι          15 ημέρες πριν dikasimos
+              2025-12-15 - Προσεπίκληση Ομοδίκων    15 ημέρες πριν dikasimos
+              2025-12-24 - Παρέμβαση                6 ΠΛΗΡΕΙΣ ημέρες πριν dikasimos
+              2025-12-24 - Αίτηση Εξέτασης Μάρτυρα  5 ημέρες πριν dikasimos
+              2025-12-29 - Δήλωση & Αποδεικτικά     1 ημέρες πριν dikasimos
+              2025-12-29 - Συμμετοχή Ομοδίκων       1 ημέρες πριν dikasimos
+              2025-12-30 - Παράβολο                 0 ημέρες μετά dikasimos
+              2025-12-30 - Δικαστικό Ένσημο         0 ημέρες μετά dikasimos
+              2026-01-05 - Υπόμνημα                 3ΕΡΓΑΣΙΜΕΣ ημέρες μετά dikasimos"
             `);
         });
     });

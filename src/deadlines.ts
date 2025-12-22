@@ -294,6 +294,7 @@ function buildCalculationLogic(
 ): DateCalculation['logic'] {
     return {
         days: rule.days,
+        day_count: rule.day_count,
         when: getWhenText(rule.direction),
         reference: rule.reference_point,
         start: referenceDate,

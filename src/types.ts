@@ -48,6 +48,7 @@ export interface DateCalculation {
     skipped: string[];
     logic: {
         days: number;
+        day_count: DayCount;
         when: 'before' | 'after';
         reference: string;
         start: string;
