@@ -51,7 +51,7 @@ async function fetchDeadlineRules(
         SELECT * FROM "prothesmies-admin"
         WHERE court_type = ${courtType}
         AND procedure_type = ${procedureType}
-        AND reference_point = 'dikasimos'
+        AND active = TRUE
     `;
 
     // Parse numeric fields from strings to numbers
