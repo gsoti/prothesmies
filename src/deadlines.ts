@@ -116,8 +116,33 @@ function getWhenText(direction: Direction): 'before' | 'after' {
     }
 }
 
+/**l.
+ * Legislation text and highlighted portions keyed by legislation article
+ */
+const NOMOTHESIA_DATA: Record<string, { text: string; highlighted: string[] }> = {
+    '129 παρ. 2 ΚΔΔ': {
+        text: `
+2. Η έκθεση με τον κατά την προηγούμενη παράγραφο διοικητικό φάκελο διαβιβάζονται στο δικαστήριο δεκαπέντε ημέρες τουλάχιστον πριν από τη δικάσιμο.
+
+Στις υποθέσεις, για τις οποίες η κατά το άρθρο 128 προθεσμία έχει συντμηθεί, τα στοιχεία αυτά διαβιβάζονται στο δικαστήριο τουλάχιστον οκτώ ημέρες πριν από τη δικάσιμο.
+
+Σε περίπτωση εκπρόθεσμης διαβίβασης, η υπόθεση αναβάλλεται, αν το ζητήσει εκείνος που έχει ασκήσει το ένδικο βοήθημα ή μέσο ή εκείνος που έχει ασκήσει την παρέμβαση. Για την αναβολή αυτή γίνεται ιδιαίτερη μνεία στα πρακτικά.
+`,
+        highlighted: [
+            'Η έκθεση με τον κατά την προηγούμενη παράγραφο διοικητικό φάκελο διαβιβάζονται στο δικαστήριο δεκαπέντε ημέρες τουλάχιστον πριν από τη δικάσιμο.'
+        ],
+    },
+    '114 παρ. 1 ΚΔΔ': {
+        text: 
+        `1. Στα πρόσωπα που, κατά τα προηγούμενα άρθρα, νομιμοποιούνται να ασκήσουν παρέμβαση, ανακοινώνεται η δίκη, με κοινοποίηση του εισαγωγικού δικογράφου και γνωστοποίηση της δικασίμου είκοσι (20) τουλάχιστον πλήρεις ημέρες πριν από αυτήν, από οποιονδήποτε διάδικο.`,
+        highlighted: [
+            'Στα πρόσωπα που, κατά τα προηγούμενα άρθρα, νομιμοποιούνται να ασκήσουν παρέμβαση, ανακοινώνεται η δίκη, με κοινοποίηση του εισαγωγικού δικογράφου και γνωστοποίηση της δικασίμου είκοσι (20) τουλάχιστον πλήρεις ημέρες πριν από αυτήν, από οποιονδήποτε διάδικο.'
+        ],
+    },
+};
+
 /**
- * Parses legislation text to extract article number and format
+ * Parses legislation text and retrieves text/highlighted based on legislation article
  */
 function parseLegislation(legislation: string | null): {
     plain: string[];
@@ -127,12 +152,15 @@ function parseLegislation(legislation: string | null): {
         return { plain: [], formatted: [] };
     }
 
+    // Look up the text and highlighted from the data using legislation as key
+    const nomothesiaData = NOMOTHESIA_DATA[legislation];
+
     return {
         plain: [legislation],
         formatted: [{
             article: legislation,
-            text: '',
-            highlighted: [], // Empty for now
+            text: nomothesiaData?.text ?? '',
+            highlighted: nomothesiaData?.highlighted ?? [],
         }],
     };
 }
