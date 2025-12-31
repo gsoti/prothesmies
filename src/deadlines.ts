@@ -120,21 +120,20 @@ function getWhenText(direction: Direction): 'before' | 'after' {
 /**
  * Parses legislation text and retrieves text/highlighted based on legislation article
  */
-function parseLegislation(legislation: string | null, syntmisi: boolean): {
+function parseLegislation(legislation: string | null, syntmisi: boolean, deadlineCode?: string): {
     plain: string[];
     formatted: Nomothesia[];
 } {
     if (!legislation) {
         return { plain: [], formatted: [] };
     }
-    const nomos = NOMOTHESIA_TEXT
 
     return {
         plain: [legislation],
         formatted: [{
             article: legislation,
             text: NOMOTHESIA_TEXT[legislation] ?? '',
-            highlighted: getHighlighted(legislation, syntmisi),
+            highlighted: getHighlighted(legislation, syntmisi, deadlineCode),
         }],
     };
 }
@@ -337,7 +336,7 @@ function buildDeadline(
     logic: DateCalculation['logic'],
     syntmisi: boolean
 ): Deadline {
-    const { plain, formatted } = parseLegislation(rule.legislation, syntmisi);    
+    const { plain, formatted } = parseLegislation(rule.legislation, syntmisi, rule.deadline_code);
 
     /*
     Object {

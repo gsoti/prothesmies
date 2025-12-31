@@ -19,9 +19,9 @@ export const NOMOTHESIA_TEXT: Record<string, string> = {
 
 /**
  * Dictionary containing highlighted portions for each legislation article
- * Each entry has 'default' and optionally 'syntmisi' arrays
+ * Each entry has 'default' and optionally procedure-specific arrays (syntmisi, ypomnima, ypomnima_antikrousis, etc.)
  */
-const NOMOTHESIA_HIGHLIGHTED: Record<string, { default: string[]; syntmisi?: string[] }> = {
+const NOMOTHESIA_HIGHLIGHTED: Record<string, { default: string[]; syntmisi?: string[]; ypomnima?: string[]; ypomnima_antikrousis?: string[] }> = {
     '129 παρ. 2 ΚΔΔ': {
         default: [
             'Η έκθεση με τον κατά την προηγούμενη παράγραφο διοικητικό φάκελο διαβιβάζονται στο δικαστήριο δεκαπέντε ημέρες τουλάχιστον πριν από τη δικάσιμο.'
@@ -65,6 +65,12 @@ const NOMOTHESIA_HIGHLIGHTED: Record<string, { default: string[]; syntmisi?: str
         default: [
             'Υπομνήματα των διαδίκων, για την ανάπτυξη των ισχυρισμών τους, κατατίθενται στη γραμματεία το αργότερο τρεις (3) εργάσιμες ημέρες μετά τη συζήτηση. Μέσα σε προθεσμία τριών (3) εργάσιμων ημερών από τη λήξη της παραπάνω προθεσμίας ο αντίδικος εκείνου που κατέθεσε το υπόμνημα μπορεί, με δικό του υπόμνημα, να αντικρούσει τις απόψεις που αναπτύχθηκαν με το υπόμνημα του αντιδίκου του.'
         ],
+        ypomnima: [
+            'Υπομνήματα των διαδίκων, για την ανάπτυξη των ισχυρισμών τους, κατατίθενται στη γραμματεία το αργότερο τρεις (3) εργάσιμες ημέρες μετά τη συζήτηση.'
+        ],
+        ypomnima_antikrousis: [
+            'Μέσα σε προθεσμία τριών (3) εργάσιμων ημερών από τη λήξη της παραπάνω προθεσμίας ο αντίδικος εκείνου που κατέθεσε το υπόμνημα μπορεί, με δικό του υπόμνημα, να αντικρούσει τις απόψεις που αναπτύχθηκαν με το υπόμνημα του αντιδίκου του.'
+        ],
     },
     '126Β παρ. 2 ΚΔΔ': {
         default: [
@@ -77,12 +83,18 @@ const NOMOTHESIA_HIGHLIGHTED: Record<string, { default: string[]; syntmisi?: str
  * Returns the highlighted portions for a legislation article
  * @param legislationKey - The legislation article key (e.g., '129 παρ. 2 ΚΔΔ')
  * @param syntmisi - Whether to return the shortened (syntmisi) version if available
+ * @param deadlineCode - Optional deadline code for procedure-specific highlights (e.g., 'ypomnima', 'ypomnima_antikrousis')
  * @returns Array of highlighted text portions, or empty array if not found
  */
-export function getHighlighted(legislationKey: string, syntmisi: boolean): string[] {
+export function getHighlighted(legislationKey: string, syntmisi: boolean, deadlineCode?: string): string[] {
     const data = NOMOTHESIA_HIGHLIGHTED[legislationKey];
     if (!data) {
         return [];
+    }
+
+    // Check for procedure-specific highlights first
+    if (deadlineCode && deadlineCode in data) {
+        return data[deadlineCode as keyof typeof data] as string[];
     }
 
     if (syntmisi && data.syntmisi) {
