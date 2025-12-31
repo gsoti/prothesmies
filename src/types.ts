@@ -99,4 +99,5 @@ export interface GetDeadlinesInput {
     court_type: CourtType;
     procedure_type: ProcedureType;
     dikasimos: string; // ISO date format (YYYY-MM-DD)
+    syntmisi?: boolean; // Whether deadlines are shortened
 }

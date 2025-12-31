@@ -1,10 +1,10 @@
 import { describe, it, expect, beforeAll } from 'vitest';
-import { getDeadlines, DeadlineCalculationError } from './deadlines.js';
+import { getAdminDeadlines, DeadlineCalculationError } from './deadlines.js';
 import { CourtType, ProcedureType } from './types.js';
 import { testConnection } from './db.js';
 
 // Integration tests with real database
-describe('getDeadlines - Integration Tests', () => {
+describe('getAdminDeadlines - Integration Tests', () => {
     beforeAll(async () => {
         // Ensure database connection is working
         const connected = await testConnection();
@@ -16,7 +16,7 @@ describe('getDeadlines - Integration Tests', () => {
     describe('Input Validation', () => {
         it('should throw error for invalid date format', async () => {
             await expect(
-                getDeadlines({
+                getAdminDeadlines({
                     court_type: CourtType.DP_DE,
                     procedure_type: ProcedureType.DIAFORA_OUSIAS,
                     dikasimos: 'invalid-date',
@@ -26,7 +26,7 @@ describe('getDeadlines - Integration Tests', () => {
 
         it('should throw error for missing dikasimos', async () => {
             await expect(
-                getDeadlines({
+                getAdminDeadlines({
                     court_type: CourtType.DP_DE,
                     procedure_type: ProcedureType.DIAFORA_OUSIAS,
                     dikasimos: '' as any,
@@ -36,7 +36,7 @@ describe('getDeadlines - Integration Tests', () => {
 
         it('should throw error for null dikasimos', async () => {
             await expect(
-                getDeadlines({
+                getAdminDeadlines({
                     court_type: CourtType.DP_DE,
                     procedure_type: ProcedureType.DIAFORA_OUSIAS,
                     dikasimos: null as any,
@@ -46,7 +46,7 @@ describe('getDeadlines - Integration Tests', () => {
 
         it('should accept valid input', async () => {
             // This should not throw
-            const result = await getDeadlines({
+            const result = await getAdminDeadlines({
                 court_type: CourtType.DP_DE,
                 procedure_type: ProcedureType.DIAFORA_OUSIAS,
                 dikasimos: '2024-03-15',
@@ -58,7 +58,7 @@ describe('getDeadlines - Integration Tests', () => {
 
     describe('Basic Functionality', () => {
         it('should return array of deadlines for valid input', async () => {
-            const result = await getDeadlines({
+            const result = await getAdminDeadlines({
                 court_type: CourtType.DP_DE,
                 procedure_type: ProcedureType.DIAFORA_OUSIAS,
                 dikasimos: '2024-03-15',
@@ -81,7 +81,7 @@ describe('getDeadlines - Integration Tests', () => {
         });
 
         it('should populate DateCalculation.logic field correctly', async () => {
-            const result = await getDeadlines({
+            const result = await getAdminDeadlines({
                 court_type: CourtType.DP_DE,
                 procedure_type: ProcedureType.DIAFORA_OUSIAS,
                 dikasimos: '2024-03-15',
@@ -103,7 +103,7 @@ describe('getDeadlines - Integration Tests', () => {
         });
 
         it('should have correct imeres field based on day_count', async () => {
-            const result = await getDeadlines({
+            const result = await getAdminDeadlines({
                 court_type: CourtType.DP_DE,
                 procedure_type: ProcedureType.DIAFORA_OUSIAS,
                 dikasimos: '2024-03-15',
@@ -118,7 +118,7 @@ describe('getDeadlines - Integration Tests', () => {
         });
 
         it('should parse legislation and extract article number', async () => {
-            const result = await getDeadlines({
+            const result = await getAdminDeadlines({
                 court_type: CourtType.DP_DE,
                 procedure_type: ProcedureType.DIAFORA_OUSIAS,
                 dikasimos: '2024-03-15',
@@ -137,7 +137,7 @@ describe('getDeadlines - Integration Tests', () => {
         });
 
         it('should handle deadlines without formattedNomothesia.text', async () => {
-            const result = await getDeadlines({
+            const result = await getAdminDeadlines({
                 court_type: CourtType.DP_DE,
                 procedure_type: ProcedureType.DIAFORA_OUSIAS,
                 dikasimos: '2025-01-15',
@@ -172,7 +172,7 @@ describe('getDeadlines - Integration Tests', () => {
 
     describe('Chained Deadlines', () => {
         it('should handle parent-child relationships correctly', async () => {
-            const result = await getDeadlines({
+            const result = await getAdminDeadlines({
                 court_type: CourtType.DP_DE,
                 procedure_type: ProcedureType.DIAFORA_OUSIAS,
                 dikasimos: '2024-03-15',
@@ -201,7 +201,7 @@ describe('getDeadlines - Integration Tests', () => {
         });
 
         it('should have root deadlines reference dikasimos', async () => {
-            const result = await getDeadlines({
+            const result = await getAdminDeadlines({
                 court_type: CourtType.DP_DE,
                 procedure_type: ProcedureType.DIAFORA_OUSIAS,
                 dikasimos: '2024-03-15',
@@ -221,7 +221,7 @@ describe('getDeadlines - Integration Tests', () => {
         });
 
         it('should calculate dates in correct order (parent before child)', async () => {
-            const result = await getDeadlines({
+            const result = await getAdminDeadlines({
                 court_type: CourtType.DP_DE,
                 procedure_type: ProcedureType.DIAFORA_OUSIAS,
                 dikasimos: '2024-06-15', // Use summer date to avoid year-end issues
@@ -244,7 +244,7 @@ describe('getDeadlines - Integration Tests', () => {
 
     describe('Date Calculations', () => {
         it('should calculate dates correctly for BEFORE direction', async () => {
-            const result = await getDeadlines({
+            const result = await getAdminDeadlines({
                 court_type: CourtType.DP_DE,
                 procedure_type: ProcedureType.DIAFORA_OUSIAS,
                 dikasimos: '2024-03-15',
@@ -262,7 +262,7 @@ describe('getDeadlines - Integration Tests', () => {
         });
 
         it('should calculate dates correctly for AFTER direction', async () => {
-            const result = await getDeadlines({
+            const result = await getAdminDeadlines({
                 court_type: CourtType.DP_DE,
                 procedure_type: ProcedureType.DIAFORA_OUSIAS,
                 dikasimos: '2024-03-15',
@@ -281,7 +281,7 @@ describe('getDeadlines - Integration Tests', () => {
         });
 
         it('should handle working days vs calendar days correctly', async () => {
-            const result = await getDeadlines({
+            const result = await getAdminDeadlines({
                 court_type: CourtType.DP_DE,
                 procedure_type: ProcedureType.DIAFORA_OUSIAS,
                 dikasimos: '2024-03-15',
@@ -295,7 +295,7 @@ describe('getDeadlines - Integration Tests', () => {
         });
 
         it('should include paused and skipped dates in calculation', async () => {
-            const result = await getDeadlines({
+            const result = await getAdminDeadlines({
                 court_type: CourtType.DP_DE,
                 procedure_type: ProcedureType.DIAFORA_OUSIAS,
                 dikasimos: '2024-08-01', // Summer date to potentially hit Aug 15 holiday
@@ -332,7 +332,7 @@ describe('getDeadlines - Integration Tests', () => {
             ];
 
             for (const date of testDates) {
-                const result = await getDeadlines({
+                const result = await getAdminDeadlines({
                     court_type: CourtType.DP_DE,
                     procedure_type: ProcedureType.DIAFORA_OUSIAS,
                     dikasimos: date,
@@ -349,7 +349,7 @@ describe('getDeadlines - Integration Tests', () => {
 
         it('should handle dikasimos on a holiday', async () => {
             // March 25 is Greek Independence Day
-            const result = await getDeadlines({
+            const result = await getAdminDeadlines({
                 court_type: CourtType.DP_DE,
                 procedure_type: ProcedureType.DIAFORA_OUSIAS,
                 dikasimos: '2024-03-25',
@@ -365,7 +365,7 @@ describe('getDeadlines - Integration Tests', () => {
 
         it('should handle year boundaries', async () => {
             // Late December deadline that may cross into next year
-            const result = await getDeadlines({
+            const result = await getAdminDeadlines({
                 court_type: CourtType.DP_DE,
                 procedure_type: ProcedureType.DIAFORA_OUSIAS,
                 dikasimos: '2024-12-20',
@@ -379,7 +379,7 @@ describe('getDeadlines - Integration Tests', () => {
         });
 
         it('should handle early January deadline that may go back to previous year', async () => {
-            const result = await getDeadlines({
+            const result = await getAdminDeadlines({
                 court_type: CourtType.DP_DE,
                 procedure_type: ProcedureType.DIAFORA_OUSIAS,
                 dikasimos: '2024-01-10',
@@ -394,7 +394,7 @@ describe('getDeadlines - Integration Tests', () => {
 
         it('should handle leap year dates', async () => {
             // Feb 29, 2024 is a valid date (leap year)
-            const result = await getDeadlines({
+            const result = await getAdminDeadlines({
                 court_type: CourtType.DP_DE,
                 procedure_type: ProcedureType.DIAFORA_OUSIAS,
                 dikasimos: '2024-02-29',
@@ -410,7 +410,7 @@ describe('getDeadlines - Integration Tests', () => {
 
     describe('Data Integrity', () => {
         it('should have unique deadline codes', async () => {
-            const result = await getDeadlines({
+            const result = await getAdminDeadlines({
                 court_type: CourtType.DP_DE,
                 procedure_type: ProcedureType.DIAFORA_OUSIAS,
                 dikasimos: '2024-03-15',
@@ -424,7 +424,7 @@ describe('getDeadlines - Integration Tests', () => {
         });
 
         it('should have shortName from database', async () => {
-            const result = await getDeadlines({
+            const result = await getAdminDeadlines({
                 court_type: CourtType.DP_DE,
                 procedure_type: ProcedureType.DIAFORA_OUSIAS,
                 dikasimos: '2024-03-15',
@@ -437,7 +437,7 @@ describe('getDeadlines - Integration Tests', () => {
         });
 
         it('should have valid calculation.date equal to deadline.date', async () => {
-            const result = await getDeadlines({
+            const result = await getAdminDeadlines({
                 court_type: CourtType.DP_DE,
                 procedure_type: ProcedureType.DIAFORA_OUSIAS,
                 dikasimos: '2024-03-15',
@@ -450,7 +450,7 @@ describe('getDeadlines - Integration Tests', () => {
         });
 
         it('should have ypologismos as empty array', async () => {
-            const result = await getDeadlines({
+            const result = await getAdminDeadlines({
                 court_type: CourtType.DP_DE,
                 procedure_type: ProcedureType.DIAFORA_OUSIAS,
                 dikasimos: '2024-03-15',
@@ -465,7 +465,7 @@ describe('getDeadlines - Integration Tests', () => {
 
     describe('Snapshot Tests', () => {
         it('should match inline snapshot for 2025-01-15', async () => {
-            const result = await getDeadlines({
+            const result = await getAdminDeadlines({
                 court_type: CourtType.DP_DE,
                 procedure_type: ProcedureType.DIAFORA_OUSIAS,
                 dikasimos: '2025-01-15',
@@ -871,7 +871,7 @@ describe('getDeadlines - Integration Tests', () => {
         });
 
         it('should format deadlines ordered by date', async () => {
-            const result = await getDeadlines({
+            const result = await getAdminDeadlines({
                 court_type: CourtType.DP_DE,
                 procedure_type: ProcedureType.DIAFORA_OUSIAS,
                 dikasimos: '2025-12-30',
@@ -913,10 +913,51 @@ describe('getDeadlines - Integration Tests', () => {
     });
 });
 
+describe('Syntmisi (shortened deadlines)', () => {
+        it('should calculate apopseis_fakelos_dioikisis as 8 days before dikasimos when syntmisi is true', async () => {
+            const result = await getAdminDeadlines({
+                court_type: CourtType.DP_DE,
+                procedure_type: ProcedureType.DIAFORA_OUSIAS,
+                dikasimos: '2025-01-15',
+                syntmisi: true,
+            });
+
+            const apopseisFakelos = result.find(d => d.type === 'apopseis_fakelos_dioikisis');
+            expect(apopseisFakelos).toBeDefined();
+
+            // Assert the date is 8 days before dikasimos (2025-01-15 - 8 = 2025-01-07)
+            expect(apopseisFakelos!.date).toBe('2025-01-07');
+            expect(apopseisFakelos!.calculation!.logic.days).toBe(8);
+
+            // Assert the highlighted nomothesia text is the syntmisi version
+            expect(apopseisFakelos!.formattedNomothesia).toHaveLength(1);
+            expect(apopseisFakelos!.formattedNomothesia[0].highlighted).toEqual([
+                'Στις υποθέσεις, για τις οποίες η κατά το άρθρο 128 προθεσμία έχει συντμηθεί, τα στοιχεία αυτά διαβιβάζονται στο δικαστήριο τουλάχιστον οκτώ ημέρες πριν από τη δικάσιμο.'
+            ]);
+        });
+
+        it('should use default highlighted text when syntmisi is false', async () => {
+            const result = await getAdminDeadlines({
+                court_type: CourtType.DP_DE,
+                procedure_type: ProcedureType.DIAFORA_OUSIAS,
+                dikasimos: '2025-01-15',
+                syntmisi: false,
+            });
+
+            const apopseisFakelos = result.find(d => d.type === 'apopseis_fakelos_dioikisis');
+            expect(apopseisFakelos).toBeDefined();
+
+            // Assert the default highlighted text is used
+            expect(apopseisFakelos!.formattedNomothesia[0].highlighted).toEqual([
+                'Η έκθεση με τον κατά την προηγούμενη παράγραφο διοικητικό φάκελο διαβιβάζονται στο δικαστήριο δεκαπέντε ημέρες τουλάχιστον πριν από τη δικάσιμο.'
+            ]);
+        });
+    });
+
 describe('DeadlineCalculationError', () => {
     it('should be throwable and catchable', async () => {
         try {
-            await getDeadlines({
+            await getAdminDeadlines({
                 court_type: CourtType.DP_DE,
                 procedure_type: ProcedureType.DIAFORA_OUSIAS,
                 dikasimos: 'invalid',
