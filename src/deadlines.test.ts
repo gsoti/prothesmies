@@ -915,7 +915,57 @@ describe('getAdminDeadlines - Integration Tests', () => {
     });
 });
 
-describe('Syntmisi (shortened deadlines)', () => {
+describe('Nomothesia validation', () => {
+        it('should have all highlighted texts contained within the full text', async () => {
+            const result = await getAdminDeadlines({
+                court_type: CourtType.DP_DE,
+                procedure_type: ProcedureType.DIAFORA_OUSIAS,
+                dikasimos: '2025-01-15',
+            });
+
+            for (const deadline of result) {
+                for (const nomothesia of deadline.formattedNomothesia) {
+                    // Skip if there's no text (nothing to validate against)
+                    if (!nomothesia.text) {
+                        continue;
+                    }
+
+                    for (const highlighted of nomothesia.highlighted) {
+                        expect(
+                            nomothesia.text.includes(highlighted),
+                            `Highlighted text "${highlighted.substring(0, 50)}..." not found in full text for ${deadline.type} (${nomothesia.article})`
+                        ).toBe(true);
+                    }
+                }
+            }
+        });
+
+        it('should have all highlighted texts contained within the full text when syntmisi is true', async () => {
+            const result = await getAdminDeadlines({
+                court_type: CourtType.DP_DE,
+                procedure_type: ProcedureType.DIAFORA_OUSIAS,
+                dikasimos: '2025-01-15',
+                syntmisi: true,
+            });
+
+            for (const deadline of result) {
+                for (const nomothesia of deadline.formattedNomothesia) {
+                    if (!nomothesia.text) {
+                        continue;
+                    }
+
+                    for (const highlighted of nomothesia.highlighted) {
+                        expect(
+                            nomothesia.text.includes(highlighted),
+                            `Highlighted text "${highlighted.substring(0, 50)}..." not found in full text for ${deadline.type} (${nomothesia.article})`
+                        ).toBe(true);
+                    }
+                }
+            }
+        });
+    });
+
+    describe('Syntmisi (shortened deadlines)', () => {
         it('should calculate apopseis_fakelos_dioikisis as 8 days before dikasimos when syntmisi is true', async () => {
             const result = await getAdminDeadlines({
                 court_type: CourtType.DP_DE,
