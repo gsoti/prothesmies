@@ -127,6 +127,7 @@ function parseLegislation(legislation: string | null, syntmisi: boolean): {
     if (!legislation) {
         return { plain: [], formatted: [] };
     }
+    const nomos = NOMOTHESIA_TEXT
 
     return {
         plain: [legislation],
