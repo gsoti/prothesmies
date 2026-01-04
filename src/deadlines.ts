@@ -1,6 +1,7 @@
 import { sql } from './db.js';
 import { getDateCalculation, DateCalculationResult, ArgiesAndAnastoli } from './dateCalculation.js';
 import { getArgiesForRange, getDateRangeForCalculation } from './utils/argies.js';
+import { getAnastoliForRange } from './utils/anastoli-admin.js';
 import { parseISODate } from './utils/dateUtils.js';
 import {
     DeadlineCode,
@@ -301,15 +302,6 @@ function buildCalculationLogic(
         start: referenceDate,
         name: rule.short_name,
     };
-    /*
-    "logic": Object {
-        "days": 5,
-        "name": "Δικάσιμος",
-        "reference": "dikasimos",
-        "start": "2024-07-08",
-        "when": "after",
-      }
-        */
 }
 
 /**
@@ -337,48 +329,6 @@ function buildDeadline(
     syntmisi: boolean
 ): Deadline {
     const { plain, formatted } = parseLegislation(rule.legislation, syntmisi, rule.deadline_code);
-
-    /*
-    Object {
-    "calculation": Object {
-      "date": "2024-07-15",
-      "logic": Object {
-        "days": 5,
-        "name": "Δικάσιμος",
-        "reference": "dikasimos",
-        "start": "2024-07-08",
-        "when": "after",
-      },
-      "paused": Array [
-        "2024-07-13",
-        "2024-07-14",
-      ],
-      "skipped": Array [],
-    },
-    "date": "2024-07-15",
-    "formattedNomothesia": Array [
-      Object {
-        "article": "ΚΠολΔ 591 παρ. 1 περ. στ΄",
-        "highlighted": Array [
-          "Οι διάδικοι μπορούν έως τη δωδέκατη ώρα της πέμπτης εργάσιμης ημέρας από τη συζήτηση να καταθέσουν προσθήκη στις προτάσεις τους",
-        ],
-        "text": "Οι διάδικοι μπορούν έως τη δωδέκατη ώρα της πέμπτης εργάσιμης ημέρας από τη συζήτηση να καταθέσουν προσθήκη στις προτάσεις τους, με την οποία αξιολογούνται οι αποδείξεις, προτείνονται ισχυρισμοί και προσκομίζονται ένορκες βεβαιώσεις, έγγραφα και γνωμοδοτήσεις κατά το άρθρο 390 μόνο για την αντίκρουση ισχυρισμών που προτάθηκαν.",
-      },
-    ],
-    "imeres": Array [
-      "5 εργάσιμες ημέρες από την συζήτηση.",
-    ],
-    "name": "Κατάθεση προσθήκης",
-    "nomothesia": Array [
-      "ΚΠολΔ 591 παρ. 1 περ. στ΄ Οι διάδικοι μπορούν έως τη δωδέκατη ώρα της πέμπτης εργάσιμης ημέρας από τη συζήτηση να καταθέσουν προσθήκη στις προτάσεις τους, με την οποία αξιολογούνται οι αποδείξεις, προτείνονται ισχυρισμοί και προσκομίζονται ένορκες βεβαιώσεις, έγγραφα και γνωμοδοτήσεις κατά το άρθρο 390 μόνο για την αντίκρουση ισχυρισμών που προτάθηκαν.",
-    ],
-    "shortName": "Προσθήκη",
-    "type": "prosthiki",
-    "ypologismos": Array [
-      "5 εργάσιμες ημέρες μετά την συζήτηση (2024-07-08)",
-    ],
-  }
-    */
 
     const f = {
         calculation: {
@@ -487,10 +437,12 @@ export async function getAdminDeadlines(input: GetDeadlinesInput): Promise<Deadl
     // 6. Fetch argies once for entire range
     const argies = getArgiesForRange(backwardRange.startDate, forwardRange.endDate);
 
-    // 7. Create empty anastoli array
+    // 7. Fetch anastoli (summer suspension: July 1 - September 15) for entire range
+    const anastoli = getAnastoliForRange(backwardRange.startDate, forwardRange.endDate);
+
     const argiesAndAnastoli: ArgiesAndAnastoli = {
         argies,
-        anastoli: [],
+        anastoli,
     };
 
     // 8. Calculate deadlines in sorted order

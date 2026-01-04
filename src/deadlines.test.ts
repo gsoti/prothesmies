@@ -890,26 +890,71 @@ describe('getAdminDeadlines - Integration Tests', () => {
                 .map(d => {
                     const firstCol = `${d.date} - ${d.shortName}`.padEnd(maxFirstColLength);
                     const days = d.calculation!.logic.days;
-                    const day_count = d.calculation!.logic.day_count === 'CALENDAR' ? '' : d.calculation!.logic.day_count === 'FULL' ? ' ΠΛΗΡΕΙΣ' : 'ΕΡΓΑΣΙΜΕΣ';
+                    const day_count = d.calculation!.logic.day_count === 'CALENDAR' ? '' : d.calculation!.logic.day_count === 'FULL' ? ' ΠΛΗΡΕΙΣ' : ' ΕΡΓΑΣΙΜΕΣ';
                     const when = d.calculation!.logic.when === 'before' ? 'πριν' : 'μετά';
                     const ref = d.calculation!.logic.reference === 'δικάσιμο' ? 'δικάσιμο' : d.calculation!.logic.reference;
-                    return `${firstCol}  ${days}${day_count} ημέρες ${when} ${ref}`;
+                    const paused = d.calculation!.paused.length > 0 ? ` [paused: ${d.calculation!.paused.length}]` : '';
+                    const skipped = d.calculation!.skipped.length > 0 ? ` [skipped: ${d.calculation!.skipped.join(', ')}]` : '';
+                    return `${firstCol}  ${days}${day_count} ημέρες ${when} ${ref}${paused}${skipped}`;
                 })
                 .join('\n');
 
             expect(formatted).toMatchInlineSnapshot(`
-              "2025-11-28 - Φάκελος Διοίκησης        30 ημέρες πριν dikasimos
+              "2025-11-28 - Φάκελος Διοίκησης        30 ημέρες πριν dikasimos [skipped: 2025-11-30, 2025-11-29]
               2025-12-10 - Ανακοίνωση Δίκης         20 ΠΛΗΡΕΙΣ ημέρες πριν dikasimos
               2025-12-15 - Πρόσθετοι Λόγοι          15 ημέρες πριν dikasimos
               2025-12-15 - Προσεπίκληση Ομοδίκων    15 ημέρες πριν dikasimos
               2025-12-24 - Παρέμβαση                6 ΠΛΗΡΕΙΣ ημέρες πριν dikasimos
-              2025-12-24 - Αίτηση Εξέτασης Μάρτυρα  5 ημέρες πριν dikasimos
+              2025-12-24 - Αίτηση Εξέτασης Μάρτυρα  5 ημέρες πριν dikasimos [skipped: 2025-12-25]
               2025-12-29 - Δήλωση & Αποδεικτικά     1 ημέρες πριν dikasimos
               2025-12-29 - Συμμετοχή Ομοδίκων       1 ημέρες πριν dikasimos
               2025-12-30 - Παράβολο                 0 ημέρες μετά dikasimos
               2025-12-30 - Δικαστικό Ένσημο         0 ημέρες μετά dikasimos
-              2026-01-05 - Υπόμνημα                 3ΕΡΓΑΣΙΜΕΣ ημέρες μετά dikasimos
-              2026-01-09 - Υπόμνημα Αντίκρουσης     3ΕΡΓΑΣΙΜΕΣ ημέρες μετά ypomnima"
+              2026-01-05 - Υπόμνημα                 3 ΕΡΓΑΣΙΜΕΣ ημέρες μετά dikasimos [paused: 3]
+              2026-01-09 - Υπόμνημα Αντίκρουσης     3 ΕΡΓΑΣΙΜΕΣ ημέρες μετά ypomnima [paused: 1]"
+            `);
+        });
+
+        it('should format deadlines with anastoli period (dikasimos 2025-09-22)', async () => {
+            const result = await getAdminDeadlines({
+                court_type: CourtType.DP_DE,
+                procedure_type: ProcedureType.DIAFORA_OUSIAS,
+                dikasimos: '2025-09-22',
+            });
+
+            const sorted = result.sort((a, b) => a.date.localeCompare(b.date));
+
+            // Find the maximum length of the first column
+            const maxFirstColLength = Math.max(
+                ...sorted.map(d => `${d.date} - ${d.shortName}`.length)
+            );
+
+            const formatted = sorted
+                .map(d => {
+                    const firstCol = `${d.date} - ${d.shortName}`.padEnd(maxFirstColLength);
+                    const days = d.calculation!.logic.days;
+                    const day_count = d.calculation!.logic.day_count === 'CALENDAR' ? '' : d.calculation!.logic.day_count === 'FULL' ? ' ΠΛΗΡΕΙΣ' : ' ΕΡΓΑΣΙΜΕΣ';
+                    const when = d.calculation!.logic.when === 'before' ? 'πριν' : 'μετά';
+                    const ref = d.calculation!.logic.reference === 'δικάσιμο' ? 'δικάσιμο' : d.calculation!.logic.reference;
+                    const paused = d.calculation!.paused.length > 0 ? ` [paused: ${d.calculation!.paused.length}]` : '';
+                    const skipped = d.calculation!.skipped.length > 0 ? ` [skipped: ${d.calculation!.skipped.join(', ')}]` : '';
+                    return `${firstCol}  ${days}${day_count} ημέρες ${when} ${ref}${paused}${skipped}`;
+                })
+                .join('\n');
+
+            expect(formatted).toMatchInlineSnapshot(`
+              "2025-06-07 - Φάκελος Διοίκησης        30 ημέρες πριν dikasimos [paused: 77]
+              2025-06-17 - Ανακοίνωση Δίκης         20 ΠΛΗΡΕΙΣ ημέρες πριν dikasimos [paused: 77]
+              2025-06-22 - Πρόσθετοι Λόγοι          15 ημέρες πριν dikasimos [paused: 77]
+              2025-06-22 - Προσεπίκληση Ομοδίκων    15 ημέρες πριν dikasimos [paused: 77]
+              2025-09-16 - Παρέμβαση                6 ΠΛΗΡΕΙΣ ημέρες πριν dikasimos
+              2025-09-17 - Αίτηση Εξέτασης Μάρτυρα  5 ημέρες πριν dikasimos
+              2025-09-19 - Δήλωση & Αποδεικτικά     1 ημέρες πριν dikasimos [skipped: 2025-09-21, 2025-09-20]
+              2025-09-19 - Συμμετοχή Ομοδίκων       1 ημέρες πριν dikasimos [skipped: 2025-09-21, 2025-09-20]
+              2025-09-22 - Παράβολο                 0 ημέρες μετά dikasimos
+              2025-09-22 - Δικαστικό Ένσημο         0 ημέρες μετά dikasimos
+              2025-09-25 - Υπόμνημα                 3ΕΡΓΑΣΙΜΕΣ ημέρες μετά dikasimos
+              2025-09-30 - Υπόμνημα Αντίκρουσης     3ΕΡΓΑΣΙΜΕΣ ημέρες μετά ypomnima [paused: 2]"
             `);
         });
     });
