@@ -8,6 +8,40 @@ import {
 
 const SUPPORTED_DIADIKASIA = 'ΝΕΑ ΤΑΚΤΙΚΗ ΜΟΝΟΜΕΛΟΥΣ';
 
+function formatCivilDeadlines(deadlines: Awaited<ReturnType<typeof getCivilDeadlines>>['deadlines']): string {
+    const sorted = [...deadlines].sort((a, b) => {
+        const left = a.date || '9999-12-31';
+        const right = b.date || '9999-12-31';
+        return left.localeCompare(right);
+    });
+
+    const maxFirstColLength = Math.max(
+        ...sorted.map(d => `${d.date || 'PENDING'} - ${d.shortName}`.length)
+    );
+
+    return sorted
+        .map(d => {
+            const firstCol = `${d.date || 'PENDING'} - ${d.shortName}`.padEnd(maxFirstColLength);
+
+            if (d.status === DeadlineStatus.PENDING) {
+                return `${firstCol}  pending (${d.missingAnchor})`;
+            }
+
+            const days = d.calculation!.logic.days;
+            const dayCount = d.calculation!.logic.day_count === 'CALENDAR'
+                ? ''
+                : d.calculation!.logic.day_count === 'FULL'
+                    ? ' ΠΛΗΡΕΙΣ'
+                    : ' ΕΡΓΑΣΙΜΕΣ';
+            const when = d.calculation!.logic.when === 'before' ? 'πριν' : 'μετά';
+            const ref = d.calculation!.logic.reference;
+            const paused = d.calculation!.paused.length > 0 ? ` [paused: ${d.calculation!.paused.length}]` : '';
+            const skipped = d.calculation!.skipped.length > 0 ? ` [skipped: ${d.calculation!.skipped.join(', ')}]` : '';
+            return `${firstCol}  ${days}${dayCount} ημέρες ${when} ${ref}${paused}${skipped}`;
+        })
+        .join('\n');
+}
+
 describe('getCivilDeadlines', () => {
     it('throws error for invalid filing date', async () => {
         await expect(
@@ -119,39 +153,7 @@ describe('getCivilDeadlines', () => {
             diadikasia: SUPPORTED_DIADIKASIA,
         });
 
-        const sorted = deadlines.sort((a, b) => {
-            const left = a.date || '9999-12-31';
-            const right = b.date || '9999-12-31';
-            return left.localeCompare(right);
-        });
-
-        const maxFirstColLength = Math.max(
-            ...sorted.map(d => `${d.date || 'PENDING'} - ${d.shortName}`.length)
-        );
-
-        const formatted = sorted
-            .map(d => {
-                const firstCol = `${d.date || 'PENDING'} - ${d.shortName}`.padEnd(maxFirstColLength);
-
-                if (d.status === DeadlineStatus.PENDING) {
-                    return `${firstCol}  pending (${d.missingAnchor})`;
-                }
-
-                const days = d.calculation!.logic.days;
-                const dayCount = d.calculation!.logic.day_count === 'CALENDAR'
-                    ? ''
-                    : d.calculation!.logic.day_count === 'FULL'
-                        ? ' ΠΛΗΡΕΙΣ'
-                        : ' ΕΡΓΑΣΙΜΕΣ';
-                const when = d.calculation!.logic.when === 'before' ? 'πριν' : 'μετά';
-                const ref = d.calculation!.logic.reference;
-                const paused = d.calculation!.paused.length > 0 ? ` [paused: ${d.calculation!.paused.length}]` : '';
-                const skipped = d.calculation!.skipped.length > 0 ? ` [skipped: ${d.calculation!.skipped.join(', ')}]` : '';
-                return `${firstCol}  ${days}${dayCount} ημέρες ${when} ${ref}${paused}${skipped}`;
-            })
-            .join('\n');
-
-        expect(formatted).toMatchInlineSnapshot(`
+        expect(formatCivilDeadlines(deadlines)).toMatchInlineSnapshot(`
           "2026-02-16 - Επίδοση                      30 ημέρες μετά ημερομηνία κατάθεσης [skipped: 2026-02-14, 2026-02-15]
           2026-03-30 - Παρεμπίπτουσες/Ανταγωγή      40 ημέρες μετά λήξη προθεσμίας επίδοσης αγωγής [skipped: 2026-03-28, 2026-03-29]
           2026-04-27 - Παρέμβαση προσεπικαλούμενου  70 ημέρες μετά λήξη προθεσμίας επίδοσης αγωγής
@@ -161,6 +163,85 @@ describe('getCivilDeadlines', () => {
           PENDING - Έκδοση διάταξης                 pending (orismos_dikasti)
           PENDING - Αίτηση μετά από απαράδεκτο      pending (ekdosi_diataxis)"
         `);
+    });
+
+    describe('anastoli', () => {
+        it('pauses counting in August for standard (non-dimosio) filing', async () => {
+            const { deadlines } = await getCivilDeadlines({
+                imerominia_katathesis: '2026-06-01',
+                diadikasia: SUPPORTED_DIADIKASIA,
+            });
+
+            const allPaused = deadlines.flatMap(d => d.calculation?.paused ?? []);
+            const augustDates = allPaused.filter(d => d.startsWith('2026-08'));
+            // 93 = 3 deadlines × 31 August days: παρεμπίπτουσες, παρέμβαση, and προτάσεις all span August
+            expect(augustDates.length).toBe(93);
+
+            const julyDates = allPaused.filter(d => d.startsWith('2026-07'));
+            expect(julyDates.length).toBe(0);
+
+            const septDates = allPaused.filter(d => d.startsWith('2026-09'));
+            expect(septDates.length).toBe(0);
+        });
+
+        it('pauses counting in July, August, and Sept 1–15 for dimosio filing', async () => {
+            const { deadlines } = await getCivilDeadlines({
+                imerominia_katathesis: '2026-06-01',
+                diadikasia: SUPPORTED_DIADIKASIA,
+                dimosio: true,
+            });
+
+            const allPaused = deadlines.flatMap(d => d.calculation?.paused ?? []);
+            const julyDates = allPaused.filter(d => d.startsWith('2026-07'));
+            const augustDates = allPaused.filter(d => d.startsWith('2026-08'));
+            const septDates = allPaused.filter(d => {
+                if (!d.startsWith('2026-09')) return false;
+                const day = parseInt(d.slice(8, 10), 10);
+                return day <= 15;
+            });
+
+            expect(julyDates.length).toBeGreaterThan(0);
+            expect(augustDates.length).toBeGreaterThan(0);
+            expect(septDates.length).toBeGreaterThan(0);
+        });
+
+        it('should format civil deadlines from filing date crossing anastoli', async () => {
+            const { deadlines } = await getCivilDeadlines({
+                imerominia_katathesis: '2026-06-01',
+                diadikasia: SUPPORTED_DIADIKASIA,
+                dimosio: true,
+            });
+
+            expect(formatCivilDeadlines(deadlines)).toMatchInlineSnapshot(`
+              "2026-09-16 - Επίδοση                      30 ημέρες μετά ημερομηνία κατάθεσης [paused: 77]
+              2026-10-26 - Παρεμπίπτουσες/Ανταγωγή      40 ημέρες μετά λήξη προθεσμίας επίδοσης αγωγής
+              2026-11-25 - Παρέμβαση προσεπικαλούμενου  70 ημέρες μετά λήξη προθεσμίας επίδοσης αγωγής
+              2026-12-15 - Προτάσεις & Αποδεικτικά      90 ημέρες μετά λήξη προθεσμίας επίδοσης αγωγής
+              2026-12-30 - Προσθήκη – αντίκρουση        15 ημέρες μετά λήξη προθεσμίας προτάσεων
+              2027-01-11 - Ορισμός δικαστή              10 ημέρες μετά λήξη προθεσμίας προσθήκης - αντίκρουσης [skipped: 2027-01-09, 2027-01-10]
+              PENDING - Έκδοση διάταξης                 pending (orismos_dikasti)
+              PENDING - Αίτηση μετά από απαράδεκτο      pending (ekdosi_diataxis)"
+            `);
+        });
+
+        it('dimosio deadlines are later than standard deadlines due to extended suspension', async () => {
+            const [standard, dimosio] = await Promise.all([
+                getCivilDeadlines({ imerominia_katathesis: '2026-06-01', diadikasia: SUPPORTED_DIADIKASIA }),
+                getCivilDeadlines({ imerominia_katathesis: '2026-06-01', diadikasia: SUPPORTED_DIADIKASIA, dimosio: true }),
+            ]);
+
+            const byCode = (deadlines: typeof standard.deadlines) =>
+                new Map(deadlines.map(d => [d.type, d]));
+
+            const stdMap = byCode(standard.deadlines);
+            const dimMap = byCode(dimosio.deadlines);
+
+            for (const [code, stdDeadline] of stdMap) {
+                const dimDeadline = dimMap.get(code);
+                if (!stdDeadline.date || !dimDeadline?.date) continue;
+                expect(dimDeadline.date >= stdDeadline.date).toBe(true);
+            }
+        });
     });
 });
 

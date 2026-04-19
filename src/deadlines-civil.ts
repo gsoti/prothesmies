@@ -1,6 +1,7 @@
 import { ArgiesAndAnastoli } from './dateCalculation.js';
 import { getArgiesForRange, getDateRangeForCalculation } from './utils/argies.js';
 import { parseISODate } from './utils/dateUtils.js';
+import { getCivilAnastoliForRange } from './utils/anastoli-civil.js';
 import {
     DeadlineCalculationError,
     parseLegislation,
@@ -154,7 +155,11 @@ export async function getCivilDeadlines(input: GetCivilDeadlinesInput): Promise<
 
     const argiesAndAnastoli: ArgiesAndAnastoli = {
         argies: getArgiesForRange(backwardRange.startDate, forwardRange.endDate),
-        anastoli: [],
+        anastoli: getCivilAnastoliForRange(
+            backwardRange.startDate,
+            forwardRange.endDate,
+            input.dimosio
+        ),
     };
 
     const { earlyRules, lateRules } = CIVIL_DEADLINE_TAKTIKI_POST2026_RULES.reduce(
