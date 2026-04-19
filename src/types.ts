@@ -16,6 +16,17 @@ export enum DeadlineCode {
     dikasimos = "dikasimos"
 }
 
+export enum CivilDeadlineCode {
+    epidosi = "epidosi",
+    paremptiptouses_antagogi_paremvasi_prosepiklisi_anakoinosi = "paremptiptouses_antagogi_paremvasi_prosepiklisi_anakoinosi",
+    paremvasi_prosepikaloumenou = "paremvasi_prosepikaloumenou",
+    protaseis_kai_apodeiktika = "protaseis_kai_apodeiktika",
+    prosthiki_antikrousi = "prosthiki_antikrousi",
+    orismos_dikasti_synthesis = "orismos_dikasti_synthesis",
+    ekdosi_diataxis_dikasti = "ekdosi_diataxis_dikasti",
+    aitisi_meta_apo_aparadekto = "aitisi_meta_apo_aparadekto"
+}
+
 export enum CourtType {
     DP_DE = "DP/DE"
 }
@@ -42,6 +53,20 @@ export enum Direction {
     UNTIL = "UNTIL"
 }
 
+export enum DeadlineStatus {
+    CALCULATED = "calculated",
+    PENDING = "pending"
+}
+
+export enum CivilAnchorType {
+    IMEROMINIA_KATATHESIS = "imerominia_katathesis",
+    LIXI_EPIDOSIS_AGOGIS = "lixi_epidosis_agogis",
+    LIXI_PROTASEON = "lixi_protaseon",
+    LIXI_PROSTHIKIS_ANTIKROUSIS = "lixi_prosthikis_antikrousis",
+    ORISMOS_DIKASTI = "orismos_dikasti",
+    EKDOSI_DIATAXIS = "ekdosi_diataxis"
+}
+
 export interface DateCalculation {
     date: string;
     paused: string[];
@@ -59,13 +84,16 @@ export interface DateCalculation {
 export interface Deadline {
     name: string;
     shortName: string;
-    type: DeadlineCode;
+    type: DeadlineCode | CivilDeadlineCode;
     date: string;
     nomothesia: string[];
     formattedNomothesia: Nomothesia[];
     ypologismos: string[];
     imeres: string[];
     calculation: DateCalculation | null;
+    status?: DeadlineStatus;
+    anchorType?: CivilAnchorType;
+    missingAnchor?: CivilAnchorType;
 }
 
 export interface NomothesiaCore {
@@ -100,4 +128,19 @@ export interface GetDeadlinesInput {
     procedure_type: ProcedureType;
     dikasimos: string; // ISO date format (YYYY-MM-DD)
     syntmisi?: boolean; // Whether deadlines are shortened
+}
+
+export interface GetCivilDeadlinesInput {
+    imerominia_katathesis: string; // ISO date format (YYYY-MM-DD)
+}
+
+export interface CivilDeadlineRule {
+    deadline_name: string;
+    short_name: string;
+    deadline_code: CivilDeadlineCode;
+    days: number;
+    day_count: DayCount;
+    direction: Direction;
+    legislation: string;
+    anchor_type: CivilAnchorType;
 }

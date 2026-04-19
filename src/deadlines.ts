@@ -1,5 +1,5 @@
 import { sql } from './db.js';
-import { getDateCalculation, DateCalculationResult, ArgiesAndAnastoli } from './dateCalculation.js';
+import { DateCalculationResult, ArgiesAndAnastoli } from './dateCalculation.js';
 import { getArgiesForRange, getDateRangeForCalculation } from './utils/argies.js';
 import { getAnastoliForRange } from './utils/anastoli-admin.js';
 import { parseISODate } from './utils/dateUtils.js';
@@ -14,30 +14,20 @@ import {
     GetDeadlinesInput,
     Deadline,
     DateCalculation,
-    Nomothesia
 } from './types.js';
-import { NOMOTHESIA_TEXT, getHighlighted } from './nomothesiaData.js';
+import {
+    DeadlineCalculationError,
+    parseLegislation,
+    buildCalculationLogic,
+    calculateDeadlineDate,
+} from './utils/deadlineHelpers.js';
+export { DeadlineCalculationError } from './utils/deadlineHelpers.js';
+export { getCivilDeadlines } from './deadlines-civil.js';
 
-/**
- * Custom error class for deadline calculation errors
- */
-export class DeadlineCalculationError extends Error {
-    constructor(
-        message: string,
-        public code: string,
-        public details?: any
-    ) {
-        super(message);
-        this.name = 'DeadlineCalculationError';
-    }
-}
-
-// Error codes
 const ErrorCode = {
     INVALID_INPUT: 'INVALID_INPUT',
     CIRCULAR_DEPENDENCY: 'CIRCULAR_DEPENDENCY',
     MAX_CHAIN_DEPTH: 'MAX_CHAIN_DEPTH',
-    INVALID_ENUM: 'INVALID_ENUM',
 } as const;
 
 const MAX_CHAIN_DEPTH = 10;
@@ -63,81 +53,6 @@ async function fetchDeadlineRules(
         days: Number(row.days),
         notification_days: row.notification_days !== null ? Number(row.notification_days) : null,
     })) as DeadlineRule[];
-}
-
-/**
- * Maps database day_count to date calculation countBehavior
- */
-function mapDayCountToBehavior(dayCount: DayCount): 'standard' | 'workingDaysOnly' {
-    switch (dayCount) {
-        case DayCount.CALENDAR:
-        case DayCount.FULL:
-            return 'standard';
-        case DayCount.WORKING:
-            return 'workingDaysOnly';
-        default:
-            throw new DeadlineCalculationError(
-                `Invalid day count: ${dayCount}. Valid values: CALENDAR, FULL, WORKING`,
-                ErrorCode.INVALID_ENUM
-            );
-    }
-}
-
-/**
- * Maps database direction to date calculation direction
- */
-function mapDirectionToCalculation(direction: Direction): 'forward' | 'backward' {
-    switch (direction) {
-        case Direction.BEFORE:
-            return 'backward';
-        case Direction.AFTER:
-        case Direction.UNTIL:
-            return 'forward';
-        default:
-            throw new DeadlineCalculationError(
-                `Invalid direction: ${direction}. Valid values: BEFORE, AFTER, UNTIL`,
-                ErrorCode.INVALID_ENUM
-            );
-    }
-}
-
-/**
- * Maps database direction to logic.when field
- */
-function getWhenText(direction: Direction): 'before' | 'after' {
-    switch (direction) {
-        case Direction.BEFORE:
-            return 'before';
-        case Direction.AFTER:
-        case Direction.UNTIL:
-            return 'after';
-        default:
-            throw new DeadlineCalculationError(
-                `Invalid direction: ${direction}. Valid values: BEFORE, AFTER, UNTIL`,
-                ErrorCode.INVALID_ENUM
-            );
-    }
-}
-
-/**
- * Parses legislation text and retrieves text/highlighted based on legislation article
- */
-function parseLegislation(legislation: string | null, syntmisi: boolean, deadlineCode?: string): {
-    plain: string[];
-    formatted: Nomothesia[];
-} {
-    if (!legislation) {
-        return { plain: [], formatted: [] };
-    }
-
-    return {
-        plain: [legislation],
-        formatted: [{
-            article: legislation,
-            text: NOMOTHESIA_TEXT[legislation] ?? '',
-            highlighted: getHighlighted(legislation, syntmisi, deadlineCode),
-        }],
-    };
 }
 
 /**
@@ -310,49 +225,17 @@ function getMaxTraversalDays(sortedRules: DeadlineRule[]): number {
 }
 
 /**
- * Builds the logic object for DateCalculation
- */
-function buildCalculationLogic(
-    rule: DeadlineRule,
-    referenceDate: string
-): DateCalculation['logic'] {
-    return {
-        days: rule.days,
-        day_count: rule.day_count,
-        when: getWhenText(rule.direction),
-        reference: rule.reference_point,
-        start: referenceDate,
-        name: rule.short_name,
-    };
-}
-
-/**
- * Calculates the deadline date for a rule
- */
-function calculateDeadlineDate(
-    rule: DeadlineRule,
-    referenceDate: string,    
-    argiesAndAnastoli: ArgiesAndAnastoli
-): DateCalculationResult {
-    return getDateCalculation(referenceDate, rule.days, {
-        direction: mapDirectionToCalculation(rule.direction),
-        countBehavior: mapDayCountToBehavior(rule.day_count),
-        argiesAndAnastoli,
-    });
-}
-
-/**
  * Builds a complete Deadline object from a rule and calculation result
  */
 function buildDeadline(
-    rule: DeadlineRule,
+    rule: Pick<DeadlineRule, 'deadline_name' | 'short_name' | 'deadline_code' | 'legislation'>,
     calculatedResult: DateCalculationResult,
     logic: DateCalculation['logic'],
     syntmisi: boolean
 ): Deadline {
     const { plain, formatted } = parseLegislation(rule.legislation, syntmisi, rule.deadline_code);
 
-    const f = {
+    return {
         calculation: {
             date: calculatedResult.date,
             paused: calculatedResult.paused,
@@ -369,7 +252,6 @@ function buildDeadline(
         ypologismos: [], // Empty for now
         imeres: [], // not used
     };
-    return f;
 }
 
 /**
@@ -477,45 +359,42 @@ export async function getAdminDeadlines(input: GetDeadlinesInput): Promise<Deadl
     const deadlines: Deadline[] = [];
 
     for (const rule of sortedRules) {
-        // Determine reference date and name
         let referenceDate: string;
+        const referenceLabel = rule.reference_point;
 
         if (rule.parent_deadline_code) {
-            // Child deadline - use parent's calculated date
             const parent = calculatedDeadlines.get(rule.parent_deadline_code);
             if (!parent) {
                 // This shouldn't happen due to topological sort, but handle gracefully
                 console.warn(
                     `Parent '${rule.parent_deadline_code}' not found for '${rule.deadline_code}', using dikasimos`
                 );
-                referenceDate = input.dikasimos;                
+                referenceDate = input.dikasimos;
             } else {
-                referenceDate = parent.date;                
+                referenceDate = parent.date;
             }
         } else {
-            // Root deadline - use dikasimos
-            referenceDate = input.dikasimos;            
+            referenceDate = input.dikasimos;
         }
 
-        // Override days for apopseis_fakelos_dioikisis when syntmisi is true
         const effectiveRule = (syntmisi && rule.deadline_code === 'apopseis_fakelos_dioikisis')
             ? { ...rule, days: 8 }
             : rule;
 
-        // Calculate deadline date
         const calculatedResult = calculateDeadlineDate(
             effectiveRule,
             referenceDate,
             argiesAndAnastoli
         );
 
-        // Build calculation logic
-        const logic = buildCalculationLogic(effectiveRule, referenceDate);
+        const logic = buildCalculationLogic(
+            effectiveRule,
+            referenceDate,
+            referenceLabel
+        );
 
-        // Build full Deadline object
         const deadline = buildDeadline(rule, calculatedResult, logic, syntmisi);
 
-        // Store for children to reference
         calculatedDeadlines.set(rule.deadline_code, deadline);
         deadlines.push(deadline);
     }
