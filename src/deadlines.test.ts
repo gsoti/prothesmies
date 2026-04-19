@@ -943,19 +943,36 @@ describe('getAdminDeadlines - Integration Tests', () => {
                 .join('\n');
 
             expect(formatted).toMatchInlineSnapshot(`
-              "2025-06-07 - Φάκελος Διοίκησης        30 ημέρες πριν dikasimos [paused: 77]
+              "2025-06-06 - Φάκελος Διοίκησης        30 ημέρες πριν dikasimos [paused: 77] [skipped: 2025-06-07]
               2025-06-17 - Ανακοίνωση Δίκης         20 ΠΛΗΡΕΙΣ ημέρες πριν dikasimos [paused: 77]
-              2025-06-22 - Πρόσθετοι Λόγοι          15 ημέρες πριν dikasimos [paused: 77]
-              2025-06-22 - Προσεπίκληση Ομοδίκων    15 ημέρες πριν dikasimos [paused: 77]
+              2025-06-20 - Πρόσθετοι Λόγοι          15 ημέρες πριν dikasimos [paused: 77] [skipped: 2025-06-22, 2025-06-21]
+              2025-06-20 - Προσεπίκληση Ομοδίκων    15 ημέρες πριν dikasimos [paused: 77] [skipped: 2025-06-22, 2025-06-21]
               2025-09-16 - Παρέμβαση                6 ΠΛΗΡΕΙΣ ημέρες πριν dikasimos
               2025-09-17 - Αίτηση Εξέτασης Μάρτυρα  5 ημέρες πριν dikasimos
               2025-09-19 - Δήλωση & Αποδεικτικά     1 ημέρες πριν dikasimos [skipped: 2025-09-21, 2025-09-20]
               2025-09-19 - Συμμετοχή Ομοδίκων       1 ημέρες πριν dikasimos [skipped: 2025-09-21, 2025-09-20]
               2025-09-22 - Παράβολο                 0 ημέρες μετά dikasimos
               2025-09-22 - Δικαστικό Ένσημο         0 ημέρες μετά dikasimos
-              2025-09-25 - Υπόμνημα                 3ΕΡΓΑΣΙΜΕΣ ημέρες μετά dikasimos
-              2025-09-30 - Υπόμνημα Αντίκρουσης     3ΕΡΓΑΣΙΜΕΣ ημέρες μετά ypomnima [paused: 2]"
+              2025-09-25 - Υπόμνημα                 3 ΕΡΓΑΣΙΜΕΣ ημέρες μετά dikasimos
+              2025-09-30 - Υπόμνημα Αντίκρουσης     3 ΕΡΓΑΣΙΜΕΣ ημέρες μετά ypomnima [paused: 2]"
             `);
+        });
+
+        it('should skip the weekend when anastoli pushes a backward calendar deadline into June', async () => {
+            const result = await getAdminDeadlines({
+                court_type: CourtType.DP_DE,
+                procedure_type: ProcedureType.DIAFORA_OUSIAS,
+                dikasimos: '2025-09-22',
+            });
+
+            const prosthetiLogoi = result.find(d => d.type === 'prostheti_logoi');
+            const prosepiklisiOmodikon = result.find(d => d.type === 'prosepiklisi_omodikon');
+
+            expect(prosthetiLogoi?.date).toBe('2025-06-20');
+            expect(prosthetiLogoi?.calculation?.skipped).toEqual(['2025-06-22', '2025-06-21']);
+
+            expect(prosepiklisiOmodikon?.date).toBe('2025-06-20');
+            expect(prosepiklisiOmodikon?.calculation?.skipped).toEqual(['2025-06-22', '2025-06-21']);
         });
     });
 });

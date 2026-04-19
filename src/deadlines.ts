@@ -41,6 +41,7 @@ const ErrorCode = {
 } as const;
 
 const MAX_CHAIN_DEPTH = 10;
+const DATE_RANGE_BUFFER_DAYS = 365;
 
 /**
  * Fetches deadline rules from the database
@@ -288,6 +289,27 @@ function sortDeadlineRules(rules: DeadlineRule[]): DeadlineRule[] {
 }
 
 /**
+ * Calculates the longest dependency path in nominal days.
+ * sortedRules must already be topologically sorted so parents appear before children.
+ */
+function getMaxTraversalDays(sortedRules: DeadlineRule[]): number {
+    const traversalDaysByCode = new Map<string, number>();
+    let maxTraversalDays = 0;
+
+    for (const rule of sortedRules) {
+        const parentTraversalDays = rule.parent_deadline_code
+            ? (traversalDaysByCode.get(rule.parent_deadline_code) ?? 0)
+            : 0;
+        const traversalDays = parentTraversalDays + rule.days;
+
+        traversalDaysByCode.set(rule.deadline_code, traversalDays);
+        maxTraversalDays = Math.max(maxTraversalDays, traversalDays);
+    }
+
+    return maxTraversalDays;
+}
+
+/**
  * Builds the logic object for DateCalculation
  */
 function buildCalculationLogic(
@@ -421,18 +443,23 @@ export async function getAdminDeadlines(input: GetDeadlinesInput): Promise<Deadl
     // 4. Sort rules topologically (validates and filters)
     const sortedRules = sortDeadlineRules(rules);
 
-    // 5. Calculate date range for argies
-    // Find max days needed (both forward and backward)
-    let maxDays = 0;
-    for (const rule of sortedRules) {
-        if (rule.days > maxDays) {
-            maxDays = rule.days;
-        }
-    }
-
-    // Get date range with buffer
-    const forwardRange = getDateRangeForCalculation(input.dikasimos, maxDays, 'forward', 60);
-    const backwardRange = getDateRangeForCalculation(input.dikasimos, maxDays, 'backward', 60);
+    // 5. Calculate date range for argies.
+    // Administrative deadlines can cross the 77-day summer suspension and still need
+    // final weekend/holiday skips beyond the nominal day count, so preload a wide
+    // enough window on both sides of the reference date.
+    const maxTraversalDays = getMaxTraversalDays(sortedRules);
+    const forwardRange = getDateRangeForCalculation(
+        input.dikasimos,
+        maxTraversalDays,
+        'forward',
+        DATE_RANGE_BUFFER_DAYS
+    );
+    const backwardRange = getDateRangeForCalculation(
+        input.dikasimos,
+        maxTraversalDays,
+        'backward',
+        DATE_RANGE_BUFFER_DAYS
+    );
 
     // 6. Fetch argies once for entire range
     const argies = getArgiesForRange(backwardRange.startDate, forwardRange.endDate);
