@@ -1,65 +1,15 @@
 import { describe, expect, it } from 'vitest';
-import { getCivilDeadlines, DeadlineCalculationError } from './deadlines.js';
+import { getCivilDeadlines } from './deadlines.js';
 import {
     CivilAnchorType,
     CivilDeadlineCode,
     DeadlineStatus,
 } from './types.js';
+import { formatCivilDeadlines } from './test-helpers/formatCivilDeadlines.js';
 
 const SUPPORTED_DIADIKASIA = 'ΝΕΑ ΤΑΚΤΙΚΗ ΜΟΝΟΜΕΛΟΥΣ';
 
-function formatCivilDeadlines(deadlines: Awaited<ReturnType<typeof getCivilDeadlines>>['deadlines']): string {
-    const sorted = [...deadlines].sort((a, b) => {
-        const left = a.date || '9999-12-31';
-        const right = b.date || '9999-12-31';
-        return left.localeCompare(right);
-    });
-
-    const maxFirstColLength = Math.max(
-        ...sorted.map(d => `${d.date || 'PENDING'} - ${d.shortName}`.length)
-    );
-
-    return sorted
-        .map(d => {
-            const firstCol = `${d.date || 'PENDING'} - ${d.shortName}`.padEnd(maxFirstColLength);
-
-            if (d.status === DeadlineStatus.PENDING) {
-                return `${firstCol}  pending (${d.missingAnchor})`;
-            }
-
-            const days = d.calculation!.logic.days;
-            const dayCount = d.calculation!.logic.day_count === 'CALENDAR'
-                ? ''
-                : d.calculation!.logic.day_count === 'FULL'
-                    ? ' ΠΛΗΡΕΙΣ'
-                    : ' ΕΡΓΑΣΙΜΕΣ';
-            const when = d.calculation!.logic.when === 'before' ? 'πριν' : 'μετά';
-            const ref = d.calculation!.logic.reference;
-            const paused = d.calculation!.paused.length > 0 ? ` [paused: ${d.calculation!.paused.length}]` : '';
-            const skipped = d.calculation!.skipped.length > 0 ? ` [skipped: ${d.calculation!.skipped.join(', ')}]` : '';
-            return `${firstCol}  ${days}${dayCount} ημέρες ${when} ${ref}${paused}${skipped}`;
-        })
-        .join('\n');
-}
-
 describe('getCivilDeadlines', () => {
-    it('throws error for invalid filing date', async () => {
-        await expect(
-            getCivilDeadlines({
-                imerominia_katathesis: 'invalid-date',
-                diadikasia: SUPPORTED_DIADIKASIA,
-            })
-        ).rejects.toThrow('Invalid imerominia_katathesis date format');
-    });
-
-    it('returns not_supported for unsupported diadikasia', async () => {
-        const result = await getCivilDeadlines({
-            imerominia_katathesis: '2026-01-15',
-            diadikasia: 'ΕΙΔΙΚΗ ΔΙΑΔΙΚΑΣΙΑ',
-        });
-        expect(result).toEqual({ deadlines: [], status: 'not_supported' });
-    });
-
     it('returns not_supported for supported diadikasia with pre-2026 filing date', async () => {
         const result = await getCivilDeadlines({
             imerominia_katathesis: '2025-12-31',
@@ -242,13 +192,5 @@ describe('getCivilDeadlines', () => {
                 expect(dimDeadline.date >= stdDeadline.date).toBe(true);
             }
         });
-    });
-});
-
-describe('DeadlineCalculationError', () => {
-    it('is reusable by the civil calculator', () => {
-        const error = new DeadlineCalculationError('x', 'INVALID_INPUT');
-        expect(error).toBeInstanceOf(Error);
-        expect(error.code).toBe('INVALID_INPUT');
     });
 });
