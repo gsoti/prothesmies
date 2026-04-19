@@ -10,14 +10,6 @@ import { formatCivilDeadlines } from './test-helpers/formatCivilDeadlines.js';
 const SUPPORTED_DIADIKASIA = 'ΝΕΑ ΤΑΚΤΙΚΗ ΜΟΝΟΜΕΛΟΥΣ';
 
 describe('getCivilDeadlines', () => {
-    it('returns not_supported for supported diadikasia with pre-2026 filing date', async () => {
-        const result = await getCivilDeadlines({
-            imerominia_katathesis: '2025-12-31',
-            diadikasia: SUPPORTED_DIADIKASIA,
-        });
-        expect(result).toEqual({ deadlines: [], status: 'not_supported' });
-    });
-
     it('returns calculated early deadlines and pending late deadlines', async () => {
         const { deadlines, status } = await getCivilDeadlines({
             imerominia_katathesis: '2026-01-15',

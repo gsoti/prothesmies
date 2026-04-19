@@ -1,6 +1,6 @@
 import { getDateCalculation, DateCalculationResult, ArgiesAndAnastoli } from '../dateCalculation.js';
 import { DayCount, Direction, DateCalculation, Nomothesia } from '../types.js';
-import { NOMOTHESIA_TEXT, getHighlighted } from '../nomothesiaData.js';
+import { NOMOTHESIA_TEXT, getHighlighted } from '../nomothesia-admin.js';
 
 export class DeadlineCalculationError extends Error {
     constructor(

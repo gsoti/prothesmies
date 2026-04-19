@@ -88,3 +88,38 @@ export const CIVIL_DEADLINE_TAKTIKI_POST2026_RULES: CivilDeadlineRule[] = [
         anchor_type: CivilAnchorType.EKDOSI_DIATAXIS,
     },
 ];
+
+export function getCivilTaktikiPre2026Rules(dimosio?: boolean): CivilDeadlineRule[] {
+    return [
+        {
+            deadline_name: 'Επίδοση αγωγής',
+            short_name: 'Επίδοση',
+            deadline_code: CivilDeadlineCode.epidosi,
+            days: dimosio ? 60 : 30,
+            day_count: DayCount.CALENDAR,
+            direction: Direction.AFTER,
+            legislation: 'Αρθ. 215 § 2 ΚΠολΔ',
+            anchor_type: CivilAnchorType.IMEROMINIA_KATATHESIS,
+        },
+        {
+            deadline_name: 'Παρέμβαση',
+            short_name: 'Παρέμβαση',
+            deadline_code: CivilDeadlineCode.paremptiptouses_antagogi_paremvasi_prosepiklisi_anakoinosi,
+            days: dimosio ? 90 : 60,
+            day_count: DayCount.CALENDAR,
+            direction: Direction.AFTER,
+            legislation: 'Αρθ. 238 § 1 ΚΠολΔ',
+            anchor_type: CivilAnchorType.IMEROMINIA_KATATHESIS,
+        },
+        {
+            deadline_name: 'Παρέμβαση του προσεπικαλούμενου',
+            short_name: 'Παρέμβαση του προσεπικαλούμενου',
+            deadline_code: CivilDeadlineCode.paremvasi_prosepikaloumenou,
+            days: dimosio ? 120 : 90,
+            day_count: DayCount.CALENDAR,
+            direction: Direction.AFTER,
+            legislation: 'Αρθ. 238 § 1 ΚΠολΔ',
+            anchor_type: CivilAnchorType.IMEROMINIA_KATATHESIS,
+        },
+    ];
+}

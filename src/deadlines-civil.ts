@@ -8,7 +8,10 @@ import {
     buildCalculationLogic,
     calculateDeadlineDate,
 } from './utils/deadlineHelpers.js';
-import { CIVIL_DEADLINE_TAKTIKI_POST2026_RULES } from './rules-civil.js';
+import {
+    CIVIL_DEADLINE_TAKTIKI_POST2026_RULES,
+    getCivilTaktikiPre2026Rules,
+} from './rules-civil.js';
 import {
     CivilAnchorType,
     CivilDeadlineCode,
@@ -135,11 +138,15 @@ export async function getCivilDeadlines(input: GetCivilDeadlinesInput): Promise<
     const isTaktiki = input.diadikasia === 'ΝΕΑ ΤΑΚΤΙΚΗ ΜΟΝΟΜΕΛΟΥΣ' ||
         input.diadikasia === 'ΝΕΑ ΤΑΚΤΙΚΗ ΠΟΛΥΜΕΛΟΥΣ' ||
         input.diadikasia === 'ΤΑΚΤΙΚΗ';
-    if (!isTaktiki || !isPost2026) {
+    if (!isTaktiki) {
         return { deadlines: [], status: 'not_supported' };
     }
 
-    const maxTraversalDays = getCivilMaxTraversalDays(CIVIL_DEADLINE_TAKTIKI_POST2026_RULES);
+    const rules = isPost2026
+        ? CIVIL_DEADLINE_TAKTIKI_POST2026_RULES
+        : getCivilTaktikiPre2026Rules(input.dimosio);
+
+    const maxTraversalDays = getCivilMaxTraversalDays(rules);
     const forwardRange = getDateRangeForCalculation(
         input.imerominia_katathesis,
         maxTraversalDays,
@@ -162,7 +169,7 @@ export async function getCivilDeadlines(input: GetCivilDeadlinesInput): Promise<
         ),
     };
 
-    const { earlyRules, lateRules } = CIVIL_DEADLINE_TAKTIKI_POST2026_RULES.reduce(
+    const { earlyRules, lateRules } = rules.reduce(
         (acc, rule) => {
             if (PENDING_ANCHOR_TYPES.includes(rule.anchor_type)) {
                 acc.lateRules.push(rule);

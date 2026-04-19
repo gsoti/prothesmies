@@ -134,6 +134,7 @@ export interface GetCivilDeadlinesInput {
     imerominia_katathesis: string; // ISO date format (YYYY-MM-DD)
     diadikasia: string;
     dimosio?: boolean;
+    dikasimos?: string; // ISO date format (YYYY-MM-DD), used for pre-2026 deadlines
 }
 
 export interface CivilDeadlinesResult {
