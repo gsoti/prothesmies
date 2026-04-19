@@ -132,6 +132,12 @@ export interface GetDeadlinesInput {
 
 export interface GetCivilDeadlinesInput {
     imerominia_katathesis: string; // ISO date format (YYYY-MM-DD)
+    diadikasia: string;
+}
+
+export interface CivilDeadlinesResult {
+    deadlines: Deadline[];
+    status: 'success' | 'not_supported';
 }
 
 export interface CivilDeadlineRule {

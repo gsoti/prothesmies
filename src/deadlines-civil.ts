@@ -7,11 +7,12 @@ import {
     buildCalculationLogic,
     calculateDeadlineDate,
 } from './utils/deadlineHelpers.js';
-import { CIVIL_DEADLINE_RULES } from './rules-civil.js';
+import { CIVIL_DEADLINE_TAKTIKI_POST2026_RULES } from './rules-civil.js';
 import {
     CivilAnchorType,
     CivilDeadlineCode,
     CivilDeadlineRule,
+    CivilDeadlinesResult,
     DeadlineStatus,
     GetCivilDeadlinesInput,
     Deadline,
@@ -126,10 +127,18 @@ function getCivilMaxTraversalDays(rules: CivilDeadlineRule[]): number {
     return maxTraversalDays;
 }
 
-export async function getCivilDeadlines(input: GetCivilDeadlinesInput): Promise<Deadline[]> {
+export async function getCivilDeadlines(input: GetCivilDeadlinesInput): Promise<CivilDeadlinesResult> {
     validateCivilInput(input);
 
-    const maxTraversalDays = getCivilMaxTraversalDays(CIVIL_DEADLINE_RULES);
+    const isPost2026 = input.imerominia_katathesis >= '2026-01-01';
+    const isTaktiki = input.diadikasia === 'ΝΕΑ ΤΑΚΤΙΚΗ ΜΟΝΟΜΕΛΟΥΣ' ||
+        input.diadikasia === 'ΝΕΑ ΤΑΚΤΙΚΗ ΠΟΛΥΜΕΛΟΥΣ' ||
+        input.diadikasia === 'ΤΑΚΤΙΚΗ';
+    if (!isTaktiki || !isPost2026) {
+        return { deadlines: [], status: 'not_supported' };
+    }
+
+    const maxTraversalDays = getCivilMaxTraversalDays(CIVIL_DEADLINE_TAKTIKI_POST2026_RULES);
     const forwardRange = getDateRangeForCalculation(
         input.imerominia_katathesis,
         maxTraversalDays,
@@ -148,7 +157,7 @@ export async function getCivilDeadlines(input: GetCivilDeadlinesInput): Promise<
         anastoli: [],
     };
 
-    const { earlyRules, lateRules } = CIVIL_DEADLINE_RULES.reduce(
+    const { earlyRules, lateRules } = CIVIL_DEADLINE_TAKTIKI_POST2026_RULES.reduce(
         (acc, rule) => {
             if (PENDING_ANCHOR_TYPES.includes(rule.anchor_type)) {
                 acc.lateRules.push(rule);
@@ -195,5 +204,5 @@ export async function getCivilDeadlines(input: GetCivilDeadlinesInput): Promise<
         deadlines.push(buildPendingDeadline(rule, rule.anchor_type));
     }
 
-    return deadlines;
+    return { deadlines, status: 'success' };
 }

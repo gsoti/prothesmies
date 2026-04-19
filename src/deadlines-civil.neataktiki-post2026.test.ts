@@ -6,23 +6,44 @@ import {
     DeadlineStatus,
 } from './types.js';
 
+const SUPPORTED_DIADIKASIA = 'ΝΕΑ ΤΑΚΤΙΚΗ ΜΟΝΟΜΕΛΟΥΣ';
+
 describe('getCivilDeadlines', () => {
     it('throws error for invalid filing date', async () => {
         await expect(
             getCivilDeadlines({
                 imerominia_katathesis: 'invalid-date',
+                diadikasia: SUPPORTED_DIADIKASIA,
             })
         ).rejects.toThrow('Invalid imerominia_katathesis date format');
     });
 
-    it('returns calculated early deadlines and pending late deadlines', async () => {
+    it('returns not_supported for unsupported diadikasia', async () => {
         const result = await getCivilDeadlines({
-            imerominia_katathesis: '2025-01-15',
+            imerominia_katathesis: '2026-01-15',
+            diadikasia: 'ΕΙΔΙΚΗ ΔΙΑΔΙΚΑΣΙΑ',
+        });
+        expect(result).toEqual({ deadlines: [], status: 'not_supported' });
+    });
+
+    it('returns not_supported for supported diadikasia with pre-2026 filing date', async () => {
+        const result = await getCivilDeadlines({
+            imerominia_katathesis: '2025-12-31',
+            diadikasia: SUPPORTED_DIADIKASIA,
+        });
+        expect(result).toEqual({ deadlines: [], status: 'not_supported' });
+    });
+
+    it('returns calculated early deadlines and pending late deadlines', async () => {
+        const { deadlines, status } = await getCivilDeadlines({
+            imerominia_katathesis: '2026-01-15',
+            diadikasia: SUPPORTED_DIADIKASIA,
         });
 
-        expect(result).toHaveLength(8);
+        expect(status).toBe('success');
+        expect(deadlines).toHaveLength(8);
 
-        const earlyCodes = result
+        const earlyCodes = deadlines
             .filter(deadline => deadline.status === DeadlineStatus.CALCULATED)
             .map(deadline => deadline.type);
         expect(earlyCodes).toEqual([
@@ -34,7 +55,7 @@ describe('getCivilDeadlines', () => {
             CivilDeadlineCode.orismos_dikasti_synthesis,
         ]);
 
-        const pending = result.filter(deadline => deadline.status === DeadlineStatus.PENDING);
+        const pending = deadlines.filter(deadline => deadline.status === DeadlineStatus.PENDING);
         expect(pending.map(deadline => deadline.type)).toEqual([
             CivilDeadlineCode.ekdosi_diataxis_dikasti,
             CivilDeadlineCode.aitisi_meta_apo_aparadekto,
@@ -46,29 +67,31 @@ describe('getCivilDeadlines', () => {
     });
 
     it('derives civil anchors from filing date in sequence', async () => {
-        const result = await getCivilDeadlines({
-            imerominia_katathesis: '2025-01-15',
+        const { deadlines } = await getCivilDeadlines({
+            imerominia_katathesis: '2026-01-15',
+            diadikasia: SUPPORTED_DIADIKASIA,
         });
 
-        const byCode = new Map(result.map(deadline => [deadline.type, deadline]));
+        const byCode = new Map(deadlines.map(deadline => [deadline.type, deadline]));
 
-        expect(byCode.get(CivilDeadlineCode.epidosi)?.date).toBe('2025-02-14');
-        expect(byCode.get(CivilDeadlineCode.paremptiptouses_antagogi_paremvasi_prosepiklisi_anakoinosi)?.date).toBe('2025-03-26');
-        expect(byCode.get(CivilDeadlineCode.paremvasi_prosepikaloumenou)?.date).toBe('2025-04-25');
-        expect(byCode.get(CivilDeadlineCode.protaseis_kai_apodeiktika)?.date).toBe('2025-05-15');
-        expect(byCode.get(CivilDeadlineCode.prosthiki_antikrousi)?.date).toBe('2025-05-30');
-        expect(byCode.get(CivilDeadlineCode.orismos_dikasti_synthesis)?.date).toBe('2025-06-10');
+        expect(byCode.get(CivilDeadlineCode.epidosi)?.date).toBe('2026-02-16');
+        expect(byCode.get(CivilDeadlineCode.paremptiptouses_antagogi_paremvasi_prosepiklisi_anakoinosi)?.date).toBe('2026-03-30');
+        expect(byCode.get(CivilDeadlineCode.paremvasi_prosepikaloumenou)?.date).toBe('2026-04-27');
+        expect(byCode.get(CivilDeadlineCode.protaseis_kai_apodeiktika)?.date).toBe('2026-05-18');
+        expect(byCode.get(CivilDeadlineCode.prosthiki_antikrousi)?.date).toBe('2026-06-02');
+        expect(byCode.get(CivilDeadlineCode.orismos_dikasti_synthesis)?.date).toBe('2026-06-12');
 
         expect(byCode.get(CivilDeadlineCode.prosthiki_antikrousi)?.calculation?.logic.reference).toBe('λήξη προθεσμίας προτάσεων');
         expect(byCode.get(CivilDeadlineCode.orismos_dikasti_synthesis)?.calculation?.logic.reference).toBe('λήξη προθεσμίας προσθήκης - αντίκρουσης');
     });
 
     it('marks pending deadlines without calculation payloads', async () => {
-        const result = await getCivilDeadlines({
-            imerominia_katathesis: '2025-01-15',
+        const { deadlines } = await getCivilDeadlines({
+            imerominia_katathesis: '2026-01-15',
+            diadikasia: SUPPORTED_DIADIKASIA,
         });
 
-        const pending = result.find(deadline => deadline.type === CivilDeadlineCode.ekdosi_diataxis_dikasti);
+        const pending = deadlines.find(deadline => deadline.type === CivilDeadlineCode.ekdosi_diataxis_dikasti);
         expect(pending).toMatchObject({
             status: DeadlineStatus.PENDING,
             anchorType: CivilAnchorType.ORISMOS_DIKASTI,
@@ -79,22 +102,24 @@ describe('getCivilDeadlines', () => {
     });
 
     it('keeps legislation text shape compatible when no full text is available', async () => {
-        const result = await getCivilDeadlines({
-            imerominia_katathesis: '2025-01-15',
+        const { deadlines } = await getCivilDeadlines({
+            imerominia_katathesis: '2026-01-15',
+            diadikasia: SUPPORTED_DIADIKASIA,
         });
 
-        for (const deadline of result) {
+        for (const deadline of deadlines) {
             expect(deadline.nomothesia.length).toBe(1);
             expect(deadline.formattedNomothesia[0]?.article).toBe(deadline.nomothesia[0]);
         }
     });
 
     it('should format civil deadlines from filing date', async () => {
-        const result = await getCivilDeadlines({
+        const { deadlines } = await getCivilDeadlines({
             imerominia_katathesis: '2026-01-15',
+            diadikasia: SUPPORTED_DIADIKASIA,
         });
 
-        const sorted = result.sort((a, b) => {
+        const sorted = deadlines.sort((a, b) => {
             const left = a.date || '9999-12-31';
             const right = b.date || '9999-12-31';
             return left.localeCompare(right);

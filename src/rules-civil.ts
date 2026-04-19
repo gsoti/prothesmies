@@ -6,7 +6,7 @@ import {
     Direction,
 } from './types.js';
 
-export const CIVIL_DEADLINE_RULES: CivilDeadlineRule[] = [
+export const CIVIL_DEADLINE_TAKTIKI_POST2026_RULES: CivilDeadlineRule[] = [
     {
         deadline_name: 'Επίδοση αγωγής',
         short_name: 'Επίδοση',
