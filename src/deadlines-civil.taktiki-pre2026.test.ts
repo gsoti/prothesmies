@@ -63,7 +63,7 @@ describe('getCivilDeadlines (pre-2026 τακτική)', () => {
         expect(epidosi.date > '2025-08-31').toBe(true);
     });
 
-    it('applies extended dimosio anastoli for pre-2026 filing', async () => {
+    it('applies the same August anastoli when dimosio is true for pre-2026 filing', async () => {
         const standard = await getCivilDeadlines({
             imerominia_katathesis: '2025-07-15',
             diadikasia: DIADIKASIA,
@@ -75,7 +75,7 @@ describe('getCivilDeadlines (pre-2026 τακτική)', () => {
         });
 
         expect(dimosio.deadlines[0].date >= standard.deadlines[0].date).toBe(true);
-        expect(dimosio.deadlines[0].calculation!.paused.length).toBeGreaterThan(
+        expect(dimosio.deadlines[0].calculation!.paused.length).toBe(
             standard.deadlines[0].calculation!.paused.length
         );
     });
