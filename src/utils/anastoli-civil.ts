@@ -20,13 +20,14 @@ export function getCivilAnastoliForRange(
   const endYear = parseInt(endDate.substring(0, 4), 10);
 
   for (let year = startYear; year <= endYear; year++) {
-    const periods: Array<[string, string]> = dimosio
-      ? [
-          [`${year}-07-01`, `${year}-07-31`],
-          [`${year}-08-01`, `${year}-08-31`],
-          [`${year}-09-01`, `${year}-09-15`],
-        ]
-      : [[`${year}-08-01`, `${year}-08-31`]];
+    // const periods: Array<[string, string]> = dimosio
+    //   ? [
+    //       [`${year}-07-01`, `${year}-07-31`],
+    //       [`${year}-08-01`, `${year}-08-31`],
+    //       [`${year}-09-01`, `${year}-09-15`],
+    //     ]
+    //   : [[`${year}-08-01`, `${year}-08-31`]];
+      const periods = [[`${year}-08-01`, `${year}-08-31`]]
 
     for (const [periodStart, periodEnd] of periods) {
       let current = parseISODate(periodStart);

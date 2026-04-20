@@ -14,7 +14,7 @@ export const CIVIL_DEADLINE_TAKTIKI_POST2026_RULES: CivilDeadlineRule[] = [
         days: 30,
         day_count: DayCount.CALENDAR,
         direction: Direction.AFTER,
-        legislation: 'άρθρο 215 §2 ΚΠολΔ',
+        legislation: 'Άρθρο 215 §2 ΚΠολΔ',
         anchor_type: CivilAnchorType.IMEROMINIA_KATATHESIS,
     },
     {

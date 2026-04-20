@@ -135,10 +135,20 @@ export async function getCivilDeadlines(input: GetCivilDeadlinesInput): Promise<
     validateCivilInput(input);
 
     const isPost2026 = input.imerominia_katathesis >= '2026-01-01';
-    const isTaktiki = input.diadikasia === 'ΝΕΑ ΤΑΚΤΙΚΗ ΜΟΝΟΜΕΛΟΥΣ' ||
-        input.diadikasia === 'ΝΕΑ ΤΑΚΤΙΚΗ ΠΟΛΥΜΕΛΟΥΣ' ||
-        input.diadikasia === 'ΤΑΚΤΙΚΗ';
+    const isBefore2022 = input.imerominia_katathesis < '2022-01-01';
+    const isTaktiki = [
+        'ΤΑΚΤΙΚΗ',
+        'ΤΑΚΤΙΚΗ ΜΟΝΟΜΕΛΟΥΣ',
+        'ΤΑΚΤΙΚΗ ΠΟΛΥΜΕΛΟΥΣ',
+        'ΝΕΑ ΤΑΚΤΙΚΗ ΜΟΝΟΜΕΛΟΥΣ',
+        'ΝΕΑ ΤΑΚΤΙΚΗ ΠΟΛΥΜΕΛΟΥΣ',
+        'ΝΕΑ ΤΑΚΤΙΚΗ ΜΟΝΟΜΕΛΟΥΣ (ν.5221/2025)',
+        'ΝΕΑ ΤΑΚΤΙΚΗ ΠΟΛΥΜΕΛΟΥΣ (ν.5221/2025)',
+    ].includes(input.diadikasia);
     if (!isTaktiki) {
+        return { deadlines: [], status: 'not_supported' };
+    }
+    if (isTaktiki && isBefore2022) {
         return { deadlines: [], status: 'not_supported' };
     }
 
