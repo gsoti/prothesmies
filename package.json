@@ -11,6 +11,7 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@gsoti/prothesmies": "github:gsoti/ls-prothesmies",
     "@vercel/postgres": "^0.10.0",
     "dotenv": "^16.4.5"
   },

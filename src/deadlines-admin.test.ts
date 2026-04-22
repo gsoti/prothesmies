@@ -74,8 +74,7 @@ describe('getAdminDeadlines - Integration Tests', () => {
                 expect(deadline).toHaveProperty('date');
                 expect(deadline).toHaveProperty('nomothesia');
                 expect(deadline).toHaveProperty('formattedNomothesia');
-                expect(deadline).toHaveProperty('ypologismos');
-                expect(deadline).toHaveProperty('imeres');
+
                 expect(deadline).toHaveProperty('calculation');
             }
         });
@@ -102,20 +101,6 @@ describe('getAdminDeadlines - Integration Tests', () => {
             }
         });
 
-        it('should have correct imeres field based on day_count', async () => {
-            const result = await getAdminDeadlines({
-                court_type: CourtType.DP_DE,
-                procedure_type: ProcedureType.DIAFORA_OUSIAS,
-                dikasimos: '2024-03-15',
-            });
-
-            if (result.length > 0) {
-                for (const deadline of result) {
-                    expect(deadline.imeres).toHaveLength(0);
-                    expect(Array.isArray(deadline.imeres)).toBe(true);
-                }
-            }
-        });
 
         it('should parse legislation and extract article number', async () => {
             const result = await getAdminDeadlines({
@@ -285,11 +270,6 @@ describe('getAdminDeadlines - Integration Tests', () => {
                 dikasimos: '2024-03-15',
             });
 
-            // Verify that imeres field is empty
-            for (const deadline of result) {
-                expect(deadline.imeres).toHaveLength(0);
-                expect(Array.isArray(deadline.imeres)).toBe(true);
-            }
         });
 
         it('should include paused and skipped dates in calculation', async () => {
@@ -447,18 +427,6 @@ describe('getAdminDeadlines - Integration Tests', () => {
             }
         });
 
-        it('should have ypologismos as empty array', async () => {
-            const result = await getAdminDeadlines({
-                court_type: CourtType.DP_DE,
-                procedure_type: ProcedureType.DIAFORA_OUSIAS,
-                dikasimos: '2024-03-15',
-            });
-
-            for (const deadline of result) {
-                expect(Array.isArray(deadline.ypologismos)).toBe(true);
-                expect(deadline.ypologismos).toHaveLength(0);
-            }
-        });
     });
 
     describe('Snapshot Tests', () => {
@@ -495,14 +463,12 @@ describe('getAdminDeadlines - Integration Tests', () => {
                       "text": "Η έκθεση με τον κατά την προηγούμενη παράγραφο διοικητικό φάκελο διαβιβάζονται στο δικαστήριο δεκαπέντε ημέρες τουλάχιστον πριν από τη δικάσιμο. Στις υποθέσεις, για τις οποίες η κατά το άρθρο 128 προθεσμία έχει συντμηθεί, τα στοιχεία αυτά διαβιβάζονται στο δικαστήριο τουλάχιστον οκτώ ημέρες πριν από τη δικάσιμο. Σε περίπτωση εκπρόθεσμης διαβίβασης, η υπόθεση αναβάλλεται, αν το ζητήσει εκείνος που έχει ασκήσει το ένδικο βοήθημα ή μέσο ή εκείνος που έχει ασκήσει την παρέμβαση. Για την αναβολή αυτή γίνεται ιδιαίτερη μνεία στα πρακτικά.",
                     },
                   ],
-                  "imeres": [],
                   "name": "Υποβολή απόψεων & φακέλου της διοίκησης",
                   "nomothesia": [
                     "129 παρ. 2 ΚΔΔ",
                   ],
                   "shortName": "Φάκελος Διοίκησης",
                   "type": "apopseis_fakelos_dioikisis",
-                  "ypologismos": [],
                 },
                 {
                   "calculation": {
@@ -531,14 +497,12 @@ describe('getAdminDeadlines - Integration Tests', () => {
                       "text": "1. Στα πρόσωπα που, κατά τα προηγούμενα άρθρα, νομιμοποιούνται να ασκήσουν παρέμβαση, ανακοινώνεται η δίκη, με κοινοποίηση του εισαγωγικού δικογράφου και γνωστοποίηση της δικασίμου είκοσι (20) τουλάχιστον πλήρεις ημέρες πριν από αυτήν, από οποιονδήποτε διάδικο.",
                     },
                   ],
-                  "imeres": [],
                   "name": "Ανακοίνωση δίκης & κοινοποίηση δικογράφου σε δικαιούμενους σε παρέμβαση",
                   "nomothesia": [
                     "114 παρ. 1 ΚΔΔ",
                   ],
                   "shortName": "Ανακοίνωση Δίκης",
                   "type": "anakoinosi_dikis",
-                  "ypologismos": [],
                 },
                 {
                   "calculation": {
@@ -564,14 +528,12 @@ describe('getAdminDeadlines - Integration Tests', () => {
                       "text": "Οι διάδικοι μπορούν να προβάλλουν, εκτός από τους λόγους οι οποίοι περιέχονται στα ένδικο βοήθημα ή μέσο που ασκήθηκε από αυτούς, και προσθέτους λόγους. Το δικόγραφο των πρόσθετων λόγων κατατίθεται στη γραμματεία και, με τη φροντίδα του διαδίκου που το ασκεί, επιδίδεται σε κυρωμένο αντίγραφο στους άλλους διαδίκους δεκαπέντε (15) τουλάχιστον ημέρες πριν από την πρώτη συζήτηση.",
                     },
                   ],
-                  "imeres": [],
                   "name": "Κατάθεση & επίδοση πρόσθετων λόγων",
                   "nomothesia": [
                     "131 παρ. 1 ΚΔΔ",
                   ],
                   "shortName": "Πρόσθετοι Λόγοι",
                   "type": "prostheti_logoi",
-                  "ypologismos": [],
                 },
                 {
                   "calculation": {
@@ -597,14 +559,12 @@ describe('getAdminDeadlines - Integration Tests', () => {
                       "text": "Αν ορισμένοι, ως προς τους οποίους συντρέχουν οι προϋποθέσεις της αναγκαστικής ομοδικίας, δεν περιλαμβάνονται στο κοινό δικόγραφο, προσεπικαλούνται στη δίκη, με κοινοποίηση του εισαγωγικού δικογράφου και γνωστοποίηση της δικασίμου, από οποιονδήποτε ομόδικο, δεκαπέντε (15) τουλάχιστον ημέρες πριν από τη συζήτηση.",
                     },
                   ],
-                  "imeres": [],
                   "name": "Προσεπίκληση αναγκαστικώς ομοδίκων",
                   "nomothesia": [
                     "117 ΚΔΔ",
                   ],
                   "shortName": "Προσεπίκληση Ομοδίκων",
                   "type": "prosepiklisi_omodikon",
-                  "ypologismos": [],
                 },
                 {
                   "calculation": {
@@ -630,14 +590,12 @@ describe('getAdminDeadlines - Integration Tests', () => {
                       "text": "Η παρέμβαση ασκείται με ιδιαίτερο έγγραφο, το οποίο κατατίθεται στη γραμματεία του δικαστηρίου στο οποίο εκκρεμεί το σχετικό ένδικο βοήθημα ή μέσο και, με τη φροντίδα του παρεμβαίνοντος, επιδίδεται, με την ποινή του απαραδέκτου, σε κυρωμένο αντίγραφο στους διαδίκους τουλάχιστον έξι (6) πλήρεις ημέρες πριν από τη συζήτηση. Κατά τα λοιπά εφαρμόζονται αναλόγως όσα ορίζονται στην παρ. 3 του άρθρου 126. Η παράλειψη της πιο πάνω επίδοσης καλύπτεται αν εκείνος προς τον οποίο αυτή έπρεπε να γίνει παρίσταται στο ακροατήριο και δεν αντιλέγει.",
                     },
                   ],
-                  "imeres": [],
                   "name": "Κατάθεση & επίδοση παρέμβασης",
                   "nomothesia": [
                     "114 παρ. 2 ΚΔΔ",
                   ],
                   "shortName": "Παρέμβαση",
                   "type": "paremvasi",
-                  "ypologismos": [],
                 },
                 {
                   "calculation": {
@@ -663,14 +621,12 @@ describe('getAdminDeadlines - Integration Tests', () => {
                       "text": "Η πρόταση του διαδίκου για την εξέταση μάρτυρα γίνεται με το αρχικό ή το δικόγραφο των πρόσθετων λόγων, ή με ειδική αίτηση που κατατίθεται στη γραμματεία τουλάχιστον πέντε (5) ήμερες πριν από την πρώτη συζήτηση.",
                     },
                   ],
-                  "imeres": [],
                   "name": "Αυτοτελής αίτηση για εξέταση μάρτυρα",
                   "nomothesia": [
                     "180 παρ. 1 ΚΔΔ",
                   ],
                   "shortName": "Αίτηση Εξέτασης Μάρτυρα",
                   "type": "aitisi_martyra",
-                  "ypologismos": [],
                 },
                 {
                   "calculation": {
@@ -694,14 +650,12 @@ describe('getAdminDeadlines - Integration Tests', () => {
                       "text": "",
                     },
                   ],
-                  "imeres": [],
                   "name": "Κατάθεση δήλωσης, νομιμοποιητικών εγγράφων & αποδεικτικών μέσων",
                   "nomothesia": [
                     "26, 133 παρ. 2, 150 ΚΔΔ",
                   ],
                   "shortName": "Δήλωση & Αποδεικτικά",
                   "type": "dilosi_nomim_apodeiktika",
-                  "ypologismos": [],
                 },
                 {
                   "calculation": {
@@ -728,14 +682,12 @@ describe('getAdminDeadlines - Integration Tests', () => {
                       "text": "Ο κατά το προηγούμενο άρθρο προσεπικαλούμενος μετέχει στη δίκη με ειδικό δικόγραφο, το οποίο κατατίθεται στη γραμματεία του δικαστηρίου και επιδίδεται, σε κυρωμένο αντίγραφο, με τη φροντίδα του, στους άλλους διαδίκους, ως την προτεραία της συζήτησης.",
                     },
                   ],
-                  "imeres": [],
                   "name": "Κατάθεση & επίδοση δικογράφου συμμετοχής αναγκαστικώς ομοδίκων",
                   "nomothesia": [
                     "118 ΚΔΔ",
                   ],
                   "shortName": "Συμμετοχή Ομοδίκων",
                   "type": "dikografo_omodikon",
-                  "ypologismos": [],
                 },
                 {
                   "calculation": {
@@ -759,14 +711,12 @@ describe('getAdminDeadlines - Integration Tests', () => {
                       "text": "",
                     },
                   ],
-                  "imeres": [],
                   "name": "Καταβολή & προσκόμιση παραβόλου",
                   "nomothesia": [
                     "277, 150 ΚΔΔ",
                   ],
                   "shortName": "Παράβολο",
                   "type": "paravolo",
-                  "ypologismos": [],
                 },
                 {
                   "calculation": {
@@ -790,14 +740,12 @@ describe('getAdminDeadlines - Integration Tests', () => {
                       "text": "",
                     },
                   ],
-                  "imeres": [],
                   "name": "Καταβολή & προσκόμιση δικαστικού ενσήμου (καταψηφιστική αγωγή)",
                   "nomothesia": [
                     "274 παρ. 3, 150 ΚΔΔ",
                   ],
                   "shortName": "Δικαστικό Ένσημο",
                   "type": "dikastiko_ensimo",
-                  "ypologismos": [],
                 },
                 {
                   "calculation": {
@@ -826,14 +774,12 @@ describe('getAdminDeadlines - Integration Tests', () => {
                       "text": "Υπομνήματα των διαδίκων, για την ανάπτυξη των ισχυρισμών τους, κατατίθενται στη γραμματεία το αργότερο τρεις (3) εργάσιμες ημέρες μετά τη συζήτηση. Μέσα σε προθεσμία τριών (3) εργάσιμων ημερών από τη λήξη της παραπάνω προθεσμίας ο αντίδικος εκείνου που κατέθεσε το υπόμνημα μπορεί, με δικό του υπόμνημα, να αντικρούσει τις απόψεις που αναπτύχθηκαν με το υπόμνημα του αντιδίκου του.",
                     },
                   ],
-                  "imeres": [],
                   "name": "Κατάθεση υπομνήματος",
                   "nomothesia": [
                     "138 παρ. 1 ΚΔΔ",
                   ],
                   "shortName": "Υπόμνημα",
                   "type": "ypomnima",
-                  "ypologismos": [],
                 },
                 {
                   "calculation": {
@@ -859,14 +805,12 @@ describe('getAdminDeadlines - Integration Tests', () => {
                       "text": "Υπομνήματα των διαδίκων, για την ανάπτυξη των ισχυρισμών τους, κατατίθενται στη γραμματεία το αργότερο τρεις (3) εργάσιμες ημέρες μετά τη συζήτηση. Μέσα σε προθεσμία τριών (3) εργάσιμων ημερών από τη λήξη της παραπάνω προθεσμίας ο αντίδικος εκείνου που κατέθεσε το υπόμνημα μπορεί, με δικό του υπόμνημα, να αντικρούσει τις απόψεις που αναπτύχθηκαν με το υπόμνημα του αντιδίκου του.",
                     },
                   ],
-                  "imeres": [],
                   "name": "Κατάθεση υπομνήματος αντίκρουσης",
                   "nomothesia": [
                     "138 παρ. 1 ΚΔΔ",
                   ],
                   "shortName": "Υπόμνημα Αντίκρουσης",
                   "type": "ypomnima_antikrousis",
-                  "ypologismos": [],
                 },
               ]
             `);

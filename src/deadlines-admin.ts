@@ -249,8 +249,7 @@ function buildDeadline(
         type: rule.deadline_code as AdminDeadlineCode,
         // NOT USED
         nomothesia: plain,
-        ypologismos: [], // Empty for now
-        imeres: [], // not used
+
     };
 }
 

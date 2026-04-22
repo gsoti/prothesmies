@@ -1,10 +1,9 @@
 import { ArgiesAndAnastoli } from './dateCalculation.js';
 import { getArgiesForRange, getDateRangeForCalculation } from './utils/argies.js';
-import { parseISODate } from './utils/dateUtils.js';
+import { parseISODate, toISODateString, addDays } from './utils/dateUtils.js';
 import { getCivilAnastoliForRange } from './utils/anastoli-civil.js';
 import {
     DeadlineCalculationError,
-    parseLegislation,
     buildCalculationLogic,
     calculateDeadlineDate,
 } from './utils/deadlineHelpers.js';
@@ -13,16 +12,18 @@ import {
     CIVIL_DEADLINE_TAKTIKI_POST2026_RULES,
     getCivilTaktikiPre2026Rules,
 } from './rules-civil.js';
+import { getCivilFormattedNomothesia, getCivilNomothesia } from './nomothesia-civil.js';
 import {
     CivilAnchorType,
     CivilDeadlineCode,
     CivilDeadlineRule,
     CivilDeadlinesResult,
-    DeadlineStatus,
     GetCivilDeadlinesInput,
     Deadline,
     DateCalculation,
 } from './types.js';
+
+type BuildContext = { isPost2026: boolean; exoteriko?: boolean };
 
 const DATE_RANGE_BUFFER_DAYS = 365;
 
@@ -35,22 +36,23 @@ const ANCHOR_TRAVERSAL_DAYS = new Map<CivilAnchorType, number>([
     [CivilAnchorType.LIXI_PROSTHIKIS_ANTIKROUSIS, 135],
 ]);
 
-function getReferenceLabel(reference: CivilAnchorType | string): string {
-    switch (reference) {
-        case CivilAnchorType.IMEROMINIA_KATATHESIS:
-            return 'ημερομηνία κατάθεσης';
-        case CivilAnchorType.LIXI_EPIDOSIS_AGOGIS:
-            return 'λήξη προθεσμίας επίδοσης αγωγής';
-        case CivilAnchorType.LIXI_PROTASEON:
-            return 'λήξη προθεσμίας προτάσεων';
-        case CivilAnchorType.LIXI_PROSTHIKIS_ANTIKROUSIS:
-            return 'λήξη προθεσμίας προσθήκης - αντίκρουσης';
-        case CivilAnchorType.ORISMOS_DIKASTI:
-            return 'ορισμός δικαστή / σύνθεσης';
-        case CivilAnchorType.EKDOSI_DIATAXIS:
-            return 'έκδοση διάταξης';
-        default:
-            return reference;
+function getAnchorReference(anchor: CivilAnchorType): string {
+    switch (anchor) {
+        case CivilAnchorType.IMEROMINIA_KATATHESIS: return 'katathesi';
+        case CivilAnchorType.DIKASIMOS:             return 'dikasimos';
+        default:                                    return anchor;
+    }
+}
+
+function getAnchorName(anchor: CivilAnchorType): string {
+    switch (anchor) {
+        case CivilAnchorType.IMEROMINIA_KATATHESIS:      return 'Κατάθεση';
+        case CivilAnchorType.LIXI_EPIDOSIS_AGOGIS:       return 'Λήξη επίδοσης αγωγής';
+        case CivilAnchorType.LIXI_PROTASEON:             return 'Λήξη προτάσεων';
+        case CivilAnchorType.LIXI_PROSTHIKIS_ANTIKROUSIS: return 'Λήξη προσθήκης - αντίκρουσης';
+        case CivilAnchorType.DIKASIMOS:                  return 'Δικάσιμος';
+        case CivilAnchorType.ORISMOS_DIKASTI:            return 'Ορισμός δικαστή / σύνθεσης';
+        case CivilAnchorType.EKDOSI_DIATAXIS:            return 'Έκδοση διάταξης';
     }
 }
 
@@ -58,9 +60,10 @@ function buildDeadline(
     rule: Pick<CivilDeadlineRule, 'deadline_name' | 'short_name' | 'deadline_code' | 'legislation'>,
     calculatedResult: ReturnType<typeof calculateDeadlineDate>,
     logic: DateCalculation['logic'],
-    anchorType: CivilAnchorType
+    ctx: BuildContext
 ): Deadline {
-    const { plain, formatted } = parseLegislation(rule.legislation, false, rule.deadline_code);
+    const plain = getCivilNomothesia(rule.deadline_code, ctx) ?? [rule.legislation];
+    const formatted = getCivilFormattedNomothesia(rule.deadline_code, ctx);
 
     return {
         calculation: {
@@ -75,18 +78,16 @@ function buildDeadline(
         shortName: rule.short_name,
         type: rule.deadline_code as CivilDeadlineCode,
         nomothesia: plain,
-        ypologismos: [],
-        imeres: [],
-        status: DeadlineStatus.CALCULATED,
-        anchorType,
     };
 }
 
 function buildPendingDeadline(
     rule: CivilDeadlineRule,
-    missingAnchor: CivilAnchorType
+    missingAnchor: CivilAnchorType,
+    ctx: BuildContext
 ): Deadline {
-    const { plain, formatted } = parseLegislation(rule.legislation, false, rule.deadline_code);
+    const plain = getCivilNomothesia(rule.deadline_code, ctx) ?? [rule.legislation];
+    const formatted = getCivilFormattedNomothesia(rule.deadline_code, ctx);
 
     return {
         name: rule.deadline_name,
@@ -95,11 +96,7 @@ function buildPendingDeadline(
         date: '',
         nomothesia: plain,
         formattedNomothesia: formatted,
-        ypologismos: [],
-        imeres: [],
         calculation: null,
-        status: DeadlineStatus.PENDING,
-        anchorType: rule.anchor_type,
         missingAnchor,
     };
 }
@@ -136,6 +133,7 @@ export async function getCivilDeadlines(input: GetCivilDeadlinesInput): Promise<
     validateCivilInput(input);
 
     const isPost2026 = input.imerominia_katathesis >= '2026-01-01';
+    const ctx: BuildContext = { isPost2026, exoteriko: input.exoteriko };
     const isBefore2022 = input.imerominia_katathesis < '2022-01-01';
     const isTaktiki = [
         'ΤΑΚΤΙΚΗ',
@@ -157,7 +155,14 @@ export async function getCivilDeadlines(input: GetCivilDeadlinesInput): Promise<
         ? CIVIL_DEADLINE_TAKTIKI_POST2026_RULES
         : getCivilTaktikiPre2026Rules(input.dimosio);
 
-    const maxTraversalDays = getCivilMaxTraversalDays(rules);
+    let maxTraversalDays = getCivilMaxTraversalDays(rules);
+    if (input.dikasimos) {
+        const dikasimosDistance = Math.ceil(
+            (parseISODate(input.dikasimos).getTime() - parseISODate(input.imerominia_katathesis).getTime())
+            / (24 * 60 * 60 * 1000)
+        );
+        maxTraversalDays = Math.max(maxTraversalDays, dikasimosDistance);
+    }
     const forwardRange = getDateRangeForCalculation(
         input.imerominia_katathesis,
         maxTraversalDays,
@@ -195,19 +200,20 @@ export async function getCivilDeadlines(input: GetCivilDeadlinesInput): Promise<
     const deadlines: Deadline[] = [];
     const anchors = new Map<CivilAnchorType, string>([
         [CivilAnchorType.IMEROMINIA_KATATHESIS, input.imerominia_katathesis],
+        ...(input.dikasimos ? [[CivilAnchorType.DIKASIMOS, input.dikasimos] as const] : []),
     ]);
 
     for (const rule of earlyRules) {
         const referenceDate = anchors.get(rule.anchor_type);
 
         if (!referenceDate) {
-            deadlines.push(buildPendingDeadline(rule, rule.anchor_type));
+            deadlines.push(buildPendingDeadline(rule, rule.anchor_type, ctx));
             continue;
         }
 
         const calculatedResult = calculateDeadlineDate(rule, referenceDate, argiesAndAnastoli);
-        const logic = buildCalculationLogic(rule, referenceDate, getReferenceLabel(rule.anchor_type));
-        const deadline = buildDeadline(rule, calculatedResult, logic, rule.anchor_type);
+        const logic = buildCalculationLogic(rule, referenceDate, getAnchorReference(rule.anchor_type), getAnchorName(rule.anchor_type));
+        const deadline = buildDeadline(rule, calculatedResult, logic, ctx);
         deadlines.push(deadline);
 
         switch (deadline.type) {
@@ -224,7 +230,7 @@ export async function getCivilDeadlines(input: GetCivilDeadlinesInput): Promise<
     }
 
     for (const rule of lateRules) {
-        deadlines.push(buildPendingDeadline(rule, rule.anchor_type));
+        deadlines.push(buildPendingDeadline(rule, rule.anchor_type, ctx));
     }
 
     return { deadlines, status: 'success' };

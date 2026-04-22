@@ -86,7 +86,8 @@ interface RuleForLogic {
 export function buildCalculationLogic(
     rule: RuleForLogic,
     referenceDate: string,
-    referenceLabel: string
+    referenceLabel: string,
+    name?: string
 ): DateCalculation['logic'] {
     return {
         days: rule.days,
@@ -94,7 +95,7 @@ export function buildCalculationLogic(
         when: getWhenText(rule.direction),
         reference: referenceLabel,
         start: referenceDate,
-        name: rule.short_name,
+        name: name ?? rule.short_name,
     };
 }
 

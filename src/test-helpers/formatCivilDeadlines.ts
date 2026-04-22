@@ -1,5 +1,4 @@
 import type { getCivilDeadlines } from '../deadlines-admin.js';
-import { DeadlineStatus } from '../types.js';
 
 export function formatCivilDeadlines(deadlines: Awaited<ReturnType<typeof getCivilDeadlines>>['deadlines']): string {
     const sorted = [...deadlines].sort((a, b) => {
@@ -16,7 +15,7 @@ export function formatCivilDeadlines(deadlines: Awaited<ReturnType<typeof getCiv
         .map(d => {
             const firstCol = `${d.date || 'PENDING'} - ${d.shortName}`.padEnd(maxFirstColLength);
 
-            if (d.status === DeadlineStatus.PENDING) {
+            if (d.calculation === null) {
                 return `${firstCol}  pending (${d.missingAnchor})`;
             }
 

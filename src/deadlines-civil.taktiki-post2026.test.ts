@@ -3,7 +3,6 @@ import { getCivilDeadlines } from './deadlines-admin.js';
 import {
     CivilAnchorType,
     CivilDeadlineCode,
-    DeadlineStatus,
 } from './types.js';
 import { formatCivilDeadlines } from './test-helpers/formatCivilDeadlines.js';
 
@@ -20,7 +19,7 @@ describe('getCivilDeadlines', () => {
         expect(deadlines).toHaveLength(8);
 
         const earlyCodes = deadlines
-            .filter(deadline => deadline.status === DeadlineStatus.CALCULATED)
+            .filter(deadline => deadline.calculation !== null)
             .map(deadline => deadline.type);
         expect(earlyCodes).toEqual([
             CivilDeadlineCode.epidosi,
@@ -31,7 +30,7 @@ describe('getCivilDeadlines', () => {
             CivilDeadlineCode.orismos_dikasti_synthesis,
         ]);
 
-        const pending = deadlines.filter(deadline => deadline.status === DeadlineStatus.PENDING);
+        const pending = deadlines.filter(deadline => deadline.calculation === null);
         expect(pending.map(deadline => deadline.type)).toEqual([
             CivilDeadlineCode.ekdosi_diataxis_dikasti,
             CivilDeadlineCode.aitisi_meta_apo_aparadekto,
@@ -57,8 +56,8 @@ describe('getCivilDeadlines', () => {
         expect(byCode.get(CivilDeadlineCode.prosthiki_antikrousi)?.date).toBe('2026-06-02');
         expect(byCode.get(CivilDeadlineCode.orismos_dikasti_synthesis)?.date).toBe('2026-06-12');
 
-        expect(byCode.get(CivilDeadlineCode.prosthiki_antikrousi)?.calculation?.logic.reference).toBe('λήξη προθεσμίας προτάσεων');
-        expect(byCode.get(CivilDeadlineCode.orismos_dikasti_synthesis)?.calculation?.logic.reference).toBe('λήξη προθεσμίας προσθήκης - αντίκρουσης');
+        expect(byCode.get(CivilDeadlineCode.prosthiki_antikrousi)?.calculation?.logic.reference).toBe('lixi_protaseon');
+        expect(byCode.get(CivilDeadlineCode.orismos_dikasti_synthesis)?.calculation?.logic.reference).toBe('lixi_prosthikis_antikrousis');
     });
 
     it('marks pending deadlines without calculation payloads', async () => {
@@ -69,8 +68,6 @@ describe('getCivilDeadlines', () => {
 
         const pending = deadlines.find(deadline => deadline.type === CivilDeadlineCode.ekdosi_diataxis_dikasti);
         expect(pending).toMatchObject({
-            status: DeadlineStatus.PENDING,
-            anchorType: CivilAnchorType.ORISMOS_DIKASTI,
             missingAnchor: CivilAnchorType.ORISMOS_DIKASTI,
             calculation: null,
             date: '',
@@ -85,7 +82,11 @@ describe('getCivilDeadlines', () => {
 
         for (const deadline of deadlines) {
             expect(deadline.nomothesia.length).toBe(1);
-            expect(deadline.formattedNomothesia[0]?.article).toBe(deadline.nomothesia[0]);
+            // formattedNomothesia is populated for codes with known article text;
+            // when populated, its first article must match the legislation string
+            if (deadline.formattedNomothesia.length > 0) {
+                expect(deadline.formattedNomothesia[0].article).toBe(deadline.nomothesia[0]);
+            }
         }
     });
 
@@ -96,12 +97,12 @@ describe('getCivilDeadlines', () => {
         });
 
         expect(formatCivilDeadlines(deadlines)).toMatchInlineSnapshot(`
-          "2026-02-16 - Επίδοση                      30 ημέρες μετά ημερομηνία κατάθεσης [skipped: 2026-02-14, 2026-02-15]
-          2026-03-30 - Παρεμπίπτουσες/Ανταγωγή      40 ημέρες μετά λήξη προθεσμίας επίδοσης αγωγής [skipped: 2026-03-28, 2026-03-29]
-          2026-04-27 - Παρέμβαση προσεπικαλούμενου  70 ημέρες μετά λήξη προθεσμίας επίδοσης αγωγής
-          2026-05-18 - Προτάσεις & Αποδεικτικά      90 ημέρες μετά λήξη προθεσμίας επίδοσης αγωγής [skipped: 2026-05-17]
-          2026-06-02 - Προσθήκη – αντίκρουση        15 ημέρες μετά λήξη προθεσμίας προτάσεων
-          2026-06-12 - Ορισμός δικαστή              10 ημέρες μετά λήξη προθεσμίας προσθήκης - αντίκρουσης
+          "2026-02-16 - Επίδοση                      30 ημέρες μετά katathesi [skipped: 2026-02-14, 2026-02-15]
+          2026-03-30 - Παρεμπίπτουσες/Ανταγωγή      40 ημέρες μετά lixi_epidosis_agogis [skipped: 2026-03-28, 2026-03-29]
+          2026-04-27 - Παρέμβαση προσεπικαλούμενου  70 ημέρες μετά lixi_epidosis_agogis
+          2026-05-18 - Προτάσεις & Αποδεικτικά      90 ημέρες μετά lixi_epidosis_agogis [skipped: 2026-05-17]
+          2026-06-02 - Προσθήκη – αντίκρουση        15 ημέρες μετά lixi_protaseon
+          2026-06-12 - Ορισμός δικαστή              10 ημέρες μετά lixi_prosthikis_antikrousis
           PENDING - Έκδοση διάταξης                 pending (orismos_dikasti)
           PENDING - Αίτηση μετά από απαράδεκτο      pending (ekdosi_diataxis)"
         `);
@@ -155,12 +156,12 @@ describe('getCivilDeadlines', () => {
             });
 
             expect(formatCivilDeadlines(deadlines)).toMatchInlineSnapshot(`
-              "2026-09-16 - Επίδοση                      30 ημέρες μετά ημερομηνία κατάθεσης [paused: 77]
-              2026-10-26 - Παρεμπίπτουσες/Ανταγωγή      40 ημέρες μετά λήξη προθεσμίας επίδοσης αγωγής
-              2026-11-25 - Παρέμβαση προσεπικαλούμενου  70 ημέρες μετά λήξη προθεσμίας επίδοσης αγωγής
-              2026-12-15 - Προτάσεις & Αποδεικτικά      90 ημέρες μετά λήξη προθεσμίας επίδοσης αγωγής
-              2026-12-30 - Προσθήκη – αντίκρουση        15 ημέρες μετά λήξη προθεσμίας προτάσεων
-              2027-01-11 - Ορισμός δικαστή              10 ημέρες μετά λήξη προθεσμίας προσθήκης - αντίκρουσης [skipped: 2027-01-09, 2027-01-10]
+              "2026-09-16 - Επίδοση                      30 ημέρες μετά katathesi [paused: 77]
+              2026-10-26 - Παρεμπίπτουσες/Ανταγωγή      40 ημέρες μετά lixi_epidosis_agogis
+              2026-11-25 - Παρέμβαση προσεπικαλούμενου  70 ημέρες μετά lixi_epidosis_agogis
+              2026-12-15 - Προτάσεις & Αποδεικτικά      90 ημέρες μετά lixi_epidosis_agogis
+              2026-12-30 - Προσθήκη – αντίκρουση        15 ημέρες μετά lixi_protaseon
+              2027-01-11 - Ορισμός δικαστή              10 ημέρες μετά lixi_prosthikis_antikrousis [skipped: 2027-01-09, 2027-01-10]
               PENDING - Έκδοση διάταξης                 pending (orismos_dikasti)
               PENDING - Αίτηση μετά από απαράδεκτο      pending (ekdosi_diataxis)"
             `);

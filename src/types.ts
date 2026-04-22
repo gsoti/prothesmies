@@ -18,10 +18,12 @@ export enum AdminDeadlineCode {
 
 export enum CivilDeadlineCode {
     epidosi = "epidosi",
-    paremptiptouses_antagogi_paremvasi_prosepiklisi_anakoinosi = "paremptiptouses_antagogi_paremvasi_prosepiklisi_anakoinosi",
-    paremvasi_prosepikaloumenou = "paremvasi_prosepikaloumenou",
+    paremptiptouses_antagogi_paremvasi_prosepiklisi_anakoinosi = "paremvasi",
+    paremvasi_prosepikaloumenou = "paremvasiProsek",
     protaseis = "protaseis",
-    prosthiki_antikrousi = "prosthiki_antikrousi",
+    prosthiki_antikrousi = "prosthiki",
+    opsigenes_ischyrismoi = "opsigeneis",
+    opsigenes_antikrousi = "opsigeneisAntikrousi",
     orismos_dikasti_synthesis = "orismos_dikasti_synthesis",
     ekdosi_diataxis_dikasti = "ekdosi_diataxis_dikasti",
     aitisi_meta_apo_aparadekto = "aitisi_meta_apo_aparadekto"
@@ -53,16 +55,12 @@ export enum Direction {
     UNTIL = "UNTIL"
 }
 
-export enum DeadlineStatus {
-    CALCULATED = "calculated",
-    PENDING = "pending"
-}
-
 export enum CivilAnchorType {
     IMEROMINIA_KATATHESIS = "imerominia_katathesis",
     LIXI_EPIDOSIS_AGOGIS = "lixi_epidosis_agogis",
     LIXI_PROTASEON = "lixi_protaseon",
     LIXI_PROSTHIKIS_ANTIKROUSIS = "lixi_prosthikis_antikrousis",
+    DIKASIMOS = "dikasimos",
     ORISMOS_DIKASTI = "orismos_dikasti",
     EKDOSI_DIATAXIS = "ekdosi_diataxis"
 }
@@ -88,11 +86,7 @@ export interface Deadline {
     date: string;
     nomothesia: string[];
     formattedNomothesia: Nomothesia[];
-    ypologismos: string[];
-    imeres: string[];
     calculation: DateCalculation | null;
-    status?: DeadlineStatus;
-    anchorType?: CivilAnchorType;
     missingAnchor?: CivilAnchorType;
 }
 
@@ -134,6 +128,7 @@ export interface GetCivilDeadlinesInput {
     imerominia_katathesis: string; // ISO date format (YYYY-MM-DD)
     diadikasia: string;
     dimosio?: boolean;
+    exoteriko?: boolean;
     dikasimos?: string; // ISO date format (YYYY-MM-DD), used for pre-2026 deadlines
 }
 

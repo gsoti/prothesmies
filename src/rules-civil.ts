@@ -89,10 +89,10 @@ export const CIVIL_DEADLINE_TAKTIKI_POST2026_RULES: CivilDeadlineRule[] = [
     },
 ];
 
-export function getCivilTaktikiPre2026Rules(dimosio?: boolean): CivilDeadlineRule[] {
+export function getCivilTaktikiPre2026Rules(dimosio?: boolean, exoteriko?: boolean): CivilDeadlineRule[] {
     return [
         {
-            deadline_name: 'Επίδοση αγωγής',
+            deadline_name: 'Επίδοση',
             short_name: 'Επίδοση',
             deadline_code: CivilDeadlineCode.epidosi,
             days: dimosio ? 60 : 30,
@@ -102,7 +102,7 @@ export function getCivilTaktikiPre2026Rules(dimosio?: boolean): CivilDeadlineRul
             anchor_type: CivilAnchorType.IMEROMINIA_KATATHESIS,
         },
         {
-            deadline_name: 'Παρέμβαση',
+            deadline_name: 'Παρέμβαση, προσεπίκληση, ανακοίνωση ή ανταγωγή',
             short_name: 'Παρέμβαση',
             deadline_code: CivilDeadlineCode.paremptiptouses_antagogi_paremvasi_prosepiklisi_anakoinosi,
             days: dimosio ? 90 : 60,
@@ -122,7 +122,7 @@ export function getCivilTaktikiPre2026Rules(dimosio?: boolean): CivilDeadlineRul
             anchor_type: CivilAnchorType.IMEROMINIA_KATATHESIS,
         },
         {
-            deadline_name: 'Προτάσεις',
+            deadline_name: 'Κατάθεση προτάσεων',
             short_name: 'Προτάσεις',
             deadline_code: CivilDeadlineCode.protaseis,
             days: 120,
@@ -132,7 +132,7 @@ export function getCivilTaktikiPre2026Rules(dimosio?: boolean): CivilDeadlineRul
             anchor_type: CivilAnchorType.IMEROMINIA_KATATHESIS,
         },
         {
-            deadline_name: 'Προσθήκη',
+            deadline_name: 'Κατάθεση προσθήκης',
             short_name: 'Προσθήκη',
             deadline_code: CivilDeadlineCode.prosthiki_antikrousi,
             days: 15,
@@ -140,6 +140,26 @@ export function getCivilTaktikiPre2026Rules(dimosio?: boolean): CivilDeadlineRul
             direction: Direction.AFTER,
             legislation: 'Αρθ. 238 § 1 ΚΠολΔ',
             anchor_type: CivilAnchorType.LIXI_PROTASEON,
-        }
+        },
+        {
+            deadline_name: 'Οψιγενείς ή παραχρήμα αποδεικνυόμενοι ισχυρισμοί',
+            short_name: 'Οψιγενείς ισχυρισμοί',
+            deadline_code: CivilDeadlineCode.opsigenes_ischyrismoi,
+            days: 20,
+            day_count: DayCount.CALENDAR,
+            direction: Direction.BEFORE,
+            legislation: 'Αρθ. 237 § 5 ΚΠολΔ',
+            anchor_type: CivilAnchorType.DIKASIMOS,
+        },
+        {
+            deadline_name: 'Αντίκρουση σε οψιγενείς',
+            short_name: 'Αντίκρουση σε οψιγενείς',
+            deadline_code: CivilDeadlineCode.opsigenes_antikrousi,
+            days: 10,
+            day_count: DayCount.CALENDAR,
+            direction: Direction.BEFORE,
+            legislation: 'Αρθ. 237 § 5 ΚΠολΔ',
+            anchor_type: CivilAnchorType.DIKASIMOS,
+        },
     ];
 }

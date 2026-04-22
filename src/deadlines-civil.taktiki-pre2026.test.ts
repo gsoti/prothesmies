@@ -1,9 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { getCivilDeadlines } from './deadlines-civil.js';
 import {
-    CivilAnchorType,
     CivilDeadlineCode,
-    DeadlineStatus,
 } from './types.js';
 import { formatCivilDeadlines } from './test-helpers/formatCivilDeadlines.js';
 
@@ -25,12 +23,11 @@ describe('getCivilDeadlines (pre-2026 τακτική)', () => {
         });
 
         expect(status).toBe('success');
-        expect(deadlines).toHaveLength(5);
+        // 5 calculated + 2 pending (opsigeneis/antikrousi require dikasimos)
+        expect(deadlines).toHaveLength(7);
 
         const epidosi = deadlines[0];
         expect(epidosi.type).toBe(CivilDeadlineCode.epidosi);
-        expect(epidosi.status).toBe(DeadlineStatus.CALCULATED);
-        expect(epidosi.anchorType).toBe(CivilAnchorType.IMEROMINIA_KATATHESIS);
         // 30 calendar days after 2025-06-01 = 2025-07-01 (Tuesday, no holidays)
         expect(epidosi.date).toBe('2025-07-01');
     });
@@ -97,14 +94,17 @@ describe('getCivilDeadlines (pre-2026 τακτική)', () => {
         const { deadlines } = await getCivilDeadlines({
             imerominia_katathesis: '2024-10-16',
             diadikasia: DIADIKASIA,
+            dikasimos: '2025-09-25',
         });
 
         expect(formatCivilDeadlines(deadlines)).toMatchInlineSnapshot(`
-          "2024-11-15 - Επίδοση                          30 ημέρες μετά ημερομηνία κατάθεσης
-          2024-12-16 - Παρέμβαση                        60 ημέρες μετά ημερομηνία κατάθεσης [skipped: 2024-12-15]
-          2025-01-14 - Παρέμβαση του προσεπικαλούμενου  90 ημέρες μετά ημερομηνία κατάθεσης
-          2025-02-13 - Προτάσεις                        120 ημέρες μετά ημερομηνία κατάθεσης
-          2025-02-28 - Προσθήκη                         15 ημέρες μετά λήξη προθεσμίας προτάσεων"
+          "2024-11-15 - Επίδοση                          30 ημέρες μετά katathesi
+          2024-12-16 - Παρέμβαση                        60 ημέρες μετά katathesi [skipped: 2024-12-15]
+          2025-01-14 - Παρέμβαση του προσεπικαλούμενου  90 ημέρες μετά katathesi
+          2025-02-13 - Προτάσεις                        120 ημέρες μετά katathesi
+          2025-02-28 - Προσθήκη                         15 ημέρες μετά lixi_protaseon
+          2025-09-05 - Οψιγενείς ισχυρισμοί             20 ημέρες πριν dikasimos
+          2025-09-15 - Αντίκρουση σε οψιγενείς          10 ημέρες πριν dikasimos"
         `);
     });
 
@@ -127,11 +127,13 @@ describe('getCivilDeadlines (pre-2026 τακτική)', () => {
         });
 
         expect(formatCivilDeadlines(deadlines)).toMatchInlineSnapshot(`
-          "2025-04-30 - Επίδοση                          60 ημέρες μετά ημερομηνία κατάθεσης
-          2025-05-30 - Παρέμβαση                        90 ημέρες μετά ημερομηνία κατάθεσης
-          2025-06-30 - Παρέμβαση του προσεπικαλούμενου  120 ημέρες μετά ημερομηνία κατάθεσης [skipped: 2025-06-29]
-          2025-06-30 - Προτάσεις                        120 ημέρες μετά ημερομηνία κατάθεσης [skipped: 2025-06-29]
-          2025-09-30 - Προσθήκη                         15 ημέρες μετά λήξη προθεσμίας προτάσεων [paused: 77]"
+          "2025-04-30 - Επίδοση                          60 ημέρες μετά katathesi
+          2025-05-30 - Παρέμβαση                        90 ημέρες μετά katathesi
+          2025-06-30 - Παρέμβαση του προσεπικαλούμενου  120 ημέρες μετά katathesi [skipped: 2025-06-29]
+          2025-06-30 - Προτάσεις                        120 ημέρες μετά katathesi [skipped: 2025-06-29]
+          2025-09-30 - Προσθήκη                         15 ημέρες μετά lixi_protaseon [paused: 77]
+          PENDING - Οψιγενείς ισχυρισμοί                pending (dikasimos)
+          PENDING - Αντίκρουση σε οψιγενείς             pending (dikasimos)"
         `);
     });
 });
