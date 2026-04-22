@@ -98,9 +98,9 @@ describe('getCivilDeadlines', () => {
 
         expect(formatCivilDeadlines(deadlines)).toMatchInlineSnapshot(`
           "2026-02-16 - Επίδοση                      30 ημέρες μετά katathesi [skipped: 2026-02-14, 2026-02-15]
-          2026-03-30 - Παρεμπίπτουσες/Ανταγωγή      40 ημέρες μετά lixi_epidosis_agogis [skipped: 2026-03-28, 2026-03-29]
-          2026-04-27 - Παρέμβαση προσεπικαλούμενου  70 ημέρες μετά lixi_epidosis_agogis
-          2026-05-18 - Προτάσεις & Αποδεικτικά      90 ημέρες μετά lixi_epidosis_agogis [skipped: 2026-05-17]
+          2026-03-30 - Παρεμπίπτουσες/Ανταγωγή      40 ημέρες μετά epidosi [skipped: 2026-03-28, 2026-03-29]
+          2026-04-27 - Παρέμβαση προσεπικαλούμενου  70 ημέρες μετά epidosi
+          2026-05-18 - Προτάσεις & Αποδεικτικά      90 ημέρες μετά epidosi [skipped: 2026-05-17]
           2026-06-02 - Προσθήκη – αντίκρουση        15 ημέρες μετά lixi_protaseon
           2026-06-12 - Ορισμός δικαστή              10 ημέρες μετά lixi_prosthikis_antikrousis
           PENDING - Έκδοση διάταξης                 pending (orismos_dikasti)
@@ -157,9 +157,9 @@ describe('getCivilDeadlines', () => {
 
             expect(formatCivilDeadlines(deadlines)).toMatchInlineSnapshot(`
               "2026-09-16 - Επίδοση                      30 ημέρες μετά katathesi [paused: 77]
-              2026-10-26 - Παρεμπίπτουσες/Ανταγωγή      40 ημέρες μετά lixi_epidosis_agogis
-              2026-11-25 - Παρέμβαση προσεπικαλούμενου  70 ημέρες μετά lixi_epidosis_agogis
-              2026-12-15 - Προτάσεις & Αποδεικτικά      90 ημέρες μετά lixi_epidosis_agogis
+              2026-10-26 - Παρεμπίπτουσες/Ανταγωγή      40 ημέρες μετά epidosi
+              2026-11-25 - Παρέμβαση προσεπικαλούμενου  70 ημέρες μετά epidosi
+              2026-12-15 - Προτάσεις & Αποδεικτικά      90 ημέρες μετά epidosi
               2026-12-30 - Προσθήκη – αντίκρουση        15 ημέρες μετά lixi_protaseon
               2027-01-11 - Ορισμός δικαστή              10 ημέρες μετά lixi_prosthikis_antikrousis [skipped: 2027-01-09, 2027-01-10]
               PENDING - Έκδοση διάταξης                 pending (orismos_dikasti)

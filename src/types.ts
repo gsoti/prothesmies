@@ -18,12 +18,12 @@ export enum AdminDeadlineCode {
 
 export enum CivilDeadlineCode {
     epidosi = "epidosi",
-    paremptiptouses_antagogi_paremvasi_prosepiklisi_anakoinosi = "paremvasi",
-    paremvasi_prosepikaloumenou = "paremvasiProsek",
+    paremvasi = "paremvasi",
+    paremvasiProsek = "paremvasiProsek",
     protaseis = "protaseis",
-    prosthiki_antikrousi = "prosthiki",
-    opsigenes_ischyrismoi = "opsigeneis",
-    opsigenes_antikrousi = "opsigeneisAntikrousi",
+    prosthiki = "prosthiki",
+    opsigeneis = "opsigeneis",
+    opsigeneisAntikrousi = "opsigeneisAntikrousi",
     orismos_dikasti_synthesis = "orismos_dikasti_synthesis",
     ekdosi_diataxis_dikasti = "ekdosi_diataxis_dikasti",
     aitisi_meta_apo_aparadekto = "aitisi_meta_apo_aparadekto"
@@ -57,8 +57,8 @@ export enum Direction {
 
 export enum CivilAnchorType {
     IMEROMINIA_KATATHESIS = "imerominia_katathesis",
-    LIXI_EPIDOSIS_AGOGIS = "lixi_epidosis_agogis",
-    LIXI_PROTASEON = "lixi_protaseon",
+    LIXI_EPIDOSIS_AGOGIS = "epidosi",
+    LIXI_PROTASEON = "protaseis",
     LIXI_PROSTHIKIS_ANTIKROUSIS = "lixi_prosthikis_antikrousis",
     DIKASIMOS = "dikasimos",
     ORISMOS_DIKASTI = "orismos_dikasti",

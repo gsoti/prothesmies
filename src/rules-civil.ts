@@ -20,7 +20,7 @@ export const CIVIL_DEADLINE_TAKTIKI_POST2026_RULES: CivilDeadlineRule[] = [
     {
         deadline_name: 'Παρεμπίπτουσες αγωγές, ανταγωγή, παρέμβαση, προσεπίκληση, ανακοίνωση',
         short_name: 'Παρεμπίπτουσες/Ανταγωγή',
-        deadline_code: CivilDeadlineCode.paremptiptouses_antagogi_paremvasi_prosepiklisi_anakoinosi,
+        deadline_code: CivilDeadlineCode.paremvasi,
         days: 40,
         day_count: DayCount.CALENDAR,
         direction: Direction.AFTER,
@@ -30,7 +30,7 @@ export const CIVIL_DEADLINE_TAKTIKI_POST2026_RULES: CivilDeadlineRule[] = [
     {
         deadline_name: 'Παρέμβαση προσεπικαλούμενου',
         short_name: 'Παρέμβαση προσεπικαλούμενου',
-        deadline_code: CivilDeadlineCode.paremvasi_prosepikaloumenou,
+        deadline_code: CivilDeadlineCode.paremvasiProsek,
         days: 70,
         day_count: DayCount.CALENDAR,
         direction: Direction.AFTER,
@@ -50,7 +50,7 @@ export const CIVIL_DEADLINE_TAKTIKI_POST2026_RULES: CivilDeadlineRule[] = [
     {
         deadline_name: 'Προσθήκη – αντίκρουση',
         short_name: 'Προσθήκη – αντίκρουση',
-        deadline_code: CivilDeadlineCode.prosthiki_antikrousi,
+        deadline_code: CivilDeadlineCode.prosthiki,
         days: 15,
         day_count: DayCount.CALENDAR,
         direction: Direction.AFTER,
@@ -104,7 +104,7 @@ export function getCivilTaktikiPre2026Rules(dimosio?: boolean, exoteriko?: boole
         {
             deadline_name: 'Παρέμβαση, προσεπίκληση, ανακοίνωση ή ανταγωγή',
             short_name: 'Παρέμβαση',
-            deadline_code: CivilDeadlineCode.paremptiptouses_antagogi_paremvasi_prosepiklisi_anakoinosi,
+            deadline_code: CivilDeadlineCode.paremvasi,
             days: dimosio ? 90 : 60,
             day_count: DayCount.CALENDAR,
             direction: Direction.AFTER,
@@ -114,7 +114,7 @@ export function getCivilTaktikiPre2026Rules(dimosio?: boolean, exoteriko?: boole
         {
             deadline_name: 'Παρέμβαση του προσεπικαλούμενου',
             short_name: 'Παρέμβαση του προσεπικαλούμενου',
-            deadline_code: CivilDeadlineCode.paremvasi_prosepikaloumenou,
+            deadline_code: CivilDeadlineCode.paremvasiProsek,
             days: dimosio ? 120 : 90,
             day_count: DayCount.CALENDAR,
             direction: Direction.AFTER,
@@ -125,16 +125,16 @@ export function getCivilTaktikiPre2026Rules(dimosio?: boolean, exoteriko?: boole
             deadline_name: 'Κατάθεση προτάσεων',
             short_name: 'Προτάσεις',
             deadline_code: CivilDeadlineCode.protaseis,
-            days: 120,
+            days: 90,
             day_count: DayCount.CALENDAR,
             direction: Direction.AFTER,
             legislation: 'Αρθ. 238 § 1 ΚΠολΔ',
-            anchor_type: CivilAnchorType.IMEROMINIA_KATATHESIS,
+            anchor_type: CivilAnchorType.LIXI_EPIDOSIS_AGOGIS,
         },
         {
             deadline_name: 'Κατάθεση προσθήκης',
             short_name: 'Προσθήκη',
-            deadline_code: CivilDeadlineCode.prosthiki_antikrousi,
+            deadline_code: CivilDeadlineCode.prosthiki,
             days: 15,
             day_count: DayCount.CALENDAR,
             direction: Direction.AFTER,
@@ -144,7 +144,7 @@ export function getCivilTaktikiPre2026Rules(dimosio?: boolean, exoteriko?: boole
         {
             deadline_name: 'Οψιγενείς ή παραχρήμα αποδεικνυόμενοι ισχυρισμοί',
             short_name: 'Οψιγενείς ισχυρισμοί',
-            deadline_code: CivilDeadlineCode.opsigenes_ischyrismoi,
+            deadline_code: CivilDeadlineCode.opsigeneis,
             days: 20,
             day_count: DayCount.CALENDAR,
             direction: Direction.BEFORE,
@@ -154,7 +154,7 @@ export function getCivilTaktikiPre2026Rules(dimosio?: boolean, exoteriko?: boole
         {
             deadline_name: 'Αντίκρουση σε οψιγενείς',
             short_name: 'Αντίκρουση σε οψιγενείς',
-            deadline_code: CivilDeadlineCode.opsigenes_antikrousi,
+            deadline_code: CivilDeadlineCode.opsigeneisAntikrousi,
             days: 10,
             day_count: DayCount.CALENDAR,
             direction: Direction.BEFORE,

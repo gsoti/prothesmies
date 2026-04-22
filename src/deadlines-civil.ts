@@ -39,6 +39,7 @@ const ANCHOR_TRAVERSAL_DAYS = new Map<CivilAnchorType, number>([
 function getAnchorReference(anchor: CivilAnchorType): string {
     switch (anchor) {
         case CivilAnchorType.IMEROMINIA_KATATHESIS: return 'katathesi';
+        case CivilAnchorType.LIXI_EPIDOSIS_AGOGIS:  return 'epidosi';
         case CivilAnchorType.DIKASIMOS:             return 'dikasimos';
         default:                                    return anchor;
     }
@@ -47,8 +48,8 @@ function getAnchorReference(anchor: CivilAnchorType): string {
 function getAnchorName(anchor: CivilAnchorType): string {
     switch (anchor) {
         case CivilAnchorType.IMEROMINIA_KATATHESIS:      return 'Κατάθεση';
-        case CivilAnchorType.LIXI_EPIDOSIS_AGOGIS:       return 'Λήξη επίδοσης αγωγής';
-        case CivilAnchorType.LIXI_PROTASEON:             return 'Λήξη προτάσεων';
+        case CivilAnchorType.LIXI_EPIDOSIS_AGOGIS:       return 'Επίδοση';
+        case CivilAnchorType.LIXI_PROTASEON:             return 'Προτάσεις';
         case CivilAnchorType.LIXI_PROSTHIKIS_ANTIKROUSIS: return 'Λήξη προσθήκης - αντίκρουσης';
         case CivilAnchorType.DIKASIMOS:                  return 'Δικάσιμος';
         case CivilAnchorType.ORISMOS_DIKASTI:            return 'Ορισμός δικαστή / σύνθεσης';
@@ -212,7 +213,8 @@ export async function getCivilDeadlines(input: GetCivilDeadlinesInput): Promise<
         }
 
         const calculatedResult = calculateDeadlineDate(rule, referenceDate, argiesAndAnastoli);
-        const logic = buildCalculationLogic(rule, referenceDate, getAnchorReference(rule.anchor_type), getAnchorName(rule.anchor_type));
+        const anchorRef = rule.deadline_code === CivilDeadlineCode.protaseis ? 'epidosi' : getAnchorReference(rule.anchor_type);
+        const logic = buildCalculationLogic(rule, referenceDate, anchorRef, getAnchorName(rule.anchor_type));
         const deadline = buildDeadline(rule, calculatedResult, logic, ctx);
         deadlines.push(deadline);
 
@@ -223,7 +225,7 @@ export async function getCivilDeadlines(input: GetCivilDeadlinesInput): Promise<
             case CivilDeadlineCode.protaseis:
                 anchors.set(CivilAnchorType.LIXI_PROTASEON, deadline.date);
                 break;
-            case CivilDeadlineCode.prosthiki_antikrousi:
+            case CivilDeadlineCode.prosthiki:
                 anchors.set(CivilAnchorType.LIXI_PROSTHIKIS_ANTIKROUSIS, deadline.date);
                 break;
         }
