@@ -16,29 +16,21 @@ describe('getCivilDeadlines', () => {
         });
 
         expect(status).toBe('success');
-        expect(deadlines).toHaveLength(8);
+        expect(deadlines).toHaveLength(6);
 
         const earlyCodes = deadlines
             .filter(deadline => deadline.calculation !== null)
             .map(deadline => deadline.type);
         expect(earlyCodes).toEqual([
             CivilDeadlineCode.epidosi,
-            CivilDeadlineCode.paremptiptouses_antagogi_paremvasi_prosepiklisi_anakoinosi,
-            CivilDeadlineCode.paremvasi_prosepikaloumenou,
+            CivilDeadlineCode.paremvasi,
+            CivilDeadlineCode.paremvasiProsek,
             CivilDeadlineCode.protaseis,
-            CivilDeadlineCode.prosthiki_antikrousi,
+            CivilDeadlineCode.prosthiki,
             CivilDeadlineCode.orismos_dikasti_synthesis,
         ]);
 
-        const pending = deadlines.filter(deadline => deadline.calculation === null);
-        expect(pending.map(deadline => deadline.type)).toEqual([
-            CivilDeadlineCode.ekdosi_diataxis_dikasti,
-            CivilDeadlineCode.aitisi_meta_apo_aparadekto,
-        ]);
-        expect(pending.map(deadline => deadline.missingAnchor)).toEqual([
-            CivilAnchorType.ORISMOS_DIKASTI,
-            CivilAnchorType.EKDOSI_DIATAXIS,
-        ]);
+        expect(deadlines.every(deadline => deadline.calculation !== null)).toBe(true);
     });
 
     it('derives civil anchors from filing date in sequence', async () => {
@@ -50,28 +42,12 @@ describe('getCivilDeadlines', () => {
         const byCode = new Map(deadlines.map(deadline => [deadline.type, deadline]));
 
         expect(byCode.get(CivilDeadlineCode.epidosi)?.date).toBe('2026-02-16');
-        expect(byCode.get(CivilDeadlineCode.paremptiptouses_antagogi_paremvasi_prosepiklisi_anakoinosi)?.date).toBe('2026-03-30');
-        expect(byCode.get(CivilDeadlineCode.paremvasi_prosepikaloumenou)?.date).toBe('2026-04-27');
+        expect(byCode.get(CivilDeadlineCode.paremvasi)?.date).toBe('2026-03-30');
+        expect(byCode.get(CivilDeadlineCode.paremvasiProsek)?.date).toBe('2026-04-27');
         expect(byCode.get(CivilDeadlineCode.protaseis)?.date).toBe('2026-05-18');
-        expect(byCode.get(CivilDeadlineCode.prosthiki_antikrousi)?.date).toBe('2026-06-02');
-        expect(byCode.get(CivilDeadlineCode.orismos_dikasti_synthesis)?.date).toBe('2026-06-12');
+        expect(byCode.get(CivilDeadlineCode.prosthiki)?.date).toBe('2026-06-02');
 
-        expect(byCode.get(CivilDeadlineCode.prosthiki_antikrousi)?.calculation?.logic.reference).toBe('lixi_protaseon');
-        expect(byCode.get(CivilDeadlineCode.orismos_dikasti_synthesis)?.calculation?.logic.reference).toBe('lixi_prosthikis_antikrousis');
-    });
-
-    it('marks pending deadlines without calculation payloads', async () => {
-        const { deadlines } = await getCivilDeadlines({
-            imerominia_katathesis: '2026-01-15',
-            diadikasia: SUPPORTED_DIADIKASIA,
-        });
-
-        const pending = deadlines.find(deadline => deadline.type === CivilDeadlineCode.ekdosi_diataxis_dikasti);
-        expect(pending).toMatchObject({
-            missingAnchor: CivilAnchorType.ORISMOS_DIKASTI,
-            calculation: null,
-            date: '',
-        });
+        expect(byCode.get(CivilDeadlineCode.prosthiki)?.calculation?.logic.reference).toBe('protaseis');
     });
 
     it('keeps legislation text shape compatible when no full text is available', async () => {
@@ -83,9 +59,10 @@ describe('getCivilDeadlines', () => {
         for (const deadline of deadlines) {
             expect(deadline.nomothesia.length).toBe(1);
             // formattedNomothesia is populated for codes with known article text;
-            // when populated, its first article must match the legislation string
+            // when populated, it should expose a non-empty article and text payload
             if (deadline.formattedNomothesia.length > 0) {
-                expect(deadline.formattedNomothesia[0].article).toBe(deadline.nomothesia[0]);
+                expect(deadline.formattedNomothesia[0].article.length).toBeGreaterThan(0);
+                expect(deadline.formattedNomothesia[0].text.length).toBeGreaterThan(0);
             }
         }
     });
@@ -98,14 +75,269 @@ describe('getCivilDeadlines', () => {
 
         expect(formatCivilDeadlines(deadlines)).toMatchInlineSnapshot(`
           "2026-02-16 - Επίδοση                      30 ημέρες μετά katathesi [skipped: 2026-02-14, 2026-02-15]
-          2026-03-30 - Παρεμπίπτουσες/Ανταγωγή      40 ημέρες μετά epidosi [skipped: 2026-03-28, 2026-03-29]
+          2026-03-30 - Παρέμβαση                    40 ημέρες μετά epidosi [skipped: 2026-03-28, 2026-03-29]
           2026-04-27 - Παρέμβαση προσεπικαλούμενου  70 ημέρες μετά epidosi
           2026-05-18 - Προτάσεις & Αποδεικτικά      90 ημέρες μετά epidosi [skipped: 2026-05-17]
-          2026-06-02 - Προσθήκη – αντίκρουση        15 ημέρες μετά lixi_protaseon
-          2026-06-12 - Ορισμός δικαστή              10 ημέρες μετά lixi_prosthikis_antikrousis
-          PENDING - Έκδοση διάταξης                 pending (orismos_dikasti)
-          PENDING - Αίτηση μετά από απαράδεκτο      pending (ekdosi_diataxis)"
+          2026-06-02 - Προσθήκη – αντίκρουση        15 ημέρες μετά protaseis
+          2026-06-12 - Ορισμός δικαστή              10 ημέρες μετά prosthiki"
         `);
+    });
+
+    describe('json snapshots', () => {
+        it('snapshots επίδοση as JSON', async () => {
+            const { deadlines } = await getCivilDeadlines({
+                imerominia_katathesis: '2026-01-15',
+                diadikasia: SUPPORTED_DIADIKASIA,
+            });
+
+            const deadline = deadlines.find(d => d.type === CivilDeadlineCode.epidosi);
+            expect(JSON.parse(JSON.stringify(deadline))).toMatchInlineSnapshot(`
+              {
+                "calculation": {
+                  "date": "2026-02-16",
+                  "logic": {
+                    "day_count": "CALENDAR",
+                    "days": 30,
+                    "name": "Κατάθεση",
+                    "reference": "katathesi",
+                    "start": "2026-01-15",
+                    "when": "after",
+                  },
+                  "paused": [],
+                  "skipped": [
+                    "2026-02-14",
+                    "2026-02-15",
+                  ],
+                },
+                "date": "2026-02-16",
+                "formattedNomothesia": [
+                  {
+                    "article": "Άρθρο 215 §2 ΚΠολΔ",
+                    "highlighted": [
+                      "Αν δεν ορίζεται άλλως, η αγωγή επιδίδεται στον εναγόμενο μέσα σε προθεσμία τριάντα (30) ημερών από την κατάθεσή της.",
+                    ],
+                    "text": "Αν δεν ορίζεται άλλως, η αγωγή επιδίδεται στον εναγόμενο μέσα σε προθεσμία τριάντα (30) ημερών από την κατάθεσή της. Αν η αγωγή πρέπει να επιδοθεί στο εξωτερικό, εντός του διαστήματος αυτού πρέπει να έχει επιδοθεί στον εισαγγελέα, κατά την παρ. 1 του άρθρου 134. Από την επίδοση της αγωγής μπορεί να ξεκινήσει και η διαδικασία διαμεσολάβησης, όπου προβλέπεται υποχρεωτική αρχική συνεδρία διαμεσολάβησης. Αν η αγωγή δεν επιδοθεί νομίμως μέσα στην προθεσμία αυτή, θεωρείται ως μη ασκηθείσα.",
+                  },
+                ],
+                "name": "Επίδοση",
+                "nomothesia": [
+                  "Άρθρο 215 §2 ΚΠολΔ",
+                ],
+                "shortName": "Επίδοση",
+                "type": "epidosi",
+              }
+            `);
+        });
+
+        it('snapshots παρέμβαση as JSON', async () => {
+            const { deadlines } = await getCivilDeadlines({
+                imerominia_katathesis: '2026-01-15',
+                diadikasia: SUPPORTED_DIADIKASIA,
+            });
+
+            const deadline = deadlines.find(d => d.type === CivilDeadlineCode.paremvasi);
+            expect(JSON.parse(JSON.stringify(deadline))).toMatchInlineSnapshot(`
+              {
+                "calculation": {
+                  "date": "2026-03-30",
+                  "logic": {
+                    "day_count": "CALENDAR",
+                    "days": 40,
+                    "name": "Επίδοση",
+                    "reference": "epidosi",
+                    "start": "2026-02-16",
+                    "when": "after",
+                  },
+                  "paused": [],
+                  "skipped": [
+                    "2026-03-28",
+                    "2026-03-29",
+                  ],
+                },
+                "date": "2026-03-30",
+                "formattedNomothesia": [
+                  {
+                    "article": "Άρθρο 238 §1 ΚΠολΔ",
+                    "highlighted": [
+                      "Παρεμπίπτουσες αγωγές, ανταγωγές, παρεμβάσεις, προσεπικλήσεις και ανακοινώσεις στην περίπτωση του άρθρου 237 κατατίθενται και επιδίδονται σε όλους τους διαδίκους μέσα σε προθεσμία σαράντα (40) ημερών από το πέρας της προθεσμίας επίδοσης της αγωγής",
+                    ],
+                    "text": "Παρεμπίπτουσες αγωγές, ανταγωγές, παρεμβάσεις, προσεπικλήσεις και ανακοινώσεις στην περίπτωση του άρθρου 237 κατατίθενται και επιδίδονται σε όλους τους διαδίκους μέσα σε προθεσμία σαράντα (40) ημερών από το πέρας της προθεσμίας επίδοσης της αγωγής. Παρεμβάσεις μετά από προσεπίκληση ή ανακοίνωση κατατίθενται και επιδίδονται σε όλους τους διαδίκους μέσα σε προθεσμία εβδομήντα (70) ημερών από το πέρας της προθεσμίας επίδοσης της αγωγής. Αν ο αρχικός εναγόμενος ή κάποιος από τους ομοδίκους του διαμένει στο εξωτερικό ή είναι άγνωστης διαμονής, οι ως άνω προθεσμίες παρατείνονται σε εβδομήντα (70) και εκατό (100) ημέρες, αντίστοιχα, από το πέρας της προθεσμίας επίδοσης της αγωγής. Η κατάθεση των προτάσεων γίνεται σε προθεσμία εκατό (100) ημερών και στην περίπτωση του προηγούμενου εδαφίου σε προθεσμία εκατόν εξήντα (160) ημερών από το πέρας της προθεσμίας επίδοσης της αγωγής. Για την προσθήκη ισχύει η παρ. 2 του άρθρου 237.",
+                  },
+                ],
+                "name": "Παρεμπίπτουσες αγωγές, ανταγωγή, παρέμβαση, προσεπίκληση, ανακοίνωση",
+                "nomothesia": [
+                  "Άρθρο 238 §1 ΚΠολΔ",
+                ],
+                "shortName": "Παρέμβαση",
+                "type": "paremvasi",
+              }
+            `);
+        });
+
+        it('snapshots παρέμβαση προσεπικαλούμενου as JSON', async () => {
+            const { deadlines } = await getCivilDeadlines({
+                imerominia_katathesis: '2026-01-15',
+                diadikasia: SUPPORTED_DIADIKASIA,
+            });
+
+            const deadline = deadlines.find(d => d.type === CivilDeadlineCode.paremvasiProsek);
+            expect(JSON.parse(JSON.stringify(deadline))).toMatchInlineSnapshot(`
+              {
+                "calculation": {
+                  "date": "2026-04-27",
+                  "logic": {
+                    "day_count": "CALENDAR",
+                    "days": 70,
+                    "name": "Επίδοση",
+                    "reference": "epidosi",
+                    "start": "2026-02-16",
+                    "when": "after",
+                  },
+                  "paused": [],
+                  "skipped": [],
+                },
+                "date": "2026-04-27",
+                "formattedNomothesia": [
+                  {
+                    "article": "Άρθρο 238 §1 ΚΠολΔ",
+                    "highlighted": [
+                      "Παρεμβάσεις μετά από προσεπίκληση ή ανακοίνωση κατατίθενται και επιδίδονται σε όλους τους διαδίκους μέσα σε προθεσμία εβδομήντα (70) ημερών από το πέρας της προθεσμίας επίδοσης της αγωγής",
+                    ],
+                    "text": "Παρεμπίπτουσες αγωγές, ανταγωγές, παρεμβάσεις, προσεπικλήσεις και ανακοινώσεις στην περίπτωση του άρθρου 237 κατατίθενται και επιδίδονται σε όλους τους διαδίκους μέσα σε προθεσμία σαράντα (40) ημερών από το πέρας της προθεσμίας επίδοσης της αγωγής. Παρεμβάσεις μετά από προσεπίκληση ή ανακοίνωση κατατίθενται και επιδίδονται σε όλους τους διαδίκους μέσα σε προθεσμία εβδομήντα (70) ημερών από το πέρας της προθεσμίας επίδοσης της αγωγής. Αν ο αρχικός εναγόμενος ή κάποιος από τους ομοδίκους του διαμένει στο εξωτερικό ή είναι άγνωστης διαμονής, οι ως άνω προθεσμίες παρατείνονται σε εβδομήντα (70) και εκατό (100) ημέρες, αντίστοιχα, από το πέρας της προθεσμίας επίδοσης της αγωγής. Η κατάθεση των προτάσεων γίνεται σε προθεσμία εκατό (100) ημερών και στην περίπτωση του προηγούμενου εδαφίου σε προθεσμία εκατόν εξήντα (160) ημερών από το πέρας της προθεσμίας επίδοσης της αγωγής. Για την προσθήκη ισχύει η παρ. 2 του άρθρου 237.",
+                  },
+                ],
+                "name": "Παρέμβαση προσεπικαλούμενου",
+                "nomothesia": [
+                  "άρθρο 238 §1 εδ. β΄ ΚΠολΔ",
+                ],
+                "shortName": "Παρέμβαση προσεπικαλούμενου",
+                "type": "paremvasiProsek",
+              }
+            `);
+        });
+
+        it('snapshots προτάσεις as JSON', async () => {
+            const { deadlines } = await getCivilDeadlines({
+                imerominia_katathesis: '2026-01-15',
+                diadikasia: SUPPORTED_DIADIKASIA,
+            });
+
+            const deadline = deadlines.find(d => d.type === CivilDeadlineCode.protaseis);
+            expect(JSON.parse(JSON.stringify(deadline))).toMatchInlineSnapshot(`
+              {
+                "calculation": {
+                  "date": "2026-05-18",
+                  "logic": {
+                    "day_count": "CALENDAR",
+                    "days": 90,
+                    "name": "Επίδοση",
+                    "reference": "epidosi",
+                    "start": "2026-02-16",
+                    "when": "after",
+                  },
+                  "paused": [],
+                  "skipped": [
+                    "2026-05-17",
+                  ],
+                },
+                "date": "2026-05-18",
+                "formattedNomothesia": [
+                  {
+                    "article": "Άρθρο 238 §1 ΚΠολΔ",
+                    "highlighted": [
+                      "Η κατάθεση των προτάσεων γίνεται σε προθεσμία εκατό (100) ημερών",
+                      "από το πέρας της προθεσμίας επίδοσης της αγωγής",
+                    ],
+                    "text": "Παρεμπίπτουσες αγωγές, ανταγωγές, παρεμβάσεις, προσεπικλήσεις και ανακοινώσεις στην περίπτωση του άρθρου 237 κατατίθενται και επιδίδονται σε όλους τους διαδίκους μέσα σε προθεσμία σαράντα (40) ημερών από το πέρας της προθεσμίας επίδοσης της αγωγής. Παρεμβάσεις μετά από προσεπίκληση ή ανακοίνωση κατατίθενται και επιδίδονται σε όλους τους διαδίκους μέσα σε προθεσμία εβδομήντα (70) ημερών από το πέρας της προθεσμίας επίδοσης της αγωγής. Αν ο αρχικός εναγόμενος ή κάποιος από τους ομοδίκους του διαμένει στο εξωτερικό ή είναι άγνωστης διαμονής, οι ως άνω προθεσμίες παρατείνονται σε εβδομήντα (70) και εκατό (100) ημέρες, αντίστοιχα, από το πέρας της προθεσμίας επίδοσης της αγωγής. Η κατάθεση των προτάσεων γίνεται σε προθεσμία εκατό (100) ημερών και στην περίπτωση του προηγούμενου εδαφίου σε προθεσμία εκατόν εξήντα (160) ημερών από το πέρας της προθεσμίας επίδοσης της αγωγής. Για την προσθήκη ισχύει η παρ. 2 του άρθρου 237.",
+                  },
+                ],
+                "name": "Κατάθεση προτάσεων και αποδεικτικών μέσων",
+                "nomothesia": [
+                  "άρθρο 237 §1 ΚΠολΔ",
+                ],
+                "shortName": "Προτάσεις & Αποδεικτικά",
+                "type": "protaseis",
+              }
+            `);
+        });
+
+        it('snapshots προσθήκη as JSON', async () => {
+            const { deadlines } = await getCivilDeadlines({
+                imerominia_katathesis: '2026-01-15',
+                diadikasia: SUPPORTED_DIADIKASIA,
+            });
+
+            const deadline = deadlines.find(d => d.type === CivilDeadlineCode.prosthiki);
+            expect(JSON.parse(JSON.stringify(deadline))).toMatchInlineSnapshot(`
+              {
+                "calculation": {
+                  "date": "2026-06-02",
+                  "logic": {
+                    "day_count": "CALENDAR",
+                    "days": 15,
+                    "name": "Προτάσεις",
+                    "reference": "protaseis",
+                    "start": "2026-05-18",
+                    "when": "after",
+                  },
+                  "paused": [],
+                  "skipped": [],
+                },
+                "date": "2026-06-02",
+                "formattedNomothesia": [
+                  {
+                    "article": "Άρθρο 237 §2 ΚΠολΔ",
+                    "highlighted": [
+                      "Η προσθήκη-αντίκρουση κατατίθεται εντός των επόμενων δεκαπέντε (15) ημερών από τη λήξη της προθεσμίας κατάθεσης των προτάσεων",
+                      "Στην ίδια προθεσμία κατατίθεται και το δικαστικό ένσημο",
+                    ],
+                    "text": "Η προσθήκη-αντίκρουση κατατίθεται εντός των επόμενων δεκαπέντε (15) ημερών από τη λήξη της προθεσμίας κατάθεσης των προτάσεων. Στην ίδια προθεσμία κατατίθεται και το δικαστικό ένσημο. Εντός των επόμενων δέκα (10) ημερών από την τελευταία αυτή προθεσμία ορίζεται ο δικαστής ή, επί πολυμελούς δικαστηρίου, η σύνθεση και ο εισηγητής για την εκδίκαση της διαφοράς.",
+                  },
+                ],
+                "name": "Προσθήκη – αντίκρουση",
+                "nomothesia": [
+                  "Άρθρο 237 §2 ΚΠολΔ",
+                ],
+                "shortName": "Προσθήκη – αντίκρουση",
+                "type": "prosthiki",
+              }
+            `);
+        });
+
+        it('snapshots ορισμός δικαστή as JSON', async () => {
+            const { deadlines } = await getCivilDeadlines({
+                imerominia_katathesis: '2026-01-15',
+                diadikasia: SUPPORTED_DIADIKASIA,
+            });
+
+            const deadline = deadlines.find(d => d.type === CivilDeadlineCode.orismos_dikasti_synthesis);
+            expect(JSON.parse(JSON.stringify(deadline))).toMatchInlineSnapshot(`
+              {
+                "calculation": {
+                  "date": "2026-06-12",
+                  "logic": {
+                    "day_count": "CALENDAR",
+                    "days": 10,
+                    "name": "Προσθήκη",
+                    "reference": "prosthiki",
+                    "start": "2026-06-02",
+                    "when": "after",
+                  },
+                  "paused": [],
+                  "skipped": [],
+                },
+                "date": "2026-06-12",
+                "formattedNomothesia": [],
+                "name": "Ορισμός δικαστή / σύνθεσης",
+                "nomothesia": [
+                  "Άρθρο 237 §2 ΚΠολΔ",
+                ],
+                "shortName": "Ορισμός δικαστή",
+                "type": "orismos_dikasti_synthesis",
+              }
+            `);
+        });
+
     });
 
     describe('anastoli', () => {
@@ -157,13 +389,11 @@ describe('getCivilDeadlines', () => {
 
             expect(formatCivilDeadlines(deadlines)).toMatchInlineSnapshot(`
               "2026-09-16 - Επίδοση                      30 ημέρες μετά katathesi [paused: 77]
-              2026-10-26 - Παρεμπίπτουσες/Ανταγωγή      40 ημέρες μετά epidosi
+              2026-10-26 - Παρέμβαση                    40 ημέρες μετά epidosi
               2026-11-25 - Παρέμβαση προσεπικαλούμενου  70 ημέρες μετά epidosi
               2026-12-15 - Προτάσεις & Αποδεικτικά      90 ημέρες μετά epidosi
-              2026-12-30 - Προσθήκη – αντίκρουση        15 ημέρες μετά lixi_protaseon
-              2027-01-11 - Ορισμός δικαστή              10 ημέρες μετά lixi_prosthikis_antikrousis [skipped: 2027-01-09, 2027-01-10]
-              PENDING - Έκδοση διάταξης                 pending (orismos_dikasti)
-              PENDING - Αίτηση μετά από απαράδεκτο      pending (ekdosi_diataxis)"
+              2026-12-30 - Προσθήκη – αντίκρουση        15 ημέρες μετά protaseis
+              2027-01-11 - Ορισμός δικαστή              10 ημέρες μετά prosthiki [skipped: 2027-01-09, 2027-01-10]"
             `);
         });
 

@@ -9,7 +9,7 @@ import {
 } from './utils/deadlineHelpers.js';
 export { DeadlineCalculationError } from './utils/deadlineHelpers.js';
 import {
-    CIVIL_DEADLINE_TAKTIKI_POST2026_RULES,
+    getCivilTaktikiPost2026Rules,
     getCivilTaktikiPre2026Rules,
 } from './rules-civil.js';
 import { getCivilFormattedNomothesia, getCivilNomothesia } from './nomothesia-civil.js';
@@ -50,7 +50,7 @@ function getAnchorName(anchor: CivilAnchorType): string {
         case CivilAnchorType.IMEROMINIA_KATATHESIS:      return 'Κατάθεση';
         case CivilAnchorType.LIXI_EPIDOSIS_AGOGIS:       return 'Επίδοση';
         case CivilAnchorType.LIXI_PROTASEON:             return 'Προτάσεις';
-        case CivilAnchorType.LIXI_PROSTHIKIS_ANTIKROUSIS: return 'Λήξη προσθήκης - αντίκρουσης';
+        case CivilAnchorType.LIXI_PROSTHIKIS_ANTIKROUSIS: return 'Προσθήκη';
         case CivilAnchorType.DIKASIMOS:                  return 'Δικάσιμος';
         case CivilAnchorType.ORISMOS_DIKASTI:            return 'Ορισμός δικαστή / σύνθεσης';
         case CivilAnchorType.EKDOSI_DIATAXIS:            return 'Έκδοση διάταξης';
@@ -153,7 +153,7 @@ export async function getCivilDeadlines(input: GetCivilDeadlinesInput): Promise<
     }
 
     const rules = isPost2026
-        ? CIVIL_DEADLINE_TAKTIKI_POST2026_RULES
+        ? getCivilTaktikiPost2026Rules(input.exoteriko)
         : getCivilTaktikiPre2026Rules(input.dimosio);
 
     let maxTraversalDays = getCivilMaxTraversalDays(rules);

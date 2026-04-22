@@ -59,7 +59,7 @@ export enum CivilAnchorType {
     IMEROMINIA_KATATHESIS = "imerominia_katathesis",
     LIXI_EPIDOSIS_AGOGIS = "epidosi",
     LIXI_PROTASEON = "protaseis",
-    LIXI_PROSTHIKIS_ANTIKROUSIS = "lixi_prosthikis_antikrousis",
+    LIXI_PROSTHIKIS_ANTIKROUSIS = "prosthiki",
     DIKASIMOS = "dikasimos",
     ORISMOS_DIKASTI = "orismos_dikasti",
     EKDOSI_DIATAXIS = "ekdosi_diataxis"
