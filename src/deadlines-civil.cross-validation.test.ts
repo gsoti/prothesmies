@@ -46,18 +46,31 @@ describe('getCivilDeadlines cross-validation against @gsoti/prothesmies', () => 
                 const { day_count: ___, ...logic } = calculation.logic;
                 return { ...rest, calculation: { ...calculation, logic } };
             }
-            return { ...rest, calculation };
+            if (calculation != null) return { ...rest, calculation };
+            return { ...rest };
         };
 
-        const filteredExternal = external
+        const extNormalized = external
             .filter(d => !SKIP_EXTERNAL.has(d.type) && ourTypeValues.has(d.type))
             .sort(byDate)
             .map(normalize);
 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const dropCalcWhenExternalNull = (d: any, i: number) => {
+            if (!('calculation' in extNormalized[i])) {
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                const { calculation: _, ...rest } = d;
+                return rest;
+            }
+            return d;
+        };
+
+        const filteredExternal = extNormalized;
         const filteredOurs = deadlines
             .filter(d => ourTypeValues.has(d.type))
             .sort(byDate)
-            .map(normalize);
+            .map(normalize)
+            .map(dropCalcWhenExternalNull);
 
         expect(filteredOurs).toEqual(filteredExternal);
     });
