@@ -4,7 +4,7 @@ import { getArgiesForRange, getDateRangeForCalculation } from './utils/argies.js
 import { getAnastoliForRange } from './utils/anastoli-admin.js';
 import { parseISODate } from './utils/dateUtils.js';
 import {
-    DeadlineCode,
+    AdminDeadlineCode,
     CourtType,
     ProcedureType,
     DayCount,
@@ -246,7 +246,7 @@ function buildDeadline(
         name: rule.deadline_name,
         formattedNomothesia: formatted,
         shortName: rule.short_name,
-        type: rule.deadline_code as DeadlineCode,
+        type: rule.deadline_code as AdminDeadlineCode,
         // NOT USED
         nomothesia: plain,
         ypologismos: [], // Empty for now

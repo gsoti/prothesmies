@@ -1,4 +1,4 @@
-import type { getCivilDeadlines } from '../deadlines.js';
+import type { getCivilDeadlines } from '../deadlines-admin.js';
 import { DeadlineStatus } from '../types.js';
 
 export function formatCivilDeadlines(deadlines: Awaited<ReturnType<typeof getCivilDeadlines>>['deadlines']): string {

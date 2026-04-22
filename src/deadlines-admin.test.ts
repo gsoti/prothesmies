@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeAll } from 'vitest';
-import { getAdminDeadlines, DeadlineCalculationError } from './deadlines.js';
+import { getAdminDeadlines, DeadlineCalculationError } from './deadlines-admin.js';
 import { CourtType, ProcedureType } from './types.js';
 import { testConnection } from './db.js';
 

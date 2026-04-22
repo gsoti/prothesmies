@@ -1,5 +1,5 @@
 // Database-driven deadline codes
-export enum DeadlineCode {
+export enum AdminDeadlineCode {
     apopseis_fakelos_dioikisis = "apopseis_fakelos_dioikisis",
     anakoinosi_dikis = "anakoinosi_dikis",
     prostheti_logoi = "prostheti_logoi",
@@ -20,7 +20,7 @@ export enum CivilDeadlineCode {
     epidosi = "epidosi",
     paremptiptouses_antagogi_paremvasi_prosepiklisi_anakoinosi = "paremptiptouses_antagogi_paremvasi_prosepiklisi_anakoinosi",
     paremvasi_prosepikaloumenou = "paremvasi_prosepikaloumenou",
-    protaseis_kai_apodeiktika = "protaseis_kai_apodeiktika",
+    protaseis = "protaseis",
     prosthiki_antikrousi = "prosthiki_antikrousi",
     orismos_dikasti_synthesis = "orismos_dikasti_synthesis",
     ekdosi_diataxis_dikasti = "ekdosi_diataxis_dikasti",
@@ -84,7 +84,7 @@ export interface DateCalculation {
 export interface Deadline {
     name: string;
     shortName: string;
-    type: DeadlineCode | CivilDeadlineCode;
+    type: AdminDeadlineCode | CivilDeadlineCode;
     date: string;
     nomothesia: string[];
     formattedNomothesia: Nomothesia[];

@@ -8,7 +8,7 @@ import {
 
 export const CIVIL_DEADLINE_TAKTIKI_POST2026_RULES: CivilDeadlineRule[] = [
     {
-        deadline_name: 'Επίδοση αγωγής',
+        deadline_name: 'Επίδοση',
         short_name: 'Επίδοση',
         deadline_code: CivilDeadlineCode.epidosi,
         days: 30,
@@ -40,7 +40,7 @@ export const CIVIL_DEADLINE_TAKTIKI_POST2026_RULES: CivilDeadlineRule[] = [
     {
         deadline_name: 'Κατάθεση προτάσεων και αποδεικτικών μέσων',
         short_name: 'Προτάσεις & Αποδεικτικά',
-        deadline_code: CivilDeadlineCode.protaseis_kai_apodeiktika,
+        deadline_code: CivilDeadlineCode.protaseis,
         days: 90,
         day_count: DayCount.CALENDAR,
         direction: Direction.AFTER,
@@ -121,5 +121,25 @@ export function getCivilTaktikiPre2026Rules(dimosio?: boolean): CivilDeadlineRul
             legislation: 'Αρθ. 238 § 1 ΚΠολΔ',
             anchor_type: CivilAnchorType.IMEROMINIA_KATATHESIS,
         },
+        {
+            deadline_name: 'Προτάσεις',
+            short_name: 'Προτάσεις',
+            deadline_code: CivilDeadlineCode.protaseis,
+            days: 120,
+            day_count: DayCount.CALENDAR,
+            direction: Direction.AFTER,
+            legislation: 'Αρθ. 238 § 1 ΚΠολΔ',
+            anchor_type: CivilAnchorType.IMEROMINIA_KATATHESIS,
+        },
+        {
+            deadline_name: 'Προσθήκη',
+            short_name: 'Προσθήκη',
+            deadline_code: CivilDeadlineCode.prosthiki_antikrousi,
+            days: 15,
+            day_count: DayCount.CALENDAR,
+            direction: Direction.AFTER,
+            legislation: 'Αρθ. 238 § 1 ΚΠολΔ',
+            anchor_type: CivilAnchorType.LIXI_PROTASEON,
+        }
     ];
 }

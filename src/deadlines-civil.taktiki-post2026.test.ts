@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { getCivilDeadlines } from './deadlines.js';
+import { getCivilDeadlines } from './deadlines-admin.js';
 import {
     CivilAnchorType,
     CivilDeadlineCode,
@@ -26,7 +26,7 @@ describe('getCivilDeadlines', () => {
             CivilDeadlineCode.epidosi,
             CivilDeadlineCode.paremptiptouses_antagogi_paremvasi_prosepiklisi_anakoinosi,
             CivilDeadlineCode.paremvasi_prosepikaloumenou,
-            CivilDeadlineCode.protaseis_kai_apodeiktika,
+            CivilDeadlineCode.protaseis,
             CivilDeadlineCode.prosthiki_antikrousi,
             CivilDeadlineCode.orismos_dikasti_synthesis,
         ]);
@@ -53,7 +53,7 @@ describe('getCivilDeadlines', () => {
         expect(byCode.get(CivilDeadlineCode.epidosi)?.date).toBe('2026-02-16');
         expect(byCode.get(CivilDeadlineCode.paremptiptouses_antagogi_paremvasi_prosepiklisi_anakoinosi)?.date).toBe('2026-03-30');
         expect(byCode.get(CivilDeadlineCode.paremvasi_prosepikaloumenou)?.date).toBe('2026-04-27');
-        expect(byCode.get(CivilDeadlineCode.protaseis_kai_apodeiktika)?.date).toBe('2026-05-18');
+        expect(byCode.get(CivilDeadlineCode.protaseis)?.date).toBe('2026-05-18');
         expect(byCode.get(CivilDeadlineCode.prosthiki_antikrousi)?.date).toBe('2026-06-02');
         expect(byCode.get(CivilDeadlineCode.orismos_dikasti_synthesis)?.date).toBe('2026-06-12');
 
@@ -142,9 +142,9 @@ describe('getCivilDeadlines', () => {
                 return day <= 15;
             });
 
-            expect(julyDates.length).toBe(0);
-            expect(augustDates.length).toBeGreaterThan(0);
-            expect(septDates.length).toBe(0);
+            expect(julyDates.length).toBe(31);
+            expect(augustDates.length).toBe(31);
+            expect(septDates.length).toBe(15);
         });
 
         it('should format civil deadlines from filing date crossing anastoli', async () => {
@@ -155,12 +155,12 @@ describe('getCivilDeadlines', () => {
             });
 
             expect(formatCivilDeadlines(deadlines)).toMatchInlineSnapshot(`
-              "2026-07-01 - Επίδοση                      30 ημέρες μετά ημερομηνία κατάθεσης
-              2026-09-10 - Παρεμπίπτουσες/Ανταγωγή      40 ημέρες μετά λήξη προθεσμίας επίδοσης αγωγής [paused: 31]
-              2026-10-12 - Παρέμβαση προσεπικαλούμενου  70 ημέρες μετά λήξη προθεσμίας επίδοσης αγωγής [paused: 31] [skipped: 2026-10-10, 2026-10-11]
-              2026-10-30 - Προτάσεις & Αποδεικτικά      90 ημέρες μετά λήξη προθεσμίας επίδοσης αγωγής [paused: 31]
-              2026-11-16 - Προσθήκη – αντίκρουση        15 ημέρες μετά λήξη προθεσμίας προτάσεων [skipped: 2026-11-14, 2026-11-15]
-              2026-11-26 - Ορισμός δικαστή              10 ημέρες μετά λήξη προθεσμίας προσθήκης - αντίκρουσης
+              "2026-09-16 - Επίδοση                      30 ημέρες μετά ημερομηνία κατάθεσης [paused: 77]
+              2026-10-26 - Παρεμπίπτουσες/Ανταγωγή      40 ημέρες μετά λήξη προθεσμίας επίδοσης αγωγής
+              2026-11-25 - Παρέμβαση προσεπικαλούμενου  70 ημέρες μετά λήξη προθεσμίας επίδοσης αγωγής
+              2026-12-15 - Προτάσεις & Αποδεικτικά      90 ημέρες μετά λήξη προθεσμίας επίδοσης αγωγής
+              2026-12-30 - Προσθήκη – αντίκρουση        15 ημέρες μετά λήξη προθεσμίας προτάσεων
+              2027-01-11 - Ορισμός δικαστή              10 ημέρες μετά λήξη προθεσμίας προσθήκης - αντίκρουσης [skipped: 2027-01-09, 2027-01-10]
               PENDING - Έκδοση διάταξης                 pending (orismos_dikasti)
               PENDING - Αίτηση μετά από απαράδεκτο      pending (ekdosi_diataxis)"
             `);

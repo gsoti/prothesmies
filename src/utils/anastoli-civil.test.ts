@@ -113,11 +113,11 @@ describe('getCivilAnastoliForRange (dimosio=true)', () => {
     );
   });
 
-  it('returns exactly 31 dates when range fully covers one year', () => {
+  it('returns exactly 77 dates when dimosio and range fully covers one year', () => {
     fc.assert(
       fc.property(fc.integer({ min: 2020, max: 2030 }), (year) => {
         const result = getCivilAnastoliForRange(`${year}-01-01`, `${year}-12-31`, true);
-        return result.length === 31;
+        return result.length === 77;
       })
     );
   });

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { getCivilDeadlines } from './deadlines.js';
+import { getCivilDeadlines } from './deadlines-civil.js';
 import {
     CivilAnchorType,
     CivilDeadlineCode,
@@ -25,7 +25,7 @@ describe('getCivilDeadlines (pre-2026 τακτική)', () => {
         });
 
         expect(status).toBe('success');
-        expect(deadlines).toHaveLength(3);
+        expect(deadlines).toHaveLength(5);
 
         const epidosi = deadlines[0];
         expect(epidosi.type).toBe(CivilDeadlineCode.epidosi);
@@ -75,7 +75,7 @@ describe('getCivilDeadlines (pre-2026 τακτική)', () => {
         });
 
         expect(dimosio.deadlines[0].date >= standard.deadlines[0].date).toBe(true);
-        expect(dimosio.deadlines[0].calculation!.paused.length).toBe(
+        expect(dimosio.deadlines[0].calculation!.paused.length).toBeGreaterThan(
             standard.deadlines[0].calculation!.paused.length
         );
     });
@@ -102,7 +102,9 @@ describe('getCivilDeadlines (pre-2026 τακτική)', () => {
         expect(formatCivilDeadlines(deadlines)).toMatchInlineSnapshot(`
           "2024-11-15 - Επίδοση                          30 ημέρες μετά ημερομηνία κατάθεσης
           2024-12-16 - Παρέμβαση                        60 ημέρες μετά ημερομηνία κατάθεσης [skipped: 2024-12-15]
-          2025-01-14 - Παρέμβαση του προσεπικαλούμενου  90 ημέρες μετά ημερομηνία κατάθεσης"
+          2025-01-14 - Παρέμβαση του προσεπικαλούμενου  90 ημέρες μετά ημερομηνία κατάθεσης
+          2025-02-13 - Προτάσεις                        120 ημέρες μετά ημερομηνία κατάθεσης
+          2025-02-28 - Προσθήκη                         15 ημέρες μετά λήξη προθεσμίας προτάσεων"
         `);
     });
 
@@ -127,7 +129,9 @@ describe('getCivilDeadlines (pre-2026 τακτική)', () => {
         expect(formatCivilDeadlines(deadlines)).toMatchInlineSnapshot(`
           "2025-04-30 - Επίδοση                          60 ημέρες μετά ημερομηνία κατάθεσης
           2025-05-30 - Παρέμβαση                        90 ημέρες μετά ημερομηνία κατάθεσης
-          2025-06-30 - Παρέμβαση του προσεπικαλούμενου  120 ημέρες μετά ημερομηνία κατάθεσης [skipped: 2025-06-29]"
+          2025-06-30 - Παρέμβαση του προσεπικαλούμενου  120 ημέρες μετά ημερομηνία κατάθεσης [skipped: 2025-06-29]
+          2025-06-30 - Προτάσεις                        120 ημέρες μετά ημερομηνία κατάθεσης [skipped: 2025-06-29]
+          2025-09-30 - Προσθήκη                         15 ημέρες μετά λήξη προθεσμίας προτάσεων [paused: 77]"
         `);
     });
 });

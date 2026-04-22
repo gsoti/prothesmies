@@ -8,6 +8,7 @@ import {
     buildCalculationLogic,
     calculateDeadlineDate,
 } from './utils/deadlineHelpers.js';
+export { DeadlineCalculationError } from './utils/deadlineHelpers.js';
 import {
     CIVIL_DEADLINE_TAKTIKI_POST2026_RULES,
     getCivilTaktikiPre2026Rules,
@@ -213,7 +214,7 @@ export async function getCivilDeadlines(input: GetCivilDeadlinesInput): Promise<
             case CivilDeadlineCode.epidosi:
                 anchors.set(CivilAnchorType.LIXI_EPIDOSIS_AGOGIS, deadline.date);
                 break;
-            case CivilDeadlineCode.protaseis_kai_apodeiktika:
+            case CivilDeadlineCode.protaseis:
                 anchors.set(CivilAnchorType.LIXI_PROTASEON, deadline.date);
                 break;
             case CivilDeadlineCode.prosthiki_antikrousi:

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { getCivilDeadlines, DeadlineCalculationError } from './deadlines.js';
+import { getCivilDeadlines, DeadlineCalculationError } from './deadlines-civil.js';
 
 describe('getCivilDeadlines', () => {
     it('throws error for invalid filing date', async () => {
