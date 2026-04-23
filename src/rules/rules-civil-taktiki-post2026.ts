@@ -1,0 +1,72 @@
+import {
+    CivilAnchorType,
+    CivilDeadlineCode,
+    CivilDeadlineRule,
+    DayCount,
+    Direction,
+} from '../types.js';
+
+export function getCivilTaktikiPost2026Rules(exoteriko?: boolean): CivilDeadlineRule[] {
+    return [
+        {
+            deadline_name: 'Επίδοση',
+            short_name: 'Επίδοση',
+            deadline_code: CivilDeadlineCode.epidosi,
+            days: 30,
+            day_count: DayCount.CALENDAR,
+            direction: Direction.AFTER,
+            legislation: 'Άρθρο 215 §2 ΚΠολΔ',
+            anchor_type: CivilAnchorType.IMEROMINIA_KATATHESIS,
+        },
+        {
+            deadline_name: 'Παρεμπίπτουσες αγωγές, ανταγωγή, παρέμβαση, προσεπίκληση, ανακοίνωση',
+            short_name: 'Παρέμβαση',
+            deadline_code: CivilDeadlineCode.paremvasi,
+            days: exoteriko ? 70 : 40,
+            day_count: DayCount.CALENDAR,
+            direction: Direction.AFTER,
+            legislation: 'Άρθρο 238 §1 ΚΠολΔ',
+            anchor_type: CivilAnchorType.LIXI_EPIDOSIS_AGOGIS,
+        },
+        {
+            deadline_name: 'Παρέμβαση προσεπικαλούμενου',
+            short_name: 'Παρέμβαση προσεπικαλούμενου',
+            deadline_code: CivilDeadlineCode.paremvasiProsek,
+            days: 70,
+            day_count: DayCount.CALENDAR,
+            direction: Direction.AFTER,
+            legislation: 'άρθρο 238 §1 εδ. β΄ ΚΠολΔ',
+            anchor_type: CivilAnchorType.LIXI_EPIDOSIS_AGOGIS,
+        },
+        {
+            deadline_name: 'Κατάθεση προτάσεων και αποδεικτικών μέσων',
+            short_name: 'Προτάσεις & Αποδεικτικά',
+            deadline_code: CivilDeadlineCode.protaseis,
+            days: 90,
+            day_count: DayCount.CALENDAR,
+            direction: Direction.AFTER,
+            legislation: 'άρθρο 237 §1 ΚΠολΔ',
+            anchor_type: CivilAnchorType.LIXI_EPIDOSIS_AGOGIS,
+        },
+        {
+            deadline_name: 'Προσθήκη – αντίκρουση',
+            short_name: 'Προσθήκη – αντίκρουση',
+            deadline_code: CivilDeadlineCode.prosthiki,
+            days: 15,
+            day_count: DayCount.CALENDAR,
+            direction: Direction.AFTER,
+            legislation: 'Άρθρο 237 §2 ΚΠολΔ',
+            anchor_type: CivilAnchorType.LIXI_PROTASEON,
+        },
+        {
+            deadline_name: 'Ορισμός δικαστή / σύνθεσης',
+            short_name: 'Ορισμός δικαστή',
+            deadline_code: CivilDeadlineCode.orismos_dikasti_synthesis,
+            days: 10,
+            day_count: DayCount.CALENDAR,
+            direction: Direction.AFTER,
+            legislation: 'Άρθρο 237 §2 ΚΠολΔ',
+            anchor_type: CivilAnchorType.LIXI_PROSTHIKIS_ANTIKROUSIS,
+        },
+    ];
+}

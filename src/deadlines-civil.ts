@@ -10,8 +10,9 @@ import {
 export { DeadlineCalculationError } from './utils/deadlineHelpers.js';
 import {
     getCivilTaktikiPost2026Rules,
+    getCivilMicrodifferencesRules,
     getCivilTaktikiPre2026Rules,
-} from './rules-civil.js';
+} from './rules/index.js';
 import { getCivilFormattedNomothesia, getCivilNomothesia } from './nomothesia-civil.js';
 import {
     CivilAnchorType,
@@ -23,7 +24,7 @@ import {
     DateCalculation,
 } from './types.js';
 
-type BuildContext = { isPost2026: boolean; exoteriko?: boolean };
+type BuildContext = { isPost2026: boolean; exoteriko?: boolean; variant: 'taktiki' | 'mikrodiafores' };
 
 const DATE_RANGE_BUFFER_DAYS = 365;
 
@@ -134,7 +135,12 @@ export async function getCivilDeadlines(input: GetCivilDeadlinesInput): Promise<
     validateCivilInput(input);
 
     const isPost2026 = input.imerominia_katathesis >= '2026-01-01';
-    const ctx: BuildContext = { isPost2026, exoteriko: input.exoteriko };
+    const isMicrodifferences = input.diadikasia === 'ΜΙΚΡΟΔΙΑΦΟΡΕΣ';
+    const ctx: BuildContext = {
+        isPost2026,
+        exoteriko: input.exoteriko,
+        variant: isMicrodifferences ? 'mikrodiafores' : 'taktiki',
+    };
     const isBefore2022 = input.imerominia_katathesis < '2022-01-01';
     const isTaktiki = [
         'ΤΑΚΤΙΚΗ',
@@ -145,16 +151,18 @@ export async function getCivilDeadlines(input: GetCivilDeadlinesInput): Promise<
         'ΝΕΑ ΤΑΚΤΙΚΗ ΜΟΝΟΜΕΛΟΥΣ (ν.5221/2025)',
         'ΝΕΑ ΤΑΚΤΙΚΗ ΠΟΛΥΜΕΛΟΥΣ (ν.5221/2025)',
     ].includes(input.diadikasia);
-    if (!isTaktiki) {
+    if (!isTaktiki && !isMicrodifferences) {
         return { deadlines: [], status: 'not_supported' };
     }
     if (isTaktiki && isBefore2022) {
         return { deadlines: [], status: 'not_supported' };
     }
 
-    const rules = isPost2026
-        ? getCivilTaktikiPost2026Rules(input.exoteriko)
-        : getCivilTaktikiPre2026Rules(input.exoteriko);
+    const rules = isMicrodifferences
+        ? getCivilMicrodifferencesRules()
+        : isPost2026
+            ? getCivilTaktikiPost2026Rules(input.exoteriko)
+            : getCivilTaktikiPre2026Rules(input.exoteriko);
 
     let maxTraversalDays = getCivilMaxTraversalDays(rules);
     if (input.dikasimos) {
@@ -213,8 +221,16 @@ export async function getCivilDeadlines(input: GetCivilDeadlinesInput): Promise<
         }
 
         const calculatedResult = calculateDeadlineDate(rule, referenceDate, argiesAndAnastoli);
-        const anchorRef = rule.deadline_code === CivilDeadlineCode.protaseis ? 'epidosi' : getAnchorReference(rule.anchor_type);
-        const logic = buildCalculationLogic(rule, referenceDate, anchorRef, getAnchorName(rule.anchor_type));
+        const anchorRef = rule.deadline_code === CivilDeadlineCode.protaseis && ctx.variant === 'taktiki'
+            ? 'epidosi'
+            : getAnchorReference(rule.anchor_type);
+        const logicName = ctx.variant === 'mikrodiafores' && rule.deadline_code === CivilDeadlineCode.prosthiki
+            ? 'Προσκομιδή του εναγομένου'
+            : getAnchorName(rule.anchor_type);
+        const logicRef = ctx.variant === 'mikrodiafores' && rule.deadline_code === CivilDeadlineCode.prosthiki
+            ? 'proskomidi'
+            : anchorRef;
+        const logic = buildCalculationLogic(rule, referenceDate, logicRef, logicName);
         const deadline = buildDeadline(rule, calculatedResult, logic, ctx);
         deadlines.push(deadline);
 

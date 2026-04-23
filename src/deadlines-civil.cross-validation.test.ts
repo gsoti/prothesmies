@@ -27,6 +27,13 @@ const INPUT_EXOTERIKO_DIMOSIO = {
     exoteriko: true,
 } as const;
 
+const INPUT_MIKRODIAFORES = {
+    imerominia_katathesis: '2023-03-24',
+    diadikasia: 'ΜΙΚΡΟΔΙΑΦΟΡΕΣ',
+    dikasimos: '2025-03-04',
+    apotelesma: 'ΣΥΖΗΤΗΘΗΚΕ',
+} as const;
+
 const SKIP_EXTERNAL = new Set<string>([DeadlineType.KATATHESI, DeadlineType.DIKASIMOS]);
 
 const ourTypeValues = new Set<string>(Object.values(CivilDeadlineCode));
@@ -35,7 +42,12 @@ function byDate(a: { date: string }, b: { date: string }) {
     return a.date.localeCompare(b.date);
 }
 
-async function expectSameOutputAsExternal(input: typeof INPUT | typeof INPUT_EXOTERIKO_DIMOSIO) {
+type CrossValidationInput =
+    | typeof INPUT
+    | typeof INPUT_EXOTERIKO_DIMOSIO
+    | typeof INPUT_MIKRODIAFORES;
+
+async function expectSameOutputAsExternal(input: CrossValidationInput) {
     const { deadlines } = await getCivilDeadlines(input);
 
     const external = prothesmiesCivilCase({
@@ -97,6 +109,10 @@ describe('getCivilDeadlines cross-validation against @gsoti/prothesmies', () => 
 
     it('returns the same output as prothesmiesCivilCase for the common deadline types when exoteriko and dimosio are true', async () => {
         await expectSameOutputAsExternal(INPUT_EXOTERIKO_DIMOSIO);
+    });
+
+    it('returns the same output as prothesmiesCivilCase for ΜΙΚΡΟΔΙΑΦΟΡΕΣ', async () => {
+        await expectSameOutputAsExternal(INPUT_MIKRODIAFORES);
     });
 
     it('snapshot of all deadlines as JSON', async () => {
