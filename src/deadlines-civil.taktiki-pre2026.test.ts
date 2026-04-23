@@ -108,7 +108,7 @@ describe('getCivilDeadlines (pre-2026 τακτική)', () => {
         `);
     });
 
-    it('uses 60-day epidosi for dimosio pre-2026 filing', async () => {
+    it('uses the standard 30-day epidosi for dimosio pre-2026 filing', async () => {
         const { deadlines, status } = await getCivilDeadlines({
             imerominia_katathesis: '2025-03-01',
             diadikasia: DIADIKASIA,
@@ -116,7 +116,7 @@ describe('getCivilDeadlines (pre-2026 τακτική)', () => {
         });
 
         expect(status).toBe('success');
-        expect(deadlines[0].calculation?.logic.days).toBe(60);
+        expect(deadlines[0].calculation?.logic.days).toBe(30);
     });
 
     it('should format pre-2026 dimosio epidosi deadline from filing date', async () => {
@@ -127,11 +127,11 @@ describe('getCivilDeadlines (pre-2026 τακτική)', () => {
         });
 
         expect(formatCivilDeadlines(deadlines)).toMatchInlineSnapshot(`
-          "2025-04-30 - Επίδοση                          60 ημέρες μετά katathesi
-          2025-05-30 - Παρέμβαση                        90 ημέρες μετά katathesi
-          2025-06-30 - Παρέμβαση του προσεπικαλούμενου  120 ημέρες μετά katathesi [skipped: 2025-06-29]
-          2025-10-14 - Προτάσεις                        90 ημέρες μετά epidosi [paused: 77]
-          2025-10-29 - Προσθήκη                         15 ημέρες μετά protaseis
+          "2025-03-31 - Επίδοση                          30 ημέρες μετά katathesi
+          2025-04-30 - Παρέμβαση                        60 ημέρες μετά katathesi
+          2025-05-30 - Παρέμβαση του προσεπικαλούμενου  90 ημέρες μετά katathesi
+          2025-06-30 - Προτάσεις                        90 ημέρες μετά epidosi [skipped: 2025-06-29]
+          2025-09-30 - Προσθήκη                         15 ημέρες μετά protaseis [paused: 77]
           PENDING - Οψιγενείς ισχυρισμοί                pending (dikasimos)
           PENDING - Αντίκρουση σε οψιγενείς             pending (dikasimos)"
         `);

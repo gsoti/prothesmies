@@ -154,7 +154,7 @@ export async function getCivilDeadlines(input: GetCivilDeadlinesInput): Promise<
 
     const rules = isPost2026
         ? getCivilTaktikiPost2026Rules(input.exoteriko)
-        : getCivilTaktikiPre2026Rules(input.dimosio);
+        : getCivilTaktikiPre2026Rules(input.exoteriko);
 
     let maxTraversalDays = getCivilMaxTraversalDays(rules);
     if (input.dikasimos) {

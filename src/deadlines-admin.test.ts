@@ -1,18 +1,14 @@
-import { describe, it, expect, beforeAll } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { getAdminDeadlines, DeadlineCalculationError } from './deadlines-admin.js';
 import { CourtType, ProcedureType } from './types.js';
 import { testConnection } from './db.js';
 
-// Integration tests with real database
-describe('getAdminDeadlines - Integration Tests', () => {
-    beforeAll(async () => {
-        // Ensure database connection is working
-        const connected = await testConnection();
-        if (!connected) {
-            throw new Error('Database connection failed. Tests cannot run without database.');
-        }
-    });
+const DB_AVAILABLE = Boolean(process.env.DATABASE_URL) && await testConnection();
+const describeIfDb = DB_AVAILABLE ? describe : describe.skip;
+const describeAdmin = DB_AVAILABLE ? describe : describe.skip;
 
+// Integration tests with real database
+describeIfDb('getAdminDeadlines - Integration Tests', () => {
     describe('Input Validation', () => {
         it('should throw error for invalid date format', async () => {
             await expect(
@@ -921,7 +917,7 @@ describe('getAdminDeadlines - Integration Tests', () => {
     });
 });
 
-describe('Nomothesia validation', () => {
+describeAdmin('Nomothesia validation', () => {
         it('should have all highlighted texts contained within the full text', async () => {
             const result = await getAdminDeadlines({
                 court_type: CourtType.DP_DE,
@@ -971,7 +967,7 @@ describe('Nomothesia validation', () => {
         });
     });
 
-    describe('Syntmisi (shortened deadlines)', () => {
+describeAdmin('Syntmisi (shortened deadlines)', () => {
         it('should calculate apopseis_fakelos_dioikisis as 8 days before dikasimos when syntmisi is true', async () => {
             const result = await getAdminDeadlines({
                 court_type: CourtType.DP_DE,
@@ -1012,7 +1008,7 @@ describe('Nomothesia validation', () => {
         });
     });
 
-describe('DeadlineCalculationError', () => {
+describeAdmin('DeadlineCalculationError', () => {
     it('should be throwable and catchable', async () => {
         try {
             await getAdminDeadlines({

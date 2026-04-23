@@ -19,6 +19,14 @@ const INPUT = {
     dikasimos: '2025-09-25',
 } as const;
 
+// https://www.run.legal/civil-cases/9c630ed3-3a2d-49e0-9f8d-1fe6890ad72d
+const INPUT_EXOTERIKO_DIMOSIO = {
+    imerominia_katathesis: '2025-05-01',
+    diadikasia: 'ΝΕΑ ΤΑΚΤΙΚΗ ΜΟΝΟΜΕΛΟΥΣ',    
+    dimosio: true,
+    exoteriko: true,
+} as const;
+
 const SKIP_EXTERNAL = new Set<string>([DeadlineType.KATATHESI, DeadlineType.DIKASIMOS]);
 
 const ourTypeValues = new Set<string>(Object.values(CivilDeadlineCode));
@@ -27,52 +35,68 @@ function byDate(a: { date: string }, b: { date: string }) {
     return a.date.localeCompare(b.date);
 }
 
-describe('getCivilDeadlines cross-validation against @gsoti/prothesmies', () => {
-    it('returns the same output as prothesmiesCivilCase for the common deadline types', async () => {
-        const { deadlines } = await getCivilDeadlines(INPUT);
+async function expectSameOutputAsExternal(input: typeof INPUT | typeof INPUT_EXOTERIKO_DIMOSIO) {
+    const { deadlines } = await getCivilDeadlines(input);
 
-        const external = prothesmiesCivilCase({
-            apotelesma: '',
-            diadikasia: INPUT.diadikasia,
-            court: 'ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ',
-            imerominia_katathesis: INPUT.imerominia_katathesis,
-            dikasimos: INPUT.dikasimos,
-        });
+    const external = prothesmiesCivilCase({
+        apotelesma: '',
+        diadikasia: input.diadikasia,
+        court: 'ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ',
+        imerominia_katathesis: input.imerominia_katathesis,
+        dikasimos: input.dikasimos,
+        dimosio: 'dimosio' in input ? input.dimosio : undefined,
+        exoterikou: 'exoteriko' in input ? input.exoteriko : undefined,
+    });
 
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const normalize = (d: any) => {
-            const { imeres: _, ypologismos: __, calculation, formattedNomothesia: _fn, ...rest } = d;
-            if (calculation?.logic) {
-                const { day_count: ___, ...logic } = calculation.logic;
-                return { ...rest, calculation: { ...calculation, logic } };
-            }
-            if (calculation != null) return { ...rest, calculation };
-            return { ...rest };
-        };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const normalize = (d: any) => {
+        const { imeres: _, ypologismos: __, calculation, formattedNomothesia: _fn, ...rest } = d;
+        if (calculation?.logic) {
+            const { day_count: ___, ...logic } = calculation.logic;
+            return { ...rest, calculation: { ...calculation, logic } };
+        }
+        if (calculation != null) return { ...rest, calculation };
+        return { ...rest };
+    };
 
-        const extNormalized = external
+    const extNormalized = new Map(
+        external
             .filter(d => !SKIP_EXTERNAL.has(d.type) && ourTypeValues.has(d.type))
             .sort(byDate)
-            .map(normalize);
+            .map(d => [d.type, normalize(d)] as const)
+    );
 
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const dropCalcWhenExternalNull = (d: any, i: number) => {
-            if (!('calculation' in extNormalized[i])) {
-                // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                const { calculation: _, ...rest } = d;
-                return rest;
-            }
-            return d;
-        };
-
-        const filteredExternal = extNormalized;
-        const filteredOurs = deadlines
-            .filter(d => ourTypeValues.has(d.type))
-            .sort(byDate)
+    const oursNormalized = new Map(
+        deadlines
+        .filter(d => ourTypeValues.has(d.type))
+        .sort(byDate)
             .map(normalize)
-            .map(dropCalcWhenExternalNull);
+            .map(d => {
+                const externalDeadline = extNormalized.get(d.type);
+                if (!externalDeadline || !('calculation' in externalDeadline)) {
+                    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                    const { calculation: _, ...rest } = d;
+                    return [d.type, rest] as const;
+                }
+                return [d.type, d] as const;
+            })
+    );
 
-        expect(filteredOurs).toEqual(filteredExternal);
+    const commonTypes = Array.from(extNormalized.keys()).filter(type => oursNormalized.has(type));
+    expect(commonTypes.sort()).toEqual(Array.from(extNormalized.keys()).sort());
+
+    for (const type of commonTypes) {
+        expect(oursNormalized.get(type)).toEqual(extNormalized.get(type));
+    }
+}
+
+describe('getCivilDeadlines cross-validation against @gsoti/prothesmies', () => {
+    it('returns the same output as prothesmiesCivilCase for the common deadline types', async () => {
+        await expectSameOutputAsExternal(INPUT);
+    });
+
+    it('returns the same output as prothesmiesCivilCase for the common deadline types when exoteriko and dimosio are true', async () => {
+        await expectSameOutputAsExternal(INPUT_EXOTERIKO_DIMOSIO);
     });
 
     it('snapshot of all deadlines as JSON', async () => {

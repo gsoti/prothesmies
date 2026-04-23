@@ -91,13 +91,13 @@ export function getCivilTaktikiPost2026Rules(exoteriko?: boolean): CivilDeadline
     ];
 }
 
-export function getCivilTaktikiPre2026Rules(dimosio?: boolean, exoteriko?: boolean): CivilDeadlineRule[] {
+export function getCivilTaktikiPre2026Rules(exoteriko?: boolean): CivilDeadlineRule[] {
     return [
         {
             deadline_name: 'Επίδοση',
             short_name: 'Επίδοση',
             deadline_code: CivilDeadlineCode.epidosi,
-            days: dimosio ? 60 : 30,
+            days: exoteriko ? 60 : 30,
             day_count: DayCount.CALENDAR,
             direction: Direction.AFTER,
             legislation: 'Αρθ. 215 § 2 ΚΠολΔ',
@@ -107,7 +107,7 @@ export function getCivilTaktikiPre2026Rules(dimosio?: boolean, exoteriko?: boole
             deadline_name: 'Παρέμβαση, προσεπίκληση, ανακοίνωση ή ανταγωγή',
             short_name: 'Παρέμβαση',
             deadline_code: CivilDeadlineCode.paremvasi,
-            days: dimosio ? 90 : 60,
+            days: exoteriko ? 90 : 60,
             day_count: DayCount.CALENDAR,
             direction: Direction.AFTER,
             legislation: 'Αρθ. 238 § 1 ΚΠολΔ',
@@ -117,7 +117,7 @@ export function getCivilTaktikiPre2026Rules(dimosio?: boolean, exoteriko?: boole
             deadline_name: 'Παρέμβαση του προσεπικαλούμενου',
             short_name: 'Παρέμβαση του προσεπικαλούμενου',
             deadline_code: CivilDeadlineCode.paremvasiProsek,
-            days: dimosio ? 120 : 90,
+            days: exoteriko ? 120 : 90,
             day_count: DayCount.CALENDAR,
             direction: Direction.AFTER,
             legislation: 'Αρθ. 238 § 1 ΚΠολΔ',
@@ -127,7 +127,7 @@ export function getCivilTaktikiPre2026Rules(dimosio?: boolean, exoteriko?: boole
             deadline_name: 'Κατάθεση προτάσεων',
             short_name: 'Προτάσεις',
             deadline_code: CivilDeadlineCode.protaseis,
-            days: 90,
+            days: exoteriko ? 120 : 90,
             day_count: DayCount.CALENDAR,
             direction: Direction.AFTER,
             legislation: 'Αρθ. 238 § 1 ΚΠολΔ',
