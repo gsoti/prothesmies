@@ -15,8 +15,12 @@ export function formatCivilDeadlines(deadlines: Awaited<ReturnType<typeof getCiv
         .map(d => {
             const firstCol = `${d.date || 'PENDING'} - ${d.shortName}`.padEnd(maxFirstColLength);
 
-            if (d.calculation === null) {
+            if (d.calculation === null && d.missingAnchor) {
                 return `${firstCol}  pending (${d.missingAnchor})`;
+            }
+
+            if (d.calculation === null) {
+                return firstCol;
             }
 
             const days = d.calculation!.logic.days;

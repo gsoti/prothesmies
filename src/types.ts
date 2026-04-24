@@ -17,6 +17,7 @@ export enum AdminDeadlineCode {
 }
 
 export enum CivilDeadlineCode {
+    katathesi = "katathesi",
     epidosi = "epidosi",
     paremvasi = "paremvasi",
     paremvasiProsek = "paremvasiProsek",

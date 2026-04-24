@@ -103,6 +103,30 @@ function buildPendingDeadline(
     };
 }
 
+function buildFilingDeadline(input: GetCivilDeadlinesInput): Deadline {
+    return {
+        name: 'Κατάθεση',
+        shortName: 'Κατάθεση',
+        type: CivilDeadlineCode.katathesi,
+        date: input.imerominia_katathesis,
+        nomothesia: [],
+        formattedNomothesia: [],
+        calculation: null,
+    };
+}
+
+function buildDikasimosDeadline(dikasimos: string): Deadline {
+    return {
+        name: 'Δικάσιμος',
+        shortName: 'Δικάσιμος',
+        type: CivilDeadlineCode.dikasimos,
+        date: dikasimos,
+        nomothesia: [],
+        formattedNomothesia: [],
+        calculation: null,
+    };
+}
+
 function validateCivilInput(input: GetCivilDeadlinesInput): void {
     if (!input.imerominia_katathesis || typeof input.imerominia_katathesis !== 'string') {
         throw new DeadlineCalculationError(
@@ -206,13 +230,20 @@ export async function getCivilDeadlines(input: GetCivilDeadlinesInput): Promise<
         { earlyRules: [] as CivilDeadlineRule[], lateRules: [] as CivilDeadlineRule[] }
     );
 
-    const deadlines: Deadline[] = [];
+    const deadlines: Deadline[] = [buildFilingDeadline(input)];
     const anchors = new Map<CivilAnchorType, string>([
         [CivilAnchorType.IMEROMINIA_KATATHESIS, input.imerominia_katathesis],
         ...(input.dikasimos ? [[CivilAnchorType.DIKASIMOS, input.dikasimos] as const] : []),
     ]);
 
+    let hasInsertedDikasimos = false;
+
     for (const rule of earlyRules) {
+        if (!hasInsertedDikasimos && input.dikasimos && rule.anchor_type === CivilAnchorType.DIKASIMOS) {
+            deadlines.push(buildDikasimosDeadline(input.dikasimos));
+            hasInsertedDikasimos = true;
+        }
+
         const referenceDate = anchors.get(rule.anchor_type);
 
         if (!referenceDate) {
@@ -245,6 +276,10 @@ export async function getCivilDeadlines(input: GetCivilDeadlinesInput): Promise<
                 anchors.set(CivilAnchorType.LIXI_PROSTHIKIS_ANTIKROUSIS, deadline.date);
                 break;
         }
+    }
+
+    if (!hasInsertedDikasimos && input.dikasimos) {
+        deadlines.push(buildDikasimosDeadline(input.dikasimos));
     }
 
     for (const rule of lateRules) {

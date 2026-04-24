@@ -23,10 +23,10 @@ describe('getCivilDeadlines (pre-2026 τακτική)', () => {
         });
 
         expect(status).toBe('success');
-        // 5 calculated + 2 pending (opsigeneis/antikrousi require dikasimos)
-        expect(deadlines).toHaveLength(7);
+        // filing + 5 calculated + 2 pending (opsigeneis/antikrousi require dikasimos)
+        expect(deadlines).toHaveLength(8);
 
-        const epidosi = deadlines[0];
+        const epidosi = deadlines.find(deadline => deadline.type === CivilDeadlineCode.epidosi)!;
         expect(epidosi.type).toBe(CivilDeadlineCode.epidosi);
         // 30 calendar days after 2025-06-01 = 2025-07-01 (Tuesday, no holidays)
         expect(epidosi.date).toBe('2025-07-01');
@@ -43,8 +43,9 @@ describe('getCivilDeadlines (pre-2026 τακτική)', () => {
             diadikasia: DIADIKASIA,
         });
 
-        expect(deadlines[0].date).toBe('2025-02-17');
-        expect(deadlines[0].calculation?.skipped.length).toBeGreaterThan(0);
+        const epidosi = deadlines.find(deadline => deadline.type === CivilDeadlineCode.epidosi);
+        expect(epidosi?.date).toBe('2025-02-17');
+        expect(epidosi?.calculation?.skipped.length).toBeGreaterThan(0);
     });
 
     it('applies August anastoli for standard pre-2026 filing', async () => {
@@ -53,7 +54,7 @@ describe('getCivilDeadlines (pre-2026 τακτική)', () => {
             diadikasia: DIADIKASIA,
         });
 
-        const epidosi = deadlines[0];
+        const epidosi = deadlines.find(deadline => deadline.type === CivilDeadlineCode.epidosi)!;
         // 30 days from 2025-07-15 would be 2025-08-14, but August is paused
         // so the deadline should be pushed past 2025-08-31
         expect(epidosi.calculation?.paused.length).toBeGreaterThan(0);
@@ -71,9 +72,12 @@ describe('getCivilDeadlines (pre-2026 τακτική)', () => {
             dimosio: true,
         });
 
-        expect(dimosio.deadlines[0].date >= standard.deadlines[0].date).toBe(true);
-        expect(dimosio.deadlines[0].calculation!.paused.length).toBeGreaterThan(
-            standard.deadlines[0].calculation!.paused.length
+        const standardEpidosi = standard.deadlines.find(deadline => deadline.type === CivilDeadlineCode.epidosi)!;
+        const dimosioEpidosi = dimosio.deadlines.find(deadline => deadline.type === CivilDeadlineCode.epidosi)!;
+
+        expect(dimosioEpidosi.date >= standardEpidosi.date).toBe(true);
+        expect(dimosioEpidosi.calculation!.paused.length).toBeGreaterThan(
+            standardEpidosi.calculation!.paused.length
         );
     });
 
@@ -83,7 +87,7 @@ describe('getCivilDeadlines (pre-2026 τακτική)', () => {
             diadikasia: DIADIKASIA,
         });
 
-        const logic = deadlines[0].calculation?.logic;
+        const logic = deadlines.find(deadline => deadline.type === CivilDeadlineCode.epidosi)?.calculation?.logic;
         expect(logic?.days).toBe(30);
         expect(logic?.when).toBe('after');
         expect(logic?.start).toBe('2025-03-01');
@@ -98,13 +102,15 @@ describe('getCivilDeadlines (pre-2026 τακτική)', () => {
         });
 
         expect(formatCivilDeadlines(deadlines)).toMatchInlineSnapshot(`
-          "2024-11-15 - Επίδοση                          30 ημέρες μετά katathesi
+          "2024-10-16 - Κατάθεση                       
+          2024-11-15 - Επίδοση                          30 ημέρες μετά katathesi
           2024-12-16 - Παρέμβαση                        60 ημέρες μετά katathesi [skipped: 2024-12-15]
           2025-01-14 - Παρέμβαση του προσεπικαλούμενου  90 ημέρες μετά katathesi
           2025-02-13 - Προτάσεις                        90 ημέρες μετά epidosi
           2025-02-28 - Προσθήκη                         15 ημέρες μετά protaseis
           2025-09-05 - Οψιγενείς ισχυρισμοί             20 ημέρες πριν dikasimos
-          2025-09-15 - Αντίκρουση σε οψιγενείς          10 ημέρες πριν dikasimos"
+          2025-09-15 - Αντίκρουση σε οψιγενείς          10 ημέρες πριν dikasimos
+          2025-09-25 - Δικάσιμος                      "
         `);
     });
 
@@ -116,7 +122,9 @@ describe('getCivilDeadlines (pre-2026 τακτική)', () => {
         });
 
         expect(status).toBe('success');
-        expect(deadlines[0].calculation?.logic.days).toBe(30);
+        expect(
+            deadlines.find(deadline => deadline.type === CivilDeadlineCode.epidosi)?.calculation?.logic.days
+        ).toBe(30);
     });
 
     it('should format pre-2026 dimosio epidosi deadline from filing date', async () => {
@@ -127,7 +135,8 @@ describe('getCivilDeadlines (pre-2026 τακτική)', () => {
         });
 
         expect(formatCivilDeadlines(deadlines)).toMatchInlineSnapshot(`
-          "2025-03-31 - Επίδοση                          30 ημέρες μετά katathesi
+          "2025-03-01 - Κατάθεση                       
+          2025-03-31 - Επίδοση                          30 ημέρες μετά katathesi
           2025-04-30 - Παρέμβαση                        60 ημέρες μετά katathesi
           2025-05-30 - Παρέμβαση του προσεπικαλούμενου  90 ημέρες μετά katathesi
           2025-06-30 - Προτάσεις                        90 ημέρες μετά epidosi [skipped: 2025-06-29]

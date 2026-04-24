@@ -16,7 +16,7 @@ describe('getCivilDeadlines', () => {
         });
 
         expect(status).toBe('success');
-        expect(deadlines).toHaveLength(6);
+        expect(deadlines).toHaveLength(7);
 
         const earlyCodes = deadlines
             .filter(deadline => deadline.calculation !== null)
@@ -30,7 +30,15 @@ describe('getCivilDeadlines', () => {
             CivilDeadlineCode.orismos_dikasti_synthesis,
         ]);
 
-        expect(deadlines.every(deadline => deadline.calculation !== null)).toBe(true);
+        const katathesi = deadlines.find(deadline => deadline.type === CivilDeadlineCode.katathesi);
+        expect(katathesi?.date).toBe('2026-01-15');
+        expect(katathesi?.calculation).toBeNull();
+
+        expect(
+            deadlines.every(deadline =>
+                deadline.type === CivilDeadlineCode.katathesi || deadline.calculation !== null
+            )
+        ).toBe(true);
     });
 
     it('derives civil anchors from filing date in sequence', async () => {
@@ -57,6 +65,12 @@ describe('getCivilDeadlines', () => {
         });
 
         for (const deadline of deadlines) {
+            if (deadline.type === CivilDeadlineCode.katathesi) {
+                expect(deadline.nomothesia).toEqual([]);
+                expect(deadline.formattedNomothesia).toEqual([]);
+                continue;
+            }
+
             expect(deadline.nomothesia.length).toBe(1);
             // formattedNomothesia is populated for codes with known article text;
             // when populated, it should expose a non-empty article and text payload
@@ -74,7 +88,8 @@ describe('getCivilDeadlines', () => {
         });
 
         expect(formatCivilDeadlines(deadlines)).toMatchInlineSnapshot(`
-          "2026-02-16 - Επίδοση                      30 ημέρες μετά katathesi [skipped: 2026-02-14, 2026-02-15]
+          "2026-01-15 - Κατάθεση                   
+          2026-02-16 - Επίδοση                      30 ημέρες μετά katathesi [skipped: 2026-02-14, 2026-02-15]
           2026-03-30 - Παρέμβαση                    40 ημέρες μετά epidosi [skipped: 2026-03-28, 2026-03-29]
           2026-04-27 - Παρέμβαση προσεπικαλούμενου  70 ημέρες μετά epidosi
           2026-05-18 - Προτάσεις & Αποδεικτικά      90 ημέρες μετά epidosi [skipped: 2026-05-17]
@@ -396,7 +411,8 @@ describe('getCivilDeadlines', () => {
             });
 
             expect(formatCivilDeadlines(deadlines)).toMatchInlineSnapshot(`
-              "2026-09-16 - Επίδοση                      30 ημέρες μετά katathesi [paused: 77]
+              "2026-06-01 - Κατάθεση                   
+              2026-09-16 - Επίδοση                      30 ημέρες μετά katathesi [paused: 77]
               2026-10-26 - Παρέμβαση                    40 ημέρες μετά epidosi
               2026-11-25 - Παρέμβαση προσεπικαλούμενου  70 ημέρες μετά epidosi
               2026-12-15 - Προτάσεις & Αποδεικτικά      90 ημέρες μετά epidosi

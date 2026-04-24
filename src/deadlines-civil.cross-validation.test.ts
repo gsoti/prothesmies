@@ -34,7 +34,7 @@ const INPUT_MIKRODIAFORES = {
     apotelesma: 'ΣΥΖΗΤΗΘΗΚΕ',
 } as const;
 
-const SKIP_EXTERNAL = new Set<string>([DeadlineType.KATATHESI, DeadlineType.DIKASIMOS]);
+const SKIP_EXTERNAL = new Set<string>([]);
 
 const ourTypeValues = new Set<string>(Object.values(CivilDeadlineCode));
 
@@ -119,6 +119,15 @@ describe('getCivilDeadlines cross-validation against @gsoti/prothesmies', () => 
         const { deadlines } = await getCivilDeadlines(INPUT);
         expect(JSON.parse(JSON.stringify(deadlines))).toMatchInlineSnapshot(`
           [
+            {
+              "calculation": null,
+              "date": "2024-10-16",
+              "formattedNomothesia": [],
+              "name": "Κατάθεση",
+              "nomothesia": [],
+              "shortName": "Κατάθεση",
+              "type": "katathesi",
+            },
             {
               "calculation": {
                 "date": "2024-11-15",
@@ -310,6 +319,14 @@ describe('getCivilDeadlines cross-validation against @gsoti/prothesmies', () => 
               ],
               "shortName": "Προσθήκη",
               "type": "prosthiki",
+            },
+            {
+              "calculation": null,
+              "date": "2025-09-25",
+              "formattedNomothesia": [],
+              "name": "Δικάσιμος",
+              "nomothesia": [],
+              "shortName": "Δικάσιμος",
             },
             {
               "calculation": {
