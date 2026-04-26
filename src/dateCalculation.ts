@@ -2,7 +2,7 @@
  * Date calculation for legal deadlines with holidays and suspension periods
  */
 
-import { toISODateString, parseISODate, addDays } from './utils/dateUtils';
+import { toISODateString, parseISODate, addDays } from './utils/dateUtils.js';
 
 export interface ArgiesAndAnastoli {
   argies: string[];

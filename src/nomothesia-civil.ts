@@ -1,4 +1,4 @@
-import { CivilDeadlineCode, Nomothesia, NomothesiaCore } from "./types";
+import { CivilDeadlineCode, Nomothesia, NomothesiaCore } from "./types.js";
 
 const NOMOTHESIA_215_2: NomothesiaCore = {
     article: "Αρθ. 215 § 2 ΚΠολΔ",

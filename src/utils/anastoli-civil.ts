@@ -2,7 +2,7 @@
  * Anastoli (summer suspension) calculation for civil court deadlines
  */
 
-import { toISODateString, parseISODate, addDays } from './dateUtils';
+import { toISODateString, parseISODate, addDays } from './dateUtils.js';
 
 /**
  * Returns anastoli dates for civil cases within a date range.
