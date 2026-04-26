@@ -9,8 +9,8 @@ import { formatCivilDeadlines } from './test-helpers/formatCivilDeadlines.js';
 const SUPPORTED_DIADIKASIA = 'ΝΕΑ ΤΑΚΤΙΚΗ ΜΟΝΟΜΕΛΟΥΣ';
 
 describe('getCivilDeadlines', () => {
-    it('returns calculated early deadlines and pending late deadlines', async () => {
-        const { deadlines, status } = await getCivilDeadlines({
+    it('returns calculated early deadlines and pending late deadlines', () => {
+        const { deadlines, status } = getCivilDeadlines({
             imerominia_katathesis: '2026-01-15',
             diadikasia: SUPPORTED_DIADIKASIA,
         });
@@ -41,8 +41,8 @@ describe('getCivilDeadlines', () => {
         ).toBe(true);
     });
 
-    it('derives civil anchors from filing date in sequence', async () => {
-        const { deadlines } = await getCivilDeadlines({
+    it('derives civil anchors from filing date in sequence', () => {
+        const { deadlines } = getCivilDeadlines({
             imerominia_katathesis: '2026-01-15',
             diadikasia: SUPPORTED_DIADIKASIA,
         });
@@ -58,8 +58,8 @@ describe('getCivilDeadlines', () => {
         expect(byCode.get(CivilDeadlineCode.prosthiki)?.calculation?.logic.reference).toBe('protaseis');
     });
 
-    it('keeps legislation text shape compatible when no full text is available', async () => {
-        const { deadlines } = await getCivilDeadlines({
+    it('keeps legislation text shape compatible when no full text is available', () => {
+        const { deadlines } = getCivilDeadlines({
             imerominia_katathesis: '2026-01-15',
             diadikasia: SUPPORTED_DIADIKASIA,
         });
@@ -81,8 +81,8 @@ describe('getCivilDeadlines', () => {
         }
     });
 
-    it('should format civil deadlines from filing date', async () => {
-        const { deadlines } = await getCivilDeadlines({
+    it('should format civil deadlines from filing date', () => {
+        const { deadlines } = getCivilDeadlines({
             imerominia_katathesis: '2026-01-15',
             diadikasia: SUPPORTED_DIADIKASIA,
         });
@@ -99,8 +99,8 @@ describe('getCivilDeadlines', () => {
     });
 
     describe('json snapshots', () => {
-        it('snapshots επίδοση as JSON', async () => {
-            const { deadlines } = await getCivilDeadlines({
+        it('snapshots επίδοση as JSON', () => {
+            const { deadlines } = getCivilDeadlines({
                 imerominia_katathesis: '2026-01-15',
                 diadikasia: SUPPORTED_DIADIKASIA,
             });
@@ -144,8 +144,8 @@ describe('getCivilDeadlines', () => {
             `);
         });
 
-        it('snapshots παρέμβαση as JSON', async () => {
-            const { deadlines } = await getCivilDeadlines({
+        it('snapshots παρέμβαση as JSON', () => {
+            const { deadlines } = getCivilDeadlines({
                 imerominia_katathesis: '2026-01-15',
                 diadikasia: SUPPORTED_DIADIKASIA,
             });
@@ -189,8 +189,8 @@ describe('getCivilDeadlines', () => {
             `);
         });
 
-        it('snapshots παρέμβαση προσεπικαλούμενου as JSON', async () => {
-            const { deadlines } = await getCivilDeadlines({
+        it('snapshots παρέμβαση προσεπικαλούμενου as JSON', () => {
+            const { deadlines } = getCivilDeadlines({
                 imerominia_katathesis: '2026-01-15',
                 diadikasia: SUPPORTED_DIADIKASIA,
             });
@@ -231,8 +231,8 @@ describe('getCivilDeadlines', () => {
             `);
         });
 
-        it('snapshots προτάσεις as JSON', async () => {
-            const { deadlines } = await getCivilDeadlines({
+        it('snapshots προτάσεις as JSON', () => {
+            const { deadlines } = getCivilDeadlines({
                 imerominia_katathesis: '2026-01-15',
                 diadikasia: SUPPORTED_DIADIKASIA,
             });
@@ -276,8 +276,8 @@ describe('getCivilDeadlines', () => {
             `);
         });
 
-        it('snapshots προσθήκη as JSON', async () => {
-            const { deadlines } = await getCivilDeadlines({
+        it('snapshots προσθήκη as JSON', () => {
+            const { deadlines } = getCivilDeadlines({
                 imerominia_katathesis: '2026-01-15',
                 diadikasia: SUPPORTED_DIADIKASIA,
             });
@@ -319,8 +319,8 @@ describe('getCivilDeadlines', () => {
             `);
         });
 
-        it('snapshots ορισμός δικαστή as JSON', async () => {
-            const { deadlines } = await getCivilDeadlines({
+        it('snapshots ορισμός δικαστή as JSON', () => {
+            const { deadlines } = getCivilDeadlines({
                 imerominia_katathesis: '2026-01-15',
                 diadikasia: SUPPORTED_DIADIKASIA,
             });
@@ -364,8 +364,8 @@ describe('getCivilDeadlines', () => {
     });
 
     describe('anastoli', () => {
-        it('pauses counting in August for standard (non-dimosio) filing', async () => {
-            const { deadlines } = await getCivilDeadlines({
+        it('pauses counting in August for standard (non-dimosio) filing', () => {
+            const { deadlines } = getCivilDeadlines({
                 imerominia_katathesis: '2026-06-01',
                 diadikasia: SUPPORTED_DIADIKASIA,
             });
@@ -382,8 +382,8 @@ describe('getCivilDeadlines', () => {
             expect(septDates.length).toBe(0);
         });
 
-        it('pauses counting in July, August, and Sept 1–15 for dimosio filing', async () => {
-            const { deadlines } = await getCivilDeadlines({
+        it('pauses counting in July, August, and Sept 1–15 for dimosio filing', () => {
+            const { deadlines } = getCivilDeadlines({
                 imerominia_katathesis: '2026-06-01',
                 diadikasia: SUPPORTED_DIADIKASIA,
                 dimosio: true,
@@ -403,8 +403,8 @@ describe('getCivilDeadlines', () => {
             expect(septDates.length).toBe(15);
         });
 
-        it('should format civil deadlines from filing date crossing anastoli', async () => {
-            const { deadlines } = await getCivilDeadlines({
+        it('should format civil deadlines from filing date crossing anastoli', () => {
+            const { deadlines } = getCivilDeadlines({
                 imerominia_katathesis: '2026-06-01',
                 diadikasia: SUPPORTED_DIADIKASIA,
                 dimosio: true,
@@ -421,11 +421,16 @@ describe('getCivilDeadlines', () => {
             `);
         });
 
-        it('dimosio deadlines are later than standard deadlines due to extended suspension', async () => {
-            const [standard, dimosio] = await Promise.all([
-                getCivilDeadlines({ imerominia_katathesis: '2026-06-01', diadikasia: SUPPORTED_DIADIKASIA }),
-                getCivilDeadlines({ imerominia_katathesis: '2026-06-01', diadikasia: SUPPORTED_DIADIKASIA, dimosio: true }),
-            ]);
+        it('dimosio deadlines are later than standard deadlines due to extended suspension', () => {
+            const standard = getCivilDeadlines({
+                imerominia_katathesis: '2026-06-01',
+                diadikasia: SUPPORTED_DIADIKASIA,
+            });
+            const dimosio = getCivilDeadlines({
+                imerominia_katathesis: '2026-06-01',
+                diadikasia: SUPPORTED_DIADIKASIA,
+                dimosio: true,
+            });
 
             const byCode = (deadlines: typeof standard.deadlines) =>
                 new Map(deadlines.map(d => [d.type, d]));

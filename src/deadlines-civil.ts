@@ -155,7 +155,7 @@ function getCivilMaxTraversalDays(rules: CivilDeadlineRule[]): number {
     return maxTraversalDays;
 }
 
-export async function getCivilDeadlines(input: GetCivilDeadlinesInput): Promise<CivilDeadlinesResult> {
+export function getCivilDeadlines(input: GetCivilDeadlinesInput): CivilDeadlinesResult {
     validateCivilInput(input);
 
     const isPost2026 = input.imerominia_katathesis >= '2026-01-01';

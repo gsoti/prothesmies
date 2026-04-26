@@ -8,16 +8,16 @@ import { formatCivilDeadlines } from './test-helpers/formatCivilDeadlines.js';
 const DIADIKASIA = 'ΝΕΑ ΤΑΚΤΙΚΗ ΜΟΝΟΜΕΛΟΥΣ';
 
 describe('getCivilDeadlines (pre-2026 τακτική)', () => {
-    it('returns not_supported for non-taktiki pre-2026 filing', async () => {
-        const result = await getCivilDeadlines({
+    it('returns not_supported for non-taktiki pre-2026 filing', () => {
+        const result = getCivilDeadlines({
             imerominia_katathesis: '2025-06-01',
             diadikasia: 'ΕΙΔΙΚΗ ΔΙΑΔΙΚΑΣΙΑ',
         });
         expect(result).toEqual({ deadlines: [], status: 'not_supported' });
     });
 
-    it('returns epidosi deadline for pre-2026 taktiki filing', async () => {
-        const { deadlines, status } = await getCivilDeadlines({
+    it('returns epidosi deadline for pre-2026 taktiki filing', () => {
+        const { deadlines, status } = getCivilDeadlines({
             imerominia_katathesis: '2025-06-01',
             diadikasia: DIADIKASIA,
         });
@@ -32,13 +32,13 @@ describe('getCivilDeadlines (pre-2026 τακτική)', () => {
         expect(epidosi.date).toBe('2025-07-01');
     });
 
-    it('skips weekends on the final date', async () => {
+    it('skips weekends on the final date', () => {
         // 30 days after 2025-01-15 (Wednesday) = 2025-02-14 (Friday) — no skip needed
         // 30 days after 2025-01-13 (Monday) = 2025-02-12 (Wednesday) — no skip needed
         // Choose a date where +30 lands on Saturday: 2025-01-04 → 2025-02-03 (Monday, ok)
         // 2025-02-15 is Saturday, find katathesis where +30 = Saturday
         // 2025-01-16 (Thursday) + 30 = 2025-02-15 (Saturday) → skip to 2025-02-17 (Monday)
-        const { deadlines } = await getCivilDeadlines({
+        const { deadlines } = getCivilDeadlines({
             imerominia_katathesis: '2025-01-16',
             diadikasia: DIADIKASIA,
         });
@@ -48,8 +48,8 @@ describe('getCivilDeadlines (pre-2026 τακτική)', () => {
         expect(epidosi?.calculation?.skipped.length).toBeGreaterThan(0);
     });
 
-    it('applies August anastoli for standard pre-2026 filing', async () => {
-        const { deadlines } = await getCivilDeadlines({
+    it('applies August anastoli for standard pre-2026 filing', () => {
+        const { deadlines } = getCivilDeadlines({
             imerominia_katathesis: '2025-07-15',
             diadikasia: DIADIKASIA,
         });
@@ -61,12 +61,12 @@ describe('getCivilDeadlines (pre-2026 τακτική)', () => {
         expect(epidosi.date > '2025-08-31').toBe(true);
     });
 
-    it('applies the same August anastoli when dimosio is true for pre-2026 filing', async () => {
-        const standard = await getCivilDeadlines({
+    it('applies the same August anastoli when dimosio is true for pre-2026 filing', () => {
+        const standard = getCivilDeadlines({
             imerominia_katathesis: '2025-07-15',
             diadikasia: DIADIKASIA,
         });
-        const dimosio = await getCivilDeadlines({
+        const dimosio = getCivilDeadlines({
             imerominia_katathesis: '2025-07-15',
             diadikasia: DIADIKASIA,
             dimosio: true,
@@ -81,8 +81,8 @@ describe('getCivilDeadlines (pre-2026 τακτική)', () => {
         );
     });
 
-    it('calculation logic reflects correct reference and days', async () => {
-        const { deadlines } = await getCivilDeadlines({
+    it('calculation logic reflects correct reference and days', () => {
+        const { deadlines } = getCivilDeadlines({
             imerominia_katathesis: '2025-03-01',
             diadikasia: DIADIKASIA,
         });
@@ -94,8 +94,8 @@ describe('getCivilDeadlines (pre-2026 τακτική)', () => {
     });
 
     // https://www.run.legal/civil-cases/396e5941-17ba-40a7-8cbe-073f0a3edff4
-    it('should format pre-2026 epidosi deadline from filing date', async () => {
-        const { deadlines } = await getCivilDeadlines({
+    it('should format pre-2026 epidosi deadline from filing date', () => {
+        const { deadlines } = getCivilDeadlines({
             imerominia_katathesis: '2024-10-16',
             diadikasia: DIADIKASIA,
             dikasimos: '2025-09-25',
@@ -114,8 +114,8 @@ describe('getCivilDeadlines (pre-2026 τακτική)', () => {
         `);
     });
 
-    it('uses the standard 30-day epidosi for dimosio pre-2026 filing', async () => {
-        const { deadlines, status } = await getCivilDeadlines({
+    it('uses the standard 30-day epidosi for dimosio pre-2026 filing', () => {
+        const { deadlines, status } = getCivilDeadlines({
             imerominia_katathesis: '2025-03-01',
             diadikasia: DIADIKASIA,
             dimosio: true,
@@ -127,8 +127,8 @@ describe('getCivilDeadlines (pre-2026 τακτική)', () => {
         ).toBe(30);
     });
 
-    it('should format pre-2026 dimosio epidosi deadline from filing date', async () => {
-        const { deadlines } = await getCivilDeadlines({
+    it('should format pre-2026 dimosio epidosi deadline from filing date', () => {
+        const { deadlines } = getCivilDeadlines({
             imerominia_katathesis: '2025-03-01',
             diadikasia: DIADIKASIA,
             dimosio: true,

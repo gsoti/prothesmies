@@ -47,8 +47,8 @@ type CrossValidationInput =
     | typeof INPUT_EXOTERIKO_DIMOSIO
     | typeof INPUT_MIKRODIAFORES;
 
-async function expectSameOutputAsExternal(input: CrossValidationInput) {
-    const { deadlines } = await getCivilDeadlines(input);
+function expectSameOutputAsExternal(input: CrossValidationInput) {
+    const { deadlines } = getCivilDeadlines(input);
 
     const external = prothesmiesCivilCase({
         apotelesma: '',
@@ -103,20 +103,20 @@ async function expectSameOutputAsExternal(input: CrossValidationInput) {
 }
 
 describe('getCivilDeadlines cross-validation against @gsoti/prothesmies', () => {
-    it('returns the same output as prothesmiesCivilCase for the common deadline types', async () => {
-        await expectSameOutputAsExternal(INPUT);
+    it('returns the same output as prothesmiesCivilCase for the common deadline types', () => {
+        expectSameOutputAsExternal(INPUT);
     });
 
-    it('returns the same output as prothesmiesCivilCase for the common deadline types when exoteriko and dimosio are true', async () => {
-        await expectSameOutputAsExternal(INPUT_EXOTERIKO_DIMOSIO);
+    it('returns the same output as prothesmiesCivilCase for the common deadline types when exoteriko and dimosio are true', () => {
+        expectSameOutputAsExternal(INPUT_EXOTERIKO_DIMOSIO);
     });
 
-    it('returns the same output as prothesmiesCivilCase for ΜΙΚΡΟΔΙΑΦΟΡΕΣ', async () => {
-        await expectSameOutputAsExternal(INPUT_MIKRODIAFORES);
+    it('returns the same output as prothesmiesCivilCase for ΜΙΚΡΟΔΙΑΦΟΡΕΣ', () => {
+        expectSameOutputAsExternal(INPUT_MIKRODIAFORES);
     });
 
-    it('snapshot of all deadlines as JSON', async () => {
-        const { deadlines } = await getCivilDeadlines(INPUT);
+    it('snapshot of all deadlines as JSON', () => {
+        const { deadlines } = getCivilDeadlines(INPUT);
         expect(JSON.parse(JSON.stringify(deadlines))).toMatchInlineSnapshot(`
           [
             {

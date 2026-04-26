@@ -1,6 +1,6 @@
 import type { getCivilDeadlines } from '../deadlines-admin.js';
 
-export function formatCivilDeadlines(deadlines: Awaited<ReturnType<typeof getCivilDeadlines>>['deadlines']): string {
+export function formatCivilDeadlines(deadlines: ReturnType<typeof getCivilDeadlines>['deadlines']): string {
     const sorted = [...deadlines].sort((a, b) => {
         const left = a.date || '9999-12-31';
         const right = b.date || '9999-12-31';

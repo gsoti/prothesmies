@@ -6,8 +6,8 @@ import { formatCivilDeadlines } from './test-helpers/formatCivilDeadlines.js';
 const SUPPORTED_DIADIKASIA = 'ΜΙΚΡΟΔΙΑΦΟΡΕΣ';
 
 describe('getCivilDeadlines for ΜΙΚΡΟΔΙΑΦΟΡΕΣ', () => {
-    it('should format civil deadlines from filing date', async () => {
-        const { deadlines } = await getCivilDeadlines({
+    it('should format civil deadlines from filing date', () => {
+        const { deadlines } = getCivilDeadlines({
             imerominia_katathesis: '2023-03-24',
             diadikasia: SUPPORTED_DIADIKASIA,
             dikasimos: '2025-03-06',
@@ -25,8 +25,8 @@ describe('getCivilDeadlines for ΜΙΚΡΟΔΙΑΦΟΡΕΣ', () => {
     });
 
     describe('json snapshots', () => {
-        it('snapshots επίδοση as JSON', async () => {
-            const { deadlines } = await getCivilDeadlines({
+        it('snapshots επίδοση as JSON', () => {
+            const { deadlines } = getCivilDeadlines({
                 imerominia_katathesis: '2023-03-24',
                 diadikasia: SUPPORTED_DIADIKASIA,
                 dikasimos: '2025-03-04',
@@ -69,8 +69,8 @@ describe('getCivilDeadlines for ΜΙΚΡΟΔΙΑΦΟΡΕΣ', () => {
             `);
         });
 
-        it('snapshots παρέμβαση as JSON', async () => {
-            const { deadlines } = await getCivilDeadlines({
+        it('snapshots παρέμβαση as JSON', () => {
+            const { deadlines } = getCivilDeadlines({
                 imerominia_katathesis: '2023-03-24',
                 diadikasia: SUPPORTED_DIADIKASIA,
                 dikasimos: '2025-03-04',
@@ -113,8 +113,8 @@ describe('getCivilDeadlines for ΜΙΚΡΟΔΙΑΦΟΡΕΣ', () => {
             `);
         });
 
-        it('snapshots προσκομιδή του εναγομένου as JSON', async () => {
-            const { deadlines } = await getCivilDeadlines({
+        it('snapshots προσκομιδή του εναγομένου as JSON', () => {
+            const { deadlines } = getCivilDeadlines({
                 imerominia_katathesis: '2023-03-24',
                 diadikasia: SUPPORTED_DIADIKASIA,
                 dikasimos: '2025-03-04',
@@ -159,8 +159,8 @@ describe('getCivilDeadlines for ΜΙΚΡΟΔΙΑΦΟΡΕΣ', () => {
             `);
         });
 
-        it('snapshots προσθήκη as JSON', async () => {
-            const { deadlines } = await getCivilDeadlines({
+        it('snapshots προσθήκη as JSON', () => {
+            const { deadlines } = getCivilDeadlines({
                 imerominia_katathesis: '2023-03-24',
                 diadikasia: SUPPORTED_DIADIKASIA,
                 dikasimos: '2025-03-04',

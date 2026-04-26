@@ -2,17 +2,17 @@ import { describe, expect, it } from 'vitest';
 import { getCivilDeadlines, DeadlineCalculationError } from './deadlines-civil.js';
 
 describe('getCivilDeadlines', () => {
-    it('throws error for invalid filing date', async () => {
-        await expect(
+    it('throws error for invalid filing date', () => {
+        expect(() =>
             getCivilDeadlines({
                 imerominia_katathesis: 'invalid-date',
                 diadikasia: 'ΝΕΑ ΤΑΚΤΙΚΗ ΜΟΝΟΜΕΛΟΥΣ',
             })
-        ).rejects.toThrow('Invalid imerominia_katathesis date format');
+        ).toThrow('Invalid imerominia_katathesis date format');
     });
 
-    it('returns not_supported for unsupported diadikasia', async () => {
-        const result = await getCivilDeadlines({
+    it('returns not_supported for unsupported diadikasia', () => {
+        const result = getCivilDeadlines({
             imerominia_katathesis: '2026-01-15',
             diadikasia: 'ΕΙΔΙΚΗ ΔΙΑΔΙΚΑΣΙΑ',
         });
