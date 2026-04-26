@@ -327,6 +327,7 @@ describe('getCivilDeadlines cross-validation against @gsoti/prothesmies', () => 
               "name": "Δικάσιμος",
               "nomothesia": [],
               "shortName": "Δικάσιμος",
+              "type": "dikasimos",
             },
             {
               "calculation": {
