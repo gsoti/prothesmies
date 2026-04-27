@@ -28,7 +28,7 @@ describe('getCivilDeadlines for ΜΙΚΡΟΔΙΑΦΟΡΕΣ', () => {
         const { deadlines } = getCivilDeadlines({
             imerominia_katathesis: '2026-03-24',
             diadikasia: SUPPORTED_DIADIKASIA,
-            dikasimos: '2026-04-27',
+            dikasimos: '2026-05-27',
             apotelesma: 'ΣΥΖΗΤΗΘΗΚΕ',
             exoteriko: false,
         });
@@ -38,9 +38,9 @@ describe('getCivilDeadlines for ΜΙΚΡΟΔΙΑΦΟΡΕΣ', () => {
           2026-04-03 - Επίδοση                    10 ημέρες μετά katathesi
           2026-04-14 - Παρέμβαση                  20 ημέρες μετά katathesi [skipped: 2026-04-13]
           2026-04-23 - Προσκομιδή του εναγομένου  20 ημέρες μετά epidosi
-          2026-04-27 - Δικάσιμος                
           2026-04-28 - Προσθήκη                   5 ημέρες μετά proskomidi
-          2026-05-05 - Προσθήκη – αντίκρουση      5 ΕΡΓΑΣΙΜΕΣ ημέρες μετά dikasimos [paused: 3]"
+          2026-05-27 - Δικάσιμος                
+          2026-06-04 - Προσθήκη – αντίκρουση      5 ΕΡΓΑΣΙΜΕΣ ημέρες μετά dikasimos [paused: 3]"
         `);
     });
 
