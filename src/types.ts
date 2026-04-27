@@ -26,6 +26,7 @@ export enum CivilDeadlineCode {
     prosthiki = "prosthiki",
     opsigeneis = "opsigeneis",
     opsigeneisAntikrousi = "opsigeneisAntikrousi",
+    prosthikiAntikrousiNeoiIsxyrismoi = "prosthikiAntikrousiNeoiIsxyrismoi",
     orismos_dikasti_synthesis = "orismos_dikasti_synthesis",
     ekdosi_diataxis_dikasti = "ekdosi_diataxis_dikasti",
     aitisi_meta_apo_aparadekto = "aitisi_meta_apo_aparadekto"

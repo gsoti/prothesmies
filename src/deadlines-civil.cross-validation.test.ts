@@ -34,6 +34,13 @@ const INPUT_MIKRODIAFORES = {
     apotelesma: 'ΣΥΖΗΤΗΘΗΚΕ',
 } as const;
 
+const INPUT_EIDIKES_DIADIKASIES = {
+    imerominia_katathesis: '2025-01-10',
+    diadikasia: 'ΑΜΟΙΒΕΣ',
+    dikasimos: '2025-03-10',
+    apotelesma: 'ΣΥΖΗΤΗΘΗΚΕ',
+} as const;
+
 const SKIP_EXTERNAL = new Set<string>([]);
 
 const ourTypeValues = new Set<string>(Object.values(CivilDeadlineCode));
@@ -45,7 +52,8 @@ function byDate(a: { date: string }, b: { date: string }) {
 type CrossValidationInput =
     | typeof INPUT
     | typeof INPUT_EXOTERIKO_DIMOSIO
-    | typeof INPUT_MIKRODIAFORES;
+    | typeof INPUT_MIKRODIAFORES
+    | typeof INPUT_EIDIKES_DIADIKASIES;
 
 function expectSameOutputAsExternal(input: CrossValidationInput) {
     const { deadlines } = getCivilDeadlines(input);
@@ -62,9 +70,9 @@ function expectSameOutputAsExternal(input: CrossValidationInput) {
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const normalize = (d: any) => {
-        const { imeres: _, ypologismos: __, calculation, formattedNomothesia: _fn, ...rest } = d;
+        const { imeres: _, ypologismos: __, formattedNomothesia: ___, calculation, ...rest } = d;
         if (calculation?.logic) {
-            const { day_count: ___, ...logic } = calculation.logic;
+            const { day_count: ____, ...logic } = calculation.logic;
             return { ...rest, calculation: { ...calculation, logic } };
         }
         if (calculation != null) return { ...rest, calculation };
@@ -113,6 +121,10 @@ describe('getCivilDeadlines cross-validation against @gsoti/prothesmies', () => 
 
     it('returns the same output as prothesmiesCivilCase for ΜΙΚΡΟΔΙΑΦΟΡΕΣ', () => {
         expectSameOutputAsExternal(INPUT_MIKRODIAFORES);
+    });
+
+    it('returns the same output as prothesmiesCivilCase for ειδικές διαδικασίες', () => {
+        expectSameOutputAsExternal(INPUT_EIDIKES_DIADIKASIES);
     });
 
     it('snapshot of all deadlines as JSON', () => {

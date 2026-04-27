@@ -6,13 +6,14 @@ import {
     Direction,
 } from '../types.js';
 
-export function getCivilMicrodifferencesRules(): CivilDeadlineRule[] {
-    return [
+export function getCivilMicrodifferencesRules(opts?: { isPost2026?: boolean; exoteriko?: boolean; apotelesma?: string }): CivilDeadlineRule[] {
+    const epidosiDays = opts?.isPost2026 ? 10 : opts?.exoteriko ? 30 : 10;
+    const rules: CivilDeadlineRule[] = [
         {
             deadline_name: 'Επίδοση',
             short_name: 'Επίδοση',
             deadline_code: CivilDeadlineCode.epidosi,
-            days: 10,
+            days: epidosiDays,
             day_count: DayCount.CALENDAR,
             direction: Direction.AFTER,
             legislation: 'Αρθ.468 § 1 ΚΠολΔ. Η αγωγή κατατίθεται στη γραμματεία του ειρηνοδικείου και επιδίδεται στον εναγόμενο μέσα σε προθεσμία δέκα (10) ημερών από την κατάθεσή της. Αν ο εναγόμενος διαμένει στο εξωτερικό ή είναι άγνωστης διαμονής η αγωγή επιδίδεται σε προθεσμία τριάντα (30) ημερών από την κατάθεσή της. Το δεύτερο εδάφιο της παρ. 2 του άρθρου 215 εφαρμόζεται αναλόγως.',
@@ -22,7 +23,7 @@ export function getCivilMicrodifferencesRules(): CivilDeadlineRule[] {
             deadline_name: 'Παρέμβαση, προσεπίκληση, ανακοίνωση ή ανταγωγή',
             short_name: 'Παρέμβαση',
             deadline_code: CivilDeadlineCode.paremvasi,
-            days: 20,
+            days: opts?.exoteriko ? 40 : 20,
             day_count: DayCount.CALENDAR,
             direction: Direction.AFTER,
             legislation: 'Αρθ.468 § 3 ΚΠολΔ. Παρεμβάσεις και ανταγωγές κατατίθενται και επιδίδονται στους διαδίκους μέσα σε προθεσμία είκοσι (20) ημερών από την κατάθεση της αγωγής. Η προθεσμία αυτή παρατείνεται κατά είκοσι (20) ημέρες αν ο εναγόμενος διαμένει στο εξωτερικό ή είναι άγνωστης διαμονής. Η προσκομιδή των αποδεικτικών μέσων και το έγγραφο υπόμνημα των ισχυρισμών στις περιπτώσεις του δεύτερου εδαφίου γίνονται σε προθεσμία τριάντα (30) ή πενήντα (50) ημερών, αντίστοιχα, από την κατάθεση της αγωγής και η έγγραφη προσθήκη αντίκρουση στην προθεσμία του τρίτου εδαφίου της παρ. 2.',
@@ -49,4 +50,19 @@ export function getCivilMicrodifferencesRules(): CivilDeadlineRule[] {
             anchor_type: CivilAnchorType.LIXI_PROTASEON,
         },
     ];
+
+    if (opts?.isPost2026 && opts?.apotelesma === 'ΣΥΖΗΤΗΘΗΚΕ') {
+        rules.push({
+            deadline_name: 'Προσθήκη – αντίκρουση για νέους ισχυρισμούς',
+            short_name: 'Προσθήκη – αντίκρουση',
+            deadline_code: CivilDeadlineCode.prosthikiAntikrousiNeoiIsxyrismoi,
+            days: 5,
+            day_count: DayCount.WORKING,
+            direction: Direction.AFTER,
+            legislation: 'Αρθ.469 ΚΠολΔ. Προσθήκη – αντίκρουση για νέους ισχυρισμούς κατατίθεται μέσα σε πέντε (5) εργάσιμες ημέρες από τη συζήτηση της υπόθεσης.',
+            anchor_type: CivilAnchorType.DIKASIMOS,
+        });
+    }
+
+    return rules;
 }
