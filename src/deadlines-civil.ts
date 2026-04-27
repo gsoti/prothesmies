@@ -12,6 +12,7 @@ import {
     getCivilTaktikiPost2026Rules,
     getCivilMicrodifferencesRules,
     getCivilTaktikiPre2026Rules,
+    getCivilEidikesRules,
 } from './rules/index.js';
 import { getCivilFormattedNomothesia, getCivilNomothesia } from './nomothesia-civil.js';
 import {
@@ -22,11 +23,24 @@ import {
     GetCivilDeadlinesInput,
     Deadline,
     DateCalculation,
+    DayCount,
+    Direction,
 } from './types.js';
 
-type BuildContext = { isPost2026: boolean; exoteriko?: boolean; variant: 'taktiki' | 'mikrodiafores' };
+type BuildContext = { isPost2026: boolean; exoteriko?: boolean; variant: 'taktiki' | 'mikrodiafores' | 'eidikes' };
 
 const DATE_RANGE_BUFFER_DAYS = 365;
+const EIDIKES_DIADIKASIES = new Set<string>([
+    'ΑΜΟΙΒΕΣ',
+    'ΑΝΑΚΟΠΕΣ ΚΑΤΑ ΤΗΣ ΕΚΤΕΛΕΣΗΣ (Από Μετάπτωση)',
+    'ΑΝΑΚΟΠΕΣ',
+    'ΑΥΤΟΚΙΝΗΤΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ',
+    'ΕΙΔΙΚΗ ΔΙΑ ΤΟΥ ΤΥΠΟΥ Τ.ΠΟΛ',
+    'ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ',
+    'ΕΡΓΑΤΙΚΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ',
+    'ΜΙΣΘΩΣΕΙΣ - ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ',
+    'ΟΙΚΟΓΕΝΕΙΑΚΟ ΕΙΔΙΚΕΣ ΔΙΑΔΙΚΑΣΙΕΣ',
+]);
 
 const PENDING_ANCHOR_TYPES = [CivilAnchorType.ORISMOS_DIKASTI, CivilAnchorType.EKDOSI_DIATAXIS];
 
@@ -127,6 +141,65 @@ function buildDikasimosDeadline(dikasimos: string): Deadline {
     };
 }
 
+function getCivilEidikesDeadlines(input: GetCivilDeadlinesInput): CivilDeadlinesResult {
+    const ctx: BuildContext = {
+        isPost2026: input.imerominia_katathesis >= '2026-01-01',
+        exoteriko: input.exoteriko,
+        variant: 'eidikes',
+    };
+    const deadlines: Deadline[] = [buildFilingDeadline(input)];
+
+    if (!input.dikasimos) {
+        return { deadlines, status: 'success' };
+    }
+
+    deadlines.push(buildDikasimosDeadline(input.dikasimos));
+
+    if (input.apotelesma !== 'ΣΥΖΗΤΗΘΗΚΕ') {
+        return { deadlines, status: 'success' };
+    }
+
+    const [rule] = getCivilEidikesRules();
+
+    const forwardRange = getDateRangeForCalculation(
+        input.dikasimos,
+        rule.days,
+        'forward',
+        DATE_RANGE_BUFFER_DAYS
+    );
+    const backwardRange = getDateRangeForCalculation(
+        input.dikasimos,
+        rule.days,
+        'backward',
+        DATE_RANGE_BUFFER_DAYS
+    );
+
+    const argiesAndAnastoli: ArgiesAndAnastoli = {
+        argies: getArgiesForRange(backwardRange.startDate, forwardRange.endDate),
+        anastoli: getCivilAnastoliForRange(
+            backwardRange.startDate,
+            forwardRange.endDate,
+            input.dimosio
+        ),
+    };
+
+    const calculatedResult = calculateDeadlineDate(
+        rule,
+        input.dikasimos,
+        argiesAndAnastoli
+    );
+    const logic = buildCalculationLogic(
+        rule,
+        input.dikasimos,
+        'dikasimos',
+        'Δικάσιμος'
+    );
+
+    deadlines.push(buildDeadline(rule, calculatedResult, logic, ctx));
+
+    return { deadlines, status: 'success' };
+}
+
 function validateCivilInput(input: GetCivilDeadlinesInput): void {
     if (!input.imerominia_katathesis || typeof input.imerominia_katathesis !== 'string') {
         throw new DeadlineCalculationError(
@@ -160,10 +233,11 @@ export function getCivilDeadlines(input: GetCivilDeadlinesInput): CivilDeadlines
 
     const isPost2026 = input.imerominia_katathesis >= '2026-01-01';
     const isMicrodifferences = input.diadikasia === 'ΜΙΚΡΟΔΙΑΦΟΡΕΣ';
+    const isEidikes = EIDIKES_DIADIKASIES.has(input.diadikasia);
     const ctx: BuildContext = {
         isPost2026,
         exoteriko: input.exoteriko,
-        variant: isMicrodifferences ? 'mikrodiafores' : 'taktiki',
+        variant: isMicrodifferences ? 'mikrodiafores' : isEidikes ? 'eidikes' : 'taktiki',
     };
     const isBefore2022 = input.imerominia_katathesis < '2022-01-01';
     const isTaktiki = [
@@ -175,8 +249,11 @@ export function getCivilDeadlines(input: GetCivilDeadlinesInput): CivilDeadlines
         'ΝΕΑ ΤΑΚΤΙΚΗ ΜΟΝΟΜΕΛΟΥΣ (ν.5221/2025)',
         'ΝΕΑ ΤΑΚΤΙΚΗ ΠΟΛΥΜΕΛΟΥΣ (ν.5221/2025)',
     ].includes(input.diadikasia);
-    if (!isTaktiki && !isMicrodifferences) {
+    if (!isTaktiki && !isMicrodifferences && !isEidikes) {
         return { deadlines: [], status: 'not_supported' };
+    }
+    if (isEidikes) {
+        return getCivilEidikesDeadlines(input);
     }
     if (isTaktiki && isBefore2022) {
         return { deadlines: [], status: 'not_supported' };

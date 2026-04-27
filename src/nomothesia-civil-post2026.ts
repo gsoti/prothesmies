@@ -8,10 +8,22 @@ function post2026Article(article: string): string {
 
 export function getCivilFormattedNomothesiaPost2026(
     code: CivilDeadlineCode,
-    opts?: { exoteriko?: boolean; variant?: "taktiki" | "mikrodiafores" }
+    opts?: { exoteriko?: boolean; variant?: "taktiki" | "mikrodiafores" | "eidikes" }
 ): Nomothesia[] {
     if (opts?.variant === "mikrodiafores") {
         return getCivilFormattedNomothesiaMikrodiaforesPost2026(code);
+    }
+    if (opts?.variant === "eidikes") {
+        if (code !== CivilDeadlineCode.prosthiki) {
+            return [];
+        }
+        return [{
+            article: post2026Article("ΚΠολΔ 591 παρ. 1 περ. στ΄"),
+            text: "Οι διάδικοι μπορούν έως τη δωδέκατη ώρα της πέμπτης εργάσιμης ημέρας από τη συζήτηση να καταθέσουν προσθήκη στις προτάσεις τους, με την οποία αξιολογούνται οι αποδείξεις, προτείνονται ισχυρισμοί και προσκομίζονται ένορκες βεβαιώσεις, έγγραφα και γνωμοδοτήσεις κατά το άρθρο 390 μόνο για την αντίκρουση ισχυρισμών που προτάθηκαν.",
+            highlighted: [
+                "Οι διάδικοι μπορούν έως τη δωδέκατη ώρα της πέμπτης εργάσιμης ημέρας από τη συζήτηση να καταθέσουν προσθήκη στις προτάσεις τους",
+            ],
+        }];
     }
 
     switch (code) {
@@ -44,8 +56,16 @@ export function getCivilFormattedNomothesiaPost2026(
 
 export function getCivilNomothesiaPost2026(
     code: CivilDeadlineCode,
-    opts?: { variant?: "taktiki" | "mikrodiafores" }
+    opts?: { variant?: "taktiki" | "mikrodiafores" | "eidikes" }
 ): string[] | null {
+    if (opts?.variant === "eidikes") {
+        if (code !== CivilDeadlineCode.prosthiki) {
+            return null;
+        }
+        return [
+            "ΚΠολΔ 591 παρ. 1 περ. στ΄ Οι διάδικοι μπορούν έως τη δωδέκατη ώρα της πέμπτης εργάσιμης ημέρας από τη συζήτηση να καταθέσουν προσθήκη στις προτάσεις τους, με την οποία αξιολογούνται οι αποδείξεις, προτείνονται ισχυρισμοί και προσκομίζονται ένορκες βεβαιώσεις, έγγραφα και γνωμοδοτήσεις κατά το άρθρο 390 μόνο για την αντίκρουση ισχυρισμών που προτάθηκαν.",
+        ];
+    }
     if (opts?.variant !== "mikrodiafores") {
         return null;
     }

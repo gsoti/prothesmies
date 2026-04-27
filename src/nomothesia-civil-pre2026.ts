@@ -68,10 +68,18 @@ const PLAIN_PRE2026: Partial<Record<CivilDeadlineCode, string>> = {
 
 export function getCivilNomothesiaPre2026(
     code: CivilDeadlineCode,
-    opts?: { variant?: "taktiki" | "mikrodiafores" }
+    opts?: { variant?: "taktiki" | "mikrodiafores" | "eidikes" }
 ): string[] | null {
     if (opts?.variant === "mikrodiafores") {
         return null;
+    }
+    if (opts?.variant === "eidikes") {
+        if (code !== CivilDeadlineCode.prosthiki) {
+            return null;
+        }
+        return [
+            "ΚΠολΔ 591 παρ. 1 περ. στ΄ Οι διάδικοι μπορούν έως τη δωδέκατη ώρα της πέμπτης εργάσιμης ημέρας από τη συζήτηση να καταθέσουν προσθήκη στις προτάσεις τους, με την οποία αξιολογούνται οι αποδείξεις, προτείνονται ισχυρισμοί και προσκομίζονται ένορκες βεβαιώσεις, έγγραφα και γνωμοδοτήσεις κατά το άρθρο 390 μόνο για την αντίκρουση ισχυρισμών που προτάθηκαν.",
+        ];
     }
 
     const plain = PLAIN_PRE2026[code];
@@ -126,10 +134,22 @@ function getCivilFormattedNomothesiaMikrodiaforesPre2026(
 
 export function getCivilFormattedNomothesiaPre2026(
     code: CivilDeadlineCode,
-    opts?: { exoteriko?: boolean; variant?: "taktiki" | "mikrodiafores" }
+    opts?: { exoteriko?: boolean; variant?: "taktiki" | "mikrodiafores" | "eidikes" }
 ): Nomothesia[] {
     if (opts?.variant === "mikrodiafores") {
         return getCivilFormattedNomothesiaMikrodiaforesPre2026(code, opts?.exoteriko);
+    }
+    if (opts?.variant === "eidikes") {
+        if (code !== CivilDeadlineCode.prosthiki) {
+            return [];
+        }
+        return [{
+            article: "ΚΠολΔ 591 παρ. 1 περ. στ΄",
+            text: "Οι διάδικοι μπορούν έως τη δωδέκατη ώρα της πέμπτης εργάσιμης ημέρας από τη συζήτηση να καταθέσουν προσθήκη στις προτάσεις τους, με την οποία αξιολογούνται οι αποδείξεις, προτείνονται ισχυρισμοί και προσκομίζονται ένορκες βεβαιώσεις, έγγραφα και γνωμοδοτήσεις κατά το άρθρο 390 μόνο για την αντίκρουση ισχυρισμών που προτάθηκαν.",
+            highlighted: [
+                "Οι διάδικοι μπορούν έως τη δωδέκατη ώρα της πέμπτης εργάσιμης ημέρας από τη συζήτηση να καταθέσουν προσθήκη στις προτάσεις τους",
+            ],
+        }];
     }
 
     switch (code) {

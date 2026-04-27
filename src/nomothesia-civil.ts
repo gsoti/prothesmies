@@ -4,7 +4,7 @@ import { getCivilFormattedNomothesiaPre2026, getCivilNomothesiaPre2026 } from ".
 
 export function getCivilNomothesia(
     code: CivilDeadlineCode,
-    opts?: { isPost2026?: boolean; variant?: "taktiki" | "mikrodiafores" }
+    opts?: { isPost2026?: boolean; variant?: "taktiki" | "mikrodiafores" | "eidikes" }
 ): string[] | null {
     if (opts?.isPost2026) {
         return getCivilNomothesiaPost2026(code, { variant: opts?.variant });
@@ -14,7 +14,7 @@ export function getCivilNomothesia(
 
 export function getCivilFormattedNomothesia(
     code: CivilDeadlineCode,
-    opts?: { exoteriko?: boolean; isPost2026?: boolean; variant?: "taktiki" | "mikrodiafores" }
+    opts?: { exoteriko?: boolean; isPost2026?: boolean; variant?: "taktiki" | "mikrodiafores" | "eidikes" }
 ): Nomothesia[] {
     if (opts?.isPost2026) {
         return getCivilFormattedNomothesiaPost2026(code, { 
