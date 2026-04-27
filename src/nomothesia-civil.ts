@@ -1,12 +1,14 @@
 import { CivilDeadlineCode, Nomothesia } from "./types";
-import { getCivilFormattedNomothesiaPost2026 } from "./nomothesia-civil-post2026";
+import { getCivilFormattedNomothesiaPost2026, getCivilNomothesiaPost2026 } from "./nomothesia-civil-post2026";
 import { getCivilFormattedNomothesiaPre2026, getCivilNomothesiaPre2026 } from "./nomothesia-civil-pre2026";
 
 export function getCivilNomothesia(
     code: CivilDeadlineCode,
     opts?: { isPost2026?: boolean; variant?: "taktiki" | "mikrodiafores" }
 ): string[] | null {
-    if (opts?.isPost2026) return null;
+    if (opts?.isPost2026) {
+        return getCivilNomothesiaPost2026(code, { variant: opts?.variant });
+    }
     return getCivilNomothesiaPre2026(code, { variant: opts?.variant });
 }
 
@@ -15,7 +17,10 @@ export function getCivilFormattedNomothesia(
     opts?: { exoteriko?: boolean; isPost2026?: boolean; variant?: "taktiki" | "mikrodiafores" }
 ): Nomothesia[] {
     if (opts?.isPost2026) {
-        return getCivilFormattedNomothesiaPost2026(code, { exoteriko: opts?.exoteriko });
+        return getCivilFormattedNomothesiaPost2026(code, { 
+            exoteriko: opts?.exoteriko, 
+            variant: opts?.variant 
+        });
     }
 
     return getCivilFormattedNomothesiaPre2026(code, {

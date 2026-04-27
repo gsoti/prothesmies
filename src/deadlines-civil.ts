@@ -183,7 +183,7 @@ export function getCivilDeadlines(input: GetCivilDeadlinesInput): CivilDeadlines
     }
 
     const rules = isMicrodifferences
-        ? getCivilMicrodifferencesRules()
+        ? getCivilMicrodifferencesRules({ isPost2026, exoteriko: input.exoteriko })
         : isPost2026
             ? getCivilTaktikiPost2026Rules(input.exoteriko)
             : getCivilTaktikiPre2026Rules(input.exoteriko);

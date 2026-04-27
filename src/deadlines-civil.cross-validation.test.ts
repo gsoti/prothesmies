@@ -62,9 +62,9 @@ function expectSameOutputAsExternal(input: CrossValidationInput) {
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const normalize = (d: any) => {
-        const { imeres: _, ypologismos: __, calculation, formattedNomothesia: _fn, ...rest } = d;
+        const { imeres: _, ypologismos: __, formattedNomothesia: ___, calculation, ...rest } = d;
         if (calculation?.logic) {
-            const { day_count: ___, ...logic } = calculation.logic;
+            const { day_count: ____, ...logic } = calculation.logic;
             return { ...rest, calculation: { ...calculation, logic } };
         }
         if (calculation != null) return { ...rest, calculation };
