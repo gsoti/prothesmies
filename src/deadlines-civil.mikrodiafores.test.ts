@@ -24,6 +24,26 @@ describe('getCivilDeadlines for ΜΙΚΡΟΔΙΑΦΟΡΕΣ', () => {
         `);
     });
 
+    it('should format post-2026 civil deadlines from filing date when exoteriko is false', () => {
+        const { deadlines } = getCivilDeadlines({
+            imerominia_katathesis: '2026-03-24',
+            diadikasia: SUPPORTED_DIADIKASIA,
+            dikasimos: '2026-04-27',
+            apotelesma: 'ΣΥΖΗΤΗΘΗΚΕ',
+            exoteriko: false,
+        });
+
+        expect(formatCivilDeadlines(deadlines)).toMatchInlineSnapshot(`
+          "2026-03-24 - Κατάθεση                 
+          2026-04-03 - Επίδοση                    10 ημέρες μετά katathesi
+          2026-04-14 - Παρέμβαση                  20 ημέρες μετά katathesi [skipped: 2026-04-13]
+          2026-04-23 - Προσκομιδή του εναγομένου  20 ημέρες μετά epidosi
+          2026-04-27 - Δικάσιμος                
+          2026-04-28 - Προσθήκη                   5 ημέρες μετά proskomidi
+          2026-05-05 - Προσθήκη – αντίκρουση      5 ΕΡΓΑΣΙΜΕΣ ημέρες μετά dikasimos [paused: 3]"
+        `);
+    });
+
     it('uses 30-day epidosi for pre-2026 mikrodiafores when exoteriko is true', () => {
         const { deadlines } = getCivilDeadlines({
             imerominia_katathesis: '2023-03-24',
@@ -52,6 +72,46 @@ describe('getCivilDeadlines for ΜΙΚΡΟΔΙΑΦΟΡΕΣ', () => {
 
         expect(deadlines.find(d => d.type === CivilDeadlineCode.epidosi)?.calculation?.logic.days).toBe(10);
         expect(deadlines.find(d => d.type === CivilDeadlineCode.epidosi)?.date).toBe('2026-04-03');
+    });
+
+    it('adds post-2026 article 469 deadline when apotelesma is ΣΥΖΗΤΗΘΗΚΕ', () => {
+        const { deadlines } = getCivilDeadlines({
+            imerominia_katathesis: '2026-03-24',
+            diadikasia: SUPPORTED_DIADIKASIA,
+            dikasimos: '2026-04-27',
+            apotelesma: 'ΣΥΖΗΤΗΘΗΚΕ',
+        });
+
+        const deadline = deadlines.find(d => d.type === CivilDeadlineCode.prosthikiAntikrousiNeoiIsxyrismoi);
+        expect(deadline?.date).toBe('2026-05-05');
+        expect(deadline?.calculation?.logic).toEqual({
+            days: 5,
+            day_count: 'WORKING',
+            when: 'after',
+            reference: 'dikasimos',
+            start: '2026-04-27',
+            name: 'Δικάσιμος',
+        });
+        expect(deadline?.formattedNomothesia).toEqual([
+            {
+                article: 'Άρθρο 469 §1 ΚΠολΔ (από 1.1.2026)',
+                text: 'Κατά την ορισμένη δικάσιμο η υπόθεση συζητείται ακόμα και αν δεν παρίσταται κανείς διάδικος. Αναβολή της συζήτησης κατά το άρθρο 241 δεν επιτρέπεται. Οι παριστάμενοι κατά τη συζήτηση διάδικοι μπορούν, κατά την κρίση του Δικαστή, να εξετάζονται κατ άρθρο 415 ή να παρέχουν διασαφήσεις για την υπόθεση, οι δε ενόρκως βεβαιώσαντες να καταθέτουν συμπληρωματικά, εφόσον είναι παρόντες και ο Δικαστής κρίνει τούτο απολύτως αναγκαίο. Νέοι ισχυρισμοί μπορούν να προταθούν μόνον εάν αποδεικνύονται εγγράφως ή με δικαστική ομολογία του αντιδίκου και προέκυψαν μεταγενέστερα. Σε περίπτωση νέων ισχυρισμών επιτρέπεται η προσθήκη αντίκρουση εντός πέντε (5) εργάσιμων ημερών από τη συζήτηση. Μετά το πέρας της συζήτησης ο δικαστής δύναται να ζητεί από τους διαδίκους να προσκομίσουν σε ηλεκτρονική μορφή αντίγραφο του δικογράφου της αγωγής, του υπομνήματος και της προσθήκης.',
+                highlighted: [
+                    'Σε περίπτωση νέων ισχυρισμών επιτρέπεται η προσθήκη αντίκρουση εντός πέντε (5) εργάσιμων ημερών από τη συζήτηση',
+                ],
+            },
+        ]);
+    });
+
+    it('does not add article 469 deadline when apotelesma is not ΣΥΖΗΤΗΘΗΚΕ', () => {
+        const { deadlines } = getCivilDeadlines({
+            imerominia_katathesis: '2026-03-24',
+            diadikasia: SUPPORTED_DIADIKASIA,
+            dikasimos: '2026-04-27',
+            apotelesma: 'ΑΝΑΒΛΗΘΗΚΕ',
+        });
+
+        expect(deadlines.find(d => d.type === CivilDeadlineCode.prosthikiAntikrousiNeoiIsxyrismoi)).toBeUndefined();
     });
 
     describe('json snapshots', () => {

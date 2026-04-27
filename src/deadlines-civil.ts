@@ -183,7 +183,7 @@ export function getCivilDeadlines(input: GetCivilDeadlinesInput): CivilDeadlines
     }
 
     const rules = isMicrodifferences
-        ? getCivilMicrodifferencesRules({ isPost2026, exoteriko: input.exoteriko })
+        ? getCivilMicrodifferencesRules({ isPost2026, exoteriko: input.exoteriko, apotelesma: input.apotelesma })
         : isPost2026
             ? getCivilTaktikiPost2026Rules(input.exoteriko)
             : getCivilTaktikiPre2026Rules(input.exoteriko);
@@ -194,7 +194,10 @@ export function getCivilDeadlines(input: GetCivilDeadlinesInput): CivilDeadlines
             (parseISODate(input.dikasimos).getTime() - parseISODate(input.imerominia_katathesis).getTime())
             / (24 * 60 * 60 * 1000)
         );
-        maxTraversalDays = Math.max(maxTraversalDays, dikasimosDistance);
+        const dikasimosTraversalDays = rules
+            .filter(rule => rule.anchor_type === CivilAnchorType.DIKASIMOS)
+            .reduce((max, rule) => Math.max(max, dikasimosDistance + rule.days), dikasimosDistance);
+        maxTraversalDays = Math.max(maxTraversalDays, dikasimosTraversalDays);
     }
     const forwardRange = getDateRangeForCalculation(
         input.imerominia_katathesis,

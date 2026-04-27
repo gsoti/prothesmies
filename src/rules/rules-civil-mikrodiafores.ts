@@ -6,10 +6,9 @@ import {
     Direction,
 } from '../types.js';
 
-export function getCivilMicrodifferencesRules(opts?: { isPost2026?: boolean; exoteriko?: boolean }): CivilDeadlineRule[] {
+export function getCivilMicrodifferencesRules(opts?: { isPost2026?: boolean; exoteriko?: boolean; apotelesma?: string }): CivilDeadlineRule[] {
     const epidosiDays = opts?.isPost2026 ? 10 : opts?.exoteriko ? 30 : 10;
-
-    return [
+    const rules: CivilDeadlineRule[] = [
         {
             deadline_name: 'Επίδοση',
             short_name: 'Επίδοση',
@@ -51,4 +50,19 @@ export function getCivilMicrodifferencesRules(opts?: { isPost2026?: boolean; exo
             anchor_type: CivilAnchorType.LIXI_PROTASEON,
         },
     ];
+
+    if (opts?.isPost2026 && opts?.apotelesma === 'ΣΥΖΗΤΗΘΗΚΕ') {
+        rules.push({
+            deadline_name: 'Προσθήκη – αντίκρουση για νέους ισχυρισμούς',
+            short_name: 'Προσθήκη – αντίκρουση',
+            deadline_code: CivilDeadlineCode.prosthikiAntikrousiNeoiIsxyrismoi,
+            days: 5,
+            day_count: DayCount.WORKING,
+            direction: Direction.AFTER,
+            legislation: 'Αρθ.469 ΚΠολΔ. Προσθήκη – αντίκρουση για νέους ισχυρισμούς κατατίθεται μέσα σε πέντε (5) εργάσιμες ημέρες από τη συζήτηση της υπόθεσης.',
+            anchor_type: CivilAnchorType.DIKASIMOS,
+        });
+    }
+
+    return rules;
 }
