@@ -29,7 +29,9 @@ export enum CivilDeadlineCode {
     prosthikiAntikrousiNeoiIsxyrismoi = "prosthikiAntikrousiNeoiIsxyrismoi",
     orismos_dikasti_synthesis = "orismos_dikasti_synthesis",
     ekdosi_diataxis_dikasti = "ekdosi_diataxis_dikasti",
-    aitisi_meta_apo_aparadekto = "aitisi_meta_apo_aparadekto"
+    aitisi_meta_apo_aparadekto = "aitisi_meta_apo_aparadekto",
+    proskomidiParemv = "proskomidiParemv",
+    prosthikiParemv = "prosthikiParemv"
 }
 
 export enum CourtType {
@@ -63,6 +65,7 @@ export enum CivilAnchorType {
     LIXI_EPIDOSIS_AGOGIS = "epidosi",
     LIXI_PROTASEON = "protaseis",
     LIXI_PROSTHIKIS_ANTIKROUSIS = "prosthiki",
+    LIXI_PROSKOMIDIS_PAREMVASIS = "proskomidiParemv",
     DIKASIMOS = "dikasimos",
     ORISMOS_DIKASTI = "orismos_dikasti",
     EKDOSI_DIATAXIS = "ekdosi_diataxis"

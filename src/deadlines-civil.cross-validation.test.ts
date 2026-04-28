@@ -24,16 +24,17 @@ const INPUT = {
 const INPUT_EXOTERIKO_DIMOSIO = {
     imerominia_katathesis: '2025-05-01',
     diadikasia: 'ΝΕΑ ΤΑΚΤΙΚΗ ΜΟΝΟΜΕΛΟΥΣ',
+    apotelesma: 'ΣΥΖΗΤΗΘΗΚΕ',
     eidos: 'ΑΓΩΓΗ',
     dimosio: true,
     exoteriko: true,
 } as const;
 
 const INPUT_MIKRODIAFORES = {
-    imerominia_katathesis: '2023-03-24',
+    imerominia_katathesis: '2025-02-06',
     diadikasia: 'ΜΙΚΡΟΔΙΑΦΟΡΕΣ',
     eidos: 'ΑΙΤΗΣΗ',
-    dikasimos: '2025-03-04',
+    dikasimos: '2025-11-14',
     apotelesma: 'ΣΥΖΗΤΗΘΗΚΕ',
 } as const;
 
@@ -63,7 +64,7 @@ function expectSameOutputAsExternal(input: CrossValidationInput) {
     const { deadlines } = getCivilDeadlines(input);
 
     const external = prothesmiesCivilCase({
-        apotelesma: '',
+        apotelesma: 'apotelesma' in input ? input.apotelesma : '',
         diadikasia: input.diadikasia,
         court: 'ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ',
         imerominia_katathesis: input.imerominia_katathesis,

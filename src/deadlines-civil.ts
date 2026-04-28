@@ -49,6 +49,7 @@ const ANCHOR_TRAVERSAL_DAYS = new Map<CivilAnchorType, number>([
     [CivilAnchorType.LIXI_EPIDOSIS_AGOGIS, 30],
     [CivilAnchorType.LIXI_PROTASEON, 120],
     [CivilAnchorType.LIXI_PROSTHIKIS_ANTIKROUSIS, 135],
+    [CivilAnchorType.LIXI_PROSKOMIDIS_PAREMVASIS, 50],
 ]);
 
 function getAnchorReference(anchor: CivilAnchorType): string {
@@ -66,6 +67,7 @@ function getAnchorName(anchor: CivilAnchorType): string {
         case CivilAnchorType.LIXI_EPIDOSIS_AGOGIS:       return 'Επίδοση';
         case CivilAnchorType.LIXI_PROTASEON:             return 'Προτάσεις';
         case CivilAnchorType.LIXI_PROSTHIKIS_ANTIKROUSIS: return 'Προσθήκη';
+        case CivilAnchorType.LIXI_PROSKOMIDIS_PAREMVASIS: return 'Προσκομιδή της παρέμβασης';
         case CivilAnchorType.DIKASIMOS:                  return 'Δικάσιμος';
         case CivilAnchorType.ORISMOS_DIKASTI:            return 'Ορισμός δικαστή / σύνθεσης';
         case CivilAnchorType.EKDOSI_DIATAXIS:            return 'Έκδοση διάταξης';
@@ -335,11 +337,19 @@ export function getCivilDeadlines(input: GetCivilDeadlinesInput): CivilDeadlines
         const anchorRef = rule.deadline_code === CivilDeadlineCode.protaseis && ctx.variant === 'taktiki'
             ? 'epidosi'
             : getAnchorReference(rule.anchor_type);
-        const logicName = ctx.variant === 'mikrodiafores' && rule.deadline_code === CivilDeadlineCode.prosthiki
-            ? 'Προσκομιδή του εναγομένου'
+        const logicName = ctx.variant === 'mikrodiafores'
+            ? rule.deadline_code === CivilDeadlineCode.prosthiki
+                ? 'Προσκομιδή του εναγομένου'
+                : rule.deadline_code === CivilDeadlineCode.prosthikiParemv
+                    ? 'Προσκομιδή της παρέμβασης'
+                    : getAnchorName(rule.anchor_type)
             : getAnchorName(rule.anchor_type);
-        const logicRef = ctx.variant === 'mikrodiafores' && rule.deadline_code === CivilDeadlineCode.prosthiki
-            ? 'proskomidi'
+        const logicRef = ctx.variant === 'mikrodiafores'
+            ? rule.deadline_code === CivilDeadlineCode.prosthiki
+                ? 'proskomidi'
+                : rule.deadline_code === CivilDeadlineCode.prosthikiParemv
+                    ? 'proskomidiParemv'
+                    : anchorRef
             : anchorRef;
         const logic = buildCalculationLogic(rule, referenceDate, logicRef, logicName);
         const deadline = buildDeadline(rule, calculatedResult, logic, ctx);
@@ -354,6 +364,9 @@ export function getCivilDeadlines(input: GetCivilDeadlinesInput): CivilDeadlines
                 break;
             case CivilDeadlineCode.prosthiki:
                 anchors.set(CivilAnchorType.LIXI_PROSTHIKIS_ANTIKROUSIS, deadline.date);
+                break;
+            case CivilDeadlineCode.proskomidiParemv:
+                anchors.set(CivilAnchorType.LIXI_PROSKOMIDIS_PAREMVASIS, deadline.date);
                 break;
         }
     }
