@@ -6,14 +6,13 @@ import {
     Direction,
 } from '../types.js';
 
-export function getCivilMicrodifferencesRules(opts?: { isPost2026?: boolean; exoteriko?: boolean; apotelesma?: string }): CivilDeadlineRule[] {
-    const epidosiDays = opts?.isPost2026 ? 10 : opts?.exoteriko ? 30 : 10;
+export function getCivilMicrodifferencesRules(opts?: { isPost2026?: boolean; exoteriko?: boolean; apotelesma?: string }): CivilDeadlineRule[] {    
     const rules: CivilDeadlineRule[] = [
         {
             deadline_name: 'Επίδοση',
             short_name: 'Επίδοση',
             deadline_code: CivilDeadlineCode.epidosi,
-            days: epidosiDays,
+            days: opts?.exoteriko ? 30 : 10,
             day_count: DayCount.CALENDAR,
             direction: Direction.AFTER,
             legislation: 'Αρθ.468 § 1 ΚΠολΔ. Η αγωγή κατατίθεται στη γραμματεία του ειρηνοδικείου και επιδίδεται στον εναγόμενο μέσα σε προθεσμία δέκα (10) ημερών από την κατάθεσή της. Αν ο εναγόμενος διαμένει στο εξωτερικό ή είναι άγνωστης διαμονής η αγωγή επιδίδεται σε προθεσμία τριάντα (30) ημερών από την κατάθεσή της. Το δεύτερο εδάφιο της παρ. 2 του άρθρου 215 εφαρμόζεται αναλόγως.',

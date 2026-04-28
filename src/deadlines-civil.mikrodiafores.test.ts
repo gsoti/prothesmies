@@ -63,15 +63,15 @@ describe('getCivilDeadlines for ΜΙΚΡΟΔΙΑΦΟΡΕΣ', () => {
         ]);
     });
 
-    it('uses 10-day epidosi for post-2026 mikrodiafores even when exoteriko is true', () => {
+    it('uses 30-day epidosi for post-2026 mikrodiafores even when exoteriko is true', () => {
         const { deadlines } = getCivilDeadlines({
             imerominia_katathesis: '2026-03-24',
             diadikasia: SUPPORTED_DIADIKASIA,
             exoteriko: true,
         });
 
-        expect(deadlines.find(d => d.type === CivilDeadlineCode.epidosi)?.calculation?.logic.days).toBe(10);
-        expect(deadlines.find(d => d.type === CivilDeadlineCode.epidosi)?.date).toBe('2026-04-03');
+        expect(deadlines.find(d => d.type === CivilDeadlineCode.epidosi)?.calculation?.logic.days).toBe(30);
+        expect(deadlines.find(d => d.type === CivilDeadlineCode.epidosi)?.date).toBe('2026-04-23');
     });
 
     it('adds post-2026 article 469 deadline when apotelesma is ΣΥΖΗΤΗΘΗΚΕ', () => {
