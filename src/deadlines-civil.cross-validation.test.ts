@@ -16,13 +16,15 @@ import { CivilDeadlineCode } from './types.js';
 const INPUT = {
     imerominia_katathesis: '2024-10-16',
     diadikasia: 'ΝΕΑ ΤΑΚΤΙΚΗ ΜΟΝΟΜΕΛΟΥΣ',
+    eidos: 'ΑΓΩΓΗ',
     dikasimos: '2025-09-25',
 } as const;
 
 // https://www.run.legal/civil-cases/9c630ed3-3a2d-49e0-9f8d-1fe6890ad72d
 const INPUT_EXOTERIKO_DIMOSIO = {
     imerominia_katathesis: '2025-05-01',
-    diadikasia: 'ΝΕΑ ΤΑΚΤΙΚΗ ΜΟΝΟΜΕΛΟΥΣ',    
+    diadikasia: 'ΝΕΑ ΤΑΚΤΙΚΗ ΜΟΝΟΜΕΛΟΥΣ',
+    eidos: 'ΑΓΩΓΗ',
     dimosio: true,
     exoteriko: true,
 } as const;
@@ -30,6 +32,7 @@ const INPUT_EXOTERIKO_DIMOSIO = {
 const INPUT_MIKRODIAFORES = {
     imerominia_katathesis: '2023-03-24',
     diadikasia: 'ΜΙΚΡΟΔΙΑΦΟΡΕΣ',
+    eidos: 'ΑΙΤΗΣΗ',
     dikasimos: '2025-03-04',
     apotelesma: 'ΣΥΖΗΤΗΘΗΚΕ',
 } as const;
@@ -37,6 +40,7 @@ const INPUT_MIKRODIAFORES = {
 const INPUT_EIDIKES_DIADIKASIES = {
     imerominia_katathesis: '2025-01-10',
     diadikasia: 'ΑΜΟΙΒΕΣ',
+    eidos: 'ΑΙΤΗΣΗ',
     dikasimos: '2025-03-10',
     apotelesma: 'ΣΥΖΗΤΗΘΗΚΕ',
 } as const;
@@ -63,7 +67,7 @@ function expectSameOutputAsExternal(input: CrossValidationInput) {
         diadikasia: input.diadikasia,
         court: 'ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ',
         imerominia_katathesis: input.imerominia_katathesis,
-        dikasimos: input.dikasimos,
+        dikasimos: 'dikasimos' in input ? input.dikasimos : undefined,
         dimosio: 'dimosio' in input ? input.dimosio : undefined,
         exoterikou: 'exoteriko' in input ? input.exoteriko : undefined,
     });

@@ -137,19 +137,14 @@ function buildArticle238Post2026ProsekText(exoteriko?: boolean): Nomothesia[] {
     }];
 }
 
-function buildArticle238Post2026ProtaseisText(exoteriko?: boolean): Nomothesia[] {
-    const highlightedDefault = [
-        "Η κατάθεση των προτάσεων γίνεται σε προθεσμία ενενήντα (90) ημερών",
-        "από το πέρας της προθεσμίας επίδοσης της αγωγής",
-    ];
-    const highlightedExoteriko = [
-        "Η κατάθεση των προτάσεων γίνεται",
-        "και στην περίπτωση του προηγούμενου εδαφίου σε προθεσμία εκατόν εξήντα (120) ημερών από το πέρας της προθεσμίας επίδοσης της αγωγής",
+function buildArticle238Post2026ProtaseisText(exoteriko?: boolean): Nomothesia[] {    
+    const highlighted = [
+        "Η κατάθεση των προτάσεων γίνεται σε προθεσμία ενενήντα (90) ημερών και στην περίπτωση του προηγούμενου εδαφίου σε προθεσμία εκατόν είκοσι (120) ημερών από το πέρας της προθεσμίας επίδοσης της αγωγής",
     ];
     return [{
         article: post2026Article("Άρθρο 238 §1 ΚΠολΔ"),
         text: articles["238"]["1"],
-        highlighted: exoteriko ? highlightedExoteriko : highlightedDefault,
+        highlighted: highlighted,
     }];
 }
 

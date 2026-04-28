@@ -130,6 +130,7 @@ export interface GetDeadlinesInput {
 export interface GetCivilDeadlinesInput {
     imerominia_katathesis: string; // ISO date format (YYYY-MM-DD)
     diadikasia: string;
+    eidos: string;
     apotelesma?: string;
     dimosio?: boolean;
     exoteriko?: boolean;
