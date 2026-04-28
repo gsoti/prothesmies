@@ -1,9 +1,14 @@
 import { describe, expect, it } from 'vitest';
-import { getCivilDeadlines } from './deadlines-civil.js';
-import { CivilDeadlineCode } from './types.js';
+import { getCivilDeadlines as getBaseCivilDeadlines } from './deadlines-civil.js';
+import { CivilDeadlineCode, type GetCivilDeadlinesInput } from './types.js';
 import { formatCivilDeadlines } from './test-helpers/formatCivilDeadlines.js';
 
 const SUPPORTED_DIADIKASIA = 'ΜΙΚΡΟΔΙΑΦΟΡΕΣ';
+const EIDOS = 'ΑΙΤΗΣΗ';
+
+function getCivilDeadlines(input: Omit<GetCivilDeadlinesInput, 'eidos'>) {
+    return getBaseCivilDeadlines({ ...input, eidos: EIDOS });
+}
 
 describe('getCivilDeadlines for ΜΙΚΡΟΔΙΑΦΟΡΕΣ', () => {
     it('should format civil deadlines from filing date', () => {

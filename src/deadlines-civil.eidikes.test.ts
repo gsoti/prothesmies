@@ -6,6 +6,7 @@ import { formatCivilDeadlines } from './test-helpers/formatCivilDeadlines.js';
 const INPUT = {
     imerominia_katathesis: '2025-01-10',
     diadikasia: 'ΑΜΟΙΒΕΣ',
+    eidos: 'ΑΙΤΗΣΗ',
     dikasimos: '2025-03-10',
     apotelesma: 'ΣΥΖΗΤΗΘΗΚΕ',
 } as const;

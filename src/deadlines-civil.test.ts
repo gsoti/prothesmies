@@ -7,6 +7,7 @@ describe('getCivilDeadlines', () => {
             getCivilDeadlines({
                 imerominia_katathesis: 'invalid-date',
                 diadikasia: 'ΝΕΑ ΤΑΚΤΙΚΗ ΜΟΝΟΜΕΛΟΥΣ',
+                eidos: 'ΑΙΤΗΣΗ',
             })
         ).toThrow('Invalid imerominia_katathesis date format');
     });
@@ -15,6 +16,7 @@ describe('getCivilDeadlines', () => {
         const result = getCivilDeadlines({
             imerominia_katathesis: '2026-01-15',
             diadikasia: 'ΕΙΔΙΚΗ ΔΙΑΔΙΚΑΣΙΑ',
+            eidos: 'ΑΙΤΗΣΗ',
         });
         expect(result).toEqual({ deadlines: [], status: 'not_supported' });
     });

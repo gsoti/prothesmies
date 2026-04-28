@@ -1,11 +1,17 @@
 import { describe, expect, it } from 'vitest';
-import { getCivilDeadlines } from './deadlines-civil.js';
+import { getCivilDeadlines as getBaseCivilDeadlines } from './deadlines-civil.js';
 import {
     CivilDeadlineCode,
+    type GetCivilDeadlinesInput,
 } from './types.js';
 import { formatCivilDeadlines } from './test-helpers/formatCivilDeadlines.js';
 
 const DIADIKASIA = 'ΝΕΑ ΤΑΚΤΙΚΗ ΜΟΝΟΜΕΛΟΥΣ';
+const EIDOS = 'ΑΓΩΓΗ';
+
+function getCivilDeadlines(input: Omit<GetCivilDeadlinesInput, 'eidos'>) {
+    return getBaseCivilDeadlines({ ...input, eidos: EIDOS });
+}
 
 describe('getCivilDeadlines (pre-2026 τακτική)', () => {
     it('returns not_supported for non-taktiki pre-2026 filing', () => {

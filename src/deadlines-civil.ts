@@ -248,7 +248,7 @@ export function getCivilDeadlines(input: GetCivilDeadlinesInput): CivilDeadlines
         'ΝΕΑ ΤΑΚΤΙΚΗ ΠΟΛΥΜΕΛΟΥΣ',
         'ΝΕΑ ΤΑΚΤΙΚΗ ΜΟΝΟΜΕΛΟΥΣ (ν.5221/2025)',
         'ΝΕΑ ΤΑΚΤΙΚΗ ΠΟΛΥΜΕΛΟΥΣ (ν.5221/2025)',
-    ].includes(input.diadikasia);
+    ].includes(input.diadikasia) && input.eidos === 'ΑΓΩΓΗ';
     if (!isTaktiki && !isMicrodifferences && !isEidikes) {
         return { deadlines: [], status: 'not_supported' };
     }
