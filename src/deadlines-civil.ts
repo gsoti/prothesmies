@@ -99,26 +99,6 @@ function buildDeadline(
     };
 }
 
-function buildPendingDeadline(
-    rule: CivilDeadlineRule,
-    missingAnchor: CivilAnchorType,
-    ctx: BuildContext
-): Deadline {
-    const plain = getCivilNomothesia(rule.deadline_code, ctx) ?? [rule.legislation];
-    const formatted = getCivilFormattedNomothesia(rule.deadline_code, ctx);
-
-    return {
-        name: rule.deadline_name,
-        shortName: rule.short_name,
-        type: rule.deadline_code,
-        date: '',
-        nomothesia: plain,
-        formattedNomothesia: formatted,
-        calculation: null,
-        missingAnchor,
-    };
-}
-
 function buildFilingDeadline(input: GetCivilDeadlinesInput): Deadline {
     return {
         name: 'Κατάθεση',
@@ -329,7 +309,6 @@ export function getCivilDeadlines(input: GetCivilDeadlinesInput): CivilDeadlines
         const referenceDate = anchors.get(rule.anchor_type);
 
         if (!referenceDate) {
-            deadlines.push(buildPendingDeadline(rule, rule.anchor_type, ctx));
             continue;
         }
 
@@ -376,7 +355,19 @@ export function getCivilDeadlines(input: GetCivilDeadlinesInput): CivilDeadlines
     }
 
     for (const rule of lateRules) {
-        deadlines.push(buildPendingDeadline(rule, rule.anchor_type, ctx));
+        const referenceDate = anchors.get(rule.anchor_type);
+        if (!referenceDate) {
+            continue;
+        }
+
+        const calculatedResult = calculateDeadlineDate(rule, referenceDate, argiesAndAnastoli);
+        const logic = buildCalculationLogic(
+            rule,
+            referenceDate,
+            getAnchorReference(rule.anchor_type),
+            getAnchorName(rule.anchor_type)
+        );
+        deadlines.push(buildDeadline(rule, calculatedResult, logic, ctx));
     }
 
     return { deadlines, status: 'success' };

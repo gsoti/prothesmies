@@ -1,16 +1,11 @@
 /**
  * Cross-validation between our getCivilDeadlines and the @gsoti/prothesmies
  * reference implementation (prothesmiesCivilCase).
- *
- * CivilDeadlineCode values mirror the external DeadlineType values, so we can
- * filter/pair entries by comparing type strings directly. katathesi and
- * dikasimos are produced only by the external lib and are skipped here.
  */
 
 import { describe, expect, it } from 'vitest';
-import { prothesmiesCivilCase, DeadlineType } from '@gsoti/prothesmies';
+import { prothesmiesCivilCase } from '@gsoti/prothesmies';
 import { getCivilDeadlines } from './deadlines-civil.js';
-import { CivilDeadlineCode } from './types.js';
 
 // https://www.run.legal/civil-cases/396e5941-17ba-40a7-8cbe-073f0a3edff4
 const INPUT = {
@@ -18,6 +13,12 @@ const INPUT = {
     diadikasia: 'ΝΕΑ ΤΑΚΤΙΚΗ ΜΟΝΟΜΕΛΟΥΣ',
     eidos: 'ΑΓΩΓΗ',
     dikasimos: '2025-09-25',
+} as const;
+
+const INPUT_WITHOUT_DIMASIMOS = {
+    imerominia_katathesis: '2025-12-02',
+    diadikasia: 'ΝΕΑ ΤΑΚΤΙΚΗ ΜΟΝΟΜΕΛΟΥΣ',
+    eidos: 'ΑΓΩΓΗ',    
 } as const;
 
 // https://www.run.legal/civil-cases/9c630ed3-3a2d-49e0-9f8d-1fe6890ad72d
@@ -46,10 +47,6 @@ const INPUT_EIDIKES_DIADIKASIES = {
     apotelesma: 'ΣΥΖΗΤΗΘΗΚΕ',
 } as const;
 
-const SKIP_EXTERNAL = new Set<string>([]);
-
-const ourTypeValues = new Set<string>([]);
-
 function byDate(a: { date: string }, b: { date: string }) {
     return a.date.localeCompare(b.date);
 }
@@ -58,7 +55,8 @@ type CrossValidationInput =
     | typeof INPUT
     | typeof INPUT_EXOTERIKO_DIMOSIO
     | typeof INPUT_MIKRODIAFORES
-    | typeof INPUT_EIDIKES_DIADIKASIES;
+    | typeof INPUT_EIDIKES_DIADIKASIES
+    | typeof INPUT_WITHOUT_DIMASIMOS;
 
 function expectSameOutputAsExternal(input: CrossValidationInput) {
     const { deadlines } = getCivilDeadlines(input);
@@ -86,15 +84,13 @@ function expectSameOutputAsExternal(input: CrossValidationInput) {
 
     const extNormalized = new Map(
         external
-            .filter(d => !SKIP_EXTERNAL.has(d.type) && ourTypeValues.has(d.type))
             .sort(byDate)
             .map(d => [d.type, normalize(d)] as const)
     );
 
     const oursNormalized = new Map(
-        deadlines
-        .filter(d => ourTypeValues.has(d.type))
-        .sort(byDate)
+        deadlines            
+            .sort(byDate)
             .map(normalize)
             .map(d => {
                 const externalDeadline = extNormalized.get(d.type);
@@ -107,20 +103,20 @@ function expectSameOutputAsExternal(input: CrossValidationInput) {
             })
     );
 
-    const commonTypes = Array.from(extNormalized.keys()).filter(type => oursNormalized.has(type));
-    expect(commonTypes.sort()).toEqual(Array.from(extNormalized.keys()).sort());
-
-    for (const type of commonTypes) {
-        expect(oursNormalized.get(type)).toEqual(extNormalized.get(type));
-    }
+    expect(Array.from(oursNormalized.keys()).sort()).toEqual(Array.from(extNormalized.keys()).sort());
+    expect(oursNormalized).toEqual(extNormalized);
 }
 
 describe('getCivilDeadlines cross-validation against @gsoti/prothesmies', () => {
-    it('returns the same output as prothesmiesCivilCase for the common deadline types', () => {
+    it('returns the same output as prothesmiesCivilCase', () => {
         expectSameOutputAsExternal(INPUT);
     });
 
-    it('returns the same output as prothesmiesCivilCase for the common deadline types when exoteriko and dimosio are true', () => {
+    it('returns the same output as prothesmiesCivilCase when dikasimos is not provided', () => {
+        expectSameOutputAsExternal(INPUT_WITHOUT_DIMASIMOS);
+    });
+
+    it('returns the same output as prothesmiesCivilCase when exoteriko and dimosio are true', () => {
         expectSameOutputAsExternal(INPUT_EXOTERIKO_DIMOSIO);
     });
 
