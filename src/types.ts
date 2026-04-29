@@ -23,6 +23,7 @@ export enum CivilDeadlineCode {
     paremvasi = "paremvasi",
     paremvasiProsek = "paremvasiProsek",
     protaseis = "protaseis",
+    proskomidi = "proskomidi",
     prosthiki = "prosthiki",
     opsigeneis = "opsigeneis",
     opsigeneisAntikrousi = "opsigeneisAntikrousi",

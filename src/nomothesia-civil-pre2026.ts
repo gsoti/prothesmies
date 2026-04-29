@@ -111,6 +111,7 @@ function getCivilFormattedNomothesiaMikrodiaforesPre2026(
                         : "Παρεμβάσεις και ανταγωγές κατατίθενται και επιδίδονται στους διαδίκους μέσα σε προθεσμία είκοσι (20) ημερών από την κατάθεση της αγωγής",
                 ],
             }];
+        case CivilDeadlineCode.proskomidi:
         case CivilDeadlineCode.protaseis:
             return [{
                 article: "Άρθρο 468 §2 ΚΠολΔ",

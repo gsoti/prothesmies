@@ -129,7 +129,7 @@ function getCivilEidikesDeadlines(input: GetCivilDeadlinesInput): CivilDeadlines
         exoteriko: input.exoteriko,
         variant: 'eidikes',
     };
-    const deadlines: Deadline[] = [buildFilingDeadline(input)];
+    const deadlines: Deadline[] = [];
 
     if (!input.dikasimos) {
         return { deadlines, status: 'success' };
@@ -339,6 +339,7 @@ export function getCivilDeadlines(input: GetCivilDeadlinesInput): CivilDeadlines
                 anchors.set(CivilAnchorType.LIXI_EPIDOSIS_AGOGIS, deadline.date);
                 break;
             case CivilDeadlineCode.protaseis:
+            case CivilDeadlineCode.proskomidi:
                 anchors.set(CivilAnchorType.LIXI_PROTASEON, deadline.date);
                 break;
             case CivilDeadlineCode.prosthiki:

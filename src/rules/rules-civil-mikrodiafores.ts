@@ -31,7 +31,7 @@ export function getCivilMicrodifferencesRules(opts?: { isPost2026?: boolean; exo
         {
             deadline_name: 'Προσκομιδή των αποδεικτικών από τους διαδίκους και η υποβολή του έγγραφου υπομνήματος του εναγομένου',
             short_name: 'Προσκομιδή του εναγομένου',
-            deadline_code: CivilDeadlineCode.protaseis,
+            deadline_code: CivilDeadlineCode.proskomidi,
             days: 20,
             day_count: DayCount.CALENDAR,
             direction: Direction.AFTER,
