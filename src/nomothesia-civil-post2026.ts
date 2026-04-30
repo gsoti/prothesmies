@@ -1,4 +1,4 @@
-import { CivilDeadlineCode, Nomothesia } from "./types";
+import { CivilDeadlineCode, Nomothesia } from "./types.js";
 
 const POST_2026_ARTICLE_SUFFIX = " (από 1.1.2026)";
 
