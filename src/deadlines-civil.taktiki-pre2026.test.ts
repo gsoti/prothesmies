@@ -29,8 +29,8 @@ describe('getCivilDeadlines (pre-2026 τακτική)', () => {
         });
 
         expect(status).toBe('success');
-        // filing + 5 calculated + 2 pending (opsigeneis/antikrousi require dikasimos)
-        expect(deadlines).toHaveLength(8);
+        // filing + 5 calculated; dikasimos-dependent deadlines are omitted
+        expect(deadlines).toHaveLength(6);
 
         const epidosi = deadlines.find(deadline => deadline.type === CivilDeadlineCode.epidosi)!;
         expect(epidosi.type).toBe(CivilDeadlineCode.epidosi);
@@ -146,9 +146,7 @@ describe('getCivilDeadlines (pre-2026 τακτική)', () => {
           2025-04-30 - Παρέμβαση                        60 ημέρες μετά katathesi
           2025-05-30 - Παρέμβαση του προσεπικαλούμενου  90 ημέρες μετά katathesi
           2025-06-30 - Προτάσεις                        90 ημέρες μετά epidosi [skipped: 2025-06-29]
-          2025-09-30 - Προσθήκη                         15 ημέρες μετά protaseis [paused: 77]
-          PENDING - Οψιγενείς ισχυρισμοί                pending (dikasimos)
-          PENDING - Αντίκρουση σε οψιγενείς             pending (dikasimos)"
+          2025-09-30 - Προσθήκη                         15 ημέρες μετά protaseis [paused: 77]"
         `);
     });
 });

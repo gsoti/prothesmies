@@ -16,30 +16,12 @@ describe('getCivilDeadlines for ειδικές διαδικασίες', () => {
         const { deadlines } = getCivilDeadlines(INPUT);
 
         expect(formatCivilDeadlines(deadlines)).toMatchInlineSnapshot(`
-          "2025-01-10 - Κατάθεση 
-          2025-03-10 - Δικάσιμος
+          "2025-03-10 - Δικάσιμος
           2025-03-17 - Προσθήκη   5 ΕΡΓΑΣΙΜΕΣ ημέρες μετά dikasimos [paused: 2]"
         `);
     });
 
     describe('json snapshots', () => {
-        it('snapshots κατάθεση as JSON', () => {
-            const { deadlines } = getCivilDeadlines(INPUT);
-
-            const deadline = deadlines.find(d => d.type === CivilDeadlineCode.katathesi);
-            expect(JSON.parse(JSON.stringify(deadline))).toMatchInlineSnapshot(`
-              {
-                "calculation": null,
-                "date": "2025-01-10",
-                "formattedNomothesia": [],
-                "name": "Κατάθεση",
-                "nomothesia": [],
-                "shortName": "Κατάθεση",
-                "type": "katathesi",
-              }
-            `);
-        });
-
         it('snapshots δικάσιμος as JSON', () => {
             const { deadlines } = getCivilDeadlines(INPUT);
 
