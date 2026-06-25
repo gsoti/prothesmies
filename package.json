@@ -20,6 +20,7 @@
     "start": "node dist/index.js",
     "dev": "tsx src/index.ts",
     "test": "vitest",
+    "test:lawcase": "LAWCASE_LIVE=1 vitest run tests/lawcase-live.test.ts",
     "typecheck:tests": "tsc -p tsconfig.test.json"
   },
   "dependencies": {
