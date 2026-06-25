@@ -64,6 +64,21 @@ describe('getCivilDeadlines', () => {
         expect(byCode.get(CivilDeadlineCode.prosthiki)?.calculation?.logic.reference).toBe('protaseis');
     });
 
+    it('uses 120 days for προτάσεις when the defendant is abroad', () => {
+        const { deadlines } = getCivilDeadlines({
+            imerominia_katathesis: '2026-01-15',
+            diadikasia: SUPPORTED_DIADIKASIA,
+            exoteriko: true,
+        });
+
+        const byCode = new Map(deadlines.map(deadline => [deadline.type, deadline]));
+
+        expect(byCode.get(CivilDeadlineCode.protaseis)?.date).toBe('2026-06-16');
+        expect(byCode.get(CivilDeadlineCode.protaseis)?.calculation?.logic.days).toBe(120);
+        expect(byCode.get(CivilDeadlineCode.prosthiki)?.date).toBe('2026-07-01');
+        expect(byCode.get(CivilDeadlineCode.orismos_dikasti_synthesis)?.date).toBe('2026-07-13');
+    });
+
     it('keeps legislation text shape compatible when no full text is available', () => {
         const { deadlines } = getCivilDeadlines({
             imerominia_katathesis: '2026-01-15',

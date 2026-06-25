@@ -42,7 +42,7 @@ export function getCivilTaktikiPost2026Rules(exoteriko?: boolean): CivilDeadline
             deadline_name: 'Κατάθεση προτάσεων και αποδεικτικών μέσων',
             short_name: 'Προτάσεις & Αποδεικτικά',
             deadline_code: CivilDeadlineCode.protaseis,
-            days: 90,
+            days: exoteriko ? 120 : 90,
             day_count: DayCount.CALENDAR,
             direction: Direction.AFTER,
             legislation: 'άρθρο 237 §1 ΚΠολΔ',

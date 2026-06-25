@@ -1,0 +1,4948 @@
+{
+  "cutoff": "1900-01-01",
+  "totalCases": 1312,
+  "substantiveMismatchCount": 190,
+  "generatedAt": "2026-04-28T10:12:26.931Z",
+  "entries": [
+    {
+      "caseId": "002100e2-c388-4b51-b098-faf8986583ed",
+      "caseName": "ΣΙΔΕΡΑΣ ΘΕΟΔΩΡΟΣ - ΣΙΔΕΡΑΣ ΑΝΑΚΟΠΗ ΚΑΤΑ ΚΑΤΑΣΧΕΤΗΡΙΑΣ",
+      "userId": 47,
+      "organizationId": "760a3ff7-dff5-43ef-a36f-feb4f1b438d1",
+      "inputs": {
+        "filingDate": "2023-10-27",
+        "dikasimos": "2024-03-12",
+        "diadikasia": "ΑΝΑΚΟΠΕΣ ΚΑΤΑ ΤΗΣ ΕΚΤΕΛΕΣΗΣ (Από Μετάπτωση)",
+        "eidos": "ΑΝΑΚΟΠΗ ΕΚΤΕΛΕΣΕΩΣ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-12 08:17:38.833473+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-03-20"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "013b00bf-d2b9-4845-b6d4-e8424024c561",
+      "caseName": "ΓΑΚ 25257/2025",
+      "userId": 46,
+      "organizationId": "d1441af1-ddae-47e8-8aad-a1ab9a38f308",
+      "inputs": {
+        "filingDate": "2025-02-03",
+        "dikasimos": "2025-03-04",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 20:45:10.871535+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-03-11"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "0221dac4-c8c9-44c6-bdb2-cd061cd03a72",
+      "caseName": "Κοντάκης κατά Κουτκιά",
+      "userId": 31,
+      "organizationId": "52f36e85-27f9-42c0-bd6d-af9b32f35900",
+      "inputs": {
+        "filingDate": "2024-12-27",
+        "dikasimos": "2025-03-28",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-04-14 14:03:44.974656+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-04-04"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "03d0987b-c135-4b65-a434-7d51488bb6d9",
+      "caseName": "ΣΑΖΕΪΔΗΣ ΚΑΤΑ ΛΟΥΝΓΚΑΡΙ",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2022-01-12",
+        "dikasimos": "2022-12-19",
+        "diadikasia": "ΕΡΓΑΤΙΚΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 15:30:05.112466+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2022-12-27"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "06fb6294-e2d9-484c-b962-f42fb7cd07ce",
+      "caseName": "Ζώρα Επιφανεία",
+      "userId": 41,
+      "organizationId": "39558486-4869-47a1-bf67-14d9e791dc04",
+      "inputs": {
+        "filingDate": "2024-12-19",
+        "dikasimos": "2025-02-24",
+        "diadikasia": "ΜΙΣΘΩΣΕΙΣ - ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-02 10:22:02.671234+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-03-04"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "07b27590-5fa3-48e1-8af6-074a6bd0ae4d",
+      "caseName": "ΜΠρΑθ Τριτανακοπή Ναταλίας Πλωμαρίτογλου # Αγγελικής Πλωμαρίτογλου (#1265/20 ΜΠρΑθ)",
+      "userId": 108,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2023-01-31",
+        "dikasimos": "2023-04-03",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΤΡΙΤΑΝΑΚΟΠΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 21:40:37.029362+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-04-10"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "08527624-e581-4c06-bc1a-6cd7b6f865cb",
+      "caseName": "ΚΑΛΛΗΔΩΝΗΣ ΚΑΤΑ ΜΑΚΡΟΓΕΩΡΓΗ",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2024-01-11",
+        "dikasimos": "2024-04-16",
+        "diadikasia": "ΜΙΣΘΩΣΕΙΣ - ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΠΕΙΡΑΙΑ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΠΕΙΡΑΙΑ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΠΕΙΡΑΙΑ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 15:35:40.977644+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-04-23"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "0d396314-91ff-43ff-b8ae-e7f94bf2f790",
+      "caseName": "7315/2022",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2022-11-16",
+        "dikasimos": "2023-02-22",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΜΑΡΟΥΣΙΟΥ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ - ΠΕΡΙΦΕΡΕΙΑΚΗ ΕΔΡΑ ΑΜΑΡΟΥΣΙΟΥ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΜΑΡΟΥΣΙΟΥ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:50:52.567073+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-03-02"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "0e8220bb-aa66-4359-91fa-f8f9b2199d51",
+      "caseName": "ΜΠρΑθ Αγωγή (εργατικά) Μπίνιος Παναγιώτης # Δήμος Ιλίου",
+      "userId": 113,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2021-09-17",
+        "dikasimos": "2022-01-31",
+        "diadikasia": "ΕΡΓΑΤΙΚΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΚΛΗΣΗ ΜΕΤΑ ΑΠΟ ΜΑΤΑΙΩΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 21:39:01.325981+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2022-02-07"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "0f997eb1-0c89-4f4b-941c-fdfb1eb62bf2",
+      "caseName": "ΑΡΚΕΝΤΗ ΚΑΤΑ ΒΟΓΛΗ 1Η",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2022-05-03",
+        "dikasimos": "2022-09-16",
+        "diadikasia": "ΜΙΣΘΩΣΕΙΣ - ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΚΛΗΣΗ-ΕΠΑΝΑΛΗΨΗ ΣΥΖΗΤΗΣΗΣ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 13:23:15.398025+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2022-09-23"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "0fdd54cb-575c-468b-8a6a-a853933d4a99",
+      "caseName": "ΜΠρΑθ Αίτηση (άρθρου 6 & 3 Ν. 2664/1998) Δήμου Ζωγράφου # Ελληνικό Δημόσιο κλπ",
+      "userId": 109,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2020-11-17",
+        "dikasimos": "2024-10-25",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 21:38:06.374967+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-11-04"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "111bb964-fa74-4f5b-89d2-1f8bec4ca28c",
+      "caseName": "ΓΑΚ 233453/ΕΑΚ 11420 - 2024",
+      "userId": 33,
+      "organizationId": "c2ce5c3d-804b-47ce-886a-aeaba74f59eb",
+      "inputs": {
+        "filingDate": "2024-12-27",
+        "dikasimos": "2025-03-28",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-04-08 18:01:49.916691+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-04-04"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "1249e1dd-1f53-4eff-8377-a56363eb1dd9",
+      "caseName": "1214/2024",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2024-02-02",
+        "dikasimos": "2024-04-23",
+        "diadikasia": "ΕΡΓΑΤΙΚΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΚΑΤ ΕΦΕΣΗ ΑΠΟ ΠΡΩΤΟΔΙΚΕΙΟ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:50:20.345106+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-04-30"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "12cf5026-68ee-4bc5-8b50-e4174e974972",
+      "caseName": "5039/2020",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2020-01-20",
+        "dikasimos": "2024-09-17",
+        "diadikasia": "ΑΝΑΚΟΠΕΣ ΚΑΤΑ ΤΗΣ ΕΚΤΕΛΕΣΗΣ (Από Μετάπτωση)",
+        "eidos": "ΑΝΑΚΟΠΗ ΕΚΤΕΛΕΣΕΩΣ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:50:16.049066+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-09-24"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "12d13692-4c68-4610-ae18-3694b287b2ac",
+      "caseName": "ΕιρΘεσ Πρόσθετοι λόγοι Μιχούδης # Εθνική Τράπεζα",
+      "userId": 109,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2024-01-30",
+        "dikasimos": "2024-02-08",
+        "diadikasia": "ΑΝΑΚΟΠΕΣ",
+        "eidos": "ΠΡΟΣΘΕΤΟΙ ΛΟΓΟΙ ΑΝΑΚΟΠΗΣ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΘΕΣΣΑΛΟΝΙΚΗΣ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΘΕΣΣΑΛΟΝΙΚΗΣ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 21:42:44.857881+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-02-15"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "15716b38-f5cf-4d6c-b9b2-2a96452e2aa1",
+      "caseName": "ΜΕΛΛΕΣ ΠΑΝΑΓΙΩΤΗΣ - ΜΕΛΛΕΣ ΠΑΝΑΓΙΩΤΗΣ ΚΑΤΑ ΚΑΤΑΣΧΕΣΗΣ ΕΘΝΙΚΗΣ ΤΡΑΠΕΖΑΣ",
+      "userId": 47,
+      "organizationId": "760a3ff7-dff5-43ef-a36f-feb4f1b438d1",
+      "inputs": {
+        "filingDate": "2025-01-31",
+        "dikasimos": "2025-05-16",
+        "diadikasia": "ΑΥΤΟΚΙΝΗΤΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΝΑΚΟΠΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΠΕΙΡΑΙΑ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΠΕΙΡΑΙΑ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-12 08:29:43.257592+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-05-23"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "16c48b83-550c-40a6-828a-82e4ed21677f",
+      "caseName": "ΓΑΚ 6195/2023",
+      "userId": 31,
+      "organizationId": "52f36e85-27f9-42c0-bd6d-af9b32f35900",
+      "inputs": {
+        "filingDate": "2023-07-24",
+        "dikasimos": "2023-11-23",
+        "diadikasia": "ΑΥΤΟΚΙΝΗΤΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΚΑΤ ΕΦΕΣΗ ΑΠΟ ΠΡΩΤΟΔΙΚΕΙΟ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 14:10:40.441404+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-11-30"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "180f7a34-afb5-4d7e-ae7f-f8af5daabbe0",
+      "caseName": "Test Client Creation - Civil",
+      "userId": 39,
+      "organizationId": "59954b36-01f7-4ed2-87f7-56058f113700",
+      "inputs": {
+        "filingDate": "2024-07-05",
+        "dikasimos": "2024-12-18",
+        "diadikasia": "ΜΙΣΘΩΣΕΙΣ - ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-02 06:48:20.090929+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-12-27"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "1a2de9f3-fe21-4430-9b63-9c5a4f199075",
+      "caseName": "ΜΠρΑθ Ανακοπή (από μετάπτωση) Δήμος Νέας Φιλαδέλδειας # από 7.5.18 κατασχετηρίου & # Καλύβας κ.λπ.",
+      "userId": 110,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2018-05-17",
+        "dikasimos": "2024-02-13",
+        "diadikasia": "ΑΝΑΚΟΠΕΣ ΚΑΤΑ ΤΗΣ ΕΚΤΕΛΕΣΗΣ (Από Μετάπτωση)",
+        "eidos": "ΑΝΑΚΟΠΗ ΕΚΤΕΛΕΣΕΩΣ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 21:37:16.066386+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-02-20"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "1b95d6a2-a4a3-44f0-b9e5-0f0c6dabfb22",
+      "caseName": "ΕιρΑθ Αγωγή (αυτοκίνητα) Χαριάτη Αναστασία # ΕΔΣΝΑ",
+      "userId": 110,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2020-05-15",
+        "dikasimos": "2020-10-30",
+        "diadikasia": "ΑΥΤΟΚΙΝΗΤΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 21:38:50.572238+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2020-11-06"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "1c72a6c2-b782-45bf-bf06-1d83643f4793",
+      "caseName": "5658/2021",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2021-10-20",
+        "dikasimos": "2024-03-04",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΧΑΛΑΝΔΡΙΟΥ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ - ΠΕΡΙΦΕΡΕΙΑΚΗ ΕΔΡΑ ΑΜΑΡΟΥΣΙΟΥ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΧΑΛΑΝΔΡΙΟΥ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:50:23.574315+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-03-11"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "1cdc9358-8779-4018-9d0a-e5bfd9cfefa5",
+      "caseName": "ΜΠρΑθ Αγωγή Κυριακοπούλου Ευγενία # Δήμου Σπάτων-Αρτέμιδος",
+      "userId": 110,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2023-12-28",
+        "dikasimos": "2025-11-12",
+        "diadikasia": "ΕΡΓΑΤΙΚΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 21:44:08.80071+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-11-19"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "1d17dc7a-4657-44dc-9f82-4d6df62d9157",
+      "caseName": "ΓΑΚ 6195/2023",
+      "userId": 34,
+      "organizationId": "06e945c7-6f2c-4767-8eb2-7b7a97768b3c",
+      "inputs": {
+        "filingDate": "2023-07-24",
+        "dikasimos": "2023-11-23",
+        "diadikasia": "ΑΥΤΟΚΙΝΗΤΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΚΑΤ ΕΦΕΣΗ ΑΠΟ ΠΡΩΤΟΔΙΚΕΙΟ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-04-11 17:12:31.155983+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-11-30"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "1d9f6c91-15e8-4fbd-96ca-f5d8d49b502f",
+      "caseName": "ΜΠρΑθ Αγωγή ΝΟΥΣΙ ΒΑΝΓΚΕΛ # ΕΔΡΑΣΗ Χ. ΨΑΛΛΙΔΑΣ ΑΤΕ",
+      "userId": 110,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2022-12-21",
+        "dikasimos": "2023-02-14",
+        "diadikasia": "ΕΡΓΑΤΙΚΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 21:40:11.914973+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-02-21"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "1da5f3d1-ecce-495f-9014-428e5254aa1c",
+      "caseName": "ΜΑΥΡΟΠΟΥΛΟΥ ΚΑΤΑ ΙΩΑΝΝΟΥ (ΔΙΑΦΟΡΆ ΟΡΟΦΟΚΤΗΣΙΑΣ)",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2023-11-06",
+        "dikasimos": "2024-10-10",
+        "diadikasia": "ΜΙΣΘΩΣΕΙΣ - ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 15:36:30.758843+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-10-17"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "1db3c151-e124-4c45-9ff0-7694b5d38b3b",
+      "caseName": "ΓΑΚ 3228/2023",
+      "userId": 34,
+      "organizationId": "06e945c7-6f2c-4767-8eb2-7b7a97768b3c",
+      "inputs": {
+        "filingDate": "2023-07-12",
+        "dikasimos": "2024-02-27",
+        "diadikasia": "ΑΝΑΚΟΠΕΣ",
+        "eidos": "ΑΝΑΚΟΠΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΧΑΛΚΙΔΑΣ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΧΑΛΚΙΔΑΣ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΧΑΛΚΙΔΑΣ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-04-11 17:20:04.149666+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-03-05"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "202b6eec-7922-48ff-ac13-67f7ed13868c",
+      "caseName": "ΜΠρΑθ Αίτηση (άρθρου 6 & 3 Ν. 2664/1998) Δήμου Ζωγράφου # Ελληνικό Δημόσιο κλπ",
+      "userId": 109,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2020-11-20",
+        "dikasimos": "2024-11-01",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 21:38:11.863368+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-11-08"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "20a8fb3c-06c4-4782-8eeb-25a129c3fd0f",
+      "caseName": "ΓΑΚ 6592/2024",
+      "userId": 34,
+      "organizationId": "06e945c7-6f2c-4767-8eb2-7b7a97768b3c",
+      "inputs": {
+        "filingDate": "2024-07-18",
+        "dikasimos": "2024-11-12",
+        "diadikasia": "ΜΙΣΘΩΣΕΙΣ - ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΚΑΤ ΕΦΕΣΗ ΑΠΟ ΠΡΩΤΟΔΙΚΕΙΟ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-04-11 17:28:59.562796+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-11-19"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "21064a4c-b741-46d3-97fd-9288132e5a02",
+      "caseName": "AFC ΤΡΟΠΟΠΟΙΗΣΗ ΚΑΤΑΣΤΑΤΙΚΟΥ",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2025-03-31",
+        "dikasimos": "2025-04-30",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 15:40:08.063015+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-05-08"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "21944bc5-9ccc-40c5-995e-f53083cdafa4",
+      "caseName": "ΡΕΝΤΕΞ - ΔΙΑΦΟΡΕΣ ΑΠΟ ΠΑΡΟΧΗ ΕΞΑΡΤΗΜΕΝΗΣ ΕΡΓΑΣΙΑΣ ΕΡΓΑΖΟΜΕΝΟΥ ΚΑΙ ΕΡΓΟΔΟΤΗ",
+      "userId": 41,
+      "organizationId": "39558486-4869-47a1-bf67-14d9e791dc04",
+      "inputs": {
+        "filingDate": "2025-02-07",
+        "dikasimos": "2025-03-11",
+        "diadikasia": "ΕΡΓΑΤΙΚΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-06-05 07:17:00.896624+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-03-18"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "23f2e841-528e-44f6-9c52-17f676a809c0",
+      "caseName": "75046/2023",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2023-07-10",
+        "dikasimos": "2023-11-21",
+        "diadikasia": "ΑΝΑΚΟΠΕΣ ΚΑΤΑ ΤΗΣ ΕΚΤΕΛΕΣΗΣ (Από Μετάπτωση)",
+        "eidos": "ΚΛΗΣΗ ΑΝΑΚΟΠΗΣ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:50:31.334494+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-11-28"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "246e5b83-b8e0-4bfc-b04c-f63b0987ea97",
+      "caseName": "6507/2024",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2024-01-18",
+        "dikasimos": "2024-02-16",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:50:24.402953+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-02-23"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "28fb36f5-a6e9-4c22-945d-a88fd250c7fc",
+      "caseName": "ΜΑΣΤΟΡΗΣ / ΚΟΥΡΜΠΑΝΗ – ΑΣΗΜΑΚΟΠΟΥΛΟΣ + ΔΟΥΖΙΝΑ M",
+      "userId": 48,
+      "organizationId": "e13253a4-46c6-4d26-ac9a-6075e6c8aad8",
+      "inputs": {
+        "filingDate": "2024-09-26",
+        "dikasimos": "2025-02-06",
+        "diadikasia": "ΜΙΣΘΩΣΕΙΣ - ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-12 12:38:58.18629+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-02-13"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "2d8c811a-4c85-4a8c-b54a-6354dcb3f8f6",
+      "caseName": "ΓΑΚ 2332/2024",
+      "userId": 34,
+      "organizationId": "06e945c7-6f2c-4767-8eb2-7b7a97768b3c",
+      "inputs": {
+        "filingDate": "2024-07-30",
+        "dikasimos": "2025-03-12",
+        "diadikasia": "ΜΙΣΘΩΣΕΙΣ - ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΠΕΡΙΣΤΕΡΙΟΥ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ - ΠΕΡΙΦΕΡΕΙΑΚΗ ΕΔΡΑ ΠΕΡΙΣΤΕΡΙΟΥ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΠΕΡΙΣΤΕΡΙΟΥ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-04-11 17:33:45.858352+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-03-19"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "2dfd8803-a139-4dea-b456-d9a0f27bca35",
+      "caseName": "ΜΕφΑθ 3ο Έφεση Δήμου Αρταίων # Θεοδωρή κ.λπ. & υπ' αρ. 186/19 απόφασης ΜΠρΑθ",
+      "userId": 110,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2020-07-13",
+        "dikasimos": "2021-01-12",
+        "diadikasia": "ΕΡΓΑΤΙΚΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΚΑΤ ΕΦΕΣΗ ΑΠΟ ΠΡΩΤΟΔΙΚΕΙΟ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 21:38:23.241285+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2021-01-19"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "2ec8a646-b71b-4dc6-ab3c-35786dd9fba5",
+      "caseName": "ΧΑΤΖΗΠΑΡΑΣΚΕΥΑ ΧΑΡΑΛΑΜΠΙΑ - ΜΙΣΘΩΤΙΚΗ/ΚΛΗΣΗ",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2025-04-14",
+        "dikasimos": "2025-10-07",
+        "diadikasia": "ΜΙΣΘΩΣΕΙΣ - ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΚΛΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-25 07:29:50.373317+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-10-14"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "2eead3f4-784b-47a6-8e7a-89c274bf4cf1",
+      "caseName": "ΧΑΝΙΩΤΗΣ ΕΥΣΤΑΘΙΟΣ ΚΑΤΑ ΟΥΩΤΕΡΣ ΚΥΡΙΑ ΠΑΡΕΜΒΑΣΗ",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2023-11-24",
+        "dikasimos": "2024-02-08",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΚΥΡΙΑ ΠΑΡΕΜΒΑΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 15:34:55.275223+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-02-15"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "30a072b7-7f8c-409f-9f39-4de6ee953eb1",
+      "caseName": "Test creation",
+      "userId": 40,
+      "organizationId": "3fb1fd7f-1d72-49a7-9f8d-d2e43f567808",
+      "inputs": {
+        "filingDate": "2024-07-09",
+        "dikasimos": "2024-10-31",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΟΙΚΟΘΕΝ ΔΙΑ ΤΟΥ ΕΙΣΑΓΓΕΛΕΑ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΧΑΛΚΙΔΑΣ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΧΑΛΚΙΔΑΣ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-05 14:59:16.938816+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-11-07"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "32258e2e-a26f-4d43-b817-b9c262d823ef",
+      "caseName": "ΣΤΡΑΤΗΣ ΚΑΤΑ LLOYD'S - ΑΓΩΓΗ ΓΙΑ ΑΠΟΖΗΜΙΩΣΗ ΑΠΟΛΥΣ",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2023-07-10",
+        "dikasimos": "2024-03-01",
+        "diadikasia": "ΕΡΓΑΤΙΚΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 15:33:14.82538+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-03-08"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "3392f436-cd51-4d76-93fd-668fe7522862",
+      "caseName": "ΜΠρΑθ Αγωγή (εργ.) Δήμος Αρταίων # Καϊμακάκη κλπ (συν. 18)",
+      "userId": 110,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2024-11-12",
+        "dikasimos": "2026-01-26",
+        "diadikasia": "ΕΡΓΑΤΙΚΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΚΛΗΣΗ ΜΕΤΑ ΑΠΟ ΜΑΤΑΙΩΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 23:04:14.646798+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2026-02-02"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "341d14e6-901d-4e12-8483-f633a041803e",
+      "caseName": "ΡΟΛΕΞ ΚΑΤΑ ΜΑΝΟΥΣΑΚΑ",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2020-07-31",
+        "dikasimos": "2022-10-19",
+        "diadikasia": "ΜΙΣΘΩΣΕΙΣ - ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 15:30:04.434111+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2022-10-26"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "350f4dc4-f53f-4a70-8f87-b1015f32740f",
+      "caseName": "26631/2024",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2024-03-27",
+        "dikasimos": "2024-06-20",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:50:18.139713+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-06-28"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "38330f3d-e3d6-43a2-8837-99d329383cfb",
+      "caseName": "ΚΟΥΤΣΟΛΑΜΠΡΟΣ ΚΑΤΑ ΕΦΚΑ",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2021-05-31",
+        "dikasimos": "2022-09-23",
+        "diadikasia": "ΑΜΟΙΒΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 15:30:10.288144+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2022-09-30"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "388d1f79-bb68-4966-b97c-a44e0b5800fe",
+      "caseName": "Έφεση κατ' αποφάσεως επί αγωγής: ΠΑΠΑΓΕΩΡΓΙΟΥ ΑΛΕΞΑΝΔΡΑ - ΠΑΠΑΓΕΩΡΓΙΟΥ ΑΛΕΞΑΝΔΡΑ ΕΦΕΣΗ",
+      "userId": 47,
+      "organizationId": "760a3ff7-dff5-43ef-a36f-feb4f1b438d1",
+      "inputs": {
+        "filingDate": "2020-01-03",
+        "dikasimos": "2020-02-04",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-09 12:36:32.626881+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2020-02-11"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "3b087fde-888e-4a3a-add7-bed35ca5349a",
+      "caseName": "ΝΙΚΟΛΟΥΔΑΚΗΣ/ΤΖΑΒΕΛΛΑ ΚΑΤΑ ΚΟΛΙΟΥΣΗ/ΚΟΛΟΤΟΥΡΟΥ",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2024-07-30",
+        "dikasimos": "2025-03-12",
+        "diadikasia": "ΜΙΣΘΩΣΕΙΣ - ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΠΕΡΙΣΤΕΡΙΟΥ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ - ΠΕΡΙΦΕΡΕΙΑΚΗ ΕΔΡΑ ΠΕΡΙΣΤΕΡΙΟΥ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΠΕΡΙΣΤΕΡΙΟΥ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 15:39:06.837102+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-03-19"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "3e52cb58-20de-416f-a99b-cbad0a73374a",
+      "caseName": "28702/2022",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2022-04-04",
+        "dikasimos": "2022-10-25",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΚΥΡΙΑ ΠΑΡΕΜΒΑΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:51:06.158173+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2022-11-02"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "4056e172-a8dc-4f75-bf77-55e5fb663a22",
+      "caseName": "ΒΟΛΙΩΤΗΣ-ΣΑΠΟΥΤΖΗ ΚΑΤΑ ΣΙΔΗΡΑ ΚΑΙ CEPAL",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2024-12-18",
+        "dikasimos": "2025-01-21",
+        "diadikasia": "ΑΝΑΚΟΠΕΣ ΚΑΤΑ ΤΗΣ ΕΚΤΕΛΕΣΗΣ (Από Μετάπτωση)",
+        "eidos": "ΑΝΑΚΟΠΗ ΕΚΤΕΛΕΣΕΩΣ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 15:38:28.131437+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-01-28"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "410a5e38-dc6c-46c1-9725-ef9a40bbf9b9",
+      "caseName": "ΓΑΚ 26259/2024",
+      "userId": 34,
+      "organizationId": "06e945c7-6f2c-4767-8eb2-7b7a97768b3c",
+      "inputs": {
+        "filingDate": "2024-03-01",
+        "dikasimos": "2024-04-15",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-04-11 17:12:31.739512+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-04-22"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "423b7aca-5ec6-4dca-b2ee-cc20160f214a",
+      "caseName": "ΑΡΚΕΝΤΗ ΚΑΤΑ ΒΟΓΛΗ 2Η",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2022-05-05",
+        "dikasimos": "2022-09-16",
+        "diadikasia": "ΜΙΣΘΩΣΕΙΣ - ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 13:23:14.725874+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2022-09-23"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "42493c5a-5a1a-43e5-b77c-155b3d02f009",
+      "caseName": "4500/2024",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2024-05-14",
+        "dikasimos": "2024-11-05",
+        "diadikasia": "ΕΡΓΑΤΙΚΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΚΑΤ ΕΦΕΣΗ ΑΠΟ ΠΡΩΤΟΔΙΚΕΙΟ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:50:15.157225+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-11-12"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "43a67f6c-6ceb-4ae1-b0b7-fe23c343f46f",
+      "caseName": "ΑΡΓΥΡΟΠΟΥΛΟΥ ΕΛΕΝΗ - ΕΠΙΜΕΛΕΙΑ ΑΝΗΛΙΚΩΝ",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2025-01-15",
+        "dikasimos": "2025-09-17",
+        "diadikasia": "ΟΙΚΟΓΕΝΕΙΑΚΟ ΕΙΔΙΚΕΣ ΔΙΑΔΙΚΑΣΙΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΠΕΙΡΑΙΑ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΠΕΙΡΑΙΑ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-24 08:12:50.95584+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-09-24"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "43f65fb7-84ed-4dbe-ad3b-21ff0bb73000",
+      "caseName": "ΕΥΑΓΓΕΛΟΣ ΚΑΡΥΣΤΙΝΑΚΗΣ κλπ. (άδεια για αποποίηση ανηλίκων, ΡΒ-14)",
+      "userId": 48,
+      "organizationId": "e13253a4-46c6-4d26-ac9a-6075e6c8aad8",
+      "inputs": {
+        "filingDate": "2024-10-30",
+        "dikasimos": "2024-12-19",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-12 12:38:58.980534+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-12-30"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "44549e70-c79f-46a3-b9fb-d03dc48a060d",
+      "caseName": "ΓΑΚ 41766/2025",
+      "userId": 46,
+      "organizationId": "d1441af1-ddae-47e8-8aad-a1ab9a38f308",
+      "inputs": {
+        "filingDate": "2025-02-20",
+        "dikasimos": "2025-03-05",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 20:45:10.180831+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-03-12"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "44d99aa2-38f0-43dd-a37a-3bbe4e3ead27",
+      "caseName": "ΠΑΠΑΔΟΠΟΥΛΟΣ-ΓΙΑΝΚΑ ΚΑΤΑ HELLAS DIRECT ",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2023-07-24",
+        "dikasimos": "2023-11-23",
+        "diadikasia": "ΑΥΤΟΚΙΝΗΤΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΚΑΤ ΕΦΕΣΗ ΑΠΟ ΠΡΩΤΟΔΙΚΕΙΟ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 15:35:00.748858+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-11-30"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "4536849e-1b9c-4d43-bf5d-39470d90b955",
+      "caseName": "ΣΑΜΙΩΤΗ - ΚΟΤΣΩΝΗΣ ΑΔΕΙΑ ΑΠΟΠΟΙΗΣΗΣ",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2022-05-05",
+        "dikasimos": "2023-06-06",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΚΡΩΠΙΑΣ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ - ΠΕΡΙΦΕΡΕΙΑΚΗ ΕΔΡΑ ΚΡΩΠΙΑΣ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΚΡΩΠΙΑΣ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 15:27:35.104013+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-06-13"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "48a2066d-7e66-4573-a7c2-0d867a49958d",
+      "caseName": "7316/2022",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2022-11-16",
+        "dikasimos": "2023-02-22",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΜΑΡΟΥΣΙΟΥ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ - ΠΕΡΙΦΕΡΕΙΑΚΗ ΕΔΡΑ ΑΜΑΡΟΥΣΙΟΥ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΜΑΡΟΥΣΙΟΥ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:50:52.162417+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-03-02"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "49cdee87-1796-4d0a-863c-02f14533c697",
+      "caseName": "ΕιρΑθ Ανακοπή για ακύρωση 877/2017 εκθ. αναγκαστικής κατάσχεσης & 54897/2011 Διαταγή Πληρωμής Κονδύλη Φωτεινής # doValue ΑΕ",
+      "userId": 110,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2023-01-13",
+        "dikasimos": "2023-04-05",
+        "diadikasia": "ΑΝΑΚΟΠΕΣ",
+        "eidos": "ΑΝΑΚΟΠΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 21:40:28.764072+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-04-12"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "4a78ee95-16c4-4ecb-aa29-121dba24efe6",
+      "caseName": "65889/2023",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2023-07-31",
+        "dikasimos": "2023-12-12",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:50:30.081461+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-12-19"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "4a8535b0-c4b8-42f5-9312-c0a6679d5a27",
+      "caseName": "Beneath the fading glow of the evening sky, the city began to hum with its familiar rhythm — footsteps on cobblestones, the distant",
+      "userId": 34,
+      "organizationId": "06e945c7-6f2c-4767-8eb2-7b7a97768b3c",
+      "inputs": {
+        "filingDate": "2024-01-11",
+        "dikasimos": "2024-04-16",
+        "diadikasia": "ΜΙΣΘΩΣΕΙΣ - ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΠΕΙΡΑΙΑ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΠΕΙΡΑΙΑ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΠΕΙΡΑΙΑ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-04-11 17:20:04.442397+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-04-23"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "4c4cafa7-01a5-4118-a40f-5d05f04c9f29",
+      "caseName": "ΓΑΚ 129099/2024",
+      "userId": 34,
+      "organizationId": "06e945c7-6f2c-4767-8eb2-7b7a97768b3c",
+      "inputs": {
+        "filingDate": "2024-10-16",
+        "dikasimos": "2024-12-06",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-04-11 17:29:00.729962+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-12-13"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "4cbefb31-5d28-40f0-8bdb-90badd59953b",
+      "caseName": "ΑΙΤΗΣΗ (εκουσίας δικαιοδοσίας): ΣΥΡΣΙΡΗΣ ΝΙΚΟΛΑΟΣ - ΑΙΤΗΣΗ ΕΡΜΗΝΕΙΑΣ",
+      "userId": 47,
+      "organizationId": "760a3ff7-dff5-43ef-a36f-feb4f1b438d1",
+      "inputs": {
+        "filingDate": "2023-07-03",
+        "dikasimos": "2024-01-22",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-09 12:36:29.148669+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-01-29"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "4cd57b01-ed45-4b08-84d9-af37ff254902",
+      "caseName": "ΜΠρΑθ Αίτηση (άρθρου 6 παρ. 3 Ν. 2664/1998) Δήμος Ζωγράφου # Ελληνικό Δημόσιο κλπ",
+      "userId": 109,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2020-11-18",
+        "dikasimos": "2024-10-11",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 23:03:08.700323+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-10-18"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "4d3c75cf-c499-455a-8cc4-39ce9976e1d3",
+      "caseName": "101211/2022",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2022-12-01",
+        "dikasimos": "2023-04-27",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:50:43.296093+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-05-05"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "4eb09b97-dbfa-4714-9835-bf9311bfdb91",
+      "caseName": "ΚΑΡΑΝΤΩΝΗΣ ΚΑΤΑ ΘΕΟΧΑΡΗ ΑΙΚΑΤΕΡΙΝΗΣ",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2023-12-28",
+        "dikasimos": "2024-04-23",
+        "diadikasia": "ΑΜΟΙΒΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 15:35:42.409518+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-04-30"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "4f4900cb-3d43-4a4d-90f7-7f5a79f0335d",
+      "caseName": "ΜΠρΑθ Αγωγή Φραγκίσκος Ελευθέριος # GrGenesis",
+      "userId": 109,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2023-10-31",
+        "dikasimos": "2024-03-26",
+        "diadikasia": "ΕΡΓΑΤΙΚΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 21:42:21.545448+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-04-02"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "53db59ec-b963-4ace-a248-51311a9afa95",
+      "caseName": "ΓΑΚ 116315/2023",
+      "userId": 34,
+      "organizationId": "06e945c7-6f2c-4767-8eb2-7b7a97768b3c",
+      "inputs": {
+        "filingDate": "2023-11-06",
+        "dikasimos": "2024-10-10",
+        "diadikasia": "ΜΙΣΘΩΣΕΙΣ - ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-04-11 17:23:21.86487+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-10-17"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "552362d8-4fc0-46dc-8fca-2592f6c0a3b1",
+      "caseName": "ΑΙΤΗΣΗ (εκουσίας δικαιοδοσίας): ΓΙΟΥΛΑΚΗ ΜΑΡΘΑ - ΓΙΟΥΛΑΚΗ ΜΑΡΘΑ ΑΙΤΗΣΗ ΕΡΜΗΝΕΙΑΣ (από αναβολή)",
+      "userId": 47,
+      "organizationId": "760a3ff7-dff5-43ef-a36f-feb4f1b438d1",
+      "inputs": {
+        "filingDate": "2023-07-06",
+        "dikasimos": "2024-02-06",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΠΕΙΡΑΙΑ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΠΕΙΡΑΙΑ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΠΕΙΡΑΙΑ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-09 12:36:31.910636+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-02-13"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "57112806-6377-4401-954f-b182ab26f7a3",
+      "caseName": "ΒΑΡΒΕΡΗ - ΑΔΕΙΑ ΓΙΑ ΑΝΗΛΙΚΟ",
+      "userId": 41,
+      "organizationId": "39558486-4869-47a1-bf67-14d9e791dc04",
+      "inputs": {
+        "filingDate": "2024-11-14",
+        "dikasimos": "2025-10-15",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-11-18 12:54:39.80821+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-10-22"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "575a69da-0e91-4c6e-ab11-16262715ce59",
+      "caseName": "ΚΑΛΤΣΗΣ-ΠΑΝΤΕΛΙΟΥ ΑΔΕΙΑ ΑΠΟΠΟΙΗΣΗΣ",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2024-11-18",
+        "dikasimos": "2025-01-27",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 15:38:28.804736+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-02-03"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "57ad5ffb-bd3b-43da-818b-953555d2f2c0",
+      "caseName": "6750/2022",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2022-09-08",
+        "dikasimos": "2022-12-13",
+        "diadikasia": "ΕΡΓΑΤΙΚΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΚΑΤ ΕΦΕΣΗ ΑΠΟ ΠΡΩΤΟΔΙΚΕΙΟ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:51:00.022834+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2022-12-20"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "5a14e042-16ac-41ef-a7be-4d9296dca670",
+      "caseName": "ΜΠρΑθ Αίτηση (άρθρου 6 παρ. 3 Ν. 2664/1998) Δήμος Ζωγράφου # Ελληνικό Δημόσιο κλπ",
+      "userId": 109,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2020-11-19",
+        "dikasimos": "2024-10-11",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 23:03:14.433803+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-10-18"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "5b3fa3b4-2a94-45cc-bfc8-9e48cd424336",
+      "caseName": "ΜΠρΑθ Αίτηση (άρθρου 6 παρ. 3 Ν. 2664/1998) Δήμου Ζωγράφου # Ελληνικό Δημόσιο κλπ",
+      "userId": 109,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2020-11-20",
+        "dikasimos": "2024-11-01",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 21:38:09.12965+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-11-08"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "5b7da7fb-9a11-4100-a21e-46c1aef4c7b5",
+      "caseName": "ΠΟΛΛΕΣ ΑΛΛΑΓΕΣ",
+      "userId": 34,
+      "organizationId": "06e945c7-6f2c-4767-8eb2-7b7a97768b3c",
+      "inputs": {
+        "filingDate": "2025-03-31",
+        "dikasimos": "2025-04-30",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-04-11 17:34:43.939179+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-05-08"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "5d2df709-4726-48ed-aba7-598174859c58",
+      "caseName": "ΓΑΚ 233453/ΕΑΚ 11420 - 2024",
+      "userId": 32,
+      "organizationId": "52f36e85-27f9-42c0-bd6d-af9b32f35900",
+      "inputs": {
+        "filingDate": "2024-12-27",
+        "dikasimos": "2025-03-28",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-04-08 17:59:04.30428+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-04-04"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "6047c433-2551-4c85-9f72-82b4fb778c1f",
+      "caseName": "ΕΛΛΗΝΙΚΟ ΜΕΤΡΟ - ΔΙΑΦΟΡΕΣ ΑΠΟ ΠΑΡΟΧΗ ΕΞΑΡΤΗΜΕΝΗΣ ΕΡΓΑΣΙΑΣ ΕΡΓΑΖΟΜΕΝΟΥ ΚΑΙ ΕΡΓΟΔΟΤΗ",
+      "userId": 41,
+      "organizationId": "39558486-4869-47a1-bf67-14d9e791dc04",
+      "inputs": {
+        "filingDate": "2024-04-03",
+        "dikasimos": "2024-10-01",
+        "diadikasia": "ΕΡΓΑΤΙΚΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΚΑΤ ΕΦΕΣΗ ΑΠΟ ΠΡΩΤΟΔΙΚΕΙΟ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-29 16:33:44.935819+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-10-09"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "609d2f8f-f363-4ebe-bc14-80560629b4ec",
+      "caseName": "ΛΗΜΝΙΟΥ ΙΩΑΝΝΑ - ΛΗΜΝΙΟΥ ΙΩΑΝΝΑ ΑΝΑΚΟΠΗ 933 ΚΠολΔ.",
+      "userId": 47,
+      "organizationId": "760a3ff7-dff5-43ef-a36f-feb4f1b438d1",
+      "inputs": {
+        "filingDate": "2024-11-14",
+        "dikasimos": "2025-02-04",
+        "diadikasia": "ΑΝΑΚΟΠΕΣ ΚΑΤΑ ΤΗΣ ΕΚΤΕΛΕΣΗΣ (Από Μετάπτωση)",
+        "eidos": "ΑΝΑΚΟΠΗ ΕΚΤΕΛΕΣΕΩΣ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-12 08:18:29.648665+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-02-11"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "610aa0d0-5114-4aca-93a1-72512e977b39",
+      "caseName": "ΓΑΚ 106134/2023",
+      "userId": 34,
+      "organizationId": "06e945c7-6f2c-4767-8eb2-7b7a97768b3c",
+      "inputs": {
+        "filingDate": "2023-10-17",
+        "dikasimos": "2024-02-08",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-04-11 17:12:29.11665+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-02-15"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "6238f286-9475-45ad-8256-74b7a1f3ab85",
+      "caseName": "ΚΑΛΑΜΠΑΛΙΚΗ ΚΑΤΑ VERALTIS",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2023-07-12",
+        "dikasimos": "2024-02-27",
+        "diadikasia": "ΑΝΑΚΟΠΕΣ",
+        "eidos": "ΑΝΑΚΟΠΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΧΑΛΚΙΔΑΣ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΧΑΛΚΙΔΑΣ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΧΑΛΚΙΔΑΣ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 15:34:57.118342+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-03-05"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "63762299-c2ba-4699-86cf-0d01ab79e6f5",
+      "caseName": "15827/2024",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2024-02-06",
+        "dikasimos": "2024-09-17",
+        "diadikasia": "ΕΡΓΑΤΙΚΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΚΛΗΣΗ ΜΕΤΑ ΑΠΟ ΜΑΤΑΙΩΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:50:16.899642+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-09-24"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "63b12722-6695-4903-bc9c-cad728beb513",
+      "caseName": "ΒΟΓΛΗΣ ΚΑΤΑ ΑΡΚΕΝΤΗ ΑΝΤΕΦΕΣΗ",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2024-10-08",
+        "dikasimos": "2024-11-12",
+        "diadikasia": "ΜΙΣΘΩΣΕΙΣ - ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΝΤΕΦΕΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 15:37:40.876965+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-11-19"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "6435ed0e-da58-4ccb-9738-cea156d83495",
+      "caseName": "131647/2022",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2022-12-28",
+        "dikasimos": "2023-05-02",
+        "diadikasia": "ΑΝΑΚΟΠΕΣ ΚΑΤΑ ΤΗΣ ΕΚΤΕΛΕΣΗΣ (Από Μετάπτωση)",
+        "eidos": "ΚΛΗΣΗ ΑΝΑΚΟΠΗΣ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:50:42.888657+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-05-09"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "6647ed72-8bef-4529-ac8d-20de0b237344",
+      "caseName": "74403/2024",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2024-06-14",
+        "dikasimos": "2024-11-19",
+        "diadikasia": "ΕΡΓΑΤΙΚΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:50:12.483035+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-11-26"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "6664dfa6-5565-4a24-84ae-a7a963e62b86",
+      "caseName": "9041/2020",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2020-01-30",
+        "dikasimos": "2023-12-12",
+        "diadikasia": "ΑΝΑΚΟΠΕΣ ΚΑΤΑ ΤΗΣ ΕΚΤΕΛΕΣΗΣ (Από Μετάπτωση)",
+        "eidos": "ΑΝΑΚΟΠΗ ΕΚΤΕΛΕΣΕΩΣ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:50:29.668209+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-12-19"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "666bdd34-2f26-4368-ac73-0ea03d3e40ff",
+      "caseName": "ΧΑΒΕΝΕΤΙΔΗΣ ΚΩΝΣΤΑΝΤΙΝΟΣ - ΧΑΒΕΝΕΤΙΔΗΣ ΚΩΝΣΤΑΝΤΙΝΟΣ ΑΝΑΤΡΟΠΗ ΕΚΠΤΩΣΗΣ ΚΑΙ ΑΠΑΛΛΑΓΗ",
+      "userId": 47,
+      "organizationId": "760a3ff7-dff5-43ef-a36f-feb4f1b438d1",
+      "inputs": {
+        "filingDate": "2024-04-18",
+        "dikasimos": "2025-01-14",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ ΑΠΑΛΛΑΓΗΣ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-12 08:18:27.539914+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-01-21"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "67583614-5959-40b1-b99d-0c5e0d2320e6",
+      "caseName": "ΜΠρΠειρ (Εργατικά) Έφεση ΣΥΝΔΗΚΟΣ# Λεούση κλπ για την εξαφάνιση της με αρ. 61/2016 Απόφασης του Ειρηνοδικείου Πειραιά",
+      "userId": 110,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2019-05-13",
+        "dikasimos": "2023-03-06",
+        "diadikasia": "ΕΡΓΑΤΙΚΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΕΦΕΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΠΕΙΡΑΙΑ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΠΕΙΡΑΙΑ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 20:51:17.395191+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-03-13"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "68b075f0-767d-4cf9-90f4-a1d6ba48b670",
+      "caseName": "ΟΥΩΤΕΡΣ ΚΑΤΑ ΝΟΤΟΠΟΥΛΟΥ ΚΥΡΙΑ ΑΙΤΗΣΗ",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2024-10-16",
+        "dikasimos": "2024-12-06",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 15:37:42.945869+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-12-13"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "68c08de0-f641-4f30-a68c-aaf5dff906e3",
+      "caseName": "ΜΠρΑθ Ανακοπή Βολιώτης Γεώργιος # 1400/2024 έκθεσης αναγκαστικής κατάσχεσης ακίνητης περιουσίας & # Σιδηρά Ιωάννη, CEPAL HELLAS",
+      "userId": 109,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2024-12-18",
+        "dikasimos": "2025-01-21",
+        "diadikasia": "ΑΝΑΚΟΠΕΣ ΚΑΤΑ ΤΗΣ ΕΚΤΕΛΕΣΗΣ (Από Μετάπτωση)",
+        "eidos": "ΑΝΑΚΟΠΗ ΕΚΤΕΛΕΣΕΩΣ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 21:45:30.35433+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-01-28"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "6a0fa8ee-8826-4df7-80bb-883714512470",
+      "caseName": "ΜΠρΑθ Αγωγή Ντανάση Σωτ. κλπ (Συν. 15) # ΕΔΣΝΑ",
+      "userId": 110,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2023-01-25",
+        "dikasimos": "2023-03-24",
+        "diadikasia": "ΕΡΓΑΤΙΚΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 23:03:48.971378+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-03-31"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "6ad365e5-69cc-43db-a038-03c8bd58b64c",
+      "caseName": "ΡΕΜΟΥΝΤΑΚΗ ΝΙΚΗ - ΕΦΕΣΗ ΑΝΤΙΔΙΚΩΝ",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2025-08-27",
+        "dikasimos": "2025-10-16",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΚΑΤ ΕΦΕΣΗ ΑΠΟ ΠΡΩΤΟΔΙΚΕΙΟ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-16 10:45:12.320488+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-10-23"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "6fb7edb7-4e9d-452d-bd59-b1f7025098a5",
+      "caseName": "ΓΑΚ 2209/2022",
+      "userId": 40,
+      "organizationId": "3fb1fd7f-1d72-49a7-9f8d-d2e43f567808",
+      "inputs": {
+        "filingDate": "2022-05-05",
+        "dikasimos": "2023-06-06",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΚΡΩΠΙΑΣ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ - ΠΕΡΙΦΕΡΕΙΑΚΗ ΕΔΡΑ ΚΡΩΠΙΑΣ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΚΡΩΠΙΑΣ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-02 06:57:31.396622+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-06-13"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "70198b9c-4d22-4312-8d04-8e301a7b98d9",
+      "caseName": "972/2021",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2021-11-16",
+        "dikasimos": "2023-02-02",
+        "diadikasia": "ΑΥΤΟΚΙΝΗΤΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΚΑΤ ΕΦΕΣΗ ΑΠΟ ΠΡΩΤΟΔΙΚΕΙΟ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΦΕΤΕΙΟ ΠΕΙΡΑΙΩΣ",
+        "mappedCourt": "ΕΦΕΤΕΙΟ ΠΕΙΡΑΙΩΣ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:50:55.27154+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-02-09"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "747f6a3a-479b-4a61-bb2e-3f53922fedd5",
+      "caseName": "48606/2019",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2019-06-06",
+        "dikasimos": "2022-10-25",
+        "diadikasia": "ΑΝΑΚΟΠΕΣ ΚΑΤΑ ΤΗΣ ΕΚΤΕΛΕΣΗΣ (Από Μετάπτωση)",
+        "eidos": "ΑΝΑΚΟΠΗ ΕΚΤΕΛΕΣΕΩΣ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:51:05.326682+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2022-11-02"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "75c5acae-e139-4e5c-bdbf-2372a6ca9815",
+      "caseName": "ΓΑΚ 127257/2023",
+      "userId": 34,
+      "organizationId": "06e945c7-6f2c-4767-8eb2-7b7a97768b3c",
+      "inputs": {
+        "filingDate": "2023-11-24",
+        "dikasimos": "2024-02-08",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΚΥΡΙΑ ΠΑΡΕΜΒΑΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-04-11 17:12:29.407488+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-02-15"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "763b6b07-ea08-4e09-bde6-f68644f4330d",
+      "caseName": "10428/2024",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2024-09-10",
+        "dikasimos": "2024-11-13",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΠΕΙΡΑΙΑ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΠΕΙΡΑΙΑ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:50:13.411501+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-11-20"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "767534a0-293d-4ef3-9708-42c779c59843",
+      "caseName": "ΧΕΛΜΗ ΑΝΑΣΤΑΣΙΑ - ΧΕΛΜΗ ΑΝΑΣΤΑΣΙΑ ΑΝΑΚΟΠΗ 933",
+      "userId": 47,
+      "organizationId": "760a3ff7-dff5-43ef-a36f-feb4f1b438d1",
+      "inputs": {
+        "filingDate": "2024-01-02",
+        "dikasimos": "2025-01-16",
+        "diadikasia": "ΕΙΔΙΚΗ ΔΙΑ ΤΟΥ ΤΥΠΟΥ Τ.ΠΟΛ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-12 08:18:30.397549+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-01-23"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "78eab6d0-e31a-4ba0-b0dd-12ce17a08c68",
+      "caseName": "95621/2022",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2022-10-05",
+        "dikasimos": "2023-01-17",
+        "diadikasia": "ΑΝΑΚΟΠΕΣ ΚΑΤΑ ΤΗΣ ΕΚΤΕΛΕΣΗΣ (Από Μετάπτωση)",
+        "eidos": "ΚΛΗΣΗ ΑΝΑΚΟΠΗΣ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:50:57.771663+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-01-24"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "7a67b3c9-e87b-45fe-b832-41af90afed19",
+      "caseName": "ΜΠρΑθ Αγωγή (εργατικές διαφορές) Γκεσούλης κλπ (συν.7) # Δήμος Αρταίων",
+      "userId": 110,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2022-03-10",
+        "dikasimos": "2023-03-07",
+        "diadikasia": "ΕΡΓΑΤΙΚΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 21:39:15.263815+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-03-14"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "7b9cf77d-bb35-46ff-a128-b34c5afe4806",
+      "caseName": "ΕιρΑθ Αγωγή κοινοχρήστων OIKOSERVICE # Τζέλης Μιχαήλ",
+      "userId": 109,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2023-05-15",
+        "dikasimos": "2024-09-17",
+        "diadikasia": "ΜΙΣΘΩΣΕΙΣ - ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 22:51:12.911931+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-09-24"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "7ba6a1a3-8e34-4ac2-84e4-a86a79db0518",
+      "caseName": "101127/2021",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2021-12-15",
+        "dikasimos": "2023-03-14",
+        "diadikasia": "ΕΡΓΑΤΙΚΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:50:46.50992+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-03-21"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "7db281c9-2eb7-4be5-a95e-cac4be708ecd",
+      "caseName": "ΜΠρΑθ Αγωγή Παπαγεωργίου Αθανάσιος  # Δήμος Σαρωνικού",
+      "userId": 110,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2025-01-31",
+        "dikasimos": "2025-05-21",
+        "diadikasia": "ΕΡΓΑΤΙΚΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 21:45:56.729213+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-05-28"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "810354ea-a118-46ba-bf0c-d42e67220cca",
+      "caseName": "33747/2025",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2025-02-12",
+        "dikasimos": "2025-05-27",
+        "diadikasia": "ΑΝΑΚΟΠΕΣ ΚΑΤΑ ΤΗΣ ΕΚΤΕΛΕΣΗΣ (Από Μετάπτωση)",
+        "eidos": "ΑΝΑΚΟΠΗ ΕΚΤΕΛΕΣΕΩΣ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:49:35.161618+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-06-03"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "81708039-2e7a-49ab-b10e-37751e592cd7",
+      "caseName": "ΦΙΛΙΠΠΟΥ ΚΑΤΑ ΚΑΡΑΠΑ",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2024-06-21",
+        "dikasimos": "2025-03-20",
+        "diadikasia": "ΕΙΔΙΚΗ ΔΙΑ ΤΟΥ ΤΥΠΟΥ Τ.ΠΟΛ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΧΑΛΚΙΔΑΣ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΧΑΛΚΙΔΑΣ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 15:39:07.571234+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-03-28"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "828a82f7-8158-4676-8816-bf6689ec1dca",
+      "caseName": "ΓΑΚ 66261/2023",
+      "userId": 34,
+      "organizationId": "06e945c7-6f2c-4767-8eb2-7b7a97768b3c",
+      "inputs": {
+        "filingDate": "2023-06-19",
+        "dikasimos": "2023-09-25",
+        "diadikasia": "ΟΙΚΟΓΕΝΕΙΑΚΟ ΕΙΔΙΚΕΣ ΔΙΑΔΙΚΑΣΙΕΣ",
+        "eidos": "ΚΛΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-04-10 17:23:24.168125+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-10-02"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "82992f39-63ff-428e-a274-552a51edac54",
+      "caseName": "ΜΠρΑθ Αγωγή Αλαγιάννη # νπδδ Αριστόδικος Δ. Σαρωνικού",
+      "userId": 110,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2024-12-06",
+        "dikasimos": "2025-05-22",
+        "diadikasia": "ΕΡΓΑΤΙΚΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΚΛΗΣΗ ΜΕΤΑ ΑΠΟ ΜΑΤΑΙΩΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 21:46:41.414027+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-05-29"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "83d0cc39-2ab9-400e-b5ac-152b84843119",
+      "caseName": "59630/2023",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2023-06-02",
+        "dikasimos": "2023-09-29",
+        "diadikasia": "ΜΙΣΘΩΣΕΙΣ - ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΝΑΚΟΠΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:50:34.447074+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-10-09"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "84981e0b-237e-44c2-81a6-34476960b885",
+      "caseName": "Ρεμουντάκη κατά Athens Market ΕΕ κλπ ",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2024-12-27",
+        "dikasimos": "2025-03-28",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 15:40:07.373712+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-04-04"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "85dceaad-8699-49ce-b05a-dc3e10d7e303",
+      "caseName": "91464/2024",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2024-07-25",
+        "dikasimos": "2024-09-17",
+        "diadikasia": "ΕΡΓΑΤΙΚΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:50:16.484176+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-09-24"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "86367a68-60b6-460b-ac0a-f43c0d733ac8",
+      "caseName": "7318/2022",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2022-11-16",
+        "dikasimos": "2023-02-22",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΜΑΡΟΥΣΙΟΥ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ - ΠΕΡΙΦΕΡΕΙΑΚΗ ΕΔΡΑ ΑΜΑΡΟΥΣΙΟΥ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΜΑΡΟΥΣΙΟΥ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:50:51.747743+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-03-02"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "8678b3da-7f8c-4071-9cd9-78bbcfdfddbb",
+      "caseName": "ΤΣΟΚΟΥ",
+      "userId": 61,
+      "organizationId": "11bac254-a4b5-434e-8f21-dbb000f1e366",
+      "inputs": {
+        "filingDate": "2023-08-02",
+        "dikasimos": "2025-05-22",
+        "diadikasia": "ΑΥΤΟΚΙΝΗΤΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΚΑΤ ΕΦΕΣΗ ΑΠΟ ΠΡΩΤΟΔΙΚΕΙΟ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-06-26 08:42:26.371811+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-05-29"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "877489af-2144-4d2e-8849-32b2c31b66a1",
+      "caseName": "ΜΕφΑθ 5ο Έφεση Δήμος Ιλίου #1775/2017 απόφ. ΜΠρΑθ & Σκοτεινιώτου",
+      "userId": 113,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2018-02-02",
+        "dikasimos": "2019-10-08",
+        "diadikasia": "ΕΡΓΑΤΙΚΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΚΑΤ ΕΦΕΣΗ ΑΠΟ ΠΡΩΤΟΔΙΚΕΙΟ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 22:50:48.400452+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2019-10-15"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "89355d8c-e981-4237-a6f8-876a983fcb83",
+      "caseName": "ΜΠρΑθ Αίτηση (άρθρου 6 παρ. 3 Ν. 2664/1998) Δήμου Ζωγράφου # Ελληνικό Δημόσιο κλπ",
+      "userId": 109,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2020-11-17",
+        "dikasimos": "2024-10-25",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 21:38:03.494407+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-11-04"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "89aa445c-3aee-4219-b757-bfd6ca46670a",
+      "caseName": "ΧΕΛΜΗ ΑΝΑΣΤΑΣΙΑ - ΧΕΛΜΗ ΑΝΑΣΤΑΣΙΑ ΑΝΑΚΟΠΗ ΚΑΤΑ ΔΙΑΤΑΓΗΣ ΠΛΗΡΩΜΗΣ",
+      "userId": 47,
+      "organizationId": "760a3ff7-dff5-43ef-a36f-feb4f1b438d1",
+      "inputs": {
+        "filingDate": "2025-04-08",
+        "dikasimos": "2025-05-06",
+        "diadikasia": "ΑΝΑΚΟΠΕΣ ΚΑΤΑ ΤΗΣ ΕΚΤΕΛΕΣΗΣ (Από Μετάπτωση)",
+        "eidos": "ΚΛΗΣΗ ΑΝΑΚΟΠΗΣ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-12 08:29:03.724896+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-05-13"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "8b51876e-79cd-4abe-89a0-bca6d920970a",
+      "caseName": "Μαυρίκης",
+      "userId": 40,
+      "organizationId": "3fb1fd7f-1d72-49a7-9f8d-d2e43f567808",
+      "inputs": {
+        "filingDate": "2022-05-03",
+        "dikasimos": "2022-09-16",
+        "diadikasia": "ΜΙΣΘΩΣΕΙΣ - ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΚΛΗΣΗ-ΕΠΑΝΑΛΗΨΗ ΣΥΖΗΤΗΣΗΣ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-02 06:57:34.091243+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2022-09-23"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "8d4bbef5-4a92-471d-8e86-57b8babe85a4",
+      "caseName": "ΜΠρΑθ Αγωγή Καλλιάνου # Κορωνάκος ΕΕ (μισθωτικές διαφορές)",
+      "userId": 109,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2024-07-05",
+        "dikasimos": "2024-12-18",
+        "diadikasia": "ΜΙΣΘΩΣΕΙΣ - ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 21:43:41.177468+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-12-27"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "8db48f12-4049-4dad-a302-da6d9d7fa2c9",
+      "caseName": "ΓΑΚ 1151/2024",
+      "userId": 34,
+      "organizationId": "06e945c7-6f2c-4767-8eb2-7b7a97768b3c",
+      "inputs": {
+        "filingDate": "2024-03-15",
+        "dikasimos": "2025-02-19",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΝΕΑΣ ΙΩΝΙΑΣ",
+        "mappedCourt": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΝΕΑΣ ΙΩΝΙΑΣ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-04-11 17:33:43.846346+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-02-26"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "90168cdd-c7a7-4b45-965b-4ff6d41c747c",
+      "caseName": "ΓΑΚ 10/2023",
+      "userId": 34,
+      "organizationId": "06e945c7-6f2c-4767-8eb2-7b7a97768b3c",
+      "inputs": {
+        "filingDate": "2023-01-03",
+        "dikasimos": "2023-09-21",
+        "diadikasia": "ΑΝΑΚΟΠΕΣ",
+        "eidos": "ΑΝΑΚΟΠΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΝΕΑΣ ΙΩΝΙΑΣ",
+        "mappedCourt": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΝΕΑΣ ΙΩΝΙΑΣ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-04-10 17:23:23.880398+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-09-28"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "90a9c57d-c138-4c04-9ffb-c949c741954f",
+      "caseName": "TSAL VS VIOLOGIKO",
+      "userId": 31,
+      "organizationId": "52f36e85-27f9-42c0-bd6d-af9b32f35900",
+      "inputs": {
+        "filingDate": "2024-11-18",
+        "dikasimos": "2025-01-27",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-01 08:21:23.088031+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-02-03"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "90d260b7-ff62-4c09-9f65-67f85eb46ed3",
+      "caseName": "ΜΠρΑθ Αγωγή Αγγέλου Μαρία # Δήμου Σπάτων - Αρτέμιδος",
+      "userId": 110,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2023-12-28",
+        "dikasimos": "2025-11-12",
+        "diadikasia": "ΕΡΓΑΤΙΚΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 21:44:05.889758+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-11-19"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "90d3873c-c9d4-48c0-9940-3434351aa161",
+      "caseName": "ΚΑΤΕΛΑΝΟΥ ΔΕΣΠΟΙΝΑ - ΦΙΛΟΠΟΥΛΟΣ ΚΑΤΑ ΚΑΤΕΛΑΝΟΥ (από αναβολή)",
+      "userId": 47,
+      "organizationId": "760a3ff7-dff5-43ef-a36f-feb4f1b438d1",
+      "inputs": {
+        "filingDate": "2023-03-01",
+        "dikasimos": "2024-03-04",
+        "diadikasia": "ΟΙΚΟΓΕΝΕΙΑΚΟ ΕΙΔΙΚΕΣ ΔΙΑΔΙΚΑΣΙΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-12 08:06:11.391746+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-03-11"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "91586a7e-5c44-44c9-b8d3-e5cabcb56203",
+      "caseName": "ΜΠρΑθ Αγωγή Ρήτσινα κλπ (συν.7) # Δήμου Σαρωνικού",
+      "userId": 110,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2023-09-14",
+        "dikasimos": "2024-11-19",
+        "diadikasia": "ΕΡΓΑΤΙΚΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 21:42:01.836101+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-11-26"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "919e548e-db2a-42b3-8e56-7c5293f4698d",
+      "caseName": "81129/2023",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2023-10-02",
+        "dikasimos": "2024-01-18",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:50:27.161825+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-01-25"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "93ce1049-d12b-4cbc-8519-01a10860ea9d",
+      "caseName": "8597/2021",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2021-11-03",
+        "dikasimos": "2022-11-08",
+        "diadikasia": "ΜΙΣΘΩΣΕΙΣ - ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΚΑΤ ΕΦΕΣΗ ΑΠΟ ΠΡΩΤΟΔΙΚΕΙΟ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:51:04.49984+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2022-11-15"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "93db50d4-a9d3-4995-a95b-79c4ecd89e2f",
+      "caseName": "ΑΙΤΗΣΗ (εκουσίας δικαιοδοσίας): ΑΔΑΜΟΣ ΑΛΕΞΑΝΔΡΟΣ - ΑΙΤΗΣΗ ΕΡΜΗΝΕΙΑΣ",
+      "userId": 47,
+      "organizationId": "760a3ff7-dff5-43ef-a36f-feb4f1b438d1",
+      "inputs": {
+        "filingDate": "2023-07-03",
+        "dikasimos": "2024-01-22",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-09 12:36:29.837625+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-01-29"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "93dcf421-d2db-4010-9ac0-72e20933f33f",
+      "caseName": "ΑΝΑΣΤΑΣΙΟΥ ΠΑΝΑΓΙΩΤΗΣ - ΜΙΣΘΩΤΙΚΗ ΔΙΑΦΟΡΑ",
+      "userId": 52,
+      "organizationId": "a8ad8e5f-15d7-4d85-96c2-e01606d63ce6",
+      "inputs": {
+        "filingDate": "2025-04-14",
+        "dikasimos": "2025-10-07",
+        "diadikasia": "ΜΙΣΘΩΣΕΙΣ - ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΚΛΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-25 07:29:50.373+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-10-14"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "95fd3f67-76fa-49b7-8da1-0e399c4b2944",
+      "caseName": "ΒΟΓΛΗΣ ΚΑΤΑ ΑΡΚΕΝΤΗ ΕΦΕΣΗ",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2024-07-18",
+        "dikasimos": "2024-11-12",
+        "diadikasia": "ΜΙΣΘΩΣΕΙΣ - ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΚΑΤ ΕΦΕΣΗ ΑΠΟ ΠΡΩΤΟΔΙΚΕΙΟ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 15:37:40.192897+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-11-19"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "98a01718-7760-4c36-b3ab-000cc8c76a96",
+      "caseName": "ΑΓΓΕΛΟΥ ΜΑΓΔΑΛΗΝΗ - ΑΓΩΓΗ ΜΕΤΟΙΚΗΣΗΣ 2η (από αναβολή)",
+      "userId": 47,
+      "organizationId": "760a3ff7-dff5-43ef-a36f-feb4f1b438d1",
+      "inputs": {
+        "filingDate": "2023-05-31",
+        "dikasimos": "2024-05-20",
+        "diadikasia": "ΟΙΚΟΓΕΝΕΙΑΚΟ ΕΙΔΙΚΕΣ ΔΙΑΔΙΚΑΣΙΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-12 08:17:40.198475+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-05-27"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "9b824823-51f9-4fe1-b19c-42bb5ecc6366",
+      "caseName": "ΚΑΡΑΜΟΛΕΓΚΟΥ ΚΑΤΑ ΜΑΝΔΑΡΑΚΑ-ΒΕΝΕΤΙΔΗ",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2023-11-02",
+        "dikasimos": "2024-09-26",
+        "diadikasia": "ΜΙΣΘΩΣΕΙΣ - ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 15:34:57.81707+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-10-04"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "9dc3f2c3-003c-4d18-b5f6-bf5b7ba9fc80",
+      "caseName": "ΧΑΝΙΏΤΗΣ ΚΑΤΑ ΟΥΩΤΕΡΣ ΚΑΙ ΝΟΤΟΠΟΥΛΟΥ ΚΥΡΙΑ ΠΑΡΕΜΒΑ",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2024-11-12",
+        "dikasimos": "2024-12-06",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΚΥΡΙΑ ΠΑΡΕΜΒΑΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 15:37:43.653948+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-12-13"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "a1e372a6-c4c0-4b1c-8981-23884ae7968b",
+      "caseName": "6391/2021",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2021-08-03",
+        "dikasimos": "2022-11-08",
+        "diadikasia": "ΜΙΣΘΩΣΕΙΣ - ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΚΑΤ ΕΦΕΣΗ ΑΠΟ ΠΡΩΤΟΔΙΚΕΙΟ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:51:04.080808+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2022-11-15"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "a328b848-e650-4bfd-812b-c4558989178a",
+      "caseName": "ΜΠρΑθ Αγωγή Ντεντάκου κλπ (συν.4) # Δήμος Σαρωνικού",
+      "userId": 110,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2024-01-15",
+        "dikasimos": "2024-10-22",
+        "diadikasia": "ΕΡΓΑΤΙΚΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 21:43:26.140514+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-10-30"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "a3b3a6bf-b327-4ca8-bc60-d3778178d0ef",
+      "caseName": "Καρλέμπεη Κωνστνατίνα",
+      "userId": 61,
+      "organizationId": "11bac254-a4b5-434e-8f21-dbb000f1e366",
+      "inputs": {
+        "filingDate": "2024-12-09",
+        "dikasimos": "2025-01-20",
+        "diadikasia": "ΟΙΚΟΓΕΝΕΙΑΚΟ ΕΙΔΙΚΕΣ ΔΙΑΔΙΚΑΣΙΕΣ",
+        "eidos": "ΚΛΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-06-26 08:28:01.289781+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-01-27"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "a788876e-93b1-47fb-be34-679a42f6d4c8",
+      "caseName": "87072/2019",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2019-10-10",
+        "dikasimos": "2023-01-17",
+        "diadikasia": "ΑΝΑΚΟΠΕΣ ΚΑΤΑ ΤΗΣ ΕΚΤΕΛΕΣΗΣ (Από Μετάπτωση)",
+        "eidos": "ΑΝΑΚΟΠΗ ΕΚΤΕΛΕΣΕΩΣ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:50:56.936404+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-01-24"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "a922aad1-3eba-4444-863f-53e17ffe3a31",
+      "caseName": "ΚΩΝ/ΝΟΣ ΚΟΥΣΟΥΛΟΣ (άδεια για αποποίηση ανηλίκων)",
+      "userId": 48,
+      "organizationId": "e13253a4-46c6-4d26-ac9a-6075e6c8aad8",
+      "inputs": {
+        "filingDate": "2024-02-29",
+        "dikasimos": "2024-05-22",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΝΕΑΣ ΙΩΝΙΑΣ",
+        "mappedCourt": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΝΕΑΣ ΙΩΝΙΑΣ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-12 12:38:59.650751+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-05-29"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "abb0a2dd-2483-4273-b49e-e2263887f7f0",
+      "caseName": "95596/2022",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2022-10-05",
+        "dikasimos": "2023-01-17",
+        "diadikasia": "ΑΝΑΚΟΠΕΣ ΚΑΤΑ ΤΗΣ ΕΚΤΕΛΕΣΗΣ (Από Μετάπτωση)",
+        "eidos": "ΚΛΗΣΗ ΑΝΑΚΟΠΗΣ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:50:57.354256+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-01-24"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "ae0eca16-2006-43ae-9b7a-75e8404671d1",
+      "caseName": "86930/2023",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2023-10-26",
+        "dikasimos": "2023-12-18",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ ΑΝΑΣΤΟΛΗΣ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:50:28.850698+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-12-27"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "b104b2f8-f83e-42e5-a2f9-5e2b16ddadcf",
+      "caseName": "ΓΑΚ 8698/2024",
+      "userId": 34,
+      "organizationId": "06e945c7-6f2c-4767-8eb2-7b7a97768b3c",
+      "inputs": {
+        "filingDate": "2024-10-08",
+        "dikasimos": "2024-11-12",
+        "diadikasia": "ΜΙΣΘΩΣΕΙΣ - ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΝΤΕΦΕΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-04-11 17:28:59.865546+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-11-19"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "b3ad2735-ef86-47af-bdc3-7915572ec07a",
+      "caseName": "ΑΝΑΠΤΥΞΙΑΚΗ ΟΕ | ΠΡΟΣΩΡΙΝΗ ΔΙΑΤΑΓΗ",
+      "userId": 52,
+      "organizationId": "a8ad8e5f-15d7-4d85-96c2-e01606d63ce6",
+      "inputs": {
+        "filingDate": "2025-06-25",
+        "dikasimos": "2025-10-16",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΚΑΤ ΕΦΕΣΗ ΑΠΟ ΠΡΩΤΟΔΙΚΕΙΟ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-06 09:49:23.184+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-10-23"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "b4cedc25-8f5a-426f-a6a2-d995efb1052c",
+      "caseName": "ΚΑΡΑΜΠΕΛΑ",
+      "userId": 61,
+      "organizationId": "11bac254-a4b5-434e-8f21-dbb000f1e366",
+      "inputs": {
+        "filingDate": "2023-07-25",
+        "dikasimos": "2024-12-06",
+        "diadikasia": "ΟΙΚΟΓΕΝΕΙΑΚΟ ΕΙΔΙΚΕΣ ΔΙΑΔΙΚΑΣΙΕΣ",
+        "eidos": "ΚΛΗΣΗ ΜΕΤΑ ΑΠΟ ΑΠΟΔΕΙΞΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΠΕΙΡΑΙΑ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΠΕΙΡΑΙΑ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-06-26 08:42:28.742013+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-12-13"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "b6afddb2-2acf-4993-8064-08e25e4a8dd5",
+      "caseName": "ΕιρΛαυρ Αίτηση απαλλαγής χρεών Ρεκλείτης Δημήτριος, Αυγουλή Λεμονιά # Δήμος Σαρωνικού",
+      "userId": 110,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2022-01-14",
+        "dikasimos": "2022-05-06",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ ΑΠΑΛΛΑΓΗΣ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΛΑΥΡΙΟΥ",
+        "mappedCourt": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΛΑΥΡΙΟΥ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 21:39:09.716821+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2022-05-13"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "b8070cc5-e370-4843-8f72-b1ba5fb5b402",
+      "caseName": "ΓΑΚ 75164/2023",
+      "userId": 34,
+      "organizationId": "06e945c7-6f2c-4767-8eb2-7b7a97768b3c",
+      "inputs": {
+        "filingDate": "2023-07-10",
+        "dikasimos": "2024-03-01",
+        "diadikasia": "ΕΡΓΑΤΙΚΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-04-10 17:23:25.032331+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-03-08"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "b8f85ea4-19be-40bb-b7cb-8c5740a91ecf",
+      "caseName": "114569/2019",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2019-12-24",
+        "dikasimos": "2023-09-26",
+        "diadikasia": "ΑΝΑΚΟΠΕΣ ΚΑΤΑ ΤΗΣ ΕΚΤΕΛΕΣΗΣ (Από Μετάπτωση)",
+        "eidos": "ΑΝΑΚΟΠΗ ΕΚΤΕΛΕΣΕΩΣ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:50:36.142578+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-10-04"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "b9659f88-fc82-4d22-b9df-90fd0f869a42",
+      "caseName": "87069/2019",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2019-10-10",
+        "dikasimos": "2023-01-17",
+        "diadikasia": "ΑΝΑΚΟΠΕΣ ΚΑΤΑ ΤΗΣ ΕΚΤΕΛΕΣΗΣ (Από Μετάπτωση)",
+        "eidos": "ΑΝΑΚΟΠΗ ΕΚΤΕΛΕΣΕΩΣ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:50:56.515219+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-01-24"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "bb07df1c-1995-40f0-8af6-b31821609272",
+      "caseName": "ΜΠρΑθ Ανακοπή 933 Σουλιώτη Ιωάννας # 5352/2021 διαταγής πληρωμής ΜΠρΑθ # ΕΤΕ",
+      "userId": 110,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2019-12-05",
+        "dikasimos": "2024-12-10",
+        "diadikasia": "ΑΝΑΚΟΠΕΣ ΚΑΤΑ ΤΗΣ ΕΚΤΕΛΕΣΗΣ (Από Μετάπτωση)",
+        "eidos": "ΑΝΑΚΟΠΗ ΕΚΤΕΛΕΣΕΩΣ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 21:44:18.012322+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-12-17"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "bbb95581-30f7-4d8b-b0c8-32f946bab00f",
+      "caseName": "ΓΑΚ 153877/2024",
+      "userId": 34,
+      "organizationId": "06e945c7-6f2c-4767-8eb2-7b7a97768b3c",
+      "inputs": {
+        "filingDate": "2024-11-12",
+        "dikasimos": "2024-12-06",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΚΥΡΙΑ ΠΑΡΕΜΒΑΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-04-11 17:29:01.028689+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-12-13"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "bdcd884e-ad67-4dc0-9510-220fd97a6257",
+      "caseName": "ΜΠρΑθ Αίτηση (άρθρου 6 & 3 Ν. 2664/1998) Δήμος Ζωγράφου # Ελληνικό Δημόσιο κλπ",
+      "userId": 109,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2020-11-19",
+        "dikasimos": "2024-10-11",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 23:03:17.09276+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-10-18"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "be970ada-0e15-4263-abb0-7329030ec651",
+      "caseName": "ΕιρΘεσ Ανακοπή Μιχούδη # 2935/2023 διαταγής πληρωμής & Εθνική Τράπεζα",
+      "userId": 109,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2023-11-28",
+        "dikasimos": "2024-03-21",
+        "diadikasia": "ΑΝΑΚΟΠΕΣ",
+        "eidos": "ΑΝΑΚΟΠΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΘΕΣΣΑΛΟΝΙΚΗΣ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΘΕΣΣΑΛΟΝΙΚΗΣ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 21:42:30.740504+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-03-29"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "bf95ad40-20a7-4ef8-9a4c-98bb718bc3c0",
+      "caseName": "64309/2021",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2021-08-06",
+        "dikasimos": "2022-10-25",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:51:06.569102+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2022-11-02"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "c08026c8-8b4d-41be-afcb-81bd0cc5fdc3",
+      "caseName": "48648/2019",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2019-06-07",
+        "dikasimos": "2022-10-25",
+        "diadikasia": "ΑΝΑΚΟΠΕΣ ΚΑΤΑ ΤΗΣ ΕΚΤΕΛΕΣΗΣ (Από Μετάπτωση)",
+        "eidos": "ΑΝΑΚΟΠΗ ΕΚΤΕΛΕΣΕΩΣ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:51:05.74153+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2022-11-02"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "c0b8c523-7743-4f25-98ad-4f7287a1ecd0",
+      "caseName": "ΓΑΚ 12029/ΕΑΚ 79 - 2023",
+      "userId": 34,
+      "organizationId": "06e945c7-6f2c-4767-8eb2-7b7a97768b3c",
+      "inputs": {
+        "filingDate": "2023-02-10",
+        "dikasimos": "2024-01-18",
+        "diadikasia": "ΕΡΓΑΤΙΚΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-04-10 16:33:11.131689+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-01-25"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "c4045316-3598-460e-8d83-e750f8822e33",
+      "caseName": "Κρανιός",
+      "userId": 41,
+      "organizationId": "39558486-4869-47a1-bf67-14d9e791dc04",
+      "inputs": {
+        "filingDate": "2024-10-14",
+        "dikasimos": "2024-12-03",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-02 10:21:06.291674+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-12-10"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "c55807b2-c44b-4ec6-88e5-510025cd30f4",
+      "caseName": "ΓΑΚ 2172/2024",
+      "userId": 34,
+      "organizationId": "06e945c7-6f2c-4767-8eb2-7b7a97768b3c",
+      "inputs": {
+        "filingDate": "2024-07-09",
+        "dikasimos": "2024-10-31",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΟΙΚΟΘΕΝ ΔΙΑ ΤΟΥ ΕΙΣΑΓΓΕΛΕΑ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΧΑΛΚΙΔΑΣ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΧΑΛΚΙΔΑΣ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-04-11 17:28:57.831305+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-11-07"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "c5c9db70-62db-48e9-9eda-51a953cf8f8a",
+      "caseName": "ΒΟΛΙΩΤΗΣ-ΣΑΠΟΥΤΖΗ ΚΑΤΑ ΣΙΔΗΡΑ ΚΑΙ CEPAL",
+      "userId": 31,
+      "organizationId": "52f36e85-27f9-42c0-bd6d-af9b32f35900",
+      "inputs": {
+        "filingDate": "2024-12-18",
+        "dikasimos": "2025-01-21",
+        "diadikasia": "ΑΝΑΚΟΠΕΣ ΚΑΤΑ ΤΗΣ ΕΚΤΕΛΕΣΗΣ (Από Μετάπτωση)",
+        "eidos": "ΑΝΑΚΟΠΗ ΕΚΤΕΛΕΣΕΩΣ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-01 08:19:07.227146+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-01-28"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "c6af2313-5f70-49e3-9ddf-39271b49fcd4",
+      "caseName": "ΙΔΡΥΜΑ ΜΙΧΕΛΗ - ΕΛ. ΝΙΚΟΛΑΟΥ",
+      "userId": 48,
+      "organizationId": "e13253a4-46c6-4d26-ac9a-6075e6c8aad8",
+      "inputs": {
+        "filingDate": "2023-07-21",
+        "dikasimos": "2025-01-21",
+        "diadikasia": "ΜΙΣΘΩΣΕΙΣ - ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-12 12:38:57.483902+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-01-28"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "c8faee09-dd13-4037-a89f-4589d2ae9988",
+      "caseName": "5662/2021",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2021-10-20",
+        "dikasimos": "2024-03-04",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΧΑΛΑΝΔΡΙΟΥ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ - ΠΕΡΙΦΕΡΕΙΑΚΗ ΕΔΡΑ ΑΜΑΡΟΥΣΙΟΥ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΧΑΛΑΝΔΡΙΟΥ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:50:23.160454+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-03-11"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "c91a8070-6614-4e3b-b164-bc42d9254d43",
+      "caseName": "10326/2023",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2023-02-03",
+        "dikasimos": "2023-03-24",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:50:48.656387+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-03-31"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "c972856c-0e87-4cdd-b87b-d43211d752aa",
+      "caseName": "ΜΠρΑθ  Αγωγή (προσαύξηση 20%) Χαράλαμπος Μιχάλης # Δήμος Ιλίου",
+      "userId": 113,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2022-12-20",
+        "dikasimos": "2023-03-07",
+        "diadikasia": "ΕΡΓΑΤΙΚΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 21:40:23.205807+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-03-14"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "ca335bdb-1dce-48a2-b499-88ecf19bf4ca",
+      "caseName": "ΕιρΑχαρνών Αίτηση επαναπροσδιορισμού υπερχρεωμένα νοικοκυριά Ράλλη Μιχαήλ # Τράπεζα Πειραιώς κλπ",
+      "userId": 110,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2022-06-07",
+        "dikasimos": "2023-02-22",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΕΠΑΝΑΠΡΟΣΔΙΟΡΙΣΜΟΣ Ν. 4745/2020",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΧΑΡΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΧΑΡΝΩΝ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 21:40:31.472839+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-03-02"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "cb2b3d31-71c4-479c-801c-407a45971c51",
+      "caseName": "ΓΑΚ 159498/2024",
+      "userId": 37,
+      "organizationId": "bb49f5dd-2c72-41a5-9e00-137e20bfef80",
+      "inputs": {
+        "filingDate": "2024-11-18",
+        "dikasimos": "2025-01-27",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-01 18:48:23.851102+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-02-03"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "ccbeec2a-ef42-47ba-9c09-fb4bbf425293",
+      "caseName": "ΦΙΛΙΠΠΟΥ ΚΑΤΑ ΜΠΑΡΣΑΚΗ",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2024-06-21",
+        "dikasimos": "2024-12-05",
+        "diadikasia": "ΕΙΔΙΚΗ ΔΙΑ ΤΟΥ ΤΥΠΟΥ Τ.ΠΟΛ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΧΑΛΚΙΔΑΣ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΧΑΛΚΙΔΑΣ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 15:38:22.702866+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-12-12"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "cd116c26-c97e-46d7-a505-a498666f1bdb",
+      "caseName": "ΚΑΛΛΙΑΝΟΣ ΚΑΤΑ ΚΟΡΩΝΑΚΟΣ ΕΕ",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2024-07-05",
+        "dikasimos": "2024-12-18",
+        "diadikasia": "ΜΙΣΘΩΣΕΙΣ - ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 15:38:25.954765+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-12-27"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "ce8d96c9-4f84-4d65-a75e-83dfc69fbb4c",
+      "caseName": "ΧΟΥΝΤΑ",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2022-12-05",
+        "dikasimos": "2023-01-27",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 15:30:06.489212+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-02-03"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "ce90e7fc-28aa-449f-9d53-221f3beb2afa",
+      "caseName": "ΕΝΕΡΓΕΙΑΚΗ ΙΚΕ - ΑΓΩΓΗ ΑΔΙΚΟΠΡΑΞΙΑΣ",
+      "userId": 52,
+      "organizationId": "a8ad8e5f-15d7-4d85-96c2-e01606d63ce6",
+      "inputs": {
+        "filingDate": "2025-01-15",
+        "dikasimos": "2025-09-17",
+        "diadikasia": "ΟΙΚΟΓΕΝΕΙΑΚΟ ΕΙΔΙΚΕΣ ΔΙΑΔΙΚΑΣΙΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΠΕΙΡΑΙΑ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΠΕΙΡΑΙΑ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-24 08:12:50.955+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-09-24"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "cec85c77-3ba0-4267-8d2f-54a60c4a8886",
+      "caseName": "ΞΙΑΡΧΟΣ-ΓΡΙΤΤΗΣ ΚΑΤΑ ΕΦΚΑ",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2023-02-10",
+        "dikasimos": "2024-01-18",
+        "diadikasia": "ΕΡΓΑΤΙΚΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 15:34:16.875593+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-01-25"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "d0321422-e81c-45c5-bc4f-558bd07bd9e8",
+      "caseName": "ΟΥΩΤΕΡΣ ΚΑΤΑ ΧΑΝΙΩΤΗ - ΑΠΟΚΤΗΜΑΤΑ",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2022-08-11",
+        "dikasimos": "2023-01-16",
+        "diadikasia": "ΟΙΚΟΓΕΝΕΙΑΚΟ ΕΙΔΙΚΕΣ ΔΙΑΔΙΚΑΣΙΕΣ",
+        "eidos": "ΚΛΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 15:30:05.803162+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-01-23"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "d04486aa-0cf8-4993-8696-a8e1609c30da",
+      "caseName": "ΓΑΒΡΙΗΛ ΣΟΦΙΑ ΚΑΤΑ DOVALUE",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2023-01-03",
+        "dikasimos": "2023-09-21",
+        "diadikasia": "ΑΝΑΚΟΠΕΣ",
+        "eidos": "ΑΝΑΚΟΠΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΝΕΑΣ ΙΩΝΙΑΣ",
+        "mappedCourt": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΝΕΑΣ ΙΩΝΙΑΣ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 15:33:11.896791+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-09-28"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "d78c399d-4111-4bdf-8fc5-6684cfc63542",
+      "caseName": "ΓΑΚ 41411/2022",
+      "userId": 40,
+      "organizationId": "3fb1fd7f-1d72-49a7-9f8d-d2e43f567808",
+      "inputs": {
+        "filingDate": "2022-05-05",
+        "dikasimos": "2022-09-16",
+        "diadikasia": "ΜΙΣΘΩΣΕΙΣ - ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-02 06:57:33.801915+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2022-09-23"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "d7abfaaf-757d-483d-be15-db778a223fae",
+      "caseName": "ΜΑΣΕΛΗΣ ΚΑΤΑ ΚΟΥΤΣΟΥ ΚΑΙ INTERLIFE ",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2022-04-12",
+        "dikasimos": "2023-11-23",
+        "diadikasia": "ΑΥΤΟΚΙΝΗΤΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΚΡΩΠΙΑΣ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ - ΠΕΡΙΦΕΡΕΙΑΚΗ ΕΔΡΑ ΚΡΩΠΙΑΣ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΚΡΩΠΙΑΣ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 15:34:13.166471+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-11-30"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "dd0ae8eb-38a7-4581-b303-3ac4ced7fad3",
+      "caseName": "73243/2022",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2022-09-16",
+        "dikasimos": "2022-12-13",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:51:00.437705+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2022-12-20"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "e029c811-c9fb-4ac3-9d0b-a72c544538fb",
+      "caseName": "ΜΑΓΚΟΣ ΚΩΣΤΑΣ (ΙΩΑΝΝΑ)",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2024-03-15",
+        "dikasimos": "2025-02-19",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΝΕΑΣ ΙΩΝΙΑΣ",
+        "mappedCourt": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΝΕΑΣ ΙΩΝΙΑΣ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 15:39:01.489683+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-02-26"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "e1dee281-c3f5-4824-9be6-6c67b8299b3a",
+      "caseName": "ΓΑΚ 191593/2024",
+      "userId": 34,
+      "organizationId": "06e945c7-6f2c-4767-8eb2-7b7a97768b3c",
+      "inputs": {
+        "filingDate": "2024-12-18",
+        "dikasimos": "2025-01-21",
+        "diadikasia": "ΑΝΑΚΟΠΕΣ ΚΑΤΑ ΤΗΣ ΕΚΤΕΛΕΣΗΣ (Από Μετάπτωση)",
+        "eidos": "ΑΝΑΚΟΠΗ ΕΚΤΕΛΕΣΕΩΣ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-04-11 17:33:42.984072+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-01-28"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "e34f8a6a-2695-4fb0-a4ca-58b13ab8355d",
+      "caseName": "ΜΟΥΛΛΑ",
+      "userId": 61,
+      "organizationId": "11bac254-a4b5-434e-8f21-dbb000f1e366",
+      "inputs": {
+        "filingDate": "2023-11-16",
+        "dikasimos": "2024-11-18",
+        "diadikasia": "ΟΙΚΟΓΕΝΕΙΑΚΟ ΕΙΔΙΚΕΣ ΔΙΑΔΙΚΑΣΙΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-06-26 08:40:20.090203+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-11-25"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "e356d3de-4f24-4313-9141-574b531b2863",
+      "caseName": "ΜΠρΑθ Αίτηση (άρθρου 6 & 3 Ν. 2664/1998) Δήμος Ζωγράφου # Ελληνικό Δημόσιο κλπ",
+      "userId": 109,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2020-11-18",
+        "dikasimos": "2024-10-11",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 23:03:11.562214+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-10-18"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "e357dff9-14c4-4220-8ac8-ee29d04188cb",
+      "caseName": "ΓΑΚ 159498/2024",
+      "userId": 34,
+      "organizationId": "06e945c7-6f2c-4767-8eb2-7b7a97768b3c",
+      "inputs": {
+        "filingDate": "2024-11-18",
+        "dikasimos": "2025-01-27",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-04-11 17:33:43.270641+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-02-03"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "e3963d43-d364-4319-9ba7-09d1ef57598b",
+      "caseName": "ΣΤΥΛΙΑΝΟΥ - ΧΡΗΣΤΙΔΟΥ ΒΑΣΙΛΙΚΗ - ΣΤΥΛΙΑΝΟΥ- ΧΡΗΣΤΙΔΟΥ ΒΑΣΙΛΙΚΗ ΑΝΑΚΟΓΙΗ",
+      "userId": 47,
+      "organizationId": "760a3ff7-dff5-43ef-a36f-feb4f1b438d1",
+      "inputs": {
+        "filingDate": "2020-07-20",
+        "dikasimos": "2025-01-28",
+        "diadikasia": "ΑΝΑΚΟΠΕΣ ΚΑΤΑ ΤΗΣ ΕΚΤΕΛΕΣΗΣ (Από Μετάπτωση)",
+        "eidos": "ΑΝΑΚΟΠΗ ΕΚΤΕΛΕΣΕΩΣ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-12 08:18:28.955644+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-02-04"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "e567d20b-2d63-41a5-bcf6-8c37c56fe805",
+      "caseName": "ΜΠρΑθ Αγωγή (εργατικά) Καράμπελας κ.λπ. # Δήμος Κηφισιάς",
+      "userId": 110,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2016-07-29",
+        "dikasimos": "2023-10-25",
+        "diadikasia": "ΕΡΓΑΤΙΚΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 21:36:59.14042+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-11-01"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "e5a33880-f2fa-4276-9c7b-dc34c1fd8a06",
+      "caseName": "ΠΡΑΙΜ ΙΝΣΟΥΡ - ΥΛΙΚΕΣ ΖΗΜΙΕΣ",
+      "userId": 41,
+      "organizationId": "39558486-4869-47a1-bf67-14d9e791dc04",
+      "inputs": {
+        "filingDate": "2024-03-01",
+        "dikasimos": "2025-11-03",
+        "diadikasia": "ΑΥΤΟΚΙΝΗΤΑ-ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΕΦΕΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΠΕΙΡΑΙΑ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΠΕΙΡΑΙΑ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-11-18 12:57:27.419612+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-11-10"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "e6d3063e-aa38-49e2-8c96-eeade962251f",
+      "caseName": "ΚΑΤΑΣΚΕΥΑΣΤΙΚΗ ΕΠΕ - ΑΓΩΓΗ ΕΡΓΟΛΑΒΙΚΟΥ",
+      "userId": 52,
+      "organizationId": "a8ad8e5f-15d7-4d85-96c2-e01606d63ce6",
+      "inputs": {
+        "filingDate": "2025-08-27",
+        "dikasimos": "2025-10-16",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΚΑΤ ΕΦΕΣΗ ΑΠΟ ΠΡΩΤΟΔΙΚΕΙΟ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΕΦΕΤΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-16 10:45:12.32+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-10-23"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "e9f49749-94a8-44b1-b1aa-6bbdc028adfa",
+      "caseName": "ΤΟΓΙΑ ΔΙΚ. ΣΥΜΠΑΡΑΣΤΑΣΗ",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2024-07-09",
+        "dikasimos": "2024-10-31",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΟΙΚΟΘΕΝ ΔΙΑ ΤΟΥ ΕΙΣΑΓΓΕΛΕΑ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΧΑΛΚΙΔΑΣ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΧΑΛΚΙΔΑΣ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 15:37:07.430558+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-11-07"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "eb37623e-db4a-4719-99bd-8616719223f6",
+      "caseName": "ΑΓΓΕΛΟΥ ΜΑΓΔΑΛΗΝΗ - ΑΓΓΕΛΟΥ ΜΑΓΔΑΛΗΝΗ ΑΓΩΓΗ ΔΙΑΖΥΓΙΟΥ (από αναβολή)",
+      "userId": 47,
+      "organizationId": "760a3ff7-dff5-43ef-a36f-feb4f1b438d1",
+      "inputs": {
+        "filingDate": "2022-03-11",
+        "dikasimos": "2024-09-23",
+        "diadikasia": "ΟΙΚΟΓΕΝΕΙΑΚΟ ΕΙΔΙΚΕΣ ΔΙΑΔΙΚΑΣΙΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-12 08:17:43.991114+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-09-30"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "ef3ee0af-73f6-4226-9f03-0e65ac2cf44f",
+      "caseName": "ΓΑΚ 115185/2023",
+      "userId": 34,
+      "organizationId": "06e945c7-6f2c-4767-8eb2-7b7a97768b3c",
+      "inputs": {
+        "filingDate": "2023-11-02",
+        "dikasimos": "2024-09-26",
+        "diadikasia": "ΜΙΣΘΩΣΕΙΣ - ΠΕΡΙΟΥΣΙΑΚΕΣ ΔΙΑΦΟΡΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-04-11 17:12:29.98725+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-10-04"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "f39e156f-7922-4033-9e6a-be74573d4e93",
+      "caseName": "AFC ΚΥΡΙΑ ΑΙΤΗΣΗ",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2024-03-01",
+        "dikasimos": "2024-04-15",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 15:35:39.967164+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-04-22"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "f57f48cb-1b74-4953-9851-0337315e4bb6",
+      "caseName": "102092/2023",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2023-09-29",
+        "dikasimos": "2024-02-20",
+        "diadikasia": "ΑΝΑΚΟΠΕΣ ΚΑΤΑ ΤΗΣ ΕΚΤΕΛΕΣΗΣ (Από Μετάπτωση)",
+        "eidos": "ΑΝΑΚΟΠΗ ΕΚΤΕΛΕΣΕΩΣ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:50:23.98666+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-02-27"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "f62f6842-d73b-495b-ac42-662c7596c343",
+      "caseName": "ΜΟΡΦΗΣ ΚΑΤΑ ΜΙΧΑΛΑΡΟΥ ΚΛΠ",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2023-06-19",
+        "dikasimos": "2023-09-25",
+        "diadikasia": "ΟΙΚΟΓΕΝΕΙΑΚΟ ΕΙΔΙΚΕΣ ΔΙΑΔΙΚΑΣΙΕΣ",
+        "eidos": "ΚΛΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 15:33:12.571462+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-10-02"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "f7dcf7cd-37bc-431e-8157-f4df1677ebb9",
+      "caseName": "Interamerican - ΔΙΟΡΙΣΜΟΣ/ΑΝΤΙΚΑΤΑΣΤΑΣΗ ΔΙΑΧΕΙΡΙΣΤΗ",
+      "userId": 34,
+      "organizationId": "06e945c7-6f2c-4767-8eb2-7b7a97768b3c",
+      "inputs": {
+        "filingDate": "2024-12-27",
+        "dikasimos": "2025-03-28",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-06-25 12:28:24.55617+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-04-04"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "f9da3cb2-da58-471f-b17f-0cd8391e2b55",
+      "caseName": "110221/2023",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2023-10-25",
+        "dikasimos": "2024-01-09",
+        "diadikasia": "ΑΝΑΚΟΠΕΣ ΚΑΤΑ ΤΗΣ ΕΚΤΕΛΕΣΗΣ (Από Μετάπτωση)",
+        "eidos": "ΑΝΑΚΟΠΗ ΕΚΤΕΛΕΣΕΩΣ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:50:27.567919+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-01-16"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "fb7ce53c-73b2-485a-a503-287731ad1799",
+      "caseName": "66585/2021",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2021-10-13",
+        "dikasimos": "2023-04-04",
+        "diadikasia": "ΑΝΑΚΟΠΕΣ",
+        "eidos": "ΑΝΑΚΟΠΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΑΘΗΝΩΝ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:50:45.239702+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2023-04-11"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "fceaa55d-967f-4dae-84d5-23cb5005f23a",
+      "caseName": "ΟΥΩΤΕΡΣ ΚΑΤΑ ΤΣΙΛΙΜΑΝΤΟΥ",
+      "userId": 45,
+      "organizationId": "2eef0fe5-6fd2-495e-adc7-7ee9b587b6e4",
+      "inputs": {
+        "filingDate": "2023-10-17",
+        "dikasimos": "2024-02-08",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-07 15:34:18.937199+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-02-15"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "fd40e64e-1b0f-4a77-965d-bd7439714fa3",
+      "caseName": "ΜΠρΧαλκ Αγωγή Γάτου # Πατερίτσα (αναβλητική)",
+      "userId": 109,
+      "organizationId": "b7327800-6252-4309-afdf-e7de4e1c324b",
+      "inputs": {
+        "filingDate": "2023-01-05",
+        "dikasimos": "2025-09-25",
+        "diadikasia": "ΟΙΚΟΓΕΝΕΙΑΚΟ ΕΙΔΙΚΕΣ ΔΙΑΔΙΚΑΣΙΕΣ",
+        "eidos": "ΑΓΩΓΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΧΑΛΚΙΔΑΣ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΧΑΛΚΙΔΑΣ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-10-18 21:41:18.275676+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2025-10-02"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "fdb58928-19f1-47a4-89d7-4336af30bc5d",
+      "caseName": "83716/2019",
+      "userId": 63,
+      "organizationId": "d19e95be-b934-4f15-93a3-294eb1e4981f",
+      "inputs": {
+        "filingDate": "2019-09-30",
+        "dikasimos": "2022-11-22",
+        "diadikasia": "ΑΝΑΚΟΠΕΣ ΚΑΤΑ ΤΗΣ ΕΚΤΕΛΕΣΗΣ (Από Μετάπτωση)",
+        "eidos": "ΑΝΑΚΟΠΗ ΕΚΤΕΛΕΣΕΩΣ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-09-19 12:51:02.405415+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2022-11-29"
+      ],
+      "onlyStoredTypeDate": []
+    },
+    {
+      "caseId": "ff7040dc-27da-4281-bdef-666449cc1a50",
+      "caseName": "ΣΙΜΟΥ ΜΑΓΔΑΛΗΝΗ - ΜΑΓΔΑΛΗΝΗ ΣΙΜΟΥ ΑΙΤΗΣΗ ΕΡΜΗΝΕΙΑΣ",
+      "userId": 47,
+      "organizationId": "760a3ff7-dff5-43ef-a36f-feb4f1b438d1",
+      "inputs": {
+        "filingDate": "2023-12-18",
+        "dikasimos": "2024-09-30",
+        "diadikasia": "ΕΚΟΥΣΙΑ ΜΟΝΟΜΕΛΟΥΣ",
+        "eidos": "ΑΙΤΗΣΗ",
+        "apotelesma": "ΣΥΖΗΤΗΘΗΚΕ",
+        "court": "ΕΙΡΗΝΟΔΙΚΕΙΟ ΧΑΛΑΝΔΡΙΟΥ",
+        "mappedCourt": "ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ - ΠΕΡΙΦΕΡΕΙΑΚΗ ΕΔΡΑ ΑΜΑΡΟΥΣΙΟΥ (ΠΡΩΗΝ ΕΙΡΗΝΟΔΙΚΕΙΟ ΧΑΛΑΝΔΡΙΟΥ)",
+        "diadikosDimosio": false,
+        "katoikosExoterikou": false,
+        "aforaKlisi": false
+      },
+      "createdAt": "2025-05-12 08:18:24.960308+00",
+      "updatedAt": null,
+      "generatedCount": 3,
+      "storedCount": 2,
+      "onlyGeneratedTypeDate": [
+        "prosthiki|2024-10-08"
+      ],
+      "onlyStoredTypeDate": []
+    }
+  ]
+}
