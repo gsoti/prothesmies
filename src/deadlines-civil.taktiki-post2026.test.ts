@@ -64,7 +64,7 @@ describe('getCivilDeadlines', () => {
         expect(byCode.get(CivilDeadlineCode.prosthiki)?.calculation?.logic.reference).toBe('protaseis');
     });
 
-    it('uses 120 days for προτάσεις when the defendant is abroad', () => {
+    it('uses extended deadlines when the defendant is abroad', () => {
         const { deadlines } = getCivilDeadlines({
             imerominia_katathesis: '2026-01-15',
             diadikasia: SUPPORTED_DIADIKASIA,
@@ -73,6 +73,8 @@ describe('getCivilDeadlines', () => {
 
         const byCode = new Map(deadlines.map(deadline => [deadline.type, deadline]));
 
+        expect(byCode.get(CivilDeadlineCode.paremvasiProsek)?.date).toBe('2026-05-27');
+        expect(byCode.get(CivilDeadlineCode.paremvasiProsek)?.calculation?.logic.days).toBe(100);
         expect(byCode.get(CivilDeadlineCode.protaseis)?.date).toBe('2026-06-16');
         expect(byCode.get(CivilDeadlineCode.protaseis)?.calculation?.logic.days).toBe(120);
         expect(byCode.get(CivilDeadlineCode.prosthiki)?.date).toBe('2026-07-01');
@@ -438,6 +440,24 @@ describe('getCivilDeadlines', () => {
               2026-12-15 - Προτάσεις & Αποδεικτικά      90 ημέρες μετά epidosi
               2026-12-30 - Προσθήκη – αντίκρουση        15 ημέρες μετά protaseis
               2027-01-11 - Ορισμός δικαστή              10 ημέρες μετά prosthiki [skipped: 2027-01-09, 2027-01-10]"
+            `);
+        });
+
+        it('should format civil deadlines from filing date crossing anastoli for April filing', () => {
+            const { deadlines } = getCivilDeadlines({
+                imerominia_katathesis: '2026-04-03',
+                diadikasia: SUPPORTED_DIADIKASIA,
+                exoteriko: true,
+            });
+
+            expect(formatCivilDeadlines(deadlines)).toMatchInlineSnapshot(`
+              "2026-04-03 - Κατάθεση                   
+              2026-05-04 - Επίδοση                      30 ημέρες μετά katathesi [skipped: 2026-05-03]
+              2026-07-13 - Παρέμβαση                    70 ημέρες μετά epidosi
+              2026-09-14 - Παρέμβαση προσεπικαλούμενου  100 ημέρες μετά epidosi [paused: 31] [skipped: 2026-09-12, 2026-09-13]
+              2026-10-02 - Προτάσεις & Αποδεικτικά      120 ημέρες μετά epidosi [paused: 31]
+              2026-10-19 - Προσθήκη – αντίκρουση        15 ημέρες μετά protaseis [skipped: 2026-10-17, 2026-10-18]
+              2026-10-29 - Ορισμός δικαστή              10 ημέρες μετά prosthiki"
             `);
         });
 

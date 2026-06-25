@@ -32,7 +32,7 @@ export function getCivilTaktikiPost2026Rules(exoteriko?: boolean): CivilDeadline
             deadline_name: 'Παρέμβαση προσεπικαλούμενου',
             short_name: 'Παρέμβαση προσεπικαλούμενου',
             deadline_code: CivilDeadlineCode.paremvasiProsek,
-            days: 70,
+            days: exoteriko ? 100 : 70,
             day_count: DayCount.CALENDAR,
             direction: Direction.AFTER,
             legislation: 'άρθρο 238 §1 εδ. β΄ ΚΠολΔ',
