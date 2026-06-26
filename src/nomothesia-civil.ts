@@ -1,6 +1,6 @@
-import { CivilDeadlineCode, Nomothesia } from "./types";
-import { getCivilFormattedNomothesiaPost2026, getCivilNomothesiaPost2026 } from "./nomothesia-civil-post2026";
-import { getCivilFormattedNomothesiaPre2026, getCivilNomothesiaPre2026 } from "./nomothesia-civil-pre2026";
+import { CivilDeadlineCode, Nomothesia } from "./types.js";
+import { getCivilFormattedNomothesiaPost2026, getCivilNomothesiaPost2026 } from "./nomothesia-civil-post2026.js";
+import { getCivilFormattedNomothesiaPre2026, getCivilNomothesiaPre2026 } from "./nomothesia-civil-pre2026.js";
 
 export function getCivilNomothesia(
     code: CivilDeadlineCode,

@@ -1,7 +1,9 @@
 export { getCivilDeadlines, DeadlineCalculationError } from './deadlines-civil.js';
 export {
+    AdminDeadlineCode,
     CivilAnchorType,
     CivilDeadlineCode,
+    DayCount,
     type CivilDeadlinesResult,
     type DateCalculation,
     type Deadline,

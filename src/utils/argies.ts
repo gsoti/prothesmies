@@ -7,7 +7,7 @@
  * - Weekends (Saturdays and Sundays)
  */
 
-import { toISODateString, parseISODate, addDays } from './dateUtils';
+import { toISODateString, parseISODate, addDays } from './dateUtils.js';
 
 /**
  * Calculates Orthodox Easter date for a given year using the Meeus Julian algorithm.

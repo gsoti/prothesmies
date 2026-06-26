@@ -2,7 +2,7 @@
  * Anastoli (summer suspension) calculation for administrative court deadlines
  */
 
-import { toISODateString, parseISODate, addDays } from './dateUtils';
+import { toISODateString, parseISODate, addDays } from './dateUtils.js';
 
 /**
  * Returns all dates in the anastoli (summer suspension) period within a date range.
