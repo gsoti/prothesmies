@@ -1,1026 +1,277 @@
-import { describe, it, expect } from 'vitest';
-import { getAdminDeadlines, DeadlineCalculationError } from './deadlines-admin.js';
-import { CourtType, ProcedureType } from './types.js';
-import { testConnection } from './db.js';
+import { describe, expect, it } from 'vitest';
+import {
+    getAdminDeadlines,
+    sortAdminDeadlineRules,
+} from './deadlines-admin.js';
+import { ADMIN_DIAFORA_OUSIAS_RULES } from './rules/rules-admin-diafora-ousias.js';
+import {
+    AdminDeadlineCode,
+    CourtType,
+    DeadlineRule,
+    ProcedureType,
+} from './types.js';
+import { DeadlineCalculationError } from './utils/deadlineHelpers.js';
 
-const DB_AVAILABLE = Boolean(process.env.DATABASE_URL) && await testConnection();
-const describeIfDb = DB_AVAILABLE ? describe : describe.skip;
-const describeAdmin = DB_AVAILABLE ? describe : describe.skip;
+const baseInput = {
+    court_type: CourtType.DP_DE,
+    procedure_type: ProcedureType.DIAFORA_OUSIAS,
+    dikasimos: '2026-11-20',
+};
 
-// Integration tests with real database
-describeIfDb('getAdminDeadlines - Integration Tests', () => {
-    describe('Input Validation', () => {
-        it('should throw error for invalid date format', async () => {
-            await expect(
-                getAdminDeadlines({
-                    court_type: CourtType.DP_DE,
-                    procedure_type: ProcedureType.DIAFORA_OUSIAS,
-                    dikasimos: 'invalid-date',
-                })
-            ).rejects.toThrow('Invalid dikasimos date format');
-        });
+describe('getAdminDeadlines', () => {
+    it('is synchronous, deterministic, and returns the stable 12-deadline result', () => {
+        const first = getAdminDeadlines(baseInput);
+        const second = getAdminDeadlines(baseInput);
 
-        it('should throw error for missing dikasimos', async () => {
-            await expect(
-                getAdminDeadlines({
-                    court_type: CourtType.DP_DE,
-                    procedure_type: ProcedureType.DIAFORA_OUSIAS,
-                    dikasimos: '' as any,
-                })
-            ).rejects.toThrow('dikasimos is required');
-        });
-
-        it('should throw error for null dikasimos', async () => {
-            await expect(
-                getAdminDeadlines({
-                    court_type: CourtType.DP_DE,
-                    procedure_type: ProcedureType.DIAFORA_OUSIAS,
-                    dikasimos: null as any,
-                })
-            ).rejects.toThrow('dikasimos is required');
-        });
-
-        it('should accept valid input', async () => {
-            // This should not throw
-            const result = await getAdminDeadlines({
-                court_type: CourtType.DP_DE,
-                procedure_type: ProcedureType.DIAFORA_OUSIAS,
-                dikasimos: '2024-03-15',
-            });
-
-            expect(Array.isArray(result)).toBe(true);
-        });
+        expect(first).not.toBeInstanceOf(Promise);
+        expect(second).toEqual(first);
+        expect(first.map(deadline => ({
+            type: deadline.type,
+            date: deadline.date,
+            days: deadline.calculation?.logic.days,
+            dayCount: deadline.calculation?.logic.day_count,
+            reference: deadline.calculation?.logic.reference,
+            paused: deadline.calculation?.paused,
+            skipped: deadline.calculation?.skipped,
+        }))).toMatchInlineSnapshot(`
+          [
+            {
+              "date": "2026-10-21",
+              "dayCount": "CALENDAR",
+              "days": 30,
+              "paused": [],
+              "reference": "dikasimos",
+              "skipped": [],
+              "type": "apopseis_fakelos_dioikisis",
+            },
+            {
+              "date": "2026-10-30",
+              "dayCount": "FULL",
+              "days": 20,
+              "paused": [],
+              "reference": "dikasimos",
+              "skipped": [
+                "2026-10-31",
+              ],
+              "type": "anakoinosi_dikis",
+            },
+            {
+              "date": "2026-11-05",
+              "dayCount": "CALENDAR",
+              "days": 15,
+              "paused": [],
+              "reference": "dikasimos",
+              "skipped": [],
+              "type": "prostheti_logoi",
+            },
+            {
+              "date": "2026-11-05",
+              "dayCount": "CALENDAR",
+              "days": 15,
+              "paused": [],
+              "reference": "dikasimos",
+              "skipped": [],
+              "type": "prosepiklisi_omodikon",
+            },
+            {
+              "date": "2026-11-13",
+              "dayCount": "FULL",
+              "days": 6,
+              "paused": [],
+              "reference": "dikasimos",
+              "skipped": [
+                "2026-11-14",
+              ],
+              "type": "paremvasi",
+            },
+            {
+              "date": "2026-11-13",
+              "dayCount": "CALENDAR",
+              "days": 5,
+              "paused": [],
+              "reference": "dikasimos",
+              "skipped": [
+                "2026-11-15",
+                "2026-11-14",
+              ],
+              "type": "aitisi_martyra",
+            },
+            {
+              "date": "2026-11-19",
+              "dayCount": "CALENDAR",
+              "days": 1,
+              "paused": [],
+              "reference": "dikasimos",
+              "skipped": [],
+              "type": "dilosi_nomim_apodeiktika",
+            },
+            {
+              "date": "2026-11-19",
+              "dayCount": "CALENDAR",
+              "days": 1,
+              "paused": [],
+              "reference": "dikasimos",
+              "skipped": [],
+              "type": "dikografo_omodikon",
+            },
+            {
+              "date": "2026-11-20",
+              "dayCount": "CALENDAR",
+              "days": 0,
+              "paused": [],
+              "reference": "dikasimos",
+              "skipped": [],
+              "type": "paravolo",
+            },
+            {
+              "date": "2026-11-20",
+              "dayCount": "CALENDAR",
+              "days": 0,
+              "paused": [],
+              "reference": "dikasimos",
+              "skipped": [],
+              "type": "dikastiko_ensimo",
+            },
+            {
+              "date": "2026-11-25",
+              "dayCount": "WORKING",
+              "days": 3,
+              "paused": [
+                "2026-11-21",
+                "2026-11-22",
+              ],
+              "reference": "dikasimos",
+              "skipped": [],
+              "type": "ypomnima",
+            },
+            {
+              "date": "2026-11-30",
+              "dayCount": "WORKING",
+              "days": 3,
+              "paused": [
+                "2026-11-28",
+                "2026-11-29",
+              ],
+              "reference": "ypomnima",
+              "skipped": [],
+              "type": "ypomnima_antikrousis",
+            },
+          ]
+        `);
     });
 
-    describe('Basic Functionality', () => {
-        it('should return array of deadlines for valid input', async () => {
-            const result = await getAdminDeadlines({
-                court_type: CourtType.DP_DE,
-                procedure_type: ProcedureType.DIAFORA_OUSIAS,
-                dikasimos: '2024-03-15',
-            });
+    it('returns unique active codes and excludes the inactive reconciliation folder rule', () => {
+        const result = getAdminDeadlines(baseInput);
+        const codes = result.map(deadline => deadline.type);
 
-            expect(Array.isArray(result)).toBe(true);
-            // If there's data in DB, check structure
-            if (result.length > 0) {
-                const deadline = result[0];
-                expect(deadline).toHaveProperty('name');
-                expect(deadline).toHaveProperty('shortName');
-                expect(deadline).toHaveProperty('type');
-                expect(deadline).toHaveProperty('date');
-                expect(deadline).toHaveProperty('nomothesia');
-                expect(deadline).toHaveProperty('formattedNomothesia');
-
-                expect(deadline).toHaveProperty('calculation');
-            }
-        });
-
-        it('should populate DateCalculation.logic field correctly', async () => {
-            const result = await getAdminDeadlines({
-                court_type: CourtType.DP_DE,
-                procedure_type: ProcedureType.DIAFORA_OUSIAS,
-                dikasimos: '2024-03-15',
-            });
-
-            if (result.length > 0) {
-                const deadline = result[0];
-                expect(deadline.calculation).not.toBeNull();
-                expect(deadline.calculation?.logic).toHaveProperty('days');
-                expect(deadline.calculation?.logic).toHaveProperty('day_count');
-                expect(deadline.calculation?.logic).toHaveProperty('when');
-                expect(deadline.calculation?.logic).toHaveProperty('reference');
-                expect(deadline.calculation?.logic).toHaveProperty('start');
-                expect(deadline.calculation?.logic).toHaveProperty('name');
-
-                // Verify when is either 'before' or 'after'
-                expect(['before', 'after']).toContain(deadline.calculation?.logic.when);
-            }
-        });
-
-
-        it('should parse legislation and extract article number', async () => {
-            const result = await getAdminDeadlines({
-                court_type: CourtType.DP_DE,
-                procedure_type: ProcedureType.DIAFORA_OUSIAS,
-                dikasimos: '2024-03-15',
-            });
-
-            // Find a deadline with legislation
-            const withLegislation = result.find(d => d.nomothesia.length > 0);
-
-            if (withLegislation) {
-                expect(withLegislation.nomothesia.length).toBeGreaterThan(0);
-                expect(withLegislation.formattedNomothesia.length).toBeGreaterThan(0);
-                expect(withLegislation.formattedNomothesia[0]).toHaveProperty('article');
-                expect(withLegislation.formattedNomothesia[0]).toHaveProperty('text');
-                expect(withLegislation.formattedNomothesia[0]).toHaveProperty('highlighted');
-            }
-        });
-
-        it('should handle deadlines without formattedNomothesia.text', async () => {
-            const result = await getAdminDeadlines({
-                court_type: CourtType.DP_DE,
-                procedure_type: ProcedureType.DIAFORA_OUSIAS,
-                dikasimos: '2025-01-15',
-            });
-
-            // Find deadlines where formattedNomothesia has empty text
-            const withoutText = result.filter(
-                d => d.formattedNomothesia.length > 0 && d.formattedNomothesia[0].text === ''
-            );
-
-            // Assert exact number of deadlines without text
-            expect(withoutText.length).toBe(3);
-
-            // Assert specific deadline codes that should have empty text
-            const codes = withoutText.map(d => d.type).sort();
-            expect(codes).toEqual([                
-                'dikastiko_ensimo',
-                'dilosi_nomim_apodeiktika',
-                'paravolo',
-            ]);
-
-            // Verify structure for deadlines without text
-            for (const deadline of withoutText) {
-                expect(deadline.formattedNomothesia[0].article.length).toBeGreaterThan(0);
-                expect(deadline.formattedNomothesia[0].text).toBe('');
-                expect(deadline.formattedNomothesia[0].highlighted).toEqual([]);
-            }
-        });
+        expect(new Set(codes).size).toBe(12);
+        expect(codes).not.toContain(AdminDeadlineCode.fakelos_symvivastikou);
+        expect(codes).toEqual([
+            AdminDeadlineCode.apopseis_fakelos_dioikisis,
+            AdminDeadlineCode.anakoinosi_dikis,
+            AdminDeadlineCode.prostheti_logoi,
+            AdminDeadlineCode.prosepiklisi_omodikon,
+            AdminDeadlineCode.paremvasi,
+            AdminDeadlineCode.aitisi_martyra,
+            AdminDeadlineCode.dilosi_nomim_apodeiktika,
+            AdminDeadlineCode.dikografo_omodikon,
+            AdminDeadlineCode.paravolo,
+            AdminDeadlineCode.dikastiko_ensimo,
+            AdminDeadlineCode.ypomnima,
+            AdminDeadlineCode.ypomnima_antikrousis,
+        ]);
     });
 
-    describe('Chained Deadlines', () => {
-        it('should handle parent-child relationships correctly', async () => {
-            const result = await getAdminDeadlines({
-                court_type: CourtType.DP_DE,
-                procedure_type: ProcedureType.DIAFORA_OUSIAS,
-                dikasimos: '2024-03-15',
-            });
+    it('applies syntmisi only to the administration-file deadline', () => {
+        const ordinary = getAdminDeadlines(baseInput);
+        const shortened = getAdminDeadlines({ ...baseInput, syntmisi: true });
 
-            // Find deadlines that reference other deadlines
-            // Child deadline's logic.reference should be the parent's name (not "δικάσιμο")
-            const childDeadlines = result.filter(
-                d => d.calculation?.logic.reference !== 'dikasimos'
-            );
-
-            if (childDeadlines.length > 0) {
-                for (const child of childDeadlines) {
-                    // Verify that reference is a deadline name, not the dikasimos
-                    expect(child.calculation?.logic.reference).not.toBe('δικάσιμο');
-                    expect(typeof child.calculation?.logic.reference).toBe('string');
-                    expect(child.calculation?.logic.reference.length).toBeGreaterThan(0);
-
-                    // Verify that start is a valid date
-                    expect(child.calculation?.logic.start).toMatch(/^\d{4}-\d{2}-\d{2}$/);
-
-                    // Verify start date is not the dikasimos for chained deadlines
-                    expect(child.calculation?.logic.start).not.toBe('2024-03-15');
-                }
+        const ordinaryByType = new Map(ordinary.map(deadline => [deadline.type, deadline]));
+        for (const deadline of shortened) {
+            if (deadline.type === AdminDeadlineCode.apopseis_fakelos_dioikisis) {
+                expect(deadline.date).toBe('2026-11-12');
+                expect(deadline.calculation?.logic.days).toBe(8);
+                expect(deadline.formattedNomothesia[0].highlighted[0]).toContain('οκτώ ημέρες');
+            } else {
+                expect(deadline).toEqual(ordinaryByType.get(deadline.type));
             }
-        });
-
-        it('should have root deadlines reference dikasimos', async () => {
-            const result = await getAdminDeadlines({
-                court_type: CourtType.DP_DE,
-                procedure_type: ProcedureType.DIAFORA_OUSIAS,
-                dikasimos: '2024-03-15',
-            });
-
-            // Find root deadlines (reference = "δικάσιμο")
-            const rootDeadlines = result.filter(
-                d => d.calculation?.logic.reference === 'δικάσιμο'
-            );
-
-            if (rootDeadlines.length > 0) {
-                for (const root of rootDeadlines) {
-                    expect(root.calculation?.logic.reference).toBe('δικάσιμο');
-                    expect(root.calculation?.logic.start).toBe('2024-03-15');
-                }
-            }
-        });
-
-        it('should calculate dates in correct order (parent before child)', async () => {
-            const result = await getAdminDeadlines({
-                court_type: CourtType.DP_DE,
-                procedure_type: ProcedureType.DIAFORA_OUSIAS,
-                dikasimos: '2024-06-15', // Use summer date to avoid year-end issues
-            });
-
-            // This test verifies that the topological sort works correctly
-            // by checking that we can successfully calculate all deadlines
-            // without errors (which would happen if we tried to use a parent
-            // that wasn't calculated yet)
-            expect(result).toBeDefined();
-            expect(Array.isArray(result)).toBe(true);
-
-            // All deadlines should have valid dates
-            for (const deadline of result) {
-                expect(deadline.date).toMatch(/^\d{4}-\d{2}-\d{2}$/);
-                expect(deadline.calculation).not.toBeNull();
-            }
-        });
+        }
     });
 
-    describe('Date Calculations', () => {
-        it('should calculate dates correctly for BEFORE direction', async () => {
-            const result = await getAdminDeadlines({
-                court_type: CourtType.DP_DE,
-                procedure_type: ProcedureType.DIAFORA_OUSIAS,
-                dikasimos: '2024-03-15',
-            });
+    it('preserves the ypomnima dependency chain', () => {
+        const result = getAdminDeadlines(baseInput);
+        const ypomnima = result.find(deadline => deadline.type === AdminDeadlineCode.ypomnima)!;
+        const antikrousis = result.find(deadline => deadline.type === AdminDeadlineCode.ypomnima_antikrousis)!;
 
-            // Find a BEFORE deadline
-            const beforeDeadline = result.find(d => d.calculation?.logic.when === 'before');
-
-            if (beforeDeadline) {
-                // Date should be before the reference
-                const deadlineDate = new Date(beforeDeadline.date);
-                const referenceDate = new Date(beforeDeadline.calculation!.logic.start);
-                expect(deadlineDate.getTime()).toBeLessThan(referenceDate.getTime());
-            }
-        });
-
-        it('should calculate dates correctly for AFTER direction', async () => {
-            const result = await getAdminDeadlines({
-                court_type: CourtType.DP_DE,
-                procedure_type: ProcedureType.DIAFORA_OUSIAS,
-                dikasimos: '2024-03-15',
-            });
-
-            // Find all AFTER deadlines
-            const afterDeadlines = result.filter(d => d.calculation?.logic.when === 'after');
-
-            // Check all AFTER deadlines
-            for (const afterDeadline of afterDeadlines) {
-                // Date should be after or equal to the reference
-                const deadlineDate = new Date(afterDeadline.date);
-                const referenceDate = new Date(afterDeadline.calculation!.logic.start);
-                expect(deadlineDate.getTime()).toBeGreaterThanOrEqual(referenceDate.getTime());
-            }
-        });
-
-        it('should handle working days vs calendar days correctly', async () => {
-            const result = await getAdminDeadlines({
-                court_type: CourtType.DP_DE,
-                procedure_type: ProcedureType.DIAFORA_OUSIAS,
-                dikasimos: '2024-03-15',
-            });
-
-        });
-
-        it('should include paused and skipped dates in calculation', async () => {
-            const result = await getAdminDeadlines({
-                court_type: CourtType.DP_DE,
-                procedure_type: ProcedureType.DIAFORA_OUSIAS,
-                dikasimos: '2024-08-01', // Summer date to potentially hit Aug 15 holiday
-            });
-
-            for (const deadline of result) {
-                expect(deadline.calculation).not.toBeNull();
-                expect(Array.isArray(deadline.calculation!.paused)).toBe(true);
-                expect(Array.isArray(deadline.calculation!.skipped)).toBe(true);
-
-                // Paused may contain weekend dates for working days deadlines
-                // For non-working-days deadlines, paused should be empty (no anastoli in current implementation)
-                // Just verify all paused dates are valid
-                for (const paused of deadline.calculation!.paused) {
-                    expect(paused).toMatch(/^\d{4}-\d{2}-\d{2}$/);
-                }
-
-                // Skipped may or may not be empty depending on holidays
-                // Just verify it's an array of valid dates
-                for (const skipped of deadline.calculation!.skipped) {
-                    expect(skipped).toMatch(/^\d{4}-\d{2}-\d{2}$/);
-                }
-            }
-        });
+        expect(antikrousis.calculation?.logic.start).toBe(ypomnima.date);
+        expect(antikrousis.calculation?.logic.reference).toBe(AdminDeadlineCode.ypomnima);
     });
 
-    describe('Edge Cases', () => {
-        it('should handle dikasimos on different days of the week', async () => {
-            const testDates = [
-                '2024-03-11', // Monday
-                '2024-03-15', // Friday
-                '2024-03-16', // Saturday
-                '2024-03-17', // Sunday
-            ];
+    it('accounts for the administrative summer suspension', () => {
+        const result = getAdminDeadlines({ ...baseInput, dikasimos: '2025-09-22' });
+        const deadline = result.find(item => item.type === AdminDeadlineCode.prostheti_logoi)!;
 
-            for (const date of testDates) {
-                const result = await getAdminDeadlines({
-                    court_type: CourtType.DP_DE,
-                    procedure_type: ProcedureType.DIAFORA_OUSIAS,
-                    dikasimos: date,
-                });
-
-                // Should successfully calculate for any day of the week
-                expect(Array.isArray(result)).toBe(true);
-
-                for (const deadline of result) {
-                    expect(deadline.date).toMatch(/^\d{4}-\d{2}-\d{2}$/);
-                }
-            }
-        });
-
-        it('should handle dikasimos on a holiday', async () => {
-            // March 25 is Greek Independence Day
-            const result = await getAdminDeadlines({
-                court_type: CourtType.DP_DE,
-                procedure_type: ProcedureType.DIAFORA_OUSIAS,
-                dikasimos: '2024-03-25',
-            });
-
-            // Should successfully calculate even on a holiday
-            expect(Array.isArray(result)).toBe(true);
-
-            for (const deadline of result) {
-                expect(deadline.date).toMatch(/^\d{4}-\d{2}-\d{2}$/);
-            }
-        });
-
-        it('should handle year boundaries', async () => {
-            // Late December deadline that may cross into next year
-            const result = await getAdminDeadlines({
-                court_type: CourtType.DP_DE,
-                procedure_type: ProcedureType.DIAFORA_OUSIAS,
-                dikasimos: '2024-12-20',
-            });
-
-            expect(Array.isArray(result)).toBe(true);
-
-            for (const deadline of result) {
-                expect(deadline.date).toMatch(/^\d{4}-\d{2}-\d{2}$/);
-            }
-        });
-
-        it('should handle early January deadline that may go back to previous year', async () => {
-            const result = await getAdminDeadlines({
-                court_type: CourtType.DP_DE,
-                procedure_type: ProcedureType.DIAFORA_OUSIAS,
-                dikasimos: '2024-01-10',
-            });
-
-            expect(Array.isArray(result)).toBe(true);
-
-            for (const deadline of result) {
-                expect(deadline.date).toMatch(/^\d{4}-\d{2}-\d{2}$/);
-            }
-        });
-
-        it('should handle leap year dates', async () => {
-            // Feb 29, 2024 is a valid date (leap year)
-            const result = await getAdminDeadlines({
-                court_type: CourtType.DP_DE,
-                procedure_type: ProcedureType.DIAFORA_OUSIAS,
-                dikasimos: '2024-02-29',
-            });
-
-            expect(Array.isArray(result)).toBe(true);
-
-            for (const deadline of result) {
-                expect(deadline.date).toMatch(/^\d{4}-\d{2}-\d{2}$/);
-            }
-        });
+        expect(deadline.date).toBe('2025-06-20');
+        expect(deadline.calculation?.paused).toHaveLength(77);
+        expect(deadline.calculation?.skipped).toEqual(['2025-06-22', '2025-06-21']);
     });
 
-    describe('Data Integrity', () => {
-        it('should have unique deadline codes', async () => {
-            const result = await getAdminDeadlines({
-                court_type: CourtType.DP_DE,
-                procedure_type: ProcedureType.DIAFORA_OUSIAS,
-                dikasimos: '2024-03-15',
-            });
-
-            const codes = new Set<string>();
-            for (const deadline of result) {
-                expect(codes.has(deadline.type)).toBe(false);
-                codes.add(deadline.type);
+    it('returns legislation and calculation explanations for every deadline', () => {
+        for (const deadline of getAdminDeadlines(baseInput)) {
+            expect(deadline.calculation).not.toBeNull();
+            expect(deadline.calculation?.logic.name).toBe(deadline.shortName);
+            expect(deadline.nomothesia).toHaveLength(1);
+            expect(deadline.formattedNomothesia).toHaveLength(1);
+            for (const highlighted of deadline.formattedNomothesia[0].highlighted) {
+                expect(deadline.formattedNomothesia[0].text).toContain(highlighted);
             }
-        });
-
-        it('should have shortName from database', async () => {
-            const result = await getAdminDeadlines({
-                court_type: CourtType.DP_DE,
-                procedure_type: ProcedureType.DIAFORA_OUSIAS,
-                dikasimos: '2024-03-15',
-            });
-
-            for (const deadline of result) {
-                expect(typeof deadline.shortName).toBe('string');
-                expect(deadline.shortName.length).toBeGreaterThan(0);
-            }
-        });
-
-        it('should have valid calculation.date equal to deadline.date', async () => {
-            const result = await getAdminDeadlines({
-                court_type: CourtType.DP_DE,
-                procedure_type: ProcedureType.DIAFORA_OUSIAS,
-                dikasimos: '2024-03-15',
-            });
-
-            for (const deadline of result) {
-                expect(deadline.calculation).not.toBeNull();
-                expect(deadline.calculation!.date).toBe(deadline.date);
-            }
-        });
-
+        }
     });
 
-    describe('Snapshot Tests', () => {
-        it('should match inline snapshot for 2025-01-15', async () => {
-            const result = await getAdminDeadlines({
-                court_type: CourtType.DP_DE,
-                procedure_type: ProcedureType.DIAFORA_OUSIAS,
-                dikasimos: '2025-01-15',
-            });
+    it.each([
+        ['', 'required'],
+        ['not-a-date', 'Invalid dikasimos'],
+        ['2026-2-03', 'Invalid dikasimos'],
+        ['2026-02-30', 'Invalid dikasimos'],
+        ['2026-11-21', 'non-holiday weekday'],
+        ['2026-10-28', 'non-holiday weekday'],
+    ])('rejects invalid hearing date %j', (dikasimos, message) => {
+        expect(() => getAdminDeadlines({ ...baseInput, dikasimos })).toThrow(message);
+    });
 
-            expect(result).toMatchInlineSnapshot(`
-              [
-                {
-                  "calculation": {
-                    "date": "2024-12-16",
-                    "logic": {
-                      "day_count": "CALENDAR",
-                      "days": 30,
-                      "name": "Φάκελος Διοίκησης",
-                      "reference": "dikasimos",
-                      "start": "2025-01-15",
-                      "when": "before",
-                    },
-                    "paused": [],
-                    "skipped": [],
-                  },
-                  "date": "2024-12-16",
-                  "formattedNomothesia": [
-                    {
-                      "article": "129 παρ. 2 ΚΔΔ",
-                      "highlighted": [
-                        "Η έκθεση με τον κατά την προηγούμενη παράγραφο διοικητικό φάκελο διαβιβάζονται στο δικαστήριο δεκαπέντε ημέρες τουλάχιστον πριν από τη δικάσιμο.",
-                      ],
-                      "text": "Η έκθεση με τον κατά την προηγούμενη παράγραφο διοικητικό φάκελο διαβιβάζονται στο δικαστήριο δεκαπέντε ημέρες τουλάχιστον πριν από τη δικάσιμο. Στις υποθέσεις, για τις οποίες η κατά το άρθρο 128 προθεσμία έχει συντμηθεί, τα στοιχεία αυτά διαβιβάζονται στο δικαστήριο τουλάχιστον οκτώ ημέρες πριν από τη δικάσιμο. Σε περίπτωση εκπρόθεσμης διαβίβασης, η υπόθεση αναβάλλεται, αν το ζητήσει εκείνος που έχει ασκήσει το ένδικο βοήθημα ή μέσο ή εκείνος που έχει ασκήσει την παρέμβαση. Για την αναβολή αυτή γίνεται ιδιαίτερη μνεία στα πρακτικά.",
-                    },
-                  ],
-                  "name": "Υποβολή απόψεων & φακέλου της διοίκησης",
-                  "nomothesia": [
-                    "129 παρ. 2 ΚΔΔ",
-                  ],
-                  "shortName": "Φάκελος Διοίκησης",
-                  "type": "apopseis_fakelos_dioikisis",
-                },
-                {
-                  "calculation": {
-                    "date": "2024-12-24",
-                    "logic": {
-                      "day_count": "FULL",
-                      "days": 20,
-                      "name": "Ανακοίνωση Δίκης",
-                      "reference": "dikasimos",
-                      "start": "2025-01-15",
-                      "when": "before",
-                    },
-                    "paused": [],
-                    "skipped": [
-                      "2024-12-26",
-                      "2024-12-25",
-                    ],
-                  },
-                  "date": "2024-12-24",
-                  "formattedNomothesia": [
-                    {
-                      "article": "114 παρ. 1 ΚΔΔ",
-                      "highlighted": [
-                        "Στα πρόσωπα που, κατά τα προηγούμενα άρθρα, νομιμοποιούνται να ασκήσουν παρέμβαση, ανακοινώνεται η δίκη, με κοινοποίηση του εισαγωγικού δικογράφου και γνωστοποίηση της δικασίμου είκοσι (20) τουλάχιστον πλήρεις ημέρες πριν από αυτήν, από οποιονδήποτε διάδικο.",
-                      ],
-                      "text": "1. Στα πρόσωπα που, κατά τα προηγούμενα άρθρα, νομιμοποιούνται να ασκήσουν παρέμβαση, ανακοινώνεται η δίκη, με κοινοποίηση του εισαγωγικού δικογράφου και γνωστοποίηση της δικασίμου είκοσι (20) τουλάχιστον πλήρεις ημέρες πριν από αυτήν, από οποιονδήποτε διάδικο.",
-                    },
-                  ],
-                  "name": "Ανακοίνωση δίκης & κοινοποίηση δικογράφου σε δικαιούμενους σε παρέμβαση",
-                  "nomothesia": [
-                    "114 παρ. 1 ΚΔΔ",
-                  ],
-                  "shortName": "Ανακοίνωση Δίκης",
-                  "type": "anakoinosi_dikis",
-                },
-                {
-                  "calculation": {
-                    "date": "2024-12-31",
-                    "logic": {
-                      "day_count": "CALENDAR",
-                      "days": 15,
-                      "name": "Πρόσθετοι Λόγοι",
-                      "reference": "dikasimos",
-                      "start": "2025-01-15",
-                      "when": "before",
-                    },
-                    "paused": [],
-                    "skipped": [],
-                  },
-                  "date": "2024-12-31",
-                  "formattedNomothesia": [
-                    {
-                      "article": "131 παρ. 1 ΚΔΔ",
-                      "highlighted": [
-                        "Το δικόγραφο των πρόσθετων λόγων κατατίθεται στη γραμματεία και, με τη φροντίδα του διαδίκου που το ασκεί, επιδίδεται σε κυρωμένο αντίγραφο στους άλλους διαδίκους δεκαπέντε (15) τουλάχιστον ημέρες πριν από την πρώτη συζήτηση.",
-                      ],
-                      "text": "Οι διάδικοι μπορούν να προβάλλουν, εκτός από τους λόγους οι οποίοι περιέχονται στα ένδικο βοήθημα ή μέσο που ασκήθηκε από αυτούς, και προσθέτους λόγους. Το δικόγραφο των πρόσθετων λόγων κατατίθεται στη γραμματεία και, με τη φροντίδα του διαδίκου που το ασκεί, επιδίδεται σε κυρωμένο αντίγραφο στους άλλους διαδίκους δεκαπέντε (15) τουλάχιστον ημέρες πριν από την πρώτη συζήτηση.",
-                    },
-                  ],
-                  "name": "Κατάθεση & επίδοση πρόσθετων λόγων",
-                  "nomothesia": [
-                    "131 παρ. 1 ΚΔΔ",
-                  ],
-                  "shortName": "Πρόσθετοι Λόγοι",
-                  "type": "prostheti_logoi",
-                },
-                {
-                  "calculation": {
-                    "date": "2024-12-31",
-                    "logic": {
-                      "day_count": "CALENDAR",
-                      "days": 15,
-                      "name": "Προσεπίκληση Ομοδίκων",
-                      "reference": "dikasimos",
-                      "start": "2025-01-15",
-                      "when": "before",
-                    },
-                    "paused": [],
-                    "skipped": [],
-                  },
-                  "date": "2024-12-31",
-                  "formattedNomothesia": [
-                    {
-                      "article": "117 ΚΔΔ",
-                      "highlighted": [
-                        "Αν ορισμένοι, ως προς τους οποίους συντρέχουν οι προϋποθέσεις της αναγκαστικής ομοδικίας, δεν περιλαμβάνονται στο κοινό δικόγραφο, προσεπικαλούνται στη δίκη, με κοινοποίηση του εισαγωγικού δικογράφου και γνωστοποίηση της δικασίμου, από οποιονδήποτε ομόδικο, δεκαπέντε (15) τουλάχιστον ημέρες πριν από τη συζήτηση.",
-                      ],
-                      "text": "Αν ορισμένοι, ως προς τους οποίους συντρέχουν οι προϋποθέσεις της αναγκαστικής ομοδικίας, δεν περιλαμβάνονται στο κοινό δικόγραφο, προσεπικαλούνται στη δίκη, με κοινοποίηση του εισαγωγικού δικογράφου και γνωστοποίηση της δικασίμου, από οποιονδήποτε ομόδικο, δεκαπέντε (15) τουλάχιστον ημέρες πριν από τη συζήτηση.",
-                    },
-                  ],
-                  "name": "Προσεπίκληση αναγκαστικώς ομοδίκων",
-                  "nomothesia": [
-                    "117 ΚΔΔ",
-                  ],
-                  "shortName": "Προσεπίκληση Ομοδίκων",
-                  "type": "prosepiklisi_omodikon",
-                },
-                {
-                  "calculation": {
-                    "date": "2025-01-09",
-                    "logic": {
-                      "day_count": "FULL",
-                      "days": 6,
-                      "name": "Παρέμβαση",
-                      "reference": "dikasimos",
-                      "start": "2025-01-15",
-                      "when": "before",
-                    },
-                    "paused": [],
-                    "skipped": [],
-                  },
-                  "date": "2025-01-09",
-                  "formattedNomothesia": [
-                    {
-                      "article": "114 παρ. 2 ΚΔΔ",
-                      "highlighted": [
-                        "Η παρέμβαση ασκείται με ιδιαίτερο έγγραφο, το οποίο κατατίθεται στη γραμματεία του δικαστηρίου στο οποίο εκκρεμεί το σχετικό ένδικο βοήθημα ή μέσο και, με τη φροντίδα του παρεμβαίνοντος, επιδίδεται, με την ποινή του απαραδέκτου, σε κυρωμένο αντίγραφο στους διαδίκους τουλάχιστον έξι (6) πλήρεις ημέρες πριν από τη συζήτηση.",
-                      ],
-                      "text": "Η παρέμβαση ασκείται με ιδιαίτερο έγγραφο, το οποίο κατατίθεται στη γραμματεία του δικαστηρίου στο οποίο εκκρεμεί το σχετικό ένδικο βοήθημα ή μέσο και, με τη φροντίδα του παρεμβαίνοντος, επιδίδεται, με την ποινή του απαραδέκτου, σε κυρωμένο αντίγραφο στους διαδίκους τουλάχιστον έξι (6) πλήρεις ημέρες πριν από τη συζήτηση. Κατά τα λοιπά εφαρμόζονται αναλόγως όσα ορίζονται στην παρ. 3 του άρθρου 126. Η παράλειψη της πιο πάνω επίδοσης καλύπτεται αν εκείνος προς τον οποίο αυτή έπρεπε να γίνει παρίσταται στο ακροατήριο και δεν αντιλέγει.",
-                    },
-                  ],
-                  "name": "Κατάθεση & επίδοση παρέμβασης",
-                  "nomothesia": [
-                    "114 παρ. 2 ΚΔΔ",
-                  ],
-                  "shortName": "Παρέμβαση",
-                  "type": "paremvasi",
-                },
-                {
-                  "calculation": {
-                    "date": "2025-01-10",
-                    "logic": {
-                      "day_count": "CALENDAR",
-                      "days": 5,
-                      "name": "Αίτηση Εξέτασης Μάρτυρα",
-                      "reference": "dikasimos",
-                      "start": "2025-01-15",
-                      "when": "before",
-                    },
-                    "paused": [],
-                    "skipped": [],
-                  },
-                  "date": "2025-01-10",
-                  "formattedNomothesia": [
-                    {
-                      "article": "180 παρ. 1 ΚΔΔ",
-                      "highlighted": [
-                        "Η πρόταση του διαδίκου για την εξέταση μάρτυρα γίνεται με το αρχικό ή το δικόγραφο των πρόσθετων λόγων, ή με ειδική αίτηση που κατατίθεται στη γραμματεία τουλάχιστον πέντε (5) ήμερες πριν από την πρώτη συζήτηση.",
-                      ],
-                      "text": "Η πρόταση του διαδίκου για την εξέταση μάρτυρα γίνεται με το αρχικό ή το δικόγραφο των πρόσθετων λόγων, ή με ειδική αίτηση που κατατίθεται στη γραμματεία τουλάχιστον πέντε (5) ήμερες πριν από την πρώτη συζήτηση.",
-                    },
-                  ],
-                  "name": "Αυτοτελής αίτηση για εξέταση μάρτυρα",
-                  "nomothesia": [
-                    "180 παρ. 1 ΚΔΔ",
-                  ],
-                  "shortName": "Αίτηση Εξέτασης Μάρτυρα",
-                  "type": "aitisi_martyra",
-                },
-                {
-                  "calculation": {
-                    "date": "2025-01-14",
-                    "logic": {
-                      "day_count": "CALENDAR",
-                      "days": 1,
-                      "name": "Δήλωση & Αποδεικτικά",
-                      "reference": "dikasimos",
-                      "start": "2025-01-15",
-                      "when": "before",
-                    },
-                    "paused": [],
-                    "skipped": [],
-                  },
-                  "date": "2025-01-14",
-                  "formattedNomothesia": [
-                    {
-                      "article": "26, 133 παρ. 2, 150 ΚΔΔ",
-                      "highlighted": [],
-                      "text": "",
-                    },
-                  ],
-                  "name": "Κατάθεση δήλωσης, νομιμοποιητικών εγγράφων & αποδεικτικών μέσων",
-                  "nomothesia": [
-                    "26, 133 παρ. 2, 150 ΚΔΔ",
-                  ],
-                  "shortName": "Δήλωση & Αποδεικτικά",
-                  "type": "dilosi_nomim_apodeiktika",
-                },
-                {
-                  "calculation": {
-                    "date": "2025-01-14",
-                    "logic": {
-                      "day_count": "CALENDAR",
-                      "days": 1,
-                      "name": "Συμμετοχή Ομοδίκων",
-                      "reference": "dikasimos",
-                      "start": "2025-01-15",
-                      "when": "before",
-                    },
-                    "paused": [],
-                    "skipped": [],
-                  },
-                  "date": "2025-01-14",
-                  "formattedNomothesia": [
-                    {
-                      "article": "118 ΚΔΔ",
-                      "highlighted": [
-                        "Ο κατά το προηγούμενο άρθρο προσεπικαλούμενος μετέχει στη δίκη με ειδικό δικόγραφο, το οποίο κατατίθεται στη γραμματεία του δικαστηρίου και επιδίδεται",
-                        "στους άλλους διαδίκους, ως την προτεραία της συζήτησης",
-                      ],
-                      "text": "Ο κατά το προηγούμενο άρθρο προσεπικαλούμενος μετέχει στη δίκη με ειδικό δικόγραφο, το οποίο κατατίθεται στη γραμματεία του δικαστηρίου και επιδίδεται, σε κυρωμένο αντίγραφο, με τη φροντίδα του, στους άλλους διαδίκους, ως την προτεραία της συζήτησης.",
-                    },
-                  ],
-                  "name": "Κατάθεση & επίδοση δικογράφου συμμετοχής αναγκαστικώς ομοδίκων",
-                  "nomothesia": [
-                    "118 ΚΔΔ",
-                  ],
-                  "shortName": "Συμμετοχή Ομοδίκων",
-                  "type": "dikografo_omodikon",
-                },
-                {
-                  "calculation": {
-                    "date": "2025-01-15",
-                    "logic": {
-                      "day_count": "CALENDAR",
-                      "days": 0,
-                      "name": "Παράβολο",
-                      "reference": "dikasimos",
-                      "start": "2025-01-15",
-                      "when": "after",
-                    },
-                    "paused": [],
-                    "skipped": [],
-                  },
-                  "date": "2025-01-15",
-                  "formattedNomothesia": [
-                    {
-                      "article": "277, 150 ΚΔΔ",
-                      "highlighted": [],
-                      "text": "",
-                    },
-                  ],
-                  "name": "Καταβολή & προσκόμιση παραβόλου",
-                  "nomothesia": [
-                    "277, 150 ΚΔΔ",
-                  ],
-                  "shortName": "Παράβολο",
-                  "type": "paravolo",
-                },
-                {
-                  "calculation": {
-                    "date": "2025-01-15",
-                    "logic": {
-                      "day_count": "CALENDAR",
-                      "days": 0,
-                      "name": "Δικαστικό Ένσημο",
-                      "reference": "dikasimos",
-                      "start": "2025-01-15",
-                      "when": "after",
-                    },
-                    "paused": [],
-                    "skipped": [],
-                  },
-                  "date": "2025-01-15",
-                  "formattedNomothesia": [
-                    {
-                      "article": "274 παρ. 3, 150 ΚΔΔ",
-                      "highlighted": [],
-                      "text": "",
-                    },
-                  ],
-                  "name": "Καταβολή & προσκόμιση δικαστικού ενσήμου (καταψηφιστική αγωγή)",
-                  "nomothesia": [
-                    "274 παρ. 3, 150 ΚΔΔ",
-                  ],
-                  "shortName": "Δικαστικό Ένσημο",
-                  "type": "dikastiko_ensimo",
-                },
-                {
-                  "calculation": {
-                    "date": "2025-01-20",
-                    "logic": {
-                      "day_count": "WORKING",
-                      "days": 3,
-                      "name": "Υπόμνημα",
-                      "reference": "dikasimos",
-                      "start": "2025-01-15",
-                      "when": "after",
-                    },
-                    "paused": [
-                      "2025-01-18",
-                      "2025-01-19",
-                    ],
-                    "skipped": [],
-                  },
-                  "date": "2025-01-20",
-                  "formattedNomothesia": [
-                    {
-                      "article": "138 παρ. 1 ΚΔΔ",
-                      "highlighted": [
-                        "Υπομνήματα των διαδίκων, για την ανάπτυξη των ισχυρισμών τους, κατατίθενται στη γραμματεία το αργότερο τρεις (3) εργάσιμες ημέρες μετά τη συζήτηση.",
-                      ],
-                      "text": "Υπομνήματα των διαδίκων, για την ανάπτυξη των ισχυρισμών τους, κατατίθενται στη γραμματεία το αργότερο τρεις (3) εργάσιμες ημέρες μετά τη συζήτηση. Μέσα σε προθεσμία τριών (3) εργάσιμων ημερών από τη λήξη της παραπάνω προθεσμίας ο αντίδικος εκείνου που κατέθεσε το υπόμνημα μπορεί, με δικό του υπόμνημα, να αντικρούσει τις απόψεις που αναπτύχθηκαν με το υπόμνημα του αντιδίκου του.",
-                    },
-                  ],
-                  "name": "Κατάθεση υπομνήματος",
-                  "nomothesia": [
-                    "138 παρ. 1 ΚΔΔ",
-                  ],
-                  "shortName": "Υπόμνημα",
-                  "type": "ypomnima",
-                },
-                {
-                  "calculation": {
-                    "date": "2025-01-23",
-                    "logic": {
-                      "day_count": "WORKING",
-                      "days": 3,
-                      "name": "Υπόμνημα Αντίκρουσης",
-                      "reference": "ypomnima",
-                      "start": "2025-01-20",
-                      "when": "after",
-                    },
-                    "paused": [],
-                    "skipped": [],
-                  },
-                  "date": "2025-01-23",
-                  "formattedNomothesia": [
-                    {
-                      "article": "138 παρ. 1 ΚΔΔ",
-                      "highlighted": [
-                        "Μέσα σε προθεσμία τριών (3) εργάσιμων ημερών από τη λήξη της παραπάνω προθεσμίας ο αντίδικος εκείνου που κατέθεσε το υπόμνημα μπορεί, με δικό του υπόμνημα, να αντικρούσει τις απόψεις που αναπτύχθηκαν με το υπόμνημα του αντιδίκου του.",
-                      ],
-                      "text": "Υπομνήματα των διαδίκων, για την ανάπτυξη των ισχυρισμών τους, κατατίθενται στη γραμματεία το αργότερο τρεις (3) εργάσιμες ημέρες μετά τη συζήτηση. Μέσα σε προθεσμία τριών (3) εργάσιμων ημερών από τη λήξη της παραπάνω προθεσμίας ο αντίδικος εκείνου που κατέθεσε το υπόμνημα μπορεί, με δικό του υπόμνημα, να αντικρούσει τις απόψεις που αναπτύχθηκαν με το υπόμνημα του αντιδίκου του.",
-                    },
-                  ],
-                  "name": "Κατάθεση υπομνήματος αντίκρουσης",
-                  "nomothesia": [
-                    "138 παρ. 1 ΚΔΔ",
-                  ],
-                  "shortName": "Υπόμνημα Αντίκρουσης",
-                  "type": "ypomnima_antikrousis",
-                },
-              ]
-            `);
-        });
-
-        it('should format deadlines ordered by date', async () => {
-            const result = await getAdminDeadlines({
-                court_type: CourtType.DP_DE,
-                procedure_type: ProcedureType.DIAFORA_OUSIAS,
-                dikasimos: '2025-12-30',
-            });
-
-            const sorted = result.sort((a, b) => a.date.localeCompare(b.date));
-
-            // Find the maximum length of the first column
-            const maxFirstColLength = Math.max(
-                ...sorted.map(d => `${d.date} - ${d.shortName}`.length)
-            );
-
-            const formatted = sorted
-                .map(d => {
-                    const firstCol = `${d.date} - ${d.shortName}`.padEnd(maxFirstColLength);
-                    const days = d.calculation!.logic.days;
-                    const day_count = d.calculation!.logic.day_count === 'CALENDAR' ? '' : d.calculation!.logic.day_count === 'FULL' ? ' ΠΛΗΡΕΙΣ' : ' ΕΡΓΑΣΙΜΕΣ';
-                    const when = d.calculation!.logic.when === 'before' ? 'πριν' : 'μετά';
-                    const ref = d.calculation!.logic.reference === 'δικάσιμο' ? 'δικάσιμο' : d.calculation!.logic.reference;
-                    const paused = d.calculation!.paused.length > 0 ? ` [paused: ${d.calculation!.paused.length}]` : '';
-                    const skipped = d.calculation!.skipped.length > 0 ? ` [skipped: ${d.calculation!.skipped.join(', ')}]` : '';
-                    return `${firstCol}  ${days}${day_count} ημέρες ${when} ${ref}${paused}${skipped}`;
-                })
-                .join('\n');
-
-            expect(formatted).toMatchInlineSnapshot(`
-              "2025-11-28 - Φάκελος Διοίκησης        30 ημέρες πριν dikasimos [skipped: 2025-11-30, 2025-11-29]
-              2025-12-10 - Ανακοίνωση Δίκης         20 ΠΛΗΡΕΙΣ ημέρες πριν dikasimos
-              2025-12-15 - Πρόσθετοι Λόγοι          15 ημέρες πριν dikasimos
-              2025-12-15 - Προσεπίκληση Ομοδίκων    15 ημέρες πριν dikasimos
-              2025-12-24 - Παρέμβαση                6 ΠΛΗΡΕΙΣ ημέρες πριν dikasimos
-              2025-12-24 - Αίτηση Εξέτασης Μάρτυρα  5 ημέρες πριν dikasimos [skipped: 2025-12-25]
-              2025-12-29 - Δήλωση & Αποδεικτικά     1 ημέρες πριν dikasimos
-              2025-12-29 - Συμμετοχή Ομοδίκων       1 ημέρες πριν dikasimos
-              2025-12-30 - Παράβολο                 0 ημέρες μετά dikasimos
-              2025-12-30 - Δικαστικό Ένσημο         0 ημέρες μετά dikasimos
-              2026-01-05 - Υπόμνημα                 3 ΕΡΓΑΣΙΜΕΣ ημέρες μετά dikasimos [paused: 3]
-              2026-01-09 - Υπόμνημα Αντίκρουσης     3 ΕΡΓΑΣΙΜΕΣ ημέρες μετά ypomnima [paused: 1]"
-            `);
-        });
-
-        it('should format deadlines with anastoli period (dikasimos 2025-09-22)', async () => {
-            const result = await getAdminDeadlines({
-                court_type: CourtType.DP_DE,
-                procedure_type: ProcedureType.DIAFORA_OUSIAS,
-                dikasimos: '2025-09-22',
-            });
-
-            const sorted = result.sort((a, b) => a.date.localeCompare(b.date));
-
-            // Find the maximum length of the first column
-            const maxFirstColLength = Math.max(
-                ...sorted.map(d => `${d.date} - ${d.shortName}`.length)
-            );
-
-            const formatted = sorted
-                .map(d => {
-                    const firstCol = `${d.date} - ${d.shortName}`.padEnd(maxFirstColLength);
-                    const days = d.calculation!.logic.days;
-                    const day_count = d.calculation!.logic.day_count === 'CALENDAR' ? '' : d.calculation!.logic.day_count === 'FULL' ? ' ΠΛΗΡΕΙΣ' : ' ΕΡΓΑΣΙΜΕΣ';
-                    const when = d.calculation!.logic.when === 'before' ? 'πριν' : 'μετά';
-                    const ref = d.calculation!.logic.reference === 'δικάσιμο' ? 'δικάσιμο' : d.calculation!.logic.reference;
-                    const paused = d.calculation!.paused.length > 0 ? ` [paused: ${d.calculation!.paused.length}]` : '';
-                    const skipped = d.calculation!.skipped.length > 0 ? ` [skipped: ${d.calculation!.skipped.join(', ')}]` : '';
-                    return `${firstCol}  ${days}${day_count} ημέρες ${when} ${ref}${paused}${skipped}`;
-                })
-                .join('\n');
-
-            expect(formatted).toMatchInlineSnapshot(`
-              "2025-06-06 - Φάκελος Διοίκησης        30 ημέρες πριν dikasimos [paused: 77] [skipped: 2025-06-07]
-              2025-06-17 - Ανακοίνωση Δίκης         20 ΠΛΗΡΕΙΣ ημέρες πριν dikasimos [paused: 77]
-              2025-06-20 - Πρόσθετοι Λόγοι          15 ημέρες πριν dikasimos [paused: 77] [skipped: 2025-06-22, 2025-06-21]
-              2025-06-20 - Προσεπίκληση Ομοδίκων    15 ημέρες πριν dikasimos [paused: 77] [skipped: 2025-06-22, 2025-06-21]
-              2025-09-16 - Παρέμβαση                6 ΠΛΗΡΕΙΣ ημέρες πριν dikasimos
-              2025-09-17 - Αίτηση Εξέτασης Μάρτυρα  5 ημέρες πριν dikasimos
-              2025-09-19 - Δήλωση & Αποδεικτικά     1 ημέρες πριν dikasimos [skipped: 2025-09-21, 2025-09-20]
-              2025-09-19 - Συμμετοχή Ομοδίκων       1 ημέρες πριν dikasimos [skipped: 2025-09-21, 2025-09-20]
-              2025-09-22 - Παράβολο                 0 ημέρες μετά dikasimos
-              2025-09-22 - Δικαστικό Ένσημο         0 ημέρες μετά dikasimos
-              2025-09-25 - Υπόμνημα                 3 ΕΡΓΑΣΙΜΕΣ ημέρες μετά dikasimos
-              2025-09-30 - Υπόμνημα Αντίκρουσης     3 ΕΡΓΑΣΙΜΕΣ ημέρες μετά ypomnima [paused: 2]"
-            `);
-        });
-
-        it('should skip the weekend when anastoli pushes a backward calendar deadline into June', async () => {
-            const result = await getAdminDeadlines({
-                court_type: CourtType.DP_DE,
-                procedure_type: ProcedureType.DIAFORA_OUSIAS,
-                dikasimos: '2025-09-22',
-            });
-
-            const prosthetiLogoi = result.find(d => d.type === 'prostheti_logoi');
-            const prosepiklisiOmodikon = result.find(d => d.type === 'prosepiklisi_omodikon');
-
-            expect(prosthetiLogoi?.date).toBe('2025-06-20');
-            expect(prosthetiLogoi?.calculation?.skipped).toEqual(['2025-06-22', '2025-06-21']);
-
-            expect(prosepiklisiOmodikon?.date).toBe('2025-06-20');
-            expect(prosepiklisiOmodikon?.calculation?.skipped).toEqual(['2025-06-22', '2025-06-21']);
-        });
+    it('rejects unsupported runtime enum values with DeadlineCalculationError', () => {
+        expect(() => getAdminDeadlines({ ...baseInput, court_type: 'OTHER' as CourtType }))
+            .toThrow(DeadlineCalculationError);
+        expect(() => getAdminDeadlines({ ...baseInput, procedure_type: 'OTHER' as ProcedureType }))
+            .toThrow(DeadlineCalculationError);
     });
 });
 
-describeAdmin('Nomothesia validation', () => {
-        it('should have all highlighted texts contained within the full text', async () => {
-            const result = await getAdminDeadlines({
-                court_type: CourtType.DP_DE,
-                procedure_type: ProcedureType.DIAFORA_OUSIAS,
-                dikasimos: '2025-01-15',
-            });
-
-            for (const deadline of result) {
-                for (const nomothesia of deadline.formattedNomothesia) {
-                    // Skip if there's no text (nothing to validate against)
-                    if (!nomothesia.text) {
-                        continue;
-                    }
-
-                    for (const highlighted of nomothesia.highlighted) {
-                        expect(
-                            nomothesia.text.includes(highlighted),
-                            `Highlighted text "${highlighted.substring(0, 50)}..." not found in full text for ${deadline.type} (${nomothesia.article})`
-                        ).toBe(true);
-                    }
-                }
-            }
-        });
-
-        it('should have all highlighted texts contained within the full text when syntmisi is true', async () => {
-            const result = await getAdminDeadlines({
-                court_type: CourtType.DP_DE,
-                procedure_type: ProcedureType.DIAFORA_OUSIAS,
-                dikasimos: '2025-01-15',
-                syntmisi: true,
-            });
-
-            for (const deadline of result) {
-                for (const nomothesia of deadline.formattedNomothesia) {
-                    if (!nomothesia.text) {
-                        continue;
-                    }
-
-                    for (const highlighted of nomothesia.highlighted) {
-                        expect(
-                            nomothesia.text.includes(highlighted),
-                            `Highlighted text "${highlighted.substring(0, 50)}..." not found in full text for ${deadline.type} (${nomothesia.article})`
-                        ).toBe(true);
-                    }
-                }
-            }
-        });
+describe('administrative rule graph validation', () => {
+    const clone = (rule: DeadlineRule, changes: Partial<DeadlineRule>): DeadlineRule => ({
+        ...rule,
+        ...changes,
     });
 
-describeAdmin('Syntmisi (shortened deadlines)', () => {
-        it('should calculate apopseis_fakelos_dioikisis as 8 days before dikasimos when syntmisi is true', async () => {
-            const result = await getAdminDeadlines({
-                court_type: CourtType.DP_DE,
-                procedure_type: ProcedureType.DIAFORA_OUSIAS,
-                dikasimos: '2025-01-15',
-                syntmisi: true,
-            });
-
-            const apopseisFakelos = result.find(d => d.type === 'apopseis_fakelos_dioikisis');
-            expect(apopseisFakelos).toBeDefined();
-
-            // Assert the date is 8 days before dikasimos (2025-01-15 - 8 = 2025-01-07)
-            expect(apopseisFakelos!.date).toBe('2025-01-07');
-            expect(apopseisFakelos!.calculation!.logic.days).toBe(8);
-
-            // Assert the highlighted nomothesia text is the syntmisi version
-            expect(apopseisFakelos!.formattedNomothesia).toHaveLength(1);
-            expect(apopseisFakelos!.formattedNomothesia[0].highlighted).toEqual([
-                'Στις υποθέσεις, για τις οποίες η κατά το άρθρο 128 προθεσμία έχει συντμηθεί, τα στοιχεία αυτά διαβιβάζονται στο δικαστήριο τουλάχιστον οκτώ ημέρες πριν από τη δικάσιμο.'
-            ]);
-        });
-
-        it('should use default highlighted text when syntmisi is false', async () => {
-            const result = await getAdminDeadlines({
-                court_type: CourtType.DP_DE,
-                procedure_type: ProcedureType.DIAFORA_OUSIAS,
-                dikasimos: '2025-01-15',
-                syntmisi: false,
-            });
-
-            const apopseisFakelos = result.find(d => d.type === 'apopseis_fakelos_dioikisis');
-            expect(apopseisFakelos).toBeDefined();
-
-            // Assert the default highlighted text is used
-            expect(apopseisFakelos!.formattedNomothesia[0].highlighted).toEqual([
-                'Η έκθεση με τον κατά την προηγούμενη παράγραφο διοικητικό φάκελο διαβιβάζονται στο δικαστήριο δεκαπέντε ημέρες τουλάχιστον πριν από τη δικάσιμο.'
-            ]);
-        });
+    it('rejects a missing dependency', () => {
+        const rules = [clone(ADMIN_DIAFORA_OUSIAS_RULES[0], {
+            parent_deadline_code: 'missing',
+        })];
+        expect(() => sortAdminDeadlineRules(rules)).toThrow("Missing parent 'missing'");
     });
 
-describeAdmin('DeadlineCalculationError', () => {
-    it('should be throwable and catchable', async () => {
-        try {
-            await getAdminDeadlines({
-                court_type: CourtType.DP_DE,
-                procedure_type: ProcedureType.DIAFORA_OUSIAS,
-                dikasimos: 'invalid',
-            });
-            expect.fail('Should have thrown an error');
-        } catch (error) {
-            expect(error).toBeInstanceOf(DeadlineCalculationError);
-            expect(error).toHaveProperty('code');
-            expect(error).toHaveProperty('message');
-        }
+    it('rejects circular dependencies', () => {
+        const rules = [
+            clone(ADMIN_DIAFORA_OUSIAS_RULES[0], { deadline_code: 'a', parent_deadline_code: 'b' }),
+            clone(ADMIN_DIAFORA_OUSIAS_RULES[1], { deadline_code: 'b', parent_deadline_code: 'a' }),
+        ];
+        expect(() => sortAdminDeadlineRules(rules)).toThrow('Circular dependency detected');
+    });
+
+    it('rejects duplicate deadline codes', () => {
+        expect(() => sortAdminDeadlineRules([
+            ADMIN_DIAFORA_OUSIAS_RULES[0],
+            ADMIN_DIAFORA_OUSIAS_RULES[0],
+        ])).toThrow('Duplicate deadline code');
     });
 });

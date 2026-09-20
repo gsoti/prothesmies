@@ -123,13 +123,15 @@ export interface DeadlineRule {
     notes: string | null;
 }
 
-// Input parameters for getDeadlines function
-export interface GetDeadlinesInput {
+export interface GetAdminDeadlinesInput {
     court_type: CourtType;
     procedure_type: ProcedureType;
     dikasimos: string; // ISO date format (YYYY-MM-DD)
     syntmisi?: boolean; // Whether deadlines are shortened
 }
+
+/** @deprecated Use GetAdminDeadlinesInput. */
+export type GetDeadlinesInput = GetAdminDeadlinesInput;
 
 export interface GetCivilDeadlinesInput {
     imerominia_katathesis: string; // ISO date format (YYYY-MM-DD)

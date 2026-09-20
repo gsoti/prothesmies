@@ -1,31 +1,31 @@
-import { sql } from './db.js';
-import { DateCalculationResult, ArgiesAndAnastoli } from './dateCalculation.js';
-import { getArgiesForRange, getDateRangeForCalculation } from './utils/argies.js';
-import { getAnastoliForRange } from './utils/anastoli-admin.js';
-import { parseISODate } from './utils/dateUtils.js';
+import { ArgiesAndAnastoli, DateCalculationResult } from './dateCalculation.js';
+import { ADMIN_DIAFORA_OUSIAS_RULES } from './rules/rules-admin-diafora-ousias.js';
 import {
     AdminDeadlineCode,
     CourtType,
-    ProcedureType,
-    DayCount,
-    ReferencePoint,
-    Direction,
-    DeadlineRule,
-    GetDeadlinesInput,
-    Deadline,
     DateCalculation,
+    Deadline,
+    DeadlineRule,
+    GetAdminDeadlinesInput,
+    ProcedureType,
 } from './types.js';
+import { getAnastoliForRange } from './utils/anastoli-admin.js';
+import { getArgiesForRange, getDateRangeForCalculation } from './utils/argies.js';
 import {
-    DeadlineCalculationError,
-    parseLegislation,
     buildCalculationLogic,
     calculateDeadlineDate,
+    DeadlineCalculationError,
+    parseLegislation,
 } from './utils/deadlineHelpers.js';
+import { parseISODate, toISODateString } from './utils/dateUtils.js';
+
 export { DeadlineCalculationError } from './utils/deadlineHelpers.js';
+// Kept for compatibility with older direct-module imports. Package consumers should use the root export.
 export { getCivilDeadlines } from './deadlines-civil.js';
 
 const ErrorCode = {
     INVALID_INPUT: 'INVALID_INPUT',
+    INVALID_RULES: 'INVALID_RULES',
     CIRCULAR_DEPENDENCY: 'CIRCULAR_DEPENDENCY',
     MAX_CHAIN_DEPTH: 'MAX_CHAIN_DEPTH',
 } as const;
@@ -33,88 +33,101 @@ const ErrorCode = {
 const MAX_CHAIN_DEPTH = 10;
 const DATE_RANGE_BUFFER_DAYS = 365;
 
-/**
- * Fetches deadline rules from the database
- */
-async function fetchDeadlineRules(
-    courtType: string,
-    procedureType: string
-): Promise<DeadlineRule[]> {
-    const result = await sql`
-        SELECT * FROM "prothesmies-admin"
-        WHERE court_type = ${courtType}
-        AND procedure_type = ${procedureType}
-        AND active = TRUE
-    `;
-
-    // Parse numeric fields from strings to numbers
-    return result.rows.map(row => ({
-        ...row,
-        days: Number(row.days),
-        notification_days: row.notification_days !== null ? Number(row.notification_days) : null,
-    })) as DeadlineRule[];
+function assertValidISODate(value: string): void {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+        throw new Error('Date must use YYYY-MM-DD format');
+    }
+    if (toISODateString(parseISODate(value)) !== value) {
+        throw new Error('Date is not a valid calendar date');
+    }
 }
 
-/**
- * Detects circular dependencies in deadline rules using DFS
- * Returns error message with cycle path or null if no cycle
- */
-function detectCircularDependency(rules: DeadlineRule[]): string | null {
-    const graph = new Map<string, string | null>();
-
-    // Build adjacency list
-    for (const rule of rules) {
-        graph.set(rule.deadline_code, rule.parent_deadline_code);
+function validateInput(input: GetAdminDeadlinesInput): void {
+    if (!input || typeof input !== 'object') {
+        throw new DeadlineCalculationError('input is required', ErrorCode.INVALID_INPUT);
     }
-
-    const visited = new Set<string>();
-    const recStack = new Set<string>();
-
-    function dfs(node: string, path: string[]): string | null {
-        if (recStack.has(node)) {
-            // Found a cycle - build the cycle path
-            const cycleStart = path.indexOf(node);
-            const cycle = [...path.slice(cycleStart), node];
-            return cycle.join(' -> ');
-        }
-
-        if (visited.has(node)) {
-            return null;
-        }
-
-        visited.add(node);
-        recStack.add(node);
-        path.push(node);
-
-        const parent = graph.get(node);
-        if (parent && graph.has(parent)) {
-            const result = dfs(parent, path);
-            if (result) return result;
-        }
-
-        path.pop();
-        recStack.delete(node);
-        return null;
+    if (!input.dikasimos || typeof input.dikasimos !== 'string') {
+        throw new DeadlineCalculationError(
+            'dikasimos is required and must be a string',
+            ErrorCode.INVALID_INPUT
+        );
     }
-
-    // Check each node
-    for (const node of graph.keys()) {
-        const cycle = dfs(node, []);
-        if (cycle) {
-            return cycle;
-        }
+    try {
+        assertValidISODate(input.dikasimos);
+    } catch (error) {
+        throw new DeadlineCalculationError(
+            `Invalid dikasimos date format: ${input.dikasimos}. Expected YYYY-MM-DD`,
+            ErrorCode.INVALID_INPUT,
+            { originalError: error }
+        );
     }
+    if (!Object.values(CourtType).includes(input.court_type)) {
+        throw new DeadlineCalculationError(
+            `Invalid court_type: ${input.court_type}`,
+            ErrorCode.INVALID_INPUT
+        );
+    }
+    if (!Object.values(ProcedureType).includes(input.procedure_type)) {
+        throw new DeadlineCalculationError(
+            `Invalid procedure_type: ${input.procedure_type}`,
+            ErrorCode.INVALID_INPUT
+        );
+    }
+    if (getArgiesForRange(input.dikasimos, input.dikasimos).includes(input.dikasimos)) {
+        throw new DeadlineCalculationError(
+            `Invalid dikasimos: ${input.dikasimos} must be a non-holiday weekday`,
+            ErrorCode.INVALID_INPUT
+        );
+    }
+}
 
+function detectCircularDependency(rules: readonly DeadlineRule[]): string | null {
+    const parents = new Map(rules.map(rule => [rule.deadline_code, rule.parent_deadline_code]));
+    const complete = new Set<string>();
+    const active = new Set<string>();
+
+    const visit = (code: string, path: string[]): string | null => {
+        if (active.has(code)) {
+            const start = path.indexOf(code);
+            return [...path.slice(start), code].join(' -> ');
+        }
+        if (complete.has(code)) return null;
+        active.add(code);
+        const parent = parents.get(code);
+        const cycle = parent && parents.has(parent) ? visit(parent, [...path, code]) : null;
+        active.delete(code);
+        complete.add(code);
+        return cycle;
+    };
+
+    for (const code of parents.keys()) {
+        const cycle = visit(code, []);
+        if (cycle) return cycle;
+    }
     return null;
 }
 
-/**
- * Sorts deadline rules topologically using Kahn's algorithm
- * Filters out rules with missing parents (logs warning)
- * Throws error if circular dependency detected
- */
-function sortDeadlineRules(rules: DeadlineRule[]): DeadlineRule[] {
-    // First check for circular dependencies
+/** Internal rule validation and ordering, exported for deterministic graph tests. */
+export function sortAdminDeadlineRules(rules: readonly DeadlineRule[]): DeadlineRule[] {
+    const ruleMap = new Map<string, DeadlineRule>();
+    for (const rule of rules) {
+        if (ruleMap.has(rule.deadline_code)) {
+            throw new DeadlineCalculationError(
+                `Duplicate deadline code: ${rule.deadline_code}`,
+                ErrorCode.INVALID_RULES
+            );
+        }
+        ruleMap.set(rule.deadline_code, rule);
+    }
+    for (const rule of rules) {
+        if (rule.parent_deadline_code && !ruleMap.has(rule.parent_deadline_code)) {
+            throw new DeadlineCalculationError(
+                `Missing parent '${rule.parent_deadline_code}' for '${rule.deadline_code}'`,
+                ErrorCode.INVALID_RULES
+            );
+        }
+    }
+
     const cycle = detectCircularDependency(rules);
     if (cycle) {
         throw new DeadlineCalculationError(
@@ -124,279 +137,121 @@ function sortDeadlineRules(rules: DeadlineRule[]): DeadlineRule[] {
         );
     }
 
-    // Build map of deadline_code -> rule
-    const ruleMap = new Map<string, DeadlineRule>();
-    for (const rule of rules) {
-        ruleMap.set(rule.deadline_code, rule);
-    }
-
-    // Filter out rules with missing parents
-    const validRules: DeadlineRule[] = [];
-    for (const rule of rules) {
-        if (rule.parent_deadline_code && !ruleMap.has(rule.parent_deadline_code)) {
-            console.warn(
-                `Skipping deadline '${rule.deadline_code}' because parent '${rule.parent_deadline_code}' is missing`
-            );
-            continue;
-        }
-        validRules.push(rule);
-    }
-
-    // Topological sort using Kahn's algorithm
     const inDegree = new Map<string, number>();
     const children = new Map<string, string[]>();
-
-    // Initialize
-    for (const rule of validRules) {
-        if (!inDegree.has(rule.deadline_code)) {
-            inDegree.set(rule.deadline_code, 0);
-        }
+    for (const rule of rules) {
+        inDegree.set(rule.deadline_code, rule.parent_deadline_code ? 1 : 0);
         if (rule.parent_deadline_code) {
-            inDegree.set(rule.deadline_code, (inDegree.get(rule.deadline_code) || 0) + 1);
-
-            if (!children.has(rule.parent_deadline_code)) {
-                children.set(rule.parent_deadline_code, []);
-            }
-            children.get(rule.parent_deadline_code)!.push(rule.deadline_code);
+            const existing = children.get(rule.parent_deadline_code) ?? [];
+            existing.push(rule.deadline_code);
+            children.set(rule.parent_deadline_code, existing);
         }
     }
 
-    // Queue of nodes with no dependencies
-    const queue: string[] = [];
-    for (const rule of validRules) {
-        if (inDegree.get(rule.deadline_code) === 0) {
-            queue.push(rule.deadline_code);
-        }
-    }
-
+    const queue = rules
+        .filter(rule => inDegree.get(rule.deadline_code) === 0)
+        .map(rule => ({ code: rule.deadline_code, depth: 1 }));
     const sorted: DeadlineRule[] = [];
-    let depth = 0;
-
     while (queue.length > 0) {
-        const levelSize = queue.length;
-        depth++;
-
+        const { code, depth } = queue.shift()!;
         if (depth > MAX_CHAIN_DEPTH) {
             throw new DeadlineCalculationError(
                 `Maximum chain depth of ${MAX_CHAIN_DEPTH} exceeded`,
                 ErrorCode.MAX_CHAIN_DEPTH
             );
         }
-
-        for (let i = 0; i < levelSize; i++) {
-            const code = queue.shift()!;
-            const rule = ruleMap.get(code)!;
-            sorted.push(rule);
-
-            // Reduce in-degree of children
-            const childCodes = children.get(code) || [];
-            for (const childCode of childCodes) {
-                const newDegree = inDegree.get(childCode)! - 1;
-                inDegree.set(childCode, newDegree);
-                if (newDegree === 0) {
-                    queue.push(childCode);
-                }
-            }
+        sorted.push(ruleMap.get(code)!);
+        for (const child of children.get(code) ?? []) {
+            const degree = inDegree.get(child)! - 1;
+            inDegree.set(child, degree);
+            if (degree === 0) queue.push({ code: child, depth: depth + 1 });
         }
     }
-
     return sorted;
 }
 
-/**
- * Calculates the longest dependency path in nominal days.
- * sortedRules must already be topologically sorted so parents appear before children.
- */
-function getMaxTraversalDays(sortedRules: DeadlineRule[]): number {
-    const traversalDaysByCode = new Map<string, number>();
-    let maxTraversalDays = 0;
-
-    for (const rule of sortedRules) {
-        const parentTraversalDays = rule.parent_deadline_code
-            ? (traversalDaysByCode.get(rule.parent_deadline_code) ?? 0)
+function getMaxTraversalDays(rules: readonly DeadlineRule[]): number {
+    const traversalByCode = new Map<string, number>();
+    let maximum = 0;
+    for (const rule of rules) {
+        const parentDays = rule.parent_deadline_code
+            ? (traversalByCode.get(rule.parent_deadline_code) ?? 0)
             : 0;
-        const traversalDays = parentTraversalDays + rule.days;
-
-        traversalDaysByCode.set(rule.deadline_code, traversalDays);
-        maxTraversalDays = Math.max(maxTraversalDays, traversalDays);
+        const traversalDays = parentDays + rule.days;
+        traversalByCode.set(rule.deadline_code, traversalDays);
+        maximum = Math.max(maximum, traversalDays);
     }
-
-    return maxTraversalDays;
+    return maximum;
 }
 
-/**
- * Builds a complete Deadline object from a rule and calculation result
- */
 function buildDeadline(
-    rule: Pick<DeadlineRule, 'deadline_name' | 'short_name' | 'deadline_code' | 'legislation'>,
+    rule: DeadlineRule,
     calculatedResult: DateCalculationResult,
     logic: DateCalculation['logic'],
     syntmisi: boolean
 ): Deadline {
     const { plain, formatted } = parseLegislation(rule.legislation, syntmisi, rule.deadline_code);
-
     return {
-        calculation: {
-            date: calculatedResult.date,
-            paused: calculatedResult.paused,
-            skipped: calculatedResult.skipped,
-            logic,
-        },
+        calculation: { ...calculatedResult, logic },
         date: calculatedResult.date,
         name: rule.deadline_name,
         formattedNomothesia: formatted,
         shortName: rule.short_name,
         type: rule.deadline_code as AdminDeadlineCode,
-        // NOT USED
         nomothesia: plain,
-
     };
 }
 
-/**
- * Validates input parameters
- */
-function validateInput(input: GetDeadlinesInput): void {
-    if (!input.dikasimos || typeof input.dikasimos !== 'string') {
-        throw new DeadlineCalculationError(
-            'dikasimos is required and must be a string',
-            ErrorCode.INVALID_INPUT
-        );
+function rulesForInput(input: GetAdminDeadlinesInput): readonly DeadlineRule[] {
+    if (
+        input.court_type === CourtType.DP_DE &&
+        input.procedure_type === ProcedureType.DIAFORA_OUSIAS
+    ) {
+        return ADMIN_DIAFORA_OUSIAS_RULES;
     }
-
-    // Validate date format
-    try {
-        parseISODate(input.dikasimos);
-    } catch (error) {
-        throw new DeadlineCalculationError(
-            `Invalid dikasimos date format: ${input.dikasimos}. Expected YYYY-MM-DD`,
-            ErrorCode.INVALID_INPUT,
-            { originalError: error }
-        );
-    }
-
-    // Validate court_type
-    if (!Object.values(CourtType).includes(input.court_type)) {
-        throw new DeadlineCalculationError(
-            `Invalid court_type: ${input.court_type}`,
-            ErrorCode.INVALID_INPUT
-        );
-    }
-
-    // Validate procedure_type
-    if (!Object.values(ProcedureType).includes(input.procedure_type)) {
-        throw new DeadlineCalculationError(
-            `Invalid procedure_type: ${input.procedure_type}`,
-            ErrorCode.INVALID_INPUT
-        );
-    }
+    throw new DeadlineCalculationError('Unsupported administrative rule set', ErrorCode.INVALID_INPUT);
 }
 
-/**
- * Main function to get all deadlines for a given case
- *
- * @param input - Court type, procedure type, and dikasimos date
- * @returns Array of calculated deadlines
- * @throws {DeadlineCalculationError} If circular dependency detected or invalid input
- *
- * @example
- * ```typescript
- * const deadlines = await getDeadlines({
- *   court_type: CourtType.DP_DE,
- *   procedure_type: ProcedureType.DIAFORA_OUSIAS,
- *   dikasimos: '2024-03-15'
- * });
- * ```
- */
-export async function getAdminDeadlines(input: GetDeadlinesInput): Promise<Deadline[]> {
-    const syntmisi = input.syntmisi ?? false;
-    // 1. Validate input
+/** Calculate all administrative deadlines without database or network access. */
+export function getAdminDeadlines(input: GetAdminDeadlinesInput): Deadline[] {
     validateInput(input);
-
-    // 2. Fetch rules from database
-    const rules = await fetchDeadlineRules(input.court_type, input.procedure_type);
-
-    // 3. Return empty array if no rules found
-    if (rules.length === 0) {
-        return [];
-    }
-
-    // 4. Sort rules topologically (validates and filters)
-    const sortedRules = sortDeadlineRules(rules);
-
-    // 5. Calculate date range for argies.
-    // Administrative deadlines can cross the 77-day summer suspension and still need
-    // final weekend/holiday skips beyond the nominal day count, so preload a wide
-    // enough window on both sides of the reference date.
+    const syntmisi = input.syntmisi ?? false;
+    const sortedRules = sortAdminDeadlineRules(rulesForInput(input));
     const maxTraversalDays = getMaxTraversalDays(sortedRules);
     const forwardRange = getDateRangeForCalculation(
-        input.dikasimos,
-        maxTraversalDays,
-        'forward',
-        DATE_RANGE_BUFFER_DAYS
+        input.dikasimos, maxTraversalDays, 'forward', DATE_RANGE_BUFFER_DAYS
     );
     const backwardRange = getDateRangeForCalculation(
-        input.dikasimos,
-        maxTraversalDays,
-        'backward',
-        DATE_RANGE_BUFFER_DAYS
+        input.dikasimos, maxTraversalDays, 'backward', DATE_RANGE_BUFFER_DAYS
     );
-
-    // 6. Fetch argies once for entire range
-    const argies = getArgiesForRange(backwardRange.startDate, forwardRange.endDate);
-
-    // 7. Fetch anastoli (summer suspension: July 1 - September 15) for entire range
-    const anastoli = getAnastoliForRange(backwardRange.startDate, forwardRange.endDate);
-
     const argiesAndAnastoli: ArgiesAndAnastoli = {
-        argies,
-        anastoli,
+        argies: getArgiesForRange(backwardRange.startDate, forwardRange.endDate),
+        anastoli: getAnastoliForRange(backwardRange.startDate, forwardRange.endDate),
     };
 
-    // 8. Calculate deadlines in sorted order
-    const calculatedDeadlines = new Map<string, Deadline>();
+    const calculatedByCode = new Map<string, Deadline>();
     const deadlines: Deadline[] = [];
-
     for (const rule of sortedRules) {
-        let referenceDate: string;
-        const referenceLabel = rule.reference_point;
-
-        if (rule.parent_deadline_code) {
-            const parent = calculatedDeadlines.get(rule.parent_deadline_code);
-            if (!parent) {
-                // This shouldn't happen due to topological sort, but handle gracefully
-                console.warn(
-                    `Parent '${rule.parent_deadline_code}' not found for '${rule.deadline_code}', using dikasimos`
-                );
-                referenceDate = input.dikasimos;
-            } else {
-                referenceDate = parent.date;
-            }
-        } else {
-            referenceDate = input.dikasimos;
+        const parent = rule.parent_deadline_code
+            ? calculatedByCode.get(rule.parent_deadline_code)
+            : undefined;
+        if (rule.parent_deadline_code && !parent) {
+            throw new DeadlineCalculationError(
+                `Parent '${rule.parent_deadline_code}' was not calculated for '${rule.deadline_code}'`,
+                ErrorCode.INVALID_RULES
+            );
         }
 
-        const effectiveRule = (syntmisi && rule.deadline_code === 'apopseis_fakelos_dioikisis')
+        const referenceDate = parent?.date ?? input.dikasimos;
+        const referenceLabel = rule.parent_deadline_code ?? 'dikasimos';
+        const effectiveRule = syntmisi && rule.deadline_code === AdminDeadlineCode.apopseis_fakelos_dioikisis
             ? { ...rule, days: 8 }
             : rule;
-
-        const calculatedResult = calculateDeadlineDate(
-            effectiveRule,
-            referenceDate,
-            argiesAndAnastoli
-        );
-
-        const logic = buildCalculationLogic(
-            effectiveRule,
-            referenceDate,
-            referenceLabel
-        );
-
-        const deadline = buildDeadline(rule, calculatedResult, logic, syntmisi);
-
-        calculatedDeadlines.set(rule.deadline_code, deadline);
+        const result = calculateDeadlineDate(effectiveRule, referenceDate, argiesAndAnastoli);
+        const logic = buildCalculationLogic(effectiveRule, referenceDate, referenceLabel);
+        const deadline = buildDeadline(rule, result, logic, syntmisi);
+        calculatedByCode.set(rule.deadline_code, deadline);
         deadlines.push(deadline);
     }
-
     return deadlines;
 }
