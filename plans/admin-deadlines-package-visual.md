@@ -5,9 +5,7 @@
 ```diff
  Consumer
    getAdminDeadlines(input)
--    query "prothesmies-admin" database table
--    await database response
-+    load versioned rules bundled in package
+    load versioned rules bundled in package
      validate and order rules
      calculate dates
      apply holidays and summer suspension
@@ -50,7 +48,7 @@ consumer application
 ├── mapping a court to DP_DE
 ├── filing-date anchor
 ├── hearing-date anchor
-├── database storage
+├── deadline persistence
 └── calculation_version
 ```
 
@@ -63,7 +61,7 @@ consumer application
 +│   # exports civil and administrative public APIs
  │
  ├── deadlines-admin.ts
--│   # async calculator that fetches rules from PostgreSQL
+-│   # synchronous orchestration over bundled rules
 +│   # synchronous orchestration over bundled rules
  │
 +├── rules/
@@ -74,9 +72,6 @@ consumer application
 -│   # internal GetDeadlinesInput
 +│   # exported GetAdminDeadlinesInput and admin enums
  │
--├── db.ts
--│   # @vercel/postgres connection
--│
  └── tests/
 -    └── deadlines-admin.integration.test.ts
 +    └── deadlines-admin.test.ts
@@ -130,32 +125,19 @@ getAdminDeadlines(input)
   return calculated deadlines
 ```
 
-## Migration Verification
+## Verification
 
-```mermaid
-flowchart LR
-    DB[(Reference database)]
-    Legacy["Frozen legacy calculator<br/>test-only"]
-    Generator["Property generator<br/>valid weekday dikasimos<br/>syntmisi true / false"]
-    New["New bundled-rule calculator"]
-    Compare["Normalize by deadline type<br/>compare complete outputs"]
+The calculator uses versioned rules bundled with the package and returns its calculated deadlines synchronously.
 
-    DB -->|"load rules once<br/>verify fingerprint"| Legacy
-    Generator --> Legacy
-    Generator --> New
-    Legacy --> Compare
-    New --> Compare
-```
-
-Parity rules:
+Current verification:
 
 - Generated `dikasimos` values are valid ISO dates, Monday through Friday, and not Greek holidays.
-- Fetch database rules once per suite; do not query the database for every generated case.
-- Compare codes, dates, logic, paused/skipped dates, and legislation metadata for at least 1,000 reproducible generated cases.
-- Compare results keyed by deadline type because legacy database row order is not guaranteed; test the new package's stable order separately.
-- The parity command fails if the reference database is unavailable. The normal unit suite remains database-free.
-- Weekend and Greek-holiday hearing dates are tested separately and must throw `DeadlineCalculationError` in the new API.
-- Deterministic, independently reviewed examples remain the legal-correctness oracle; parity alone verifies only that behavior did not change.
+- The rule set is version-controlled and loaded from the package.
+- Deterministic tests cover dates, chained rules, holidays, suspension, shortening, and invalid inputs.
+- The public output order is stable and covered by the deterministic test suite.
+- The normal unit-test suite is deterministic and independent of external services.
+- Weekend and Greek-holiday hearing dates are tested separately and must throw `DeadlineCalculationError`.
+- Deterministic, independently reviewed examples remain the legal-correctness oracle.
 
 ## Deliberately Excluded
 

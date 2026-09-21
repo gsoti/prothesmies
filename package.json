@@ -24,15 +24,12 @@
     "dev": "tsx src/index.ts",
     "test": "vitest",
     "test:lawcase": "LAWCASE_LIVE=1 vitest run tests/lawcase-live.test.ts",
-    "test:admin-parity": "ADMIN_PARITY=1 vitest run tests/admin-parity/admin-parity.test.ts",
     "typecheck:tests": "tsc -p tsconfig.test.json"
   },
   "dependencies": {},
   "devDependencies": {
     "@gsoti/prothesmies": "github:gsoti/ls-prothesmies",
     "@types/node": "^22.0.0",
-    "@vercel/postgres": "^0.10.0",
-    "dotenv": "^16.4.5",
     "fast-check": "^4.4.0",
     "tsx": "^4.19.0",
     "typescript": "^5.6.0",

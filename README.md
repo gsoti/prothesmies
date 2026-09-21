@@ -19,7 +19,7 @@ if (result.status === 'success') {
 }
 ```
 
-`getAdminDeadlines` is synchronous and does not access a database or network. The dedicated legacy parity suite is available with `npm run test:admin-parity` and requires reference database credentials.
+`getAdminDeadlines` is synchronous and does not access a database or network.
 
 ΝΕΑ ΤΑΚΤΙΚΗ ΜΟΝΟΜΕΛΟΥΣ (ν.5221/2025)
 ΓΑΚ 206/2026 ΠΡΩΤΟΔΙΚΕΙΟ ΑΘΗΝΩΝ

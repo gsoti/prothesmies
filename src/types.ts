@@ -1,4 +1,3 @@
-// Database-driven deadline codes
 export enum AdminDeadlineCode {
     apopseis_fakelos_dioikisis = "apopseis_fakelos_dioikisis",
     anakoinosi_dikis = "anakoinosi_dikis",
@@ -106,7 +105,6 @@ export interface Nomothesia extends NomothesiaCore {
     highlighted: string[];
 }
 
-// Database table row representing a deadline rule
 export interface DeadlineRule {
     court_type: string;
     procedure_type: string;

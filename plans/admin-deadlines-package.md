@@ -67,7 +67,7 @@ Consumers own:
 - Preserve topological ordering, chained calculations, Greek holidays, summer suspension, working/full/calendar-day handling, and legislation parsing.
 - Refactor `getAdminDeadlines` to use the bundled rule set and return synchronously.
 - Export `getAdminDeadlines`, `GetAdminDeadlinesInput`, `CourtType`, `ProcedureType`, and `DeadlineCalculationError` from the package root.
-- Remove database dependencies and configuration from the runtime and published package path. A database client may remain temporarily as a development-only dependency for the test-only legacy parity harness.
+- Keep database dependencies and configuration out of the runtime, development, and published package paths.
 - Bump and publish the package version. Consumers must use this version as the authoritative `calculation_version`.
 
 Expected source shape:
@@ -82,11 +82,6 @@ src/
 └── tests/
     └── deadlines-admin.test.ts              # deterministic calculator tests
 
-tests/
-└── admin-parity/
-    ├── legacy-admin-calculator.ts         # frozen, test-only database implementation
-    ├── admin-db-rules.ts                  # one-time rule loading and fingerprint check
-    └── admin-parity.test.ts               # property-based old/new comparison
 ```
 
 ## Test Plan
@@ -100,25 +95,6 @@ tests/
 - Verify missing or circular rule dependencies fail predictably.
 - Verify the administrative calculator performs no database or network access.
 - Run unit tests, type checking, package build, and package-consumer smoke tests.
-
-### Legacy Database Parity
-
-Before replacing the database-backed implementation, preserve a frozen copy as a test-only reference implementation. It must not be exported from the package root or included in the published `dist` output.
-
-- Load the active `DP_DE` / `DIAFORA_OUSIAS` database rules once per parity test run rather than once per generated input.
-- Normalize the fetched rows and verify an expected rule fingerprint before treating the database as the reference oracle. An intentional database rule change therefore requires explicit review.
-- Keep the legacy rule traversal and deadline construction independent from the new implementation so a shared orchestration defect cannot make both sides pass together.
-- Generate random valid `dikasimos` dates across a representative multi-year range. Generated dates must always be Monday through Friday and must not be Greek holidays.
-- Generate both `syntmisi: false` and `syntmisi: true` cases.
-- For each generated input, compare the complete legacy and new outputs: codes, dates, names, calculation logic, paused and skipped dates, and legislation metadata.
-- Compare semantic output keyed by deadline type because the legacy SQL query has no guaranteed row order. Verify the new implementation's stable output order separately.
-- Assert uniqueness and the exact 12-code set before keying results so normalization cannot hide duplicate or missing deadlines.
-- Run enough generated cases to exercise calendar, working-day, holiday, year-boundary, and summer-suspension interactions; start with at least 1,000 reproducible FastCheck runs.
-- Retain deterministic, independently reviewed boundary examples because legacy parity proves behavioral equivalence, not legal correctness.
-
-The parity suite must use a dedicated command such as `npm run test:admin-parity`. That command must fail when its required database credentials are unavailable; it must never silently skip. The normal unit-test suite remains deterministic and database-free.
-
-Weekend and Greek-holiday `dikasimos` values are deliberately excluded from old/new parity generation because they are outside the new supported input domain. They are covered by direct validation tests against the new API.
 
 ## Acceptance Criteria
 
