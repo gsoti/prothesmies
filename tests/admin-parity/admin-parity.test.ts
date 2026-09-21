@@ -1,7 +1,7 @@
 import fc from 'fast-check';
 import { beforeAll, describe, expect, it } from 'vitest';
 import { getAdminDeadlines } from '../../src/deadlines-admin.js';
-import { CourtType, Deadline, DeadlineRule, ProcedureType } from '../../src/types.js';
+import { Deadline, DeadlineRule } from '../../src/types.js';
 import { getArgiesForRange } from '../../src/utils/argies.js';
 import { loadAdminDbRules } from './admin-db-rules.js';
 import { getLegacyAdminDeadlines } from './legacy-admin-calculator.js';
@@ -31,12 +31,15 @@ parityDescribe('legacy/new administrative parity', () => {
 
         fc.assert(fc.property(validDate, fc.boolean(), (dikasimos, syntmisi) => {
             const input = {
-                court_type: CourtType.DP_DE,
-                procedure_type: ProcedureType.DIAFORA_OUSIAS,
+                court: 'dprotodikeioath',
+                katigoria: 'Αγωγή',
                 dikasimos,
                 syntmisi,
             };
-            expect(byType(getAdminDeadlines(input))).toEqual(
+            const result = getAdminDeadlines(input);
+            expect(result.status).toBe('success');
+            if (result.status !== 'success') throw new Error('Expected successful calculation');
+            expect(byType(result.deadlines)).toEqual(
                 byType(getLegacyAdminDeadlines(input, rules))
             );
         }), { numRuns: 1_000, seed: 20_260_918 });

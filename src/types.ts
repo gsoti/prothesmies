@@ -124,11 +124,24 @@ export interface DeadlineRule {
 }
 
 export interface GetAdminDeadlinesInput {
-    court_type: CourtType;
-    procedure_type: ProcedureType;
+    court: string;
+    katigoria: string;
     dikasimos: string; // ISO date format (YYYY-MM-DD)
     syntmisi?: boolean; // Whether deadlines are shortened
 }
+
+export type AdminDeadlineNotSupportedReason =
+    | 'unknown_court'
+    | 'ste'
+    | 'unsupported_category';
+
+export type AdminDeadlinesResult =
+    | { status: 'success'; deadlines: Deadline[] }
+    | {
+        status: 'not_supported';
+        reason: AdminDeadlineNotSupportedReason;
+        deadlines: [];
+    };
 
 /** @deprecated Use GetAdminDeadlinesInput. */
 export type GetDeadlinesInput = GetAdminDeadlinesInput;

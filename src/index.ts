@@ -7,6 +7,8 @@ export {
     CivilDeadlineCode,
     DayCount,
     ProcedureType,
+    type AdminDeadlineNotSupportedReason,
+    type AdminDeadlinesResult,
     type CivilDeadlinesResult,
     type DateCalculation,
     type Deadline,

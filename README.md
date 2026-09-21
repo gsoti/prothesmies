@@ -4,17 +4,19 @@ Deterministic Greek civil and administrative legal deadline calculators.
 
 ```ts
 import {
-  CourtType,
-  ProcedureType,
   getAdminDeadlines,
 } from 'prothesmies';
 
-const deadlines = getAdminDeadlines({
-  court_type: CourtType.DP_DE,
-  procedure_type: ProcedureType.DIAFORA_OUSIAS,
+const result = getAdminDeadlines({
+  court: 'dprotodikeioath',
+  katigoria: 'Αγωγή',
   dikasimos: '2026-11-20',
   syntmisi: false,
 });
+
+if (result.status === 'success') {
+  console.log(result.deadlines);
+}
 ```
 
 `getAdminDeadlines` is synchronous and does not access a database or network. The dedicated legacy parity suite is available with `npm run test:admin-parity` and requires reference database credentials.

@@ -6,25 +6,47 @@ import {
 import { ADMIN_DIAFORA_OUSIAS_RULES } from './rules/rules-admin-diafora-ousias.js';
 import {
     AdminDeadlineCode,
-    CourtType,
     DeadlineRule,
-    ProcedureType,
+    GetAdminDeadlinesInput,
 } from './types.js';
 import { DeadlineCalculationError } from './utils/deadlineHelpers.js';
 
 const baseInput = {
-    court_type: CourtType.DP_DE,
-    procedure_type: ProcedureType.DIAFORA_OUSIAS,
+    court: 'dprotodikeioath',
+    katigoria: 'Αγωγή',
     dikasimos: '2026-11-20',
 };
 
+const supportedCourts = [
+    'defeteioath', 'defeteiopei', 'dprotodikeioath', 'dprotodikeiopei',
+    'defeteioxan', 'dprotodikeiohra', 'dprotodikeioxan', 'dprotodikeiorod',
+    'dprotodikeiosyr', 'dprotodikeiomyt', 'dprotodikeioker', 'defeteiotrp',
+    'dprotodikeiokal', 'dprotodikeiokor', 'dprotodikeionaf', 'dprotodikeiotrp',
+    'defeteiopat', 'dprotodikeioagr', 'dprotodikeiomes', 'dprotodikeiopat',
+    'dprotodikeiopyr', 'dprotodikeiolam', 'dprotodikeioliv', 'dprotodikeioxal',
+    'defeteioiwa', 'dprotodikeioiwa', 'defeteiolar', 'dprotodikeiovol',
+    'dprotodikeiolar', 'dprotodikeiotri', 'dprotodikeiokoz', 'defeteiothe',
+    'dprotodikeiover', 'dprotodikeiothe', 'dprotodikeioser', 'defeteiokom',
+    'dprotodikeioale', 'dprotodikeiokav', 'dprotodikeiokom',
+] as const;
+
+function getSuccessfulDeadlines(input: GetAdminDeadlinesInput = baseInput) {
+    const result = getAdminDeadlines(input);
+    expect(result.status).toBe('success');
+    if (result.status !== 'success') throw new Error(`Expected success, received ${result.reason}`);
+    return result.deadlines;
+}
+
 describe('getAdminDeadlines', () => {
     it('is synchronous, deterministic, and returns the stable 12-deadline result', () => {
-        const first = getAdminDeadlines(baseInput);
-        const second = getAdminDeadlines(baseInput);
+        const firstResult = getAdminDeadlines(baseInput);
+        const secondResult = getAdminDeadlines(baseInput);
 
-        expect(first).not.toBeInstanceOf(Promise);
-        expect(second).toEqual(first);
+        expect(firstResult).not.toBeInstanceOf(Promise);
+        expect(secondResult).toEqual(firstResult);
+        expect(firstResult.status).toBe('success');
+        if (firstResult.status !== 'success') throw new Error('Expected successful calculation');
+        const first = firstResult.deadlines;
         expect(first.map(deadline => ({
             type: deadline.type,
             date: deadline.date,
@@ -161,7 +183,7 @@ describe('getAdminDeadlines', () => {
     });
 
     it('returns unique active codes and excludes the inactive reconciliation folder rule', () => {
-        const result = getAdminDeadlines(baseInput);
+        const result = getSuccessfulDeadlines();
         const codes = result.map(deadline => deadline.type);
 
         expect(new Set(codes).size).toBe(12);
@@ -183,8 +205,8 @@ describe('getAdminDeadlines', () => {
     });
 
     it('applies syntmisi only to the administration-file deadline', () => {
-        const ordinary = getAdminDeadlines(baseInput);
-        const shortened = getAdminDeadlines({ ...baseInput, syntmisi: true });
+        const ordinary = getSuccessfulDeadlines();
+        const shortened = getSuccessfulDeadlines({ ...baseInput, syntmisi: true });
 
         const ordinaryByType = new Map(ordinary.map(deadline => [deadline.type, deadline]));
         for (const deadline of shortened) {
@@ -199,7 +221,7 @@ describe('getAdminDeadlines', () => {
     });
 
     it('preserves the ypomnima dependency chain', () => {
-        const result = getAdminDeadlines(baseInput);
+        const result = getSuccessfulDeadlines();
         const ypomnima = result.find(deadline => deadline.type === AdminDeadlineCode.ypomnima)!;
         const antikrousis = result.find(deadline => deadline.type === AdminDeadlineCode.ypomnima_antikrousis)!;
 
@@ -208,7 +230,7 @@ describe('getAdminDeadlines', () => {
     });
 
     it('accounts for the administrative summer suspension', () => {
-        const result = getAdminDeadlines({ ...baseInput, dikasimos: '2025-09-22' });
+        const result = getSuccessfulDeadlines({ ...baseInput, dikasimos: '2025-09-22' });
         const deadline = result.find(item => item.type === AdminDeadlineCode.prostheti_logoi)!;
 
         expect(deadline.date).toBe('2025-06-20');
@@ -217,7 +239,7 @@ describe('getAdminDeadlines', () => {
     });
 
     it('returns legislation and calculation explanations for every deadline', () => {
-        for (const deadline of getAdminDeadlines(baseInput)) {
+        for (const deadline of getSuccessfulDeadlines()) {
             expect(deadline.calculation).not.toBeNull();
             expect(deadline.calculation?.logic.name).toBe(deadline.shortName);
             expect(deadline.nomothesia).toHaveLength(1);
@@ -239,10 +261,38 @@ describe('getAdminDeadlines', () => {
         expect(() => getAdminDeadlines({ ...baseInput, dikasimos })).toThrow(message);
     });
 
-    it('rejects unsupported runtime enum values with DeadlineCalculationError', () => {
-        expect(() => getAdminDeadlines({ ...baseInput, court_type: 'OTHER' as CourtType }))
+    it.each(supportedCourts)('supports administrative court %s', court => {
+        expect(getAdminDeadlines({ ...baseInput, court }).status).toBe('success');
+    });
+
+    it.each([
+        ['ste', 'Αγωγή', 'ste'],
+        ['legacy-court', 'Αγωγή', 'unknown_court'],
+        ['dprotodikeioath', 'Προσφυγή', 'unsupported_category'],
+        ['dprotodikeioath', 'ΔΟ', 'unsupported_category'],
+        ['dprotodikeioath', 'Δ. Ο.', 'unsupported_category'],
+        ['dprotodikeioath', 'Διαφορά Ουσίας', 'unsupported_category'],
+    ])('returns not_supported for court %j and category %j', (court, katigoria, reason) => {
+        expect(getAdminDeadlines({ ...baseInput, court, katigoria })).toEqual({
+            status: 'not_supported',
+            reason,
+            deadlines: [],
+        });
+    });
+
+    it.each([
+        'Αγωγή',
+        '  Αγωγή με Τόνο  ',
+        'Κατηγορία Δ.Ο. Ενδίκου',
+        'δ.ο. - ουσίας',
+    ])('normalizes and supports category %j', katigoria => {
+        expect(getAdminDeadlines({ ...baseInput, katigoria }).status).toBe('success');
+    });
+
+    it('rejects non-string court and category values with DeadlineCalculationError', () => {
+        expect(() => getAdminDeadlines({ ...baseInput, court: null as unknown as string }))
             .toThrow(DeadlineCalculationError);
-        expect(() => getAdminDeadlines({ ...baseInput, procedure_type: 'OTHER' as ProcedureType }))
+        expect(() => getAdminDeadlines({ ...baseInput, katigoria: null as unknown as string }))
             .toThrow(DeadlineCalculationError);
     });
 });

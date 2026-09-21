@@ -2,12 +2,12 @@ import { ArgiesAndAnastoli, DateCalculationResult } from './dateCalculation.js';
 import { ADMIN_DIAFORA_OUSIAS_RULES } from './rules/rules-admin-diafora-ousias.js';
 import {
     AdminDeadlineCode,
-    CourtType,
+    AdminDeadlineNotSupportedReason,
+    AdminDeadlinesResult,
     DateCalculation,
     Deadline,
     DeadlineRule,
     GetAdminDeadlinesInput,
-    ProcedureType,
 } from './types.js';
 import { getAnastoliForRange } from './utils/anastoli-admin.js';
 import { getArgiesForRange, getDateRangeForCalculation } from './utils/argies.js';
@@ -33,6 +33,49 @@ const ErrorCode = {
 const MAX_CHAIN_DEPTH = 10;
 const DATE_RANGE_BUFFER_DAYS = 365;
 
+const ADMIN_COURTS = new Set<string>([
+    'defeteioath',
+    'defeteiopei',
+    'dprotodikeioath',
+    'dprotodikeiopei',
+    'defeteioxan',
+    'dprotodikeiohra',
+    'dprotodikeioxan',
+    'dprotodikeiorod',
+    'dprotodikeiosyr',
+    'dprotodikeiomyt',
+    'dprotodikeioker',
+    'defeteiotrp',
+    'dprotodikeiokal',
+    'dprotodikeiokor',
+    'dprotodikeionaf',
+    'dprotodikeiotrp',
+    'defeteiopat',
+    'dprotodikeioagr',
+    'dprotodikeiomes',
+    'dprotodikeiopat',
+    'dprotodikeiopyr',
+    'dprotodikeiolam',
+    'dprotodikeioliv',
+    'dprotodikeioxal',
+    'defeteioiwa',
+    'dprotodikeioiwa',
+    'defeteiolar',
+    'dprotodikeiovol',
+    'dprotodikeiolar',
+    'dprotodikeiotri',
+    'dprotodikeiokoz',
+    'defeteiothe',
+    'dprotodikeiover',
+    'dprotodikeiothe',
+    'dprotodikeioser',
+    'defeteiokom',
+    'dprotodikeioale',
+    'dprotodikeiokav',
+    'dprotodikeiokom',
+    'ste',
+]);
+
 function assertValidISODate(value: string): void {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) {
         throw new Error('Date must use YYYY-MM-DD format');
@@ -42,9 +85,21 @@ function assertValidISODate(value: string): void {
     }
 }
 
-function validateInput(input: GetAdminDeadlinesInput): void {
+function validateInputShape(input: GetAdminDeadlinesInput): void {
     if (!input || typeof input !== 'object') {
         throw new DeadlineCalculationError('input is required', ErrorCode.INVALID_INPUT);
+    }
+    if (typeof input.court !== 'string') {
+        throw new DeadlineCalculationError(
+            'court is required and must be a string',
+            ErrorCode.INVALID_INPUT
+        );
+    }
+    if (typeof input.katigoria !== 'string') {
+        throw new DeadlineCalculationError(
+            'katigoria is required and must be a string',
+            ErrorCode.INVALID_INPUT
+        );
     }
     if (!input.dikasimos || typeof input.dikasimos !== 'string') {
         throw new DeadlineCalculationError(
@@ -52,33 +107,46 @@ function validateInput(input: GetAdminDeadlinesInput): void {
             ErrorCode.INVALID_INPUT
         );
     }
+}
+
+function validateDikasimos(dikasimos: string): void {
     try {
-        assertValidISODate(input.dikasimos);
+        assertValidISODate(dikasimos);
     } catch (error) {
         throw new DeadlineCalculationError(
-            `Invalid dikasimos date format: ${input.dikasimos}. Expected YYYY-MM-DD`,
+            `Invalid dikasimos date format: ${dikasimos}. Expected YYYY-MM-DD`,
             ErrorCode.INVALID_INPUT,
             { originalError: error }
         );
     }
-    if (!Object.values(CourtType).includes(input.court_type)) {
+    if (getArgiesForRange(dikasimos, dikasimos).includes(dikasimos)) {
         throw new DeadlineCalculationError(
-            `Invalid court_type: ${input.court_type}`,
+            `Invalid dikasimos: ${dikasimos} must be a non-holiday weekday`,
             ErrorCode.INVALID_INPUT
         );
     }
-    if (!Object.values(ProcedureType).includes(input.procedure_type)) {
-        throw new DeadlineCalculationError(
-            `Invalid procedure_type: ${input.procedure_type}`,
-            ErrorCode.INVALID_INPUT
-        );
+}
+
+function normalizeAdminCategory(value: string): string {
+    return value
+        .trim()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .normalize('NFC')
+        .replace(/\s+/g, ' ')
+        .toLocaleUpperCase('el-GR');
+}
+
+function getNotSupportedReason(input: GetAdminDeadlinesInput): AdminDeadlineNotSupportedReason | null {
+    if (!ADMIN_COURTS.has(input.court)) return 'unknown_court';
+    if (input.court === 'ste') return 'ste';
+
+    const category = normalizeAdminCategory(input.katigoria);
+    if (!category.includes('Δ.Ο.') && !category.startsWith('ΑΓΩΓΗ')) {
+        return 'unsupported_category';
     }
-    if (getArgiesForRange(input.dikasimos, input.dikasimos).includes(input.dikasimos)) {
-        throw new DeadlineCalculationError(
-            `Invalid dikasimos: ${input.dikasimos} must be a non-holiday weekday`,
-            ErrorCode.INVALID_INPUT
-        );
-    }
+
+    return null;
 }
 
 function detectCircularDependency(rules: readonly DeadlineRule[]): string | null {
@@ -202,21 +270,17 @@ function buildDeadline(
     };
 }
 
-function rulesForInput(input: GetAdminDeadlinesInput): readonly DeadlineRule[] {
-    if (
-        input.court_type === CourtType.DP_DE &&
-        input.procedure_type === ProcedureType.DIAFORA_OUSIAS
-    ) {
-        return ADMIN_DIAFORA_OUSIAS_RULES;
-    }
-    throw new DeadlineCalculationError('Unsupported administrative rule set', ErrorCode.INVALID_INPUT);
-}
-
 /** Calculate all administrative deadlines without database or network access. */
-export function getAdminDeadlines(input: GetAdminDeadlinesInput): Deadline[] {
-    validateInput(input);
+export function getAdminDeadlines(input: GetAdminDeadlinesInput): AdminDeadlinesResult {
+    validateInputShape(input);
+    const notSupportedReason = getNotSupportedReason(input);
+    if (notSupportedReason) {
+        return { status: 'not_supported', reason: notSupportedReason, deadlines: [] };
+    }
+
+    validateDikasimos(input.dikasimos);
     const syntmisi = input.syntmisi ?? false;
-    const sortedRules = sortAdminDeadlineRules(rulesForInput(input));
+    const sortedRules = sortAdminDeadlineRules(ADMIN_DIAFORA_OUSIAS_RULES);
     const maxTraversalDays = getMaxTraversalDays(sortedRules);
     const forwardRange = getDateRangeForCalculation(
         input.dikasimos, maxTraversalDays, 'forward', DATE_RANGE_BUFFER_DAYS
@@ -253,5 +317,5 @@ export function getAdminDeadlines(input: GetAdminDeadlinesInput): Deadline[] {
         calculatedByCode.set(rule.deadline_code, deadline);
         deadlines.push(deadline);
     }
-    return deadlines;
+    return { status: 'success', deadlines };
 }
