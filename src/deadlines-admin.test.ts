@@ -9,6 +9,11 @@ import {
     DeadlineRule,
     GetAdminDeadlinesInput,
 } from './types.js';
+import {
+    ADMIN_NOMOTHESIA_SOURCE,
+    GENERATED_ADMIN_NOMOTHESIA,
+} from './generated/admin-nomothesia.generated.js';
+import { NOMOTHESIA_TEXT } from './nomothesia-admin.js';
 import { DeadlineCalculationError } from './utils/deadlineHelpers.js';
 
 const baseInput = {
@@ -217,6 +222,54 @@ describe('getAdminDeadlines', () => {
             } else {
                 expect(deadline).toEqual(ordinaryByType.get(deadline.type));
             }
+        }
+    });
+
+    it('returns the generated full Article 114 for the Παρέμβαση deadline', () => {
+        const ordinary = getSuccessfulDeadlines();
+        const shortened = getSuccessfulDeadlines({ ...baseInput, syntmisi: true });
+        const deadline = ordinary.find(item => item.type === AdminDeadlineCode.paremvasi)!;
+        const shortenedDeadline = shortened.find(item => item.type === AdminDeadlineCode.paremvasi)!;
+        const formatted = deadline.formattedNomothesia[0];
+        const paragraphs = formatted.text.split('\n\n');
+
+        expect(deadline.date).toBe('2026-11-13');
+        expect(deadline.nomothesia).toEqual(['114 παρ. 2 ΚΔΔ']);
+        expect(formatted).toEqual(GENERATED_ADMIN_NOMOTHESIA.paremvasi);
+        expect(shortenedDeadline.formattedNomothesia).toEqual(deadline.formattedNomothesia);
+        expect(paragraphs).toHaveLength(4);
+        expect(paragraphs.map(paragraph => paragraph.match(/^«?(\d+)\./u)?.[1])).toEqual([
+            '1', '2', '3', '4',
+        ]);
+        expect(formatted.text).toContain('άρθρου 126.');
+        expect(formatted.text).not.toContain('άρθρου\n\n126.');
+        expect(formatted.highlighted).toHaveLength(1);
+        expect(formatted.text).toContain(formatted.highlighted[0]);
+        expect(ADMIN_NOMOTHESIA_SOURCE).toEqual({
+            codeId: 'kdiokd',
+            sourceUrl: 'https://deep-law.io/nomothesia-kodikas-dioikitikis-dikonomias',
+            scrapedAt: '2026-09-21T11:45:18.965Z',
+            latestModification: 'Ν. 5197/2025',
+            sha256: '8d45ed9abe9818e28ccb86bb76747cd2199ad3e9c25b5db4675f8c7a102cd871',
+        });
+        expect(formatted.text).toMatchInlineSnapshot(`
+          "«1. Στα πρόσωπα που, κατά τα προηγούμενα άρθρα, νομιμοποιούνται να ασκήσουν παρέμβαση, ανακοινώνεται η δίκη, με κοινοποίηση του εισαγωγικού δικογράφου και γνωστοποίηση της δικασίμου είκοσι (20) τουλάχιστον πλήρεις ημέρες πριν από αυτήν, από οποιονδήποτε διάδικο.».
+
+          2. «Η παρέμβαση ασκείται με ιδιαίτερο έγγραφο, το οποίο κατατίθεται στη γραμματεία του δικαστηρίου στο οποίο εκκρεμεί το σχετικό ένδικο βοήθημα ή μέσο και, με τη φροντίδα του παρεμβαίνοντος, επιδίδεται, με την ποινή του απαραδέκτου, σε κυρωμένο αντίγραφο στους διαδίκους τουλάχιστον έξι (6) πλήρεις ημέρες πριν από τη συζήτηση.» Κατά τα λοιπά εφαρμόζονται αναλόγως όσα ορίζονται στην παρ. 3 του άρθρου 126. Η παράλειψη της πιο πάνω επίδοσης καλύπτεται αν εκείνος προς τον οποίο αυτή έπρεπε να γίνει παρίσταται στο ακροατήριο και δεν αντιλέγει.
+
+          3. Οι διατάξεις για την ομοδικία, τη συνάφεια και το χωρισμό δικογράφων εφαρμόζονται αναλόγως και στην παρέμβαση.
+
+          4. Αποφάσεις, πράξεις και δικόγραφα που προβλέπεται ότι επιδίδονται στους διαδίκους, μετά την άσκηση της παρέμβασης επιδίδονται και στους παρεμβαίνοντες."
+        `);
+    });
+
+    it('keeps all non-pilot administrative legislation on the legacy lookup', () => {
+        const deadlines = getSuccessfulDeadlines();
+
+        for (const deadline of deadlines) {
+            if (deadline.type === AdminDeadlineCode.paremvasi) continue;
+            const citation = deadline.nomothesia[0];
+            expect(deadline.formattedNomothesia[0].text).toBe(NOMOTHESIA_TEXT[citation] ?? '');
         }
     });
 

@@ -1,6 +1,10 @@
 import { getDateCalculation, DateCalculationResult, ArgiesAndAnastoli } from '../dateCalculation.js';
 import { DayCount, Direction, DateCalculation, Nomothesia } from '../types.js';
-import { NOMOTHESIA_TEXT, getHighlighted } from '../nomothesia-admin.js';
+import {
+    NOMOTHESIA_TEXT,
+    getGeneratedAdminNomothesia,
+    getHighlighted,
+} from '../nomothesia-admin.js';
 
 export class DeadlineCalculationError extends Error {
     constructor(
@@ -66,9 +70,11 @@ export function parseLegislation(legislation: string | null, syntmisi: boolean, 
         return { plain: [], formatted: [] };
     }
 
+    const generated = getGeneratedAdminNomothesia(deadlineCode);
+
     return {
         plain: [legislation],
-        formatted: [{
+        formatted: generated ?? [{
             article: legislation,
             text: NOMOTHESIA_TEXT[legislation] ?? '',
             highlighted: getHighlighted(legislation, syntmisi, deadlineCode),
