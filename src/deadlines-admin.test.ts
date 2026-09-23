@@ -292,9 +292,18 @@ describe('getAdminDeadlines', () => {
     });
 
     it('returns legislation and calculation explanations for every deadline', () => {
-        for (const deadline of getSuccessfulDeadlines()) {
+        const deadlines = getSuccessfulDeadlines();
+        const deadlinesByType = new Map<string, (typeof deadlines)[number]>(
+            deadlines.map(deadline => [deadline.type, deadline])
+        );
+
+        for (const deadline of deadlines) {
             expect(deadline.calculation).not.toBeNull();
-            expect(deadline.calculation?.logic.name).toBe(deadline.shortName);
+            const logic = deadline.calculation!.logic;
+            const referenceName = logic.reference === AdminDeadlineCode.dikasimos
+                ? 'Δικάσιμος'
+                : deadlinesByType.get(logic.reference)?.shortName;
+            expect(logic.name).toBe(referenceName);
             expect(deadline.nomothesia).toHaveLength(1);
             expect(deadline.formattedNomothesia).toHaveLength(1);
             for (const highlighted of deadline.formattedNomothesia[0].highlighted) {

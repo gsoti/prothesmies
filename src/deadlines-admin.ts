@@ -33,6 +33,10 @@ const ErrorCode = {
 const MAX_CHAIN_DEPTH = 10;
 const DATE_RANGE_BUFFER_DAYS = 365;
 
+const ADMIN_REFERENCE_DEADLINE_NAMES: Record<string, string> = {
+    [AdminDeadlineCode.dikasimos]: 'Δικάσιμος',
+};
+
 const ADMIN_COURTS = new Set<string>([
     'defeteioath',
     'defeteiopei',
@@ -308,11 +312,14 @@ export function getAdminDeadlines(input: GetAdminDeadlinesInput): AdminDeadlines
 
         const referenceDate = parent?.date ?? input.dikasimos;
         const referenceLabel = rule.parent_deadline_code ?? 'dikasimos';
+        const referenceName = parent?.shortName
+            ?? ADMIN_REFERENCE_DEADLINE_NAMES[referenceLabel]
+            ?? referenceLabel;
         const effectiveRule = syntmisi && rule.deadline_code === AdminDeadlineCode.apopseis_fakelos_dioikisis
             ? { ...rule, days: 8 }
             : rule;
         const result = calculateDeadlineDate(effectiveRule, referenceDate, argiesAndAnastoli);
-        const logic = buildCalculationLogic(effectiveRule, referenceDate, referenceLabel);
+        const logic = buildCalculationLogic(effectiveRule, referenceDate, referenceLabel, referenceName);
         const deadline = buildDeadline(rule, result, logic, syntmisi);
         calculatedByCode.set(rule.deadline_code, deadline);
         deadlines.push(deadline);
