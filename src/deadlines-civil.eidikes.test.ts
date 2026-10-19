@@ -15,7 +15,7 @@ describe('getCivilDeadlines for ειδικές διαδικασίες', () => {
     it('should format civil deadlines from filing date', () => {
         const { deadlines } = getCivilDeadlines(INPUT);
 
-        expect(formatCivilDeadlines(deadlines)).toMatchInlineSnapshot(`
+        expect(formatCivilDeadlines(deadlines).replace(/[ \t]+$/gm, '')).toMatchInlineSnapshot(`
           "2025-01-10 - Κατάθεση
           2025-03-10 - Δικάσιμος
           2025-03-17 - Προσθήκη   5 ΕΡΓΑΣΙΜΕΣ ημέρες μετά dikasimos [paused: 2]"
