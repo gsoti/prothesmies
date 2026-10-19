@@ -6,6 +6,7 @@
 import { describe, expect, it } from 'vitest';
 import { prothesmiesCivilCase } from '@gsoti/prothesmies';
 import { getCivilDeadlines } from './deadlines-civil.js';
+import { CivilDeadlineCode } from './types.js';
 
 // https://www.run.legal/civil-cases/396e5941-17ba-40a7-8cbe-073f0a3edff4
 const INPUT = {
@@ -58,7 +59,10 @@ type CrossValidationInput =
     | typeof INPUT_EIDIKES_DIADIKASIES
     | typeof INPUT_WITHOUT_DIMASIMOS;
 
-function expectSameOutputAsExternal(input: CrossValidationInput) {
+function expectSameOutputAsExternal(
+    input: CrossValidationInput,
+    localOnlyDeadlineTypes: CivilDeadlineCode[] = []
+) {
     const { deadlines } = getCivilDeadlines(input);
 
     const external = prothesmiesCivilCase({
@@ -89,7 +93,8 @@ function expectSameOutputAsExternal(input: CrossValidationInput) {
     );
 
     const oursNormalized = new Map(
-        deadlines            
+        deadlines
+            .filter(deadline => !localOnlyDeadlineTypes.includes(deadline.type))
             .sort(byDate)
             .map(normalize)
             .map(d => {
@@ -125,6 +130,8 @@ describe('getCivilDeadlines cross-validation against @gsoti/prothesmies', () => 
     });
 
     it('returns the same output as prothesmiesCivilCase for ειδικές διαδικασίες', () => {
-        expectSameOutputAsExternal(INPUT_EIDIKES_DIADIKASIES);
+        // The local calculator now returns katathesi for ειδικές διαδικασίες;
+        // the legacy reference package does not include it.
+        expectSameOutputAsExternal(INPUT_EIDIKES_DIADIKASIES, [CivilDeadlineCode.katathesi]);
     });
 });

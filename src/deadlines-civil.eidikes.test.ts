@@ -16,12 +16,53 @@ describe('getCivilDeadlines for ειδικές διαδικασίες', () => {
         const { deadlines } = getCivilDeadlines(INPUT);
 
         expect(formatCivilDeadlines(deadlines)).toMatchInlineSnapshot(`
-          "2025-03-10 - Δικάσιμος
+          "2025-01-10 - Κατάθεση
+          2025-03-10 - Δικάσιμος
           2025-03-17 - Προσθήκη   5 ΕΡΓΑΣΙΜΕΣ ημέρες μετά dikasimos [paused: 2]"
         `);
     });
 
+    it('returns katathesi when no dikasimos is provided', () => {
+        const { deadlines } = getCivilDeadlines({
+            imerominia_katathesis: INPUT.imerominia_katathesis,
+            diadikasia: INPUT.diadikasia,
+            eidos: INPUT.eidos,
+        });
+
+        expect(deadlines.map(deadline => deadline.type)).toEqual([CivilDeadlineCode.katathesi]);
+        expect(deadlines[0].date).toBe(INPUT.imerominia_katathesis);
+    });
+
+    it('returns katathesi when the case was not heard', () => {
+        const { deadlines } = getCivilDeadlines({
+            ...INPUT,
+            apotelesma: 'ΜΑΤΑΙΩΘΗΚΕ',
+        });
+
+        expect(deadlines.map(deadline => deadline.type)).toEqual([
+            CivilDeadlineCode.katathesi,
+            CivilDeadlineCode.dikasimos,
+        ]);
+    });
+
     describe('json snapshots', () => {
+        it('snapshots katathesi as JSON', () => {
+            const { deadlines } = getCivilDeadlines(INPUT);
+
+            const deadline = deadlines.find(d => d.type === CivilDeadlineCode.katathesi);
+            expect(JSON.parse(JSON.stringify(deadline))).toMatchInlineSnapshot(`
+              {
+                "calculation": null,
+                "date": "2025-01-10",
+                "formattedNomothesia": [],
+                "name": "Κατάθεση",
+                "nomothesia": [],
+                "shortName": "Κατάθεση",
+                "type": "katathesi",
+              }
+            `);
+        });
+
         it('snapshots δικάσιμος as JSON', () => {
             const { deadlines } = getCivilDeadlines(INPUT);
 
