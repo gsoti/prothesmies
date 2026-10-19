@@ -129,7 +129,7 @@ function getCivilEidikesDeadlines(input: GetCivilDeadlinesInput): CivilDeadlines
         exoteriko: input.exoteriko,
         variant: 'eidikes',
     };
-    const deadlines: Deadline[] = [];
+    const deadlines: Deadline[] = [buildFilingDeadline(input)];
 
     if (!input.dikasimos) {
         return { deadlines, status: 'success' };
